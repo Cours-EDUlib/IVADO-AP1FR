@@ -11,7 +11,7 @@ Bienvenue au MOOC Introduction à l'apprentissage profond de IVADO/Mila! Vous tr
 
 Ces tutoriels sont complémentaires aux présentations et appliquent des concepts qui ont été développés tout au long du MOOC.
 
-Vous trouverez dans ce github repo tous les tutoriels dans le dossier [tutorials](https://github.com/Cours-EDUlib/IVADO-DL101/tree/master/tutorials). Chaque tutoriel sera présenté sous deux formats :
+Vous trouverez dans ce github repo tous les tutoriels dans le dossier [tutoriels](https://github.com/Cours-EDUlib/IVADO-DL101/tree/master/tutorials). Chaque tutoriel sera présenté sous deux formats :
 
 * un format `TODO`, dans lequel des modèles sont fournis mais où du code est omis pour que vous puissiez le compléter ;
 * un format `Solutions` dans lequel les solutions proposées sont présentées ;
