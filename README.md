@@ -5,23 +5,23 @@
 
 ## Bienvenue!
 
-Welcome to the IVADO/Mila Deep Learning Essentials MOOC! In this repo, you will find all the material needed for completing the tutorials of the MOOC as well as some supplementary material.
+Bienvenue au MOOC Introduction à l'apprentissage profond de IVADO/Mila! Vous trouverez dans cette rubrique tout le matériel nécessaire pour compléter les tutoriels du MOOC ainsi que du matériel supplémentaire.
 
-## Course Structure
+## Structure du cours
 
-These tutorials are complementary to the lectures and apply concepts that have been covered throughout the MOOC.
+Ces tutoriels sont complémentaires aux présentations et appliquent des concepts qui ont été développés tout au long du MOOC.
 
-You will find in this github repo all tutorials in the [tutorials](https://github.com/Cours-EDUlib/IVADO-DL101/tree/master/tutorials) folder. Each tutorial will be presented in two formats:
+Vous trouverez dans ce github repo tous les tutoriels dans le dossier [tutorials](https://github.com/Cours-EDUlib/IVADO-DL101/tree/master/tutorials). Chaque tutoriel sera présenté sous deux formats :
 
-* one `TODO` format, in which templates are provided but code is left out for you to complete;
-* one `Solutions` format where the suggested solutions to the tutorials are presented;
+* un format `TODO`, dans lequel des modèles sont fournis mais où du code est omis pour que vous puissiez le compléter ;
+* un format `Solutions` dans lequel les solutions proposées sont présentées ;
 
-## Practical Information
+## Informations pratiques
 
-We will be presenting the tutorials in the format of [Jupyter notebooks](http://jupyter.org/). In order to facilitate usage/setup of the notebooks, we will be using [Google Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/) which gives users access to an already setup python environment with all the necessary dependencies. It also gives access to free GPUs for cloud computation. Using Colab will require an internet connection. You can however use the notebooks locally if you so prefer but additional setup will be necessary.
+Nous présenterons les tutoriels sous la forme de [calepins Jupyter] (http://jupyter.org/). Afin de faciliter l'utilisation et la configuration des carnets, nous utiliserons [Google Colab] (https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/) qui donne accès à un environnement python déjà installé avec toutes les dépendances nécessaires. Il donne également accès à des GPU gratuits pour le calcul infonuagique. L'utilisation de Colab requiert une connexion Internet. Vous pouvez toutefois utiliser les calepins localement si vous le souhaitez, mais une configuration supplémentaire est nécessaire.
 
-## [Tutorials on Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/)
+## [Tutoriels sur Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/)
 
-## Additional information
+## Informations supplémentaires
 
-For more information about the deep learning MOOC, visit the [official website.](https://www.edx.org/course/deep-learning-essentials)
+Pour plus d'informations sur l'apprentissage profond du MOOC, visitez le [site officiel] (https://www.edx.org/course/deep-learning-essentials)
