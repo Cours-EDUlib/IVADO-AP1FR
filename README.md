@@ -3,7 +3,7 @@
 [![deep_learning_essentials](https://user-images.githubusercontent.com/18450628/75366274-7e8c2180-588c-11ea-82a0-55e9494ffdfc.png)
 ](https://www.edx.org/course/deep-learning-essentials)
 
-## Welcome!
+## Bienvenue!
 
 Welcome to the IVADO/Mila Deep Learning Essentials MOOC! In this repo, you will find all the material needed for completing the tutorials of the MOOC as well as some supplementary material.
 
