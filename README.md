@@ -24,4 +24,4 @@ Nous présenterons les tutoriels sous la forme de [calepins Jupyter](http://jupy
 
 ## Informations supplémentaires
 
-Pour plus d'informations sur l'apprentissage profond du MOOC, visitez le [site officiel] (https://www.edx.org/course/deep-learning-essentials)
+Pour plus d'informations sur l'apprentissage profond du MOOC, visitez le [site officiel](https://www.edx.org/course/deep-learning-essentials)
