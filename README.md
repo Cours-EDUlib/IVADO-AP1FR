@@ -18,7 +18,7 @@ Vous trouverez dans ce github repo tous les tutoriels dans le dossier [tutoriels
 
 ## Informations pratiques
 
-Nous présenterons les tutoriels sous la forme de [calepins Jupyter](http://jupyter.org/). Afin de faciliter l'utilisation et la configuration des carnets, nous utiliserons [Google Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/) qui donne accès à un environnement python déjà installé avec toutes les dépendances nécessaires. Il donne également accès à des GPU gratuits pour le calcul infonuagique. L'utilisation de Colab requiert une connexion Internet. Vous pouvez toutefois utiliser les calepins localement si vous le souhaitez, mais une configuration supplémentaire est nécessaire.
+Nous présenterons les tutoriels sous la forme de [calepins Jupyter](http://jupyter.org/). Afin de faciliter l'utilisation et la configuration des carnets, nous utiliserons [Google Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-AP1FR/) qui donne accès à un environnement python déjà installé avec toutes les dépendances nécessaires. Il donne également accès à des GPU gratuits pour le calcul infonuagique. L'utilisation de Colab requiert une connexion Internet. Vous pouvez toutefois utiliser les calepins localement si vous le souhaitez, mais une configuration supplémentaire est nécessaire.
 
 ## [Tutoriels sur Colab](https://colab.research.google.com/github/Cours-EDUlib/IVADO-DL101/)
 
