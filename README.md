@@ -1,4 +1,4 @@
-# Deep Learning Essentials Tutorials
+# Tutoriels pour Introduction à l'apprentissage profond
 
 [![deep_learning_essentials](https://user-images.githubusercontent.com/18450628/75366274-7e8c2180-588c-11ea-82a0-55e9494ffdfc.png)
 ](https://www.edx.org/course/deep-learning-essentials)
