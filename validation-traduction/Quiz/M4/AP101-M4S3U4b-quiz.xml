@@ -1,0 +1,13 @@
+<problem>
+<optionresponse>
+  <label>Le but du modèle ___________ de Word2Vec est de prédire une unité lexicale en fonction des unités lexicales environnantes.</label>
+<optioninput>
+    <option correct="False">skip-gram <optionhint>Skip-gram prédit les unités lexicales environnantes en tenant compte de l’unité lexicale du milieu</optionhint></option>
+    <option correct="True">de sacs de mots continus</option>
+    <option correct="False">FastText <optionhint>FastText est une méthode de calcul de vecteurs-mots différente de Word2Vec</optionhint></option>
+  </optioninput>
+</optionresponse>
+<demandhint>
+  <hint>Regardez la vidéo à partir de 01:58.</hint>
+</demandhint>
+</problem>

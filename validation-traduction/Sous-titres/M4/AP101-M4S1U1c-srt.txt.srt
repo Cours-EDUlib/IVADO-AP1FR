@@ -1,0 +1,339 @@
+﻿1
+00:00:12,940 --> 00:00:20,439
+Avant de vous présenter cette architecture, examinons quelques exemples
+
+2
+00:00:20,439 --> 00:00:25,910
+de problèmes où nous pouvons façonner les données comme une séquence dans le monde réel, alors ici vous voyez
+
+3
+00:00:25,910 --> 00:00:31,730
+la reconnaissance de la parole, aussi appelée reconnaissance vocale. Vous voyez que
+
+4
+00:00:31,730 --> 00:00:37,970
+l'entrée est sous format audio, donc c'est une séquence dans le temps, et la sortie est
+
+5
+00:00:37,970 --> 00:00:43,789
+sous forme de texte, qui est une séquence parce qu'il y a des mots. Dans ce problème en particulier
+
+6
+00:00:43,789 --> 00:00:48,140
+de reconnaissance de la parole, ce que nous voulons faire,
+
+7
+00:00:48,140 --> 00:00:54,620
+si nous avons quelqu'un qui parle, c’est la transcription du texte. Encore une fois,
+
+8
+00:00:54,620 --> 00:01:00,559
+nous passons d'une séquence à une autre séquence. Prenons un autre exemple.
+
+9
+00:01:00,559 --> 00:01:04,070
+La traduction automatique est très connue, et cette capture d'écran en particulier provient
+
+10
+00:01:04,070 --> 00:01:10,910
+de Google Translate. L'objectif est évidemment de traduire
+
+11
+00:01:10,910 --> 00:01:16,490
+d’une langue à une autre et, encore une fois, nous avons affaire à des séquences parce que nous
+
+12
+00:01:16,490 --> 00:01:20,270
+traitons un texte et, comme nous l'avons dit, le texte est généralement représenté comme une
+
+13
+00:01:20,270 --> 00:01:28,460
+séquence de mots. Voici un exemple plus intéressant. Donc vous avez déjà vu
+
+14
+00:01:28,460 --> 00:01:34,579
+cette image hier. Le problème ici est la génération des légendes, donc c'est
+
+15
+00:01:34,579 --> 00:01:40,970
+un problème où, nous avons une image et nous voulons produire un texte qui décrit
+
+16
+00:01:40,970 --> 00:01:44,990
+l'image, qui s'appelle la légende. Le problème consiste à générer
+
+17
+00:01:44,990 --> 00:01:50,240
+cette légende automatiquement. Voici deux exemples : celui de gauche est une image d’une
+
+18
+00:01:50,240 --> 00:01:54,619
+femme qui lance un frisbee et celle de droite est cette girafe qui est debout
+
+19
+00:01:54,619 --> 00:02:00,049
+dans une forêt. J'ai dit que cet exemple est plus intéressant parce que vous voyez que
+
+20
+00:02:00,049 --> 00:02:06,560
+nous avons une séquence, et la sortie est le texte que nous voulons générer, mais si vous regardez
+
+21
+00:02:06,560 --> 00:02:09,920
+l'entrée, nous ne traitons plus de séquences, nous avons une image maintenant.
+
+22
+00:02:09,920 --> 00:02:14,780
+C'est similaire à ce que vous avez vu hier. Donc vous voyez que nous voulons aussi
+
+23
+00:02:14,780 --> 00:02:19,880
+traiter ces cas qui sont mixtes, comme lorsque nous n'avons pas de séquence
+
+24
+00:02:19,880 --> 00:02:23,419
+en entrée ou une séquence en sortie, mais nous pouvons avoir des cas comme celui-ci où nous avons une taille fixe
+
+25
+00:02:23,419 --> 00:02:26,900
+à l’entrée et une séquence en sortie ou l'inverse,
+
+26
+00:02:26,900 --> 00:02:33,590
+donc une séquence en entrée et une taille fixe en sortie. En fait, il y a plusieurs exemples
+
+27
+00:02:33,590 --> 00:02:40,390
+de données qui peuvent être sous forme de séquences dans le monde réel.
+
+28
+00:02:40,390 --> 00:02:44,030
+Nous avons déjà vu la reconnaissance de la parole, mais il y a aussi
+
+29
+00:02:44,030 --> 00:02:50,360
+le problème inverse, donc le transfert du texte au format audio et vous pouvez penser à ce
+
+30
+00:02:50,360 --> 00:02:59,660
+qui se produit avec certains assistants virtuels. Évidemment, dans le domaine de la vidéo,
+
+31
+00:02:59,660 --> 00:03:03,860
+il est normal d'avoir une séquence car on représente une séquence d’images
+
+32
+00:03:03,860 --> 00:03:09,560
+dans le temps. Nous avons déjà mentionné le texte, le filtrage
+
+33
+00:03:09,560 --> 00:03:14,930
+de spam, et la traduction automatique mais il y a aussi la médecine.
+
+34
+00:03:14,930 --> 00:03:19,040
+Nous pouvons avoir beaucoup de données qui peuvent être mises sous forme de séquence, par exemple, nous avons
+
+35
+00:03:19,040 --> 00:03:25,880
+l'ADN qui est une séquence et nous pouvons avoir la séquence des battements du cœur au fil du temps,
+
+36
+00:03:25,880 --> 00:03:31,670
+peut-être dans le but de détecter des anomalies. Donc toutes ces données peuvent être mises en forme de séquence.
+
+37
+00:03:31,670 --> 00:03:35,420
+Il y a aussi ce qu’on appelle les séries chronologiques, et
+
+38
+00:03:35,420 --> 00:03:41,560
+essentiellement c’est lorsque nous surveillons une valeur dans le temps.
+
+39
+00:03:41,560 --> 00:03:49,580
+L’exemple sans doute le plus célèbre est de suivre la valeur de certaines actions dans le temps parce que nous voulons
+
+40
+00:03:49,580 --> 00:03:55,790
+prédire comment il se comportera demain, nous avons donc beaucoup de problèmes et nous avons dit
+
+41
+00:03:55,790 --> 00:04:01,400
+que les MLP et les CNN comportent certains inconvénients. Nous voulons donc introduire
+
+42
+00:04:01,400 --> 00:04:06,770
+une nouvelle architecture pour résoudre ces problèmes. Avant de ce faire,
+
+43
+00:04:06,770 --> 00:04:13,570
+essayons de classer ce problème pour qu'il soit plus facile de montrer une solution.
+
+44
+00:04:13,570 --> 00:04:18,590
+Ici, vous voyez cinq classes réparties selon l'existence ou non d’une séquence
+
+45
+00:04:18,590 --> 00:04:24,200
+en entrée ou en sortie. Notamment dans le premier cas à gauche,
+
+46
+00:04:24,200 --> 00:04:31,010
+celui que j'appelle « un à un », c’est essentiellement ce que nous avons vu jusqu'à présent
+
+47
+00:04:31,010 --> 00:04:34,940
+au cours des jours précédents. Cela signifie que nous ne traitons pas de séquences et
+
+48
+00:04:34,940 --> 00:04:38,790
+l'entrée et la sortie ont une taille fixe. Un exemple est la classification des objets.
+
+49
+00:04:38,790 --> 00:04:45,720
+En entrée, nous avons une image de taille fixe et en sortie, nous avons
+
+50
+00:04:45,720 --> 00:04:53,190
+un classificateur, donc nous devons choisir une étiquette parmi une liste d'étiquettes. Dans l'exemple suivant,
+
+51
+00:04:53,190 --> 00:05:00,330
+« un à plusieurs », nous commençons à traiter des images, donc vous voyez que dans ce
+
+52
+00:05:00,330 --> 00:05:05,010
+cas en particulier, l'entrée est une image de taille fixe mais la sortie est une séquence.
+
+53
+00:05:05,010 --> 00:05:10,199
+L'exemple ici est la génération de légendes. C'est l'exemple
+
+54
+00:05:10,199 --> 00:05:14,250
+que nous avons vu précédemment, donc il y a l'image pour laquelle je veux produire une description et
+
+55
+00:05:14,250 --> 00:05:17,910
+là encore, vous voyez que la sortie est une séquence mais que l'entrée n'est pas une séquence.
+
+56
+00:05:17,910 --> 00:05:22,889
+Nous avons le cas inverse ici, « plusieurs à un ».
+
+57
+00:05:22,889 --> 00:05:28,050
+Donc l'entrée est une séquence mais la sortie a une taille fixe et ici
+
+58
+00:05:28,050 --> 00:05:31,979
+nous avons des problèmes que nous verrons plus en détail dans la troisième présentation
+
+59
+00:05:31,979 --> 00:05:37,889
+où nous voulons classer, par exemple, une phrase entière. C’est le cas de l’analyse de sentiments,
+
+60
+00:05:37,889 --> 00:05:43,260
+qui consiste essentiellement à attribuer une étiquette à un texte
+
+61
+00:05:43,260 --> 00:05:47,430
+qui représente le sentiment de la personne qui
+
+62
+00:05:47,430 --> 00:05:54,570
+rédigeait le texte. Nous passons maintenant au cas le plus générique, donc nous avons ici
+
+63
+00:05:54,570 --> 00:05:59,340
+« plusieurs à plusieurs », ce qui signifie que nous avons une séquence en entrée et une séquence en sortie,
+
+64
+00:05:59,340 --> 00:06:04,440
+mais avec une contrainte. Le nombre d'éléments en entrée doit être le même
+
+65
+00:06:04,440 --> 00:06:09,419
+que le nombre d'éléments en sortie et l'exemple ici est la reconnaissance
+
+66
+00:06:09,419 --> 00:06:12,900
+d'entités nommées. Je ne donnerai pas de détails car ce sera un
+
+67
+00:06:12,900 --> 00:06:19,889
+exemple courant dans plusieurs diapositives. Le dernier cas à droite est de nouveau
+
+68
+00:06:19,889 --> 00:06:24,690
+« plusieurs à plusieurs », mais vous voyez maintenant que j'ai la flexibilité optimale. Le nombre d'éléments
+
+69
+00:06:24,690 --> 00:06:28,349
+en entrée est différent du nombre d'éléments en sortie et nous verrons que
+
+70
+00:06:28,349 --> 00:06:32,970
+nous en avons besoin pour des problèmes particuliers comme la traduction automatique.
+
+71
+00:06:32,970 --> 00:06:37,620
+Dans ce cas-ci, je ne peux pas avoir la contrainte que j'ai le même nombre
+
+72
+00:06:37,620 --> 00:06:42,229
+d'éléments dans la séquence entrée-sortie.
+
+73
+00:06:42,260 --> 00:06:47,280
+Vous l'avez déjà vu, donc nous n’aborderons pas
+
+74
+00:06:47,280 --> 00:06:52,169
+la taille fixe en entrée et en sortie dans cette partie. Dans cette présentation, nous nous concentrerons
+
+75
+00:06:52,169 --> 00:06:57,569
+sur le cas de « plusieurs à plusieurs » où nous avons la contrainte que le nombre d’éléments en entrée
+
+76
+00:06:57,569 --> 00:07:04,499
+est le même que le nombre en sortie.
+
+77
+00:07:04,499 --> 00:07:10,949
+Ce cas comprend également « plusieurs à un » parce que
+
+78
+00:07:10,949 --> 00:07:15,749
+c'est comme un sous-cas. Je peux l'exécuter en ignorant toutes les sorties
+
+79
+00:07:15,749 --> 00:07:19,889
+et garder seulement la dernière. Ce sera plus clair aujourd'hui parce que dans
+
+80
+00:07:19,889 --> 00:07:24,719
+le tutoriel, il vous sera demandé de traiter un problème à l'aide de cette
+
+81
+00:07:24,719 --> 00:07:28,919
+solution-ci et de ce modèle-ci. Dans cette présentation, nous allons nous concentrer sur le cas
+
+82
+00:07:28,919 --> 00:07:34,710
+« plusieurs à plusieurs » et dans la prochaine présentation,nous allons introduire ce modèle de séquence à séquence
+
+83
+00:07:34,710 --> 00:07:42,599
+pour traiter du cas le plus générique, celui qui figure à droite. Encore une fois,
+
+84
+00:07:42,599 --> 00:07:47,999
+ce cas comprendra également « un à plusieurs », et nous verrons qu’il s’agit
+
+85
+00:07:47,999 --> 00:07:52,669
+essentiellement d'un sous-cas de celui-ci.

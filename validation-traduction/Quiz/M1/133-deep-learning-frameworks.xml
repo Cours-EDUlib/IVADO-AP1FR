@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt;Pytorch has static computational graphs. || Select true or false. &lt;&lt;&#10;&#10;( ) True {{Pytorch has dynamic computational graphs, which means the computational graph is built as the code is running, whereas in static graphs, the graph is built first and then the code is run}}&#10;(x) False&#10;&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Pytorch a des graphes de calcul statiques.</label>
+    <description>Choisissez vrai ou faux.</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>Pytorch a des graphes de calcul dynamiques: le graphe de calcul est construit au fur et à mesure que le code s&apos;exécute, tandis qu&apos;avec des graphes statiques, le graphe est d&apos;abord construit, puis le code est exécuté.</choicehint></choice>
+      <choice correct="true">Faux</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

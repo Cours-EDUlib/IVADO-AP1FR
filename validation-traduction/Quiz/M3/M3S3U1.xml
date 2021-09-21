@@ -1,0 +1,12 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Un modèle qui est meilleur est celui qui _________.</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">A une meilleure exactitude <choicehint>Un modèle plus précis peut être préférable pour certains cas d&apos;utilisation, mais pas pour d&apos;autres</choicehint>.</choice>
+    <choice correct="false">Est plus léger <choicehint>Un modèle léger peut être meilleur pour certains cas d&apos;utilisation, mais il peut ne pas l&apos;être pour d&apos;autres</choicehint>.</choice>
+    <choice correct="false">Est plus rapide <choicehint>Un modèle rapide peut être préférable pour certains cas d&apos;utilisation, mais pas pour d&apos;autres</choicehint>.</choice>
+    <choice correct="false">Tout ces réponses <choicehint>Ce modèle peut être meilleur pour certains cas d&apos;utilisation, mais pas pour d&apos;autres</choicehint>.</choice>
+    <choice correct="true">Aucune de ces réponses <choicehint>Ce qui rend un modèle &quot;meilleur&quot; dépendra du cas d&apos;utilisation spécifique. Par exemple, un modèle léger, rapide et plus précis peut manque d’adaptabilité, ce qui rend son champ d&apos;application très étroit. Si le cas d&apos;utilisation nécessite un modèle très polyvalent, alors ce modèle ne sera pas considéré comme &quot;meilleur&quot;, même s&apos;il est précis, rapide et léger.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

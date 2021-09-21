@@ -1,0 +1,41 @@
+<p><span style="white-space: pre-wrap;">Le MOOC Les essentiels de l'apprentissage profond devrait vous prendre cinq semaines, de 20 &agrave; 30 heures au total, en fonction de vos connaissances pr&eacute;alables sur le sujet. Voici ce que vous trouverez dans ce cours en ligne :</span></p>
+<ul>
+<li><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">13&nbsp;heures de contenu en format vid&eacute;o</span></li>
+<li>Des quiz apr&egrave;s la plupart des vid&eacute;os</li>
+<li>Des tutoriels sur Colab</li>
+<li>Des ressources et r&eacute;f&eacute;rences pour chaque module</li>
+<li>Des questions d'&eacute;valuation apr&egrave;s chaque module pour les participants qui obtiennent leur certification</li>
+</ul>
+<p></p>
+<p></p>
+<p>Voici les th&egrave;mes abord&eacute;s dans chaque module:</p>
+<p class="p1" style="font-size: 16px;"><span style="font-size: 1.4em; font-weight: 600;">Module 1 -&nbsp;Apprentissage automatique</span></p>
+<p class="p1"><span style="font-size: 1em;">&nbsp;1.1 Apprentissage automatique et protocole exp&eacute;rimental</span></p>
+<p class="p1">&nbsp;1.2- Introduction &agrave; l'apprentissage automatique</p>
+<p class="p1">&nbsp;1.3- Outils d'apprentissage automatique</p>
+<p class="p1"></p>
+<p class="p1"><span style="font-size: 1.4em; font-weight: 600;">Module&nbsp;2 -&nbsp;Apprentissage profond</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span>2.1- Introduction</p>
+<p class="p1"></p>
+<p class="p1">&nbsp;2.2- Graphes de calcul et r&eacute;tropropagation</p>
+<p class="p1"></p>
+<p class="p1">&nbsp;2.3- Optimisation</p>
+<p class="p1"></p>
+<p class="p1">&nbsp;2.4- Exercices Colab</p>
+<p class="p1"></p>
+<p class="p1" style="font-size: 16px;"><span style="font-size: 1.4em; font-weight: 600;">Module 3 -&nbsp;R&eacute;seaux de neurones convolutifs (CNNs)</span></p>
+<p class="p1" style="font-size: 16px;"></p>
+<p class="p1"><span style="font-size: 1em;">&nbsp;3.1-&nbsp;Introduction aux r&eacute;seaux de neurones convolutifs 1</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">&nbsp;3.2- R&eacute;seaux de neurones convolutifs&nbsp;2:&nbsp;descente de gradient,&nbsp;applications,&nbsp;ensemble de donn&eacute;es et GAN</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">&nbsp;3.3- R&eacute;seaux de neurones convolutifs&nbsp;3:&nbsp;Le ILSVRC,&nbsp;l'augmentation des donn&eacute;es&nbsp;et les sorties structur&eacute;es</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">&nbsp;3.4-&nbsp;Exercices Colab</span></p>
+<p class="p1"></p>
+<p class="p1" style="font-size: 16px;"><span style="font-size: 1.4em; font-weight: 600;">Module 4 -&nbsp;R&eacute;seaux de neurones r&eacute;currents (RNNs)</span></p>
+<p class="p1" style="font-size: 16px;"><span class="Apple-converted-space" style="font-size: 1em;">&nbsp;4</span><span style="font-size: 1em;">.1- Introduction</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;"><span class="Apple-converted-space">&nbsp;4</span>.2-&nbsp;Mod&egrave;les  S&eacute;quence &agrave; S&eacute;quence</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;"><span class="Apple-converted-space">&nbsp;4</span>.3-&nbsp;Traitement automatique du langage</span></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;"><span class="Apple-converted-space">&nbsp;4</span>.4-&nbsp;Exercices Colab&nbsp;</span></p>
+<p class="p1"></p>
+<p class="p1" style="font-size: 16px;"><span style="font-size: 1.4em; font-weight: 600;">Module 5 -&nbsp;Biais et discrimination</span></p>
+<p class="p1" style="font-size: 16px;"></p>
+<p class="p1"><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">&nbsp;5.1- Biais et Discrimination en&nbsp;apprentissage automatique</span></p>

@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; What’s the major difference between rule based systems and classical ML systems? &lt;&lt;&#10;( ) Inputs of the system {{ The inputs of both systems are the same}}&#10;( ) Outputs of the system {{The outputs of both systems are the same}}&#10;(x) Hand designed features &#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle est la principale différence entre les systèmes d’intelligence artificielle à base de règles et les systèmes d’AA classiques?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Les entrées du système <choicehint>les entrées des deux systèmes sont les mêmes</choicehint></choice>
+      <choice correct="false">Les sorties du système <choicehint>les sorties des deux systèmes sont les mêmes</choicehint></choice>
+      <choice correct="true">Les caractéristiques sont conçues à la main</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

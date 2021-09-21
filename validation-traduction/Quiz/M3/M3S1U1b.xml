@@ -1,0 +1,11 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Quelle partie d&apos;un réseau de convolution typique a des paramètres qui peuvent être appris ?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Entrée <choicehint>Normalement, l&apos;entrée n&apos;a pas de paramètres pouvant être appris</choicehint></choice>
+    <choice correct="false">Sortie <choicehint>La sortie n&apos;a pas de paramètres pouvant être appris</choicehint></choice>
+    <choice correct="true">Noyau</choice>
+    <choice correct="false">Opération<choicehint>Le fonctionnement d&apos;une convolution est fixe et n&apos;a pas de paramètres pouvant être appris</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

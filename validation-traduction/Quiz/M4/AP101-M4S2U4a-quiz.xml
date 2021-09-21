@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Quels sont les deux défauts des RNR par rapport aux transformateurs ?</label>
+<checkboxgroup>
+    <choice correct="true">A. Difficulté à mettre en parallèle <choicehint selected="true">A. Correct</choicehint>.<choicehint selected="true"> Comme chaque pas de temps prend en entrée les informations du pas de temps précédent, chaque état caché doit être calculé de manière séquentielle.</choicehint></choice>
+    <choice correct="false">B. Correction du goulot d&apos;étranglement des états cachés <choicehint selected="true">B. Incorrect, il s&apos;agit d&apos;un problème avec les modèles seq2seq de base</choicehint></choice>
+    <choice correct="true">C. Difficulté à prendre en compte les dépendances à très long terme <choicehint selected="true">C. Correct</choicehint>.<choicehint selected="true"> L&apos;état caché (qui est une matrice de taille fixe) ne peut contenir qu&apos;une quantité limitée d&apos;informations.</choicehint></choice>
+    <choice correct="false">D. Dissipation du gradient <choicehint selected="true">D. Incorrect, ce n&apos;est pas un des défauts des RNR par rapport aux transformateurs ; cependant, cela pourrait être un problème avec les RNN de base avec de longues séquences</choicehint></choice>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

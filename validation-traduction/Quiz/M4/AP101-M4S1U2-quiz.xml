@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Quelles sont les deux entrées de chaque cellule du RNR dans la tâche de reconnaissance de l&apos;entité nommée?</label>
+<checkboxgroup>
+    <choice correct="false">A. Toute la séquence d&apos;entrée <choicehint selected="true">A. Incorrect, l&apos;une des entrées est un élément de la séquence d&apos;entrée, pas toutes en même temps</choicehint></choice>
+    <choice correct="true">B. Un élément de la séquence d’entrée, c&apos;est-à-dire un mot de la phrase <choicehint selected="true">B. Correct</choicehint></choice>
+    <choice correct="false">C. La sortie du pas de temps précédent <choicehint selected="true">C. Incorrect, l&apos;une des entrées est l&apos;état caché/interne précédent du RNR, et non la sortie</choicehint></choice>
+    <choice correct="true">D. État interne/caché du pas de temps précédent <choicehint selected="true">D. Correct</choicehint></choice>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

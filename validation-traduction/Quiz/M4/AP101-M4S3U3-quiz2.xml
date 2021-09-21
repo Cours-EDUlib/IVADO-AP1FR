@@ -1,0 +1,10 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Quelle stratégie d’unité lexicale dois-je utiliser pour éviter les cas extrêmes de taille du vocabulaire trop importante et de séquences trop longues?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Mots <choicehint>L&apos;utilisation de mots comme unités lexicales peut donner lieu à une très grande taille du vocabulaire.</choicehint></choice>
+    <choice correct="true">Facteurs <choicehint>Correct! Les facteurs constituent un bon compromis entre la taille du vocabulaire et la longueur des séquences.</choicehint></choice>
+    <choice correct="false">Caractères <choicehint>L&apos;utilisation de caractères comme unités lexicales peut donner lieu à des séquences très longues, ce qui peut créer des dépendances à long terme qui sont difficiles à tenir en compte.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

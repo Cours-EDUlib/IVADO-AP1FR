@@ -1,0 +1,30 @@
+<problem>
+<choiceresponse>
+  <label>1. Sélectionnez trois (3) exemples de problèmes de qualité des données.</label>
+<checkboxgroup>
+    <choice correct="true">A. Un échantillon de données n&apos;est pas représentatif de la population dans son ensemble <choicehint selected="true">A. Correct, c&apos;est un exemple de problème de représentativité.</choicehint></choice>
+    <choice correct="true">B. Coquilles, données incomplètes et corrompues <choicehint selected="true">B. Correct, ce sont des exemples de bruit dans les données.</choicehint></choice>
+    <choice correct="false">C. Une distorsion systématique des données qui compromet leur utilisation pour une tâche <choicehint selected="true">C. Incorrect : Cela concerne le biais dans les données, qui est différent des problèmes de qualité des données.</choicehint></choice>
+    <choice correct="true">D. Les mesures suivent une distribution de la loi de puissance <choicehint selected="true">D. Correct, c&apos;est un exemple de données éparses.</choicehint></choice>
+    <compoundhint value="A B C D">Veuillez choisir 3 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+<demandhint>
+  <hint>La loi de puissance comporte de nombreux cas rares et différents (la queue) qui doivent être traités.</hint>
+</demandhint>
+</problem>
+
+<problem>
+<optionresponse>
+  <label>2. _______ est une technique de nettoyage de données, qui compare la taille attendue d'un groupe avec sa taille actuelle pour définir la probabilité d'échantillonage..</label>
+<optioninput>
+    <option correct="False">La repondération des poids <optionhint>Cette méthode calcule les poids des objets pour neutraliser les effets discriminatoires des données</optionhint></option>
+    <option correct="True">L’échantillonage </option>
+    <option correct="False">L'ajustement de données <optionhint>Cette méthode change légèrement la frontière de décision</optionhint></option>
+  <option correct="False">Les RAG (GAN) <optionhint>C'est une méthode complexe basée sur un générateur et un discriminateur</optionhint></option>
+  </optioninput>
+</optionresponse>
+  <demandhint>
+  <hint>Les réseaux antagonistes génératifs (RAG) sont une classe de modèles génératifs profonds très performants.</hint>
+</demandhint>
+</problem>

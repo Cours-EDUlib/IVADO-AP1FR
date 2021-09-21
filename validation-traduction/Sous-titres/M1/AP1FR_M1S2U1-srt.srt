@@ -1,0 +1,639 @@
+0
+00:00:14,030 --> 00:00:20,260
+La deuxième conférence sera une introduction à l'apprentissage automatique et
+
+1
+00:00:20,260 --> 00:00:25,760
+maintenant nous allons explorer les concepts et la théorie
+
+2
+00:00:25,760 --> 00:00:31,300
+derrière l'apprentissage automatique. Les concepts que nous verrons seront appliqués
+
+3
+00:00:31,300 --> 00:00:41,460
+demain en apprentissage profond pour mieux comprendre ces techniques.
+
+4
+00:00:41,460 --> 00:00:47,680
+Tout d'abord, l'apprentissage automatique est très vaste: il y a beaucoup de recherches
+
+5
+00:00:47,680 --> 00:00:54,859
+faites dans le passé, environ 20-30 ans en apprentissage automatique, et nous avons identifié
+
+6
+00:00:54,859 --> 00:01:02,770
+différents types d'apprentissage. Une analogie que nous pouvons avoir avec les humains est
+
+7
+00:01:02,770 --> 00:01:07,960
+que ces modèles apprennent avec un enseignant, et le concept de rétroaction
+
+8
+00:01:07,960 --> 00:01:13,050
+d'un enseignant est fondamental et central en apprentissage automatique. La façon que
+
+9
+00:01:13,050 --> 00:01:17,159
+nous le faisons, la façon que nous le simulons sur un ordinateur est que le modèle fera une
+
+10
+00:01:17,159 --> 00:01:22,619
+prédiction et l'enseignant comparera la prédiction du modèle avec la vraie étiquette,
+
+11
+00:01:22,619 --> 00:01:29,060
+puis donnera une rétroaction sur la justesse de la prédiction.
+
+12
+00:01:29,060 --> 00:01:35,250
+Le modèle utilisera cette rétroaction pour améliorer sa prédiction.
+
+13
+00:01:35,250 --> 00:01:39,659
+La prochaine fois que le modèle verra le même exemple, il ajustera automatiquement
+
+14
+00:01:39,659 --> 00:01:44,619
+certains paramètres, et la prochaine fois que je recevrai le même exemple, j'obtiendrai
+
+15
+00:01:44,619 --> 00:01:53,690
+la bonne réponse. Une façon de l'implémenter est l'apprentissage supervisé.
+
+16
+00:01:53,690 --> 00:01:59,060
+En apprentissage supervisé, l'enseignant ou disons les annotateurs, i.e. la personne
+
+17
+00:01:59,060 --> 00:02:06,259
+qui apposera l'étiquette sur les données, fournira des cibles comme exemples.
+
+18
+00:02:06,259 --> 00:02:10,990
+Il y a deux catégories d'apprentissage supervisé: la régression où les
+
+19
+00:02:10,990 --> 00:02:17,140
+cibles, les quantités que je veux prédire, sont des variables à valeur réelle: c'est une
+
+20
+00:02:17,140 --> 00:02:22,489
+valeur numérique entre moins l'infini et l'infini. Je peux aussi
+
+21
+00:02:22,489 --> 00:02:26,620
+prédire des variables catégorielles: c'est ce qu'on appelle la classification.
+
+22
+00:02:26,620 --> 00:02:32,010
+Nous avons vu des variables catégorielles pour les textes, ce n'est
+
+23
+00:02:32,010 --> 00:02:38,920
+qu'un identifiant associé à un concept et il n'y a aucun ordre entre
+
+24
+00:02:38,920 --> 00:02:45,709
+les valeurs d'une variable catégorielle. Il y a aussi deux types de
+
+25
+00:02:45,709 --> 00:02:50,940
+classifications différentes. Si je reçois une image comme exemple et que je ne peux prédire qu'un
+
+26
+00:02:50,940 --> 00:02:55,540
+seul concept parce que je sais que dans cette image il n'y a qu'un seul
+
+27
+00:02:55,540 --> 00:03:00,099
+concept, ça s'appelle "classification multi-classe": j'ai
+
+28
+00:03:00,099 --> 00:03:06,640
+un choix parmi les "m" concepts et je ne dois en choisir qu'un comme prédiction.
+
+29
+00:03:06,640 --> 00:03:11,819
+Dans un cadre multi-classes, je reçois une image il peut y avoir plusieurs objets,
+
+30
+00:03:11,819 --> 00:03:16,129
+plusieurs concepts dans cette image et je dois trouver tous les concepts: si je dois
+
+31
+00:03:16,129 --> 00:03:21,489
+prédire tous les concepts, ça s'appele "multi-étiquettes".
+
+32
+00:03:21,489 --> 00:03:26,299
+En apprentissage supervisé, un exemple serait représenté comme un couple: le X
+
+33
+00:03:26,299 --> 00:03:33,659
+est l'entrée de mon modèle et le Y, la sortie.
+
+34
+00:03:33,659 --> 00:03:40,140
+Le concept suivant porte sur l'utilité de l'enseignant, alors ici c'est
+
+35
+00:03:40,140 --> 00:03:46,510
+très intuitif: si je vous donne cette image sous forme de X et que je vous donne ces
+
+36
+00:03:46,510 --> 00:03:52,549
+étiquettes: «voiture», «personne», «arbre», et que je veux faire une classification multi-étiquettes, vous pouvez voir
+
+37
+00:03:52,549 --> 00:03:58,760
+que la rétroaction du professeur est très faible. Sur cette image, c'est très
+
+38
+00:03:58,760 --> 00:04:05,739
+difficile de voir les arbres, les personnes, même la voiture ici, mais ce sont les étiquettes
+
+39
+00:04:05,739 --> 00:04:10,670
+que j'ai dans mon jeu de données. Nous pouvons déjà voir que résoudre
+
+40
+00:04:10,670 --> 00:04:16,630
+cette tâche sera difficile parce que les étiquettes ne sont pas très informatives. Si j'ai
+
+41
+00:04:16,630 --> 00:04:21,400
+un autre ensemble de données comme celui-ci où il y a des boîtes d'encombrement associés
+
+42
+00:04:21,400 --> 00:04:26,870
+à tous les concepts, et les concepts sont liés ensemble dans cette hiérarchie de
+
+43
+00:04:26,870 --> 00:04:30,710
+concepts, vous pouvez voir que même les images sont connectées ensemble à travers
+
+44
+00:04:30,710 --> 00:04:36,090
+cette hiérarchie: vous avez beaucoup plus d'informations. Ici, c'est encore plus
+
+45
+00:04:36,090 --> 00:04:39,630
+intéressant pour cet ensemble de données: une image aura un cadre de délimitation
+
+46
+00:04:39,630 --> 00:04:44,870
+qui localisera le concept et il y aura une description en anglais de ce
+
+47
+00:04:44,870 --> 00:04:51,580
+concept. Alors, je pourrais peut-être aussi utiliser cette information dans mon modèle pour implémenter
+
+48
+00:04:51,580 --> 00:05:00,860
+la tâche. Nous avons différents niveaux d'informativité associés à deux étiquettes
+
+49
+00:05:00,860 --> 00:05:07,470
+et c'est un étiquetage  de meilleure qualité. Ici nous pouvons voir qu'il est plus bruyant, de pire
+
+50
+00:05:07,470 --> 00:05:14,830
+qualité, mais le travail requis pour annoter avec ce degré de détail
+
+51
+00:05:14,830 --> 00:05:22,620
+peut être important. Un autre type d'apprentissage et un autre
+
+52
+00:05:22,620 --> 00:05:28,940
+concept lié à l'enseignant est l'apprentissage "actif" vs "passif": en apprentissage
+
+53
+00:05:28,940 --> 00:05:33,860
+supervisé, je reçois juste un ensemble de données annotées par l'enseignant.
+
+54
+00:05:33,860 --> 00:05:39,490
+Par la suite, je ne vois plus l'enseignant: j'utilise seulement les étiquettes pour encoder
+
+55
+00:05:39,490 --> 00:05:45,270
+les connaissances de l'enseignant, puis j'utiliserai un algorithme d'apprentissage qui fonctionnera
+
+56
+00:05:45,270 --> 00:05:50,490
+sur cet ensemble de données étiquetées et qui optimisera les paramètres. J'utiliserai
+
+57
+00:05:50,490 --> 00:05:54,440
+le protocole expérimental que nous avons vu dans la première présentation pour
+
+58
+00:05:54,440 --> 00:06:01,770
+évaluer le modèle. Par contre, il y a un autre cadre qui est
+
+59
+00:06:01,770 --> 00:06:08,949
+l'apprentissage actif. En apprentissage actif, je peux utiliser des données non étiquetées: très souvent vous
+
+60
+00:06:08,949 --> 00:06:14,280
+aurez peu de données étiquetées, quelques exemples qui ont été étiquetés par des experts, mais
+
+61
+00:06:14,280 --> 00:06:19,819
+beaucoup de données sans étiquette. Ce que je peux faire avec ces données sans étiquette est de fournir
+
+62
+00:06:19,819 --> 00:06:26,569
+un exemple au modèle, et le modèle me fournira une probabilité
+
+63
+00:06:26,569 --> 00:06:31,630
+à la sortie. Ensuite, je peux utiliser cette probabilité pour interpréter à quel point
+
+64
+00:06:31,630 --> 00:06:36,690
+le modèle est sûr de sa prédiction: si j'ai deux classes et que le
+
+65
+00:06:36,690 --> 00:06:43,120
+modèle prédit 0,5 pour une classe et 0,5 pour la deuxième classe, le modèle
+
+66
+00:06:43,120 --> 00:06:47,090
+ne peut pas faire la distinction entre les deux classes. Cela signifie que le modèle n'est pas sûr
+
+67
+00:06:47,090 --> 00:06:51,210
+de cet exemple et je peux demander à un enseignant,
+
+68
+00:06:51,210 --> 00:06:56,271
+un annotateur humain, de fournir l'étiquette pour cet exemple. C'est une
+
+69
+00:06:56,271 --> 00:07:00,870
+bonne stratégie, et ensuite j'ajouterai l'exemple étiquetté à l'ensemble de
+
+70
+00:07:00,870 --> 00:07:06,560
+données étiquetées. C'est une bonne stratégie pour trouver des exemples qui sont difficiles à prédire pour
+
+71
+00:07:06,560 --> 00:07:11,970
+le modèle parce que le modèle est incertain à propos de ces exemples. Pour d'autres exemples sans étiquettes
+
+72
+00:07:11,970 --> 00:07:17,039
+où le modèle est très sûr de la prédiction, je n'essaierai pas d'annoter
+
+73
+00:07:17,039 --> 00:07:23,889
+ces données. Je présente l'apprentissage actif parce que j'ai vu que des
+
+74
+00:07:23,889 --> 00:07:31,449
+plateformes comme "SageMaker" d'Amazon implémentent maintenant
+
+75
+00:07:31,449 --> 00:07:39,560
+l'apprentissage actif: vous pouvez donc utiliser cette technologie pour réduire
+
+76
+00:07:39,560 --> 00:07:45,050
+la quantité de données que vous devez étiqueter, c'est bon à savoir.
+
+77
+00:07:45,050 --> 00:07:52,979
+Un autre type d'apprentissage est l'apprentissage non supervisé. Il y a beaucoup
+
+78
+00:07:52,979 --> 00:07:59,550
+de recherches sur l'apprentissage non supervisé, et il est un peu plus difficile de
+
+79
+00:07:59,550 --> 00:08:04,170
+vraiment définir l'apprentissage non supervisé, car il a évolué au fil du
+
+80
+00:08:04,170 --> 00:08:10,310
+temps. Pour l'apprentissage profond, il s'agit vraiment d'essayer d'apprendre des
+
+81
+00:08:10,310 --> 00:08:18,009
+représentations qui seront utiles pour toute autre tâche
+
+82
+00:08:18,009 --> 00:08:24,229
+par la suite. Qu'est-ce que cela signifie? Ça veut dire que, disons que j'ai du texte: je
+
+83
+00:08:24,229 --> 00:08:30,979
+vais créer une tâche qui ne nécessite aucune étiquette et j'entraînerai un modèle qui
+
+84
+00:08:30,979 --> 00:08:34,650
+accomplit cette tâche et j'espèrerai que la représentation apprise par
+
+85
+00:08:34,650 --> 00:08:41,169
+le modèle sera utile par la suite pour la tâche qui m'intéresse.
+
+86
+00:08:41,169 --> 00:08:45,910
+Ça dépendra du type de données que vous utilisez. Comme exemple de tâche d'apprentissage
+
+87
+00:08:45,910 --> 00:08:52,300
+non supervisé, si j'ai un document, je peux former un modèle qui, étant donné les
+
+88
+00:08:52,300 --> 00:08:57,830
+mots précédents, prédira le mot suivant. je n'ai pas d'étiquettes sur le texte pour entraîner
+
+89
+00:08:57,830 --> 00:09:03,090
+un modèle à le faire: le modèle essaie simplement de prédire le prochain mot
+
+90
+00:09:03,090 --> 00:09:07,300
+dans une phrase. Alors, on peut dire que c'est
+
+91
+00:09:07,300 --> 00:09:15,340
+une tâche universelle. Pour les images, je peux supprimer certains pixels de l'image ou ajouter du bruit
+
+92
+00:09:15,340 --> 00:09:20,230
+aux pixels et j'entraînerai un modèle qui tentera de reconstruire
+
+93
+00:09:20,230 --> 00:09:29,030
+l'image et supprimer le bruit. Une tâche que je trouve intéressante
+
+94
+00:09:29,030 --> 00:09:34,880
+pour la vidéo est de donner une vidéo au modèle et le modèle doit prédire si
+
+95
+00:09:34,880 --> 00:09:42,760
+la vidéo est dans le bon ordre ou dans l'ordre inverse. Il peut être très difficile
+
+96
+00:09:42,760 --> 00:09:47,980
+d'entraîner un modèle à le faire parce que les caractéristiques nécessaires pour
+
+97
+00:09:47,980 --> 00:09:52,940
+prédire la flèche du temps dans une vidéo sont complexes à apprendre.
+
+98
+00:09:52,940 --> 00:09:59,190
+Par contre, si j'ai ces caractéristiques, je peux peut-être utiliser cette architecture
+
+99
+00:09:59,190 --> 00:10:08,710
+pour une autre tâche. La plupart du travail aujourd'hui concerne la modélisation probabiliste
+
+100
+00:10:08,710 --> 00:10:13,750
+de données de grande dimension avec l'apprentissage profond, comment prédire une probabilité
+
+101
+00:10:13,750 --> 00:10:23,880
+associée à des données de grande dimension. Si je modélise une probabilité,
+
+102
+00:10:23,880 --> 00:10:29,820
+je peux prendre mes données et générer des clusters, je peux clusteriser (regrouper) mes données
+
+103
+00:10:29,820 --> 00:10:33,900
+et j'aurai la probabilité d'appartenir à un cluster. Cela s'appelle le
+
+104
+00:10:33,900 --> 00:10:38,920
+clustering (regroupement): si j'ai un cluster de données similaires,
+
+105
+00:10:38,920 --> 00:10:45,410
+je peux simplement utiliser une étiquette pour ma tâche, l'attribuer au cluster et
+
+106
+00:10:45,410 --> 00:10:51,170
+l'étiquette se propagera sur tout le cluster. J'utilise donc moins d'étiquettes pour
+
+107
+00:10:51,170 --> 00:10:55,820
+ma tâche, mais il est difficile de faire ce clustering.
+
+108
+00:10:55,820 --> 00:11:00,330
+Si vous avez un bon modèle de clustering, peut-être que vous recevrez un nouveau
+
+109
+00:11:00,330 --> 00:11:06,530
+point de données et le point de données sera seul, loin de tout cluster. Nous pouvons faire de la
+
+110
+00:11:06,530 --> 00:11:11,950
+détection d'anomalies: c'est un nouveau point de données qui est totalement
+
+111
+00:11:11,950 --> 00:11:16,710
+différent de ce que j'ai vu dans mon ensemble de données d'entraînement.
+
+112
+00:11:16,710 --> 00:11:20,420
+A partir d'un modèle probabiliste, je peux modéliser la probabilité associée aux
+
+113
+00:11:20,420 --> 00:11:25,320
+données, mais je peux aussi échantillonner cette distribution de probabilité. C'est
+
+114
+00:11:25,320 --> 00:11:32,710
+ce que les gens font avec l'apprentissage profond depuis 4 ans maintenant avec les
+
+115
+00:11:32,710 --> 00:11:39,440
+modèles GAN ou auto-régressifs, etc. Cela s'appelle de la génération de données: ici, vous
+
+116
+00:11:39,440 --> 00:11:44,010
+avez un modèle probabiliste. Ce modèle essaie vraiment de prédire, d'attribuer une
+
+117
+00:11:44,010 --> 00:11:51,110
+probabilité à toutes les photos d'un visage. Après avoir entraîné mon modèle pour représenter
+
+118
+00:11:51,110 --> 00:11:56,610
+la probabilité de visages dans la nature, je peux essayer d'échantillonner de cette
+
+119
+00:11:56,610 --> 00:12:02,740
+probabilité pour obtenir de nouveaux visages: ces visages n'existent pas et ces
+
+120
+00:12:02,740 --> 00:12:08,170
+gens n'existent pas en réalité. Ils ont été échantillonnés de mon
+
+121
+00:12:08,170 --> 00:12:15,040
+modèle probabiliste sur des image. Je peux faire la même chose pour la parole, mais aussi pour la
+
+122
+00:12:15,040 --> 00:12:22,450
+synthèse de texte. Il y avait un nouveau modèle par "OpenAI" nommé "GPT-2", et le modèle a
+
+123
+00:12:22,450 --> 00:12:29,420
+créé une nouvelle histoire entière sur des licornes découvertes en
+
+124
+00:12:29,420 --> 00:12:36,070
+Amérique du Sud et vous avez un scientifique qui donne une intuition sur une certaine
+
+125
+00:12:36,070 --> 00:12:41,680
+compréhension de cette nouvelle créature. La raison pour laquelle cette histoire a été
+
+126
+00:12:41,680 --> 00:12:46,570
+générée par le modèle, c'est parce qu'il a été entraîné sur beaucoup d'histoires de
+
+127
+00:12:46,570 --> 00:12:53,520
+licornes bien sûr, et maintenant nous avons une distribution de probabilité sur le texte.
+
+128
+00:12:53,520 --> 00:12:59,290
+L'histoire était assez convaincante, elle était si convaincante qu'ils avaient
+
+129
+00:12:59,290 --> 00:13:03,130
+peur de publier le modèle au début parce que les gens peuvent utiliser ce modèle pour
+
+130
+00:13:03,130 --> 00:13:11,330
+générer de fausses nouvelles. La génération de données est également utilisée pour apprendre un
+
+131
+00:13:11,330 --> 00:13:17,850
+simulateur: si je veux former un modèle pour effectuer des actions avec un robot, le modèle est
+
+132
+00:13:17,850 --> 00:13:22,820
+à l'intérieur du robot et le robot fait une action avec les actionneurs. Il est beaucoup
+
+133
+00:13:22,820 --> 00:13:28,390
+moins cher d'apprendre avec l'apprentissage profond un simulateur du robot. Le modèle
+
+134
+00:13:28,390 --> 00:13:34,290
+peut donc simuler certaines actions, puis déployer le modèle à l'intérieur du vrai robot
+
+135
+00:13:34,290 --> 00:13:39,670
+dans le monde physique. La simulation à l'intérieur du réseau de neurones
+
+136
+00:13:39,670 --> 00:13:47,110
+sera beaucoup plus rapide qu'en réalité. L'apprentissage non supervisé peut également
+
+137
+00:13:47,110 --> 00:13:52,920
+être appliqué à l'apprentissage partiellement supervisé: il utilise ces tâches
+
+138
+00:13:52,920 --> 00:13:57,440
+universelles ici pour apprendre des représentations universelles et utiles pour toute
+
+139
+00:13:57,440 --> 00:14:03,760
+tâche à laquelle vous pouvez penser. Il y a beaucoup de progrès
+
+140
+00:14:03,760 --> 00:14:09,410
+en apprentissage semi-supervisé depuis six mois et ça
+
+141
+00:14:09,410 --> 00:14:13,450
+évolue très rapidement. Ils croient que les techniques
+
+142
+00:14:13,450 --> 00:14:21,940
+d'apprentissage supervisé peut être appliquées dans l'industrie à très court terme.
+
+143
+00:14:21,940 --> 00:14:27,440
+Un autre type d'apprentissage est la façon que je donne un exemple à mon modèle: si nous
+
+144
+00:14:27,440 --> 00:14:33,290
+faisons de l'apprentissage en ligne, je prends un exemple dans mon ensemble de données, je le donne au
+
+145
+00:14:33,290 --> 00:14:39,960
+modèle, le modèle ajustera ses paramètres, et maintenant je jette cet exemple.
+
+146
+00:14:39,960 --> 00:14:45,810
+C'est comme si j'avais une très petite mémoire associée à mon modèle, et je dois
+
+147
+00:14:45,810 --> 00:14:53,740
+vraiment traiter les données à la volée. Pour les applications où nous avons un énorme flux de
+
+148
+00:14:53,740 --> 00:14:58,500
+données, il peut être nécessaire d'utiliser l'apprentissage en ligne. C'est pourquoi les gens faisaient des
+
+149
+00:14:58,500 --> 00:15:04,110
+recherches à ce sujet, mais en apprentissage profond, s'il est très coûteux d'acquérir des
+
+150
+00:15:04,110 --> 00:15:09,420
+étiquettes pour vos données, ce que vous voulez faire est de l'apprentissage par lots. En apprentissage par lots,
+
+151
+00:15:09,420 --> 00:15:14,600
+j'aurai une mémoire où j'empilerai de nombreux exemples d'entraînement étiquetés
+
+152
+00:15:14,600 --> 00:15:20,500
+et le modèle itérera sur ce lot encore et encore jusqu'à ce qu'il ait de
+
+153
+00:15:20,500 --> 00:15:27,650
+bonnes performances sur l'ensemble de validation. La plupart des discussions que vous
+
+154
+00:15:27,650 --> 00:15:32,470
+verrez cette semaine concernent l'apprentissage supervisé statistique par lots avec un
+
+155
+00:15:32,470 --> 00:15:36,800
+algorithme d'apprentissage passif. C'est une très longue description, c'est juste pour vous
+
+156
+00:15:36,800 --> 00:15:41,520
+informer qu'il y a beaucoup de concepts différents en apprentissage automatique et
+
+157
+00:15:41,520 --> 00:15:49,820
+l'apprentissage profond en est une infime partie qui est très importante aujourd'hui, et que
+
+158
+00:15:49,820 --> 00:15:54,390
+nous pouvons prendre comme exemple l'apprentissage en ligne pour l'apprentissage profond.
+
+159
+00:15:54,390 --> 00:16:00,810
+Les gens se penchent sur cette question, mais cela ne fonctionne pas très bien pour l'instant.

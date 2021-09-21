@@ -1,0 +1,331 @@
+﻿1
+00:00:12,950 --> 00:00:19,380
+À ce stade, je vais récapituler rapidement ce que nous avons vu. Alors nous avons donc introduit
+
+2
+00:00:19,380 --> 00:00:26,400
+le TLN et en particulier, nous avons examiné certaines tâches en TLN : nous avons vu que nous avons différents groupes de tâches,
+
+3
+00:00:26,400 --> 00:00:31,500
+mais une chose intéressante est que nous avons pu utiliser le même modèle
+
+4
+00:00:31,500 --> 00:00:36,300
+dans la plupart de ces tâches et ce sera utile dans le dernier point qui porte sur le modèle BERT.
+
+5
+00:00:36,300 --> 00:00:45,030
+Nous avons dit que nous avions plusieurs tâches mais un problème commun
+
+6
+00:00:45,030 --> 00:00:51,360
+est de trouver la relation entre les mots et la sémantique.
+
+7
+00:00:51,360 --> 00:00:56,879
+Nous devons toujours le faire lorsque nous traitons des tâches de TLN et
+
+8
+00:00:56,879 --> 00:01:02,129
+afin de pour ce faire, nous avons mentionné deux idées qui peuvent nous guider sur 
+
+9
+00:01:02,129 --> 00:01:08,670
+le principe de compositionnalité et l’hypothèse distributionnaliste.
+
+10
+00:01:08,670 --> 00:01:15,410
+Mais ensuite nous avons commencé à examiner comment nous représentions les mots et les phrases
+
+11
+00:01:15,410 --> 00:01:20,970
+dans les approches classiques et nous utilisons un vecteur 1 parmi n.
+
+12
+00:01:20,970 --> 00:01:24,660
+Donc nous représentons des mots dans ce vecteur où tout est zéro, sauf un élément.
+
+13
+00:01:24,660 --> 00:01:29,390
+Ensuite, je vous montré les inconvénients à cette approche,
+
+14
+00:01:29,390 --> 00:01:34,890
+notamment le fait que le vecteur deviendra énorme si la taille du vocabulaire est très grande et
+
+15
+00:01:34,890 --> 00:01:39,900
+l'autre l'inconvénient est qu'il ne tient pas en compte de la sémantique
+
+16
+00:01:39,900 --> 00:01:44,909
+car tous les mots sont à la même distance dans l'espace vectoriel. Puis, nous avons aussi vu
+
+17
+00:01:44,909 --> 00:01:49,740
+comment représenter la phrase et la représentation qu'on appelle sac de mots avait aussi quelques inconvénients.
+
+18
+00:01:49,740 --> 00:01:57,090
+Voyons maintenant comment nous pouvons créer
+
+19
+00:01:57,090 --> 00:02:05,400
+une meilleure représentation pour les mots qui tient en compte la sémantique.
+
+20
+00:02:05,400 --> 00:02:10,649
+La représentation 1 parmi n que nous avons vue plus tôt s'appelle
+
+21
+00:02:10,649 --> 00:02:15,330
+une représentation locale, car il s'agit essentiellement de faire une cartographie individuelle
+
+22
+00:02:15,330 --> 00:02:23,400
+entre un mot et une position dans un vecteur. Encore une fois, nous avons vu que la représentation 1 parmi n
+
+23
+00:02:23,400 --> 00:02:26,160
+consistait à tracer dans un vecteur où toutes les valeurs sont zéro
+
+24
+00:02:26,160 --> 00:02:29,850
+sauf un élément et cette position me donnait
+
+25
+00:02:29,850 --> 00:02:36,930
+l’information sur le mot dont nous parlons.
+
+26
+00:02:36,930 --> 00:02:40,319
+Ce sont les inconvénients que nous avons mentionnés précédemment, notamment la taille du vocabulaire
+
+27
+00:02:40,319 --> 00:02:46,740
+qui peut être problématique. Nous n’avons qu'un seul mot, « chien »,
+
+28
+00:02:46,740 --> 00:02:52,590
+mais pour représenter ce mot, j'ai besoin de cet énorme vecteur de 80 000 éléments.
+
+29
+00:02:52,590 --> 00:03:00,209
+Alors vous pouvez voir qu’il est définitivement impossible pour les modèles de traiter ce vecteur
+
+30
+00:03:00,209 --> 00:03:05,910
+Le deuxième problème est, encore une fois, qu’il n'y a aucune sémantique dans cette représentation.
+
+31
+00:03:05,910 --> 00:03:10,650
+Vous voyez ce tracé et tous les mots ont même distance, donc je ne capte aucune relation
+
+32
+00:03:10,650 --> 00:03:18,480
+entre les différents mots ici. Alors examinons une meilleure solution.
+
+33
+00:03:18,480 --> 00:03:23,100
+C’est essentiellement ce que nous appelons une représentation distribuée, donc
+
+34
+00:03:23,100 --> 00:03:27,989
+une représentation distribuée est différente d'une représentation 1 parmi n en ce sens que
+
+35
+00:03:27,989 --> 00:03:32,850
+nous n'utilisions qu'un élément du vecteur dans la représentation 1 parmi n pour indiquer la signification
+
+36
+00:03:32,850 --> 00:03:36,780
+alors que dans la représentation distribuée, nous utilisons tous les éléments
+
+37
+00:03:36,780 --> 00:03:42,750
+dans le vecteur en attribuant des valeurs à tous les éléments et
+
+38
+00:03:42,750 --> 00:03:50,640
+ça nous donne de l’information sur la sémantique de ce mot.
+
+39
+00:03:50,640 --> 00:03:54,780
+On l'appelle représentation distribuée parce que je distribue l'information sur
+
+40
+00:03:54,780 --> 00:03:58,200
+tous les éléments du vecteur, ce qui n'était pas le cas avec la représentation 1 parmi n.
+
+41
+00:03:58,200 --> 00:04:08,070
+Je vais l'expliquer à l'aide d’un exemple.
+
+42
+00:04:08,070 --> 00:04:14,760
+Revenons à l'exemple précédent où nous avions les mots chat, chien, maison et pc et
+
+43
+00:04:14,760 --> 00:04:21,660
+maintenant la représentation peut ressembler à ceci. Au lieu d'avoir des zéros et un élément,
+
+44
+00:04:21,660 --> 00:04:27,419
+nous avons désormais des valeurs.
+
+45
+00:04:27,419 --> 00:04:33,120
+Ces valeurs représentent certaines choses que nous ne savons pas encore, mais l'idée est
+
+46
+00:04:33,120 --> 00:04:38,300
+d’obtenir quelque chose comme dans cet espace vectoriel ici.
+
+47
+00:04:38,300 --> 00:04:46,180
+Maintenant « chien » et « chat » sont des vecteurs plus rapprochés que, par exemple, « chien » et « maison » et
+
+48
+00:04:46,180 --> 00:04:52,400
+je peux me servir de cette liberté de mettre les vecteurs comme je le souhaite
+
+49
+00:04:52,400 --> 00:05:00,740
+pour réellement prendre en compte la sémantique des mots.
+
+50
+00:05:00,740 --> 00:05:05,660
+Une autre propriété intéressante est que j'ai quatre mots mais j'ai décidé de les représenter avec seulement trois valeurs.
+
+51
+00:05:05,660 --> 00:05:11,840
+C’est quelque chose que je peux faire maintenant que
+
+52
+00:05:11,840 --> 00:05:16,580
+je n’ai plus cette contrainte que la taille du vocabulaire doit être égale à la taille du vecteur.
+
+53
+00:05:16,580 --> 00:05:23,620
+Généralement, nous aurons un vocabulaire d'une taille d'environ 100 000
+
+54
+00:05:23,620 --> 00:05:31,400
+mais la taille du vecteur sera d'environ 300 ou 500,
+
+55
+00:05:31,400 --> 00:05:36,410
+donc la taille du vocabulaire sera beaucoup plus petite, mais ce sera suffisant pour tenir en compte
+
+56
+00:05:36,410 --> 00:05:45,320
+toutes les informations pertinentes des mots.
+
+57
+00:05:45,320 --> 00:05:49,160
+Pour l'instant, nous savons à quoi ressemble que notre représentation distribuée,
+
+58
+00:05:49,160 --> 00:05:54,230
+mais je ne vous ai pas montré comment trouver les valeurs dans les vecteurs.
+
+59
+00:05:54,230 --> 00:05:58,430
+Nous le verrons plus tard ; mais pour l'instant,
+
+60
+00:05:58,430 --> 00:06:03,200
+examinons comment nous aimerions que cette représentation distribuée soit tracée.
+
+61
+00:06:03,200 --> 00:06:08,270
+Nous aimerions avoir deux propriétés pertinentes :
+
+62
+00:06:08,270 --> 00:06:16,250
+la première est que les mots dont la sémantique est similaire doivent être proches
+
+63
+00:06:16,250 --> 00:06:21,200
+et la deuxième est que nous aimerions prendre en compte les relations entre les mots
+
+64
+00:06:21,200 --> 00:06:25,640
+parce qu'il s'agit là encore d'une information très utile sur la sémantique des mots
+
+65
+00:06:25,640 --> 00:06:32,540
+que le modèle peut utiliser, alors concentrons-nous sur la première. Vous voyez ici un tracé
+
+66
+00:06:32,540 --> 00:06:40,010
+de cette représentation distribuée. Ce qui est intéressant,
+
+67
+00:06:40,010 --> 00:06:44,480
+c'est que nous avons quelques groupes qui sont de couleur différente.
+
+68
+00:06:44,480 --> 00:06:50,300
+Comme ici, vous voyez une zone jaune et vous voyez que j'ai des mots dont la sémantique est similaire.
+
+69
+00:06:50,300 --> 00:06:54,900
+J'ai les mots réfrigérateur, four, micro-ondes, etc.
+
+70
+00:06:54,900 --> 00:07:01,620
+qui sont des appareils qui se trouvent dans la cuisine. Ici, vous pouvez voir que
+
+71
+00:07:01,620 --> 00:07:10,500
+j'ai les mots baignoire, salle de bain, donc des objets que je peux trouver dans la salle de bain.
+
+72
+00:07:10,500 --> 00:07:16,520
+Ce n’est pas parfait mais vous pouvez voir que cette représentation est beaucoup plus informative
+
+73
+00:07:16,520 --> 00:07:24,120
+par rapport à l’ancienne et les mots dont la sémantique est similaire
+
+74
+00:07:24,120 --> 00:07:32,360
+tendent à être représentés de manière rapprochée dans cet espace.
+
+75
+00:07:32,360 --> 00:07:39,150
+La deuxième caractéristique que nous aimerions voir
+
+76
+00:07:39,150 --> 00:07:44,370
+dans cette représentation particulière, c’est le fait de prendre en compte les relations
+
+77
+00:07:44,370 --> 00:07:52,650
+entre les mots, vous voyez donc ici cette relation entre le pays et la capitale
+
+78
+00:07:52,650 --> 00:07:58,200
+et vous voyez tous les pays ici à gauche et vous voyez la capitale ici à droite.
+
+79
+00:07:58,200 --> 00:08:05,040
+Même si ce n'est pas parfait, nous avons ce modèle
+
+80
+00:08:05,040 --> 00:08:10,440
+où nous pouvons aller
+
+81
+00:08:10,440 --> 00:08:15,300
+d’un pays à la capitale en appliquant ce vecteur. Encore une fois, ce n'est pas parfait
+
+82
+00:08:15,300 --> 00:08:19,710
+mais vous voyez à quel point cette représentation est intéressante,
+
+83
+00:08:19,710 --> 00:08:26,640
+car le modèle peut maintenant s’appuyer sur ces informations pour résoudre la tâche.

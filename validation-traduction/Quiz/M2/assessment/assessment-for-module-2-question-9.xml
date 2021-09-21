@@ -1,0 +1,33 @@
+<problem display_name="Question 9" markdown="You want to test your new implementation of RMSProp. The two following equations are element-wise operations over the parameter vectors and the function f.&#10;&#10;\( v_t = \beta v_{t-1} + (1 - \beta)f'(x_t)^2 \) the preconditioning term &#10;\( x_{t+1} = x_t - \frac{\eta}{\sqrt{v_t} +\epsilon} f'(x_t) \) the update rule&#10;&#10;We use the following test function  \(f(a,b) = a^2+2b^2 \) and the following initial conditions: \( x_1=(2, 1), v_0=(0.1, 0.1)\) and parameters \(\beta=0.9\), \(\eta=0.1\) and you can neglect \(\epsilon\) in this exercise. Provide your answer with 3 significant figures (e.g. \( 0.123\))&#10;&#10;&#10;&gt;&gt;a) What is the value of the test function evaluated at \(x_1=(2,1)=(a,b)\)? &lt;&lt;&#10;&#10;(x) 6 {{Correct}}&#10;( ) 10 {{Incorrect}}&#10;( ) 12 {{Incorrect}}&#10;( ) 24 {{Incorrect}}&#10;&#10;&gt;&gt;b) What is the value of \(x_2\)?&lt;&lt;&#10;(x) (1.69, 0.69) {{Correct}}&#10;( ) (2.12, 1.24) {{Incorrect}}&#10;( ) (-1.21, 0.69) {{Incorrect}}&#10;( ) (-1.14, 1.21) {{Incorrect}}&#10;&#10;&gt;&gt;c) What is the value of the test function evaluated at \(x_2 = (a,b)\)?&lt;&lt;&#10;&#10;( ) 4.56 {{Incorrect}}&#10;(x) 3.82 {{Correct}}&#10;( ) 1.21 {{Incorrect}}&#10;( ) 2.33 {{Incorrect}}&#10;&#10;&#10;&#10;&#10;" max_attempts="2">
+  <p>Vous voulez évaluer votre nouvelle implémentation de RMSProp. Les deux équations suivantes sont des opérations élément par élément sur les vecteurs de paramètres et la fonction f.</p>
+  <p>\( v_t = \beta v_{t-1} + (1 - \beta)f&apos;(x_t)^2 \) le terme de préconditionnement</p>
+  <p>\( x_{t+1} = x_t - \frac{\eta}{\sqrt{v_t} +\epsilon} f&apos;(x_t) \) la règle de mise à jour</p>
+  <p>Nous utilisons la fonction d’évaluation suivante \(f(a,b) = a^2+2b^2 \) et les conditions initiales suivantes : \( x_1=(2, 1), v_0=(0.1, 0.1)\) et les paramètres \(\beta=0.9\), \(\eta=0.1\) et vous pouvez négliger \(\epsilon\) dans cet exercice. Donnez votre réponse avec 3 chiffres significatifs (p. ex. \( 0.123\))</p>
+  <label>a) quelle est la valeur de la fonction d’évaluation évaluée à \(x_1=(2,1)=(a,b)\) ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">6 <choicehint>Bonne réponse</choicehint></choice>
+      <choice correct="false">10 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">12 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">24 <choicehint>Mauvaise réponse</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <label>b) quelle est la valeur de \(x_2\) ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">(1,69, 0,69) <choicehint>Bonne réponse</choicehint></choice>
+      <choice correct="false">(2,12, 1,24) <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">(-1,21, 0,69) <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">(-1,14, 1,21) <choicehint>Mauvaise réponse</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <label>c) quelle est la valeur de la fonction d’évaluation évaluée à \(x_2 = (a,b)\) ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">4,56 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="true">3,82 <choicehint>Bonne réponse</choicehint></choice>
+      <choice correct="false">1,21 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">2,33 <choicehint>Mauvaise réponse</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

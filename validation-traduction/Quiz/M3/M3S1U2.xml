@@ -1,0 +1,22 @@
+<problem>
+<multiplechoiceresponse>
+  <label>1. Afin de créer de la profondeur dans nos représentations dans les RNC, nous pouvons utiliser plusieurs ensembles de noyaux avec des volumes différents.</label>
+<description>Choisissez vrai ou faux.</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Vrai <choicehint>Les noyaux doivent tous avoir le même volume</choicehint></choice>
+    <choice correct="true">Faux</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>
+
+<problem>
+<multiplechoiceresponse>
+  <label> 2. On vous demande de faire une carte de caractéristiques de 10x10x5 à partir de notre image d'entrée 10x10x3 (en RVB). Quelle est la taille correcte des noyaux pour créer une profondeur de 10 en utilisant une taille de filtre F=3 et en utilisant une convolution "valide" (réponse en DxWxHxC=Profondeur x Largeur x Hauteur x Nombre de canaux)?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">5x5x5x3</choice>
+    <choice correct="false">3x3x3x5</choice>
+    <choice correct="true">5x3x3x3</choice>
+    <choice correct="false">3x5x5x5</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

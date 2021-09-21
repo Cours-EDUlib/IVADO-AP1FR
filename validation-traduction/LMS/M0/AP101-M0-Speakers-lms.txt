@@ -1,0 +1,16 @@
+<p style="font-size: 16px;"><img src="/asset-v1:IVADO+SandboxAW+2020+type@asset+block@Mirko_Bronzi.png" hspace="20" align="left" alt="Image du personnel de cours n&deg;1" /></p>
+<h3>Mirko Bronzi, PhD</h3>
+<h4>Chercheur en recherche appliqu&eacute;e &agrave; Mila - &Eacute;quipe de recherche appliqu&eacute;e</h4>
+<p style="font-size: 16px;">Son doctorat portait sur l'extraction et l'int&eacute;gration d'informations provenant de diff&eacute;rentes sources du web. Il s'int&eacute;resse au traitement du langage naturel pour les assistants virtuels de voiture et &agrave; la compr&eacute;hension du langage clinique pour l'interaction m&eacute;decin/patient.<br /><a href="https://www.edx.org/bio/mirko-bronzi" target="_blank">Voir le profil de l'enseignant</a></p>
+<p style="font-size: 16px;"><img src="/asset-v1:IVADO+SandboxAW+2020+type@asset+block@Golnoosh_Farnadi.png" hspace="20" align="left" alt="Image du personnel de cours n&deg;1" /></p>
+<h3>Golnoosh Farnadi, PhD</h3>
+<h4>Chercheur et boursi&egrave;re; directeur scientifique de MOOC &agrave; Mila, IVADO</h4>
+<p style="font-size: 16px;">Son doctorat portait sur la mod&eacute;lisation des utilisateurs dans les m&eacute;dias sociaux. Elle travaille actuellement sur la prise de d&eacute;cision s&eacute;quentielle avec un souci d'&eacute;quit&eacute;. Elle a &eacute;t&eacute; chercheuse invit&eacute;e &agrave; Polytechnique Montr&eacute;al, UCLA, U. Washington et Microsoft research.<br /><a href="https://www.edx.org/bio/golnoosh-farnadi" target="_blank">Voir le profil de l'enseignant</a></p>
+<p style="font-size: 16px;"><img src="/asset-v1:IVADO+SandboxAW+2020+type@asset+block@Gaetan_Marceau_Caron.jpeg" hspace="20" align="left" alt="Image du personnel de cours n&deg;1" /></p>
+<h3>Ga&eacute;tan Marceau Caron, PhD</h3>
+<h4>Chercheur en recherche appliqu&eacute;e &agrave; Mila - &Eacute;quipe de recherche appliqu&eacute;e</h4>
+<p style="font-size: 16px;">Il a rejoint le Mila en 2017. De 2014 &agrave; 2016, il a &eacute;t&eacute; chercheur postdoctoral &agrave; l'INRIA-Saclay. Il a obtenu un doctorat en informatique &agrave; l'universit&eacute; Paris-Sud XI en 2014.<br /><a href="https://www.edx.org/bio/gaetan-marceau-caron" target="_blank">Voir le profil de l'enseignant</a></p>
+<p style="font-size: 16px;"><img src="/asset-v1:IVADO+SandboxAW+2020+type@asset+block@Jeremy_Pinto.jpeg" hspace="20" align="left" alt="Image de l'&eacute;quipe du cours n&deg;2" /></p>
+<h3>Jeremy Pinto, MSc</h3>
+<h4>Chercheur en recherche appliqu&eacute;e &agrave; Mila - &Eacute;quipe de recherche appliqu&eacute;e</h4>
+<p style="font-size: 16px;">Il est titulaire d'un BSc en ing&eacute;nierie physique de Polytechnique Montr&eacute;al et d'une MSc en ing&eacute;nierie de conception de syst&egrave;mes de l'Universit&eacute; de Waterloo. Il a &eacute;galement une exp&eacute;rience&nbsp;d'impl&eacute;mentation de projets d'apprentissage automatique en&nbsp;industrie.<br /><a href="https://www.edx.org/bio/jeremy-pinto" target="[object Object]">Voir le profil de l'enseignant</a></p>

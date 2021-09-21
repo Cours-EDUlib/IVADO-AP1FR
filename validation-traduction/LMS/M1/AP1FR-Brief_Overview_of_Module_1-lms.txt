@@ -1,0 +1,7 @@
+Dans ce premier module, vous plongerez dans le monde de l'intelligence artificielle et de l'apprentissage automatique. Tout d'abord, nous discuterons de la manière de décrire et de créer un projet d'apprentissage automatique. Ensuite, vous découvrirez que l'entraînement d'un modèle est une tâche délicate. En effet, un modèle peut utiliser n'importe quel moyen pour maximiser les mesures de performance ; il peut utiliser des détails trompeurs dans vos données pour atteindre son objectif, ou mémoriser les données utilisées pendant la formation sans généraliser à de nouvelles données. De plus, nous aborderons la conception de protocoles expérimentaux utilisés par les scientifiques des données pour entraîner leurs modèles, détecter quand les modèles trichent et sélectionner celui qui a la plus grande probabilité de réussir en production.
+
+
+
+
+
+Vous découvrirez également les principales hypothèses d'un ensemble de données, telles que l'hypothèse de variables indépendantes et identiques, ainsi que les différentes représentations des données. Enfin, nous décrirons les différents types d'apprentissage automatique et illustrerons certains concepts liés aux modèles comme le biais, la variance et le surajustement. Ce module est un précurseur à l'apprentissage profond, qui sera le sujet principal du reste de ce cours en ligne.

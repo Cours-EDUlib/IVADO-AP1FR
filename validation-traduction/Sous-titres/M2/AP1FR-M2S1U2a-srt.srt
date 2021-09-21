@@ -1,0 +1,435 @@
+﻿1
+00:00:14,110 --> 00:00:19,529
+Donc nous allons d'abord passer en revue un schéma classique d'un réseau de neurones. Donc les
+
+2
+00:00:19,529 --> 00:00:27,800
+réseaux de neurones sont dans la littérature depuis plus de 20 ans, au moins 40 ans je
+
+3
+00:00:27,800 --> 00:00:35,550
+pense et voici ce que nous allons faire: nous allons prendre cette image et nous allons utiliser une
+
+4
+00:00:35,550 --> 00:00:40,879
+opération appelée 'aplatir' (flattenn), afin qu'elle puisse être traitée par notre
+
+5
+00:00:40,879 --> 00:00:48,790
+réseau de neurones artificiels. C'est donc une opération de prétraitement ici: pour aplatir cette image
+
+6
+00:00:48,790 --> 00:00:54,910
+en un vecteur, nous avons ici notre représentation locale et la
+
+7
+00:00:54,910 --> 00:01:02,140
+représentation locale sera dans un vecteur. Ici, j'ai une image représentée par un tenseur
+
+8
+00:01:02,140 --> 00:01:06,600
+qui est quelque chose qui a trois dimensions la hauteur la largeur et
+
+9
+00:01:06,600 --> 00:01:12,790
+le nombre de canaux. Pour aplatir cette image, je vais fixer un ordre pour
+
+10
+00:01:12,790 --> 00:01:18,860
+itérer sur les intensités de pixels.
+
+11
+00:01:18,860 --> 00:01:25,950
+Ici j'itère ligne par ligne: la première unité de mon modèle sera le
+
+12
+00:01:25,950 --> 00:01:31,780
+pixel à la position (1,1) avec le canal rouge, le canal vert et le canal bleu.
+
+13
+00:01:31,780 --> 00:01:36,790
+Ensuite, je descends d'une étape et je vais récupérer l'intensité du pixel du
+
+14
+00:01:36,790 --> 00:01:45,479
+canal rouge de ce pixel ici, etc. Je fais donc un aplatissement, je récupère mon vecteur pour
+
+15
+00:01:45,479 --> 00:01:51,820
+cette image et en fait vous ne devriez pas le faire avec un apprentissage profond moderne, c'est seulement
+
+16
+00:01:51,820 --> 00:02:00,750
+pour vous montrer l'approche modulaire. Maintenant, nous avons des opérations qui préserveront la
+
+17
+00:02:00,750 --> 00:02:05,670
+structure de l'image. En faisant ainsi, nous ne savons plus quels sont les pixels
+
+18
+00:02:05,670 --> 00:02:12,269
+voisins d'un pixel donné parce que je prends un objet tridimensionnel
+
+19
+00:02:12,269 --> 00:02:18,920
+et je le transforme en un objet unidimensionnel, mais c'est seulement pour
+
+20
+00:02:18,920 --> 00:02:24,260
+cet exemple. Ce sont donc mes représentations locales
+
+21
+00:02:24,260 --> 00:02:31,400
+et maintenant, nous allons implémenter cette idée d'extraction de caractéristiques dessus. Mon image est
+
+22
+00:02:31,400 --> 00:02:37,530
+entièrement représentée ici, pixel par pixel et canal par canal et je vais créer
+
+23
+00:02:37,530 --> 00:02:43,980
+ce nœud ici: il sera nommé « neurone artificiel » et je créerai ma
+
+24
+00:02:43,980 --> 00:02:49,780
+première couche cachée ici. Ce neurone artificiel recevra les valeurs de
+
+25
+00:02:49,780 --> 00:02:55,680
+l'entrée via ces connexions et pour toutes les connexions, j'ai un paramètre
+
+26
+00:02:55,680 --> 00:03:04,879
+w de l'entrée 1 au neurone caché 1 et ici c'est de l'entrée 3 au
+
+27
+00:03:04,879 --> 00:03:12,190
+neurone caché 1, alors qu'est-ce que ce diagramme représente? Si j'ai un nœud, une
+
+28
+00:03:12,190 --> 00:03:20,430
+unité de traitement ici, une connexion et un paramètre ici, cela signifie que je multiplie x_1
+
+29
+00:03:20,430 --> 00:03:29,239
+par w_1-> 1, donc je fais le produit de ces deux valeurs. Ici, j'ai plusieurs
+
+30
+00:03:29,239 --> 00:03:35,970
+connexions allant dans ce neurone et cela signifie que j’additionne le produit
+
+31
+00:03:35,970 --> 00:03:43,300
+de toutes les connexions avec l'entrée, c'est donc la somme sur le produit de tous
+
+32
+00:03:43,300 --> 00:03:50,050
+ces paramètres avec tous les neurones ici et ceci est un produit scalaire,
+
+33
+00:03:50,050 --> 00:03:55,209
+c'est exactement la définition d'un produit scalaire. Comme vous pouvez le voir
+
+34
+00:03:55,209 --> 00:04:02,239
+ici, les paramètres encoderont la forme, cela encodera les données et maintenant ce neurone
+
+35
+00:04:02,239 --> 00:04:15,600
+contiendra la valeur qui représente le produit de ce
+
+36
+00:04:15,600 --> 00:04:24,630
+paramètre avec ceci et la somme sur tout. Après, j'ai encore
+
+37
+00:04:24,630 --> 00:04:29,240
+besoin d'une opération appelée la fonction d'activation. La fonction d'activation peut
+
+38
+00:04:29,240 --> 00:04:32,379
+être une sigmoïde une tangente hyperbolique ou une [ReLU] unité linéaire rectifiée.
+
+39
+00:04:32,379 --> 00:04:36,199
+Ces deux premiers ont été utilisés par la communauté pendant des années, et celui-ci
+
+40
+00:04:36,199 --> 00:04:44,949
+est plus récent, à partir de 2010: il fonctionne bien, mieux que les deux
+
+41
+00:04:44,949 --> 00:04:50,430
+autres sur de nombreux ensembles de données et nous verrons un peu pourquoi: c'est parce que ces deux
+
+42
+00:04:50,430 --> 00:04:57,059
+sont plus difficiles à entraîner. Alors, voici l'équation complète est pour ce neurone: j’ai la
+
+43
+00:04:57,059 --> 00:05:01,749
+fonction d'activation et la fonction d'activation prendra en entrée le produit scalaire
+
+44
+00:05:01,749 --> 00:05:07,639
+(le produit des paramètres avec l'entrée et la somme sur tout).
+
+45
+00:05:07,639 --> 00:05:13,849
+Ceci n’est qu’une forme: si je veux définir plusieurs formes, je dois juste ajouter
+
+46
+00:05:13,849 --> 00:05:22,100
+d’autres unités cachées: maintenant, une unité cachée est associée à une forme
+
+47
+00:05:22,100 --> 00:05:28,719
+et voici l'équation générale pour le neurone y_j. Je recevrai la
+
+48
+00:05:28,719 --> 00:05:34,110
+fonction d'activation appliquée au produit scalaire de l'entrée et de la
+
+49
+00:05:34,110 --> 00:05:39,379
+connexion allant au neurone j et ceci est une nouvelle représentation pour mes
+
+50
+00:05:39,379 --> 00:05:44,649
+données sur cette couche: cela s'appelle une représentation distribuée, elle est
+
+51
+00:05:44,649 --> 00:05:50,889
+distribuée parce que le produit scalaire mélangera toutes les dimensions du
+
+52
+00:05:50,889 --> 00:05:59,319
+vecteur d'entrée ensemble. Alors, si j'ajoute la largeur du pétale,
+
+53
+00:05:59,319 --> 00:06:03,649
+la hauteur du pétale, la largeur du sépale et la hauteur du sépale,
+
+54
+00:06:03,649 --> 00:06:08,919
+alors pour ce neurone tout est mélangé: nous les appelons des
+
+55
+00:06:08,919 --> 00:06:15,250
+représentations distribuées. Elles sont difficiles à interpréter, car on peut dire que c'est
+
+56
+00:06:15,250 --> 00:06:24,500
+0.1 la première caractéristique plus 0.5 la deuxième caractéristique moins la troisième caractéristique,
+
+57
+00:06:24,500 --> 00:06:27,000
+puis j'ai une fonction d'activation,
+
+58
+00:06:27,000 --> 00:06:31,990
+et pour vraiment interpréter ce que ce neurone code, c'est
+
+59
+00:06:31,990 --> 00:06:35,149
+quelque chose de difficile. C'est pourquoi
+
+60
+00:06:35,149 --> 00:06:40,399
+de nombreux modèles ne sont pas interprétables. Lorsque nous regardons la représentation
+
+61
+00:06:40,399 --> 00:06:45,729
+apprise à l'intérieur du modèle, elle peut être difficile à interpréter et puisque nous avons une nouvelle
+
+62
+00:06:45,729 --> 00:06:52,539
+représentation, nous pouvons considérer cette couche comme de nouvelles caractéristiques qui ont été
+
+63
+00:06:52,539 --> 00:06:59,020
+extraites de la couche précédente. Je construis une nouvelle
+
+64
+00:06:59,020 --> 00:07:05,490
+couche cachée avec deux nouveaux neurones artificiels et encore une fois ils feront la même chose:
+
+65
+00:07:05,490 --> 00:07:10,560
+ils extrairont des formes de cette couche et à la fin je n'ai qu'un seul
+
+66
+00:07:10,560 --> 00:07:16,469
+neurone à prédire, comme exemple si c'est une chaise ou non. En combinant ces deux
+
+67
+00:07:16,469 --> 00:07:23,470
+valeurs, c'est donc un perceptron multicouche, c'est l'un des
+
+68
+00:07:23,470 --> 00:07:28,189
+réseaux de neurones artificiels les plus célèbres et voici le schéma classique de celui-ci pour représenter
+
+69
+00:07:28,189 --> 00:07:35,669
+les opérations effectuées par ce modèle. Alors, une question que nous pouvons nous poser est:
+
+70
+00:07:35,669 --> 00:07:42,559
+avons-nous vraiment besoin de fonctions d'activation? Au lieu d'utiliser ces
+
+71
+00:07:42,559 --> 00:07:51,309
+3 fonctions ici, pourquoi ne pas simplement utiliser un produit scalaire? En fait, si nous
+
+72
+00:07:51,309 --> 00:07:56,849
+utilisons simplement des produits scalaires, cela correspond à une transformation linéaire,
+
+73
+00:07:56,849 --> 00:08:01,619
+c'est comme si je fais le produit d'une matrice avec un vecteur et si je fais
+
+74
+00:08:01,619 --> 00:08:07,050
+plusieurs transformations linéaires composées ensemble, la complexité de celles-ci, ce n'est qu'une
+
+75
+00:08:07,050 --> 00:08:11,729
+seule transformation linéaire: en composant plusieurs transformations linéaires, je ne
+
+76
+00:08:11,729 --> 00:08:18,520
+gagne rien en complexité. En utilisant des fonctions d'activation, j'ajoute des
+
+77
+00:08:18,520 --> 00:08:24,551
+non-linéarités dans la transformation. Je ne peux pas exprimer mon
+
+78
+00:08:24,551 --> 00:08:30,249
+perceptron multicouche comme une seule transformation à cause de ces
+
+79
+00:08:30,249 --> 00:08:36,169
+non-linéarités, donc elles sont importantes pour augmenter la complexité du
+
+80
+00:08:36,169 --> 00:08:42,310
+modèle. Une autre façon d'augmenter la complexité est simplement d’ajouter plus de couches, de
+
+81
+00:08:42,310 --> 00:08:47,190
+plus en plus de couches dans le réseau. La représentation deviendra de
+
+82
+00:08:47,190 --> 00:08:52,839
+plus en plus abstraite et à la fin, nous espérons que le classificateur qui
+
+83
+00:08:52,839 --> 00:08:57,050
+séparera les classes travaillera sur un espace où les représentations sont
+
+84
+00:08:57,050 --> 00:09:01,269
+très bien organisées et qu'un séparateur linéaire suffira à la
+
+85
+00:09:01,269 --> 00:09:09,290
+fin du réseau. Il y a aussi des
+
+86
+00:09:09,290 --> 00:09:15,329
+résultats théoriques sur le théorème d'approximation universelle: ce théorème dit juste
+
+87
+00:09:15,329 --> 00:09:21,170
+qu'en utilisant ce type de fonction d'activation, et je pense qu'il y en a une nouvelle
+
+88
+00:09:21,170 --> 00:09:29,579
+avec le ReLU, nous pouvons approximer n'importe quelle fonction continue si nous utilisons
+
+89
+00:09:29,579 --> 00:09:35,380
+assez de neurones dans les couches cachées. Il est donc bon de savoir
+
+90
+00:09:35,380 --> 00:09:38,930
+qu'avec la complexité de ce modèle, je peux
+
+91
+00:09:38,930 --> 00:09:47,829
+approximer n'importe quelle fonction continue en n dimensions, mais en fait
+
+92
+00:09:47,829 --> 00:09:53,440
+ce théorème, le théorème d'approximation universel ne portait que sur une seule
+
+93
+00:09:53,440 --> 00:09:58,320
+couche cachée et donc avec une couche cachée et un
+
+94
+00:09:58,320 --> 00:10:04,149
+nombre suffisant de neurones cachés, nous sommes en mesure d'approximer n'importe quelle fonction. Donc, les gens
+
+95
+00:10:04,149 --> 00:10:07,850
+se demandaient: pourquoi voulez-vous avoir plus de couches cachées? Nous avons ce
+
+96
+00:10:07,850 --> 00:10:12,800
+résultat théorique qui dit qu'une couche cachée suffit pour approximer
+
+97
+00:10:12,800 --> 00:10:17,480
+quoi que ce soit, pourquoi avons-nous besoin de réseaux de neurones profonds? Le résultat ne discute que du
+
+98
+00:10:17,480 --> 00:10:24,199
+pouvoir de représentation du modèle: avec plusieurs couches ayant des fonctions
+
+99
+00:10:24,199 --> 00:10:33,339
+d’activations, il est plus facile d'apprendre des données et ce théorème ne
+
+100
+00:10:33,339 --> 00:10:40,040
+décrit que ce que le modèle peut approximer, mais est-il difficile d’apprendre ou non? ce
+
+101
+00:10:40,040 --> 00:10:43,879
+théorème ne répondra pas à cette question, il y a donc une différence entre ce que nous
+
+102
+00:10:43,879 --> 00:10:50,550
+pouvons approximer et la facilité avec laquelle il est possible de l'apprendre à partir des données, Maintenant,
+
+103
+00:10:50,550 --> 00:10:54,759
+empiriquement, nous savons qu’en utilisant des réseaux de neurones profonds, il est plus facile d’apprendre à partir de
+
+104
+00:10:54,759 --> 00:11:00,410
+données complexes, mais nous gardons toujours ce résultat avec les réseaux de neurones profonds bien sûr, ce
+
+105
+00:11:00,410 --> 00:11:07,360
+théorème tient toujours, nous pouvons approximer de nombreuses fonctions intéressantes.
+
+106
+00:11:07,360 --> 00:11:12,750
+Les fonctions d'activation peuvent également moduler la représentation: disons que
+
+107
+00:11:13,750 --> 00:11:19,399
+ma représentation varie de -10 à 10 ou -100 à 100. Avec une fonction sigmoïde,
+
+108
+00:11:19,399 --> 00:11:24,459
+je peux amener la plage de ma représentation entre 0 et 1, ou avec la tangente hyperbolique, entre
+
+109
+00:11:24,459 --> 00:11:34,000
+-1 et 1, c'est donc un moyen de restreindre la plage de variation de mes représentations dans le graphe.

@@ -1,0 +1,699 @@
+﻿1
+00:00:13,340 --> 00:00:17,300
+Maintenant nous allons faire un petit détour et nous allons parler
+
+2
+00:00:17,300 --> 00:00:23,330
+des réseaux antagonistes génératifs, généralement appelés RAG.
+
+3
+00:00:23,330 --> 00:00:29,220
+Les RAG sont donc un type d'algorithme particulier et leur fonctionnement est très intéressant.
+
+4
+00:00:29,220 --> 00:00:35,520
+On fait entrer en compétition deux réseaux de neurones distincts.
+
+5
+00:00:35,520 --> 00:00:39,719
+Lorsqu’on parle de RAG, on a généralement deux types de réseaux qui sont placés en compétition.
+
+6
+00:00:39,719 --> 00:00:44,399
+Nous avons un réseau appelé générateur et l'autre appelé discriminateur et
+
+7
+00:00:44,399 --> 00:00:49,710
+ils ont tous deux deux des objectifs très spécifiques :
+
+8
+00:00:49,710 --> 00:00:54,059
+le générateur doit générer des échantillons qui semblent réels et
+
+9
+00:00:54,059 --> 00:01:00,719
+le discriminateur doit déterminer si ces échantillons générés sont réels ou non.
+
+10
+00:01:00,719 --> 00:01:04,549
+Essayons de trouver une façon de représenter cela. J'aime penser que c'est un jeu
+
+11
+00:01:04,549 --> 00:01:09,990
+entre un contrefacteur et un conservateur d'art. Alors imaginez que vous êtes un conservateur d'art et
+
+12
+00:01:09,990 --> 00:01:15,180
+votre travail consiste simplement à déterminer si une œuvre d'art est réelle ou fausse.
+
+13
+00:01:15,180 --> 00:01:18,960
+Si vous êtes un contrefacteur, votre travail est beaucoup plus difficile. Vous devez trouver
+
+14
+00:01:18,960 --> 00:01:22,920
+le genre de matériel qui peut tromper le conservateur d'art et si vous pouvez tromper le conservateur d'art,
+
+15
+00:01:22,920 --> 00:01:26,250
+vous gagnez beaucoup d'argent. Si vous ne pouvez pas bien tromper le conservateur d'art,
+
+16
+00:01:26,250 --> 00:01:32,130
+alors vous ne faites pas d'argent en tant que contrefacteur. Alors voici un exemple très simple :
+
+17
+00:01:32,130 --> 00:01:37,140
+vous avez un ensemble de données de peintures réelles,
+
+18
+00:01:37,140 --> 00:01:41,670
+vous avez un contrefacteur ou un générateur qui propose une peinture et
+
+19
+00:01:41,670 --> 00:01:45,299
+le discriminateur ici doit déterminer, à partir de l'ensemble des données des peintures réelles,
+
+20
+00:01:45,299 --> 00:01:50,340
+si cette image est réelle ou non. S'agit-il d'une fausse image ou d'une image réelle?
+
+21
+00:01:50,340 --> 00:01:54,420
+C’est un exemple concret de ce qui s'est réellement passé. Ce n'était pas un contrefacteur qui essayait de le faire passer pour un vrai,
+
+22
+00:01:54,420 --> 00:01:58,890
+mais c'est quelqu'un qui a essayé de restaurer ce tableau et
+
+23
+00:01:58,890 --> 00:02:05,820
+malheureusement c'est ce qui est ressorti. Vous pouvez donc imaginer que lorsque les conservateurs d'art ont regardé cette œuvre,
+
+24
+00:02:05,820 --> 00:02:10,890
+quelque chose leur a dit que ce n’était pas l’originale,
+
+25
+00:02:10,890 --> 00:02:17,129
+ou comment elle était censée être représentée. Maintenant à mesure que vous entraînez votre générateur,
+
+26
+00:02:17,129 --> 00:02:21,780
+il s'améliore de plus en plus. C'est pourquoi nous avons ici un autre exemple avec notre générateur.
+
+27
+00:02:21,780 --> 00:02:25,620
+Nous avons une œuvre qui pourrait sembler convaincante et si vous n'êtes pas
+
+28
+00:02:25,620 --> 00:02:29,370
+un bon conservateur d'art, vous pourriez être en mesure de vous faire avoir.
+
+29
+00:02:29,370 --> 00:02:32,909
+C'est un tableau original de Picasso et il s'agit en fait d'un tableau qui a été peint
+
+30
+00:02:32,909 --> 00:02:36,469
+par un enfant de 12 ans et celui-ci s'est avéré être un contrefacteur à succès
+
+31
+00:02:36,469 --> 00:02:42,090
+et il a fait beaucoup d'argent comme contrefacteur. Il y a un lien ici,
+
+32
+00:02:42,090 --> 00:02:45,389
+vous pouvez aller vous renseigner sur l'histoire de ce type mais je pense qu'il a fait des centaines de millions de dollars
+
+33
+00:02:45,389 --> 00:02:53,250
+en trompant les conservateurs d'art. D’un point de vue mathématique, ceci peut être exprimé
+
+34
+00:02:53,250 --> 00:02:58,409
+sous la forme de ce que l'on appelle un jeu MinMax. Nous avons donc à nouveau ces deux réseaux
+
+35
+00:02:58,409 --> 00:03:02,430
+et nous avons un générateur qui essaie de minimiser une fonction objective
+
+36
+00:03:02,430 --> 00:03:06,359
+que nous définissons ici alors que le discriminateur tente de
+
+37
+00:03:06,359 --> 00:03:10,859
+maximiser la fonction objective.
+
+38
+00:03:10,859 --> 00:03:15,150
+Simultanément, le générateur tente de tromper le discriminateur et
+
+39
+00:03:15,150 --> 00:03:21,180
+le discriminateur essaie de comprendre comment fonctionne le générateur.
+
+40
+00:03:21,180 --> 00:03:27,509
+Donc c'est l'ensemble de l'équation est à l'origine de l'implémentation du RAG.
+
+41
+00:03:27,509 --> 00:03:33,269
+Je définis les différents éléments, donc D(x) est notre discriminateur et
+
+42
+00:03:33,269 --> 00:03:38,069
+G(z) est notre générateur. Vous pouvez essentiellement considérer D(x) comme un réseau neuronal
+
+43
+00:03:38,069 --> 00:03:42,120
+qui indique la probabilité qu'un échantillon soit réel.
+
+44
+00:03:42,120 --> 00:03:49,439
+G(z) est un réseau de neurones qui crée une image et tente de tromper D(x).
+
+45
+00:03:49,439 --> 00:03:54,599
+Lorsque nous les entraînons, le but du générateur est de minimiser cette fonction,
+
+46
+00:03:54,599 --> 00:03:59,370
+donc voici ce que le générateur essaie de minimiser, ce terme ici.
+
+47
+00:03:59,370 --> 00:04:04,229
+Quand on parle de minimisation ici,
+
+48
+00:04:04,229 --> 00:04:07,979
+ce que nous essayons de dire, c'est que nous voulons maximiser l'erreur que D fera sur
+
+49
+00:04:07,979 --> 00:04:15,569
+l'image générée G(z). Nous voulons également que le discriminateur maximise les termes en rouge.
+
+50
+00:04:15,569 --> 00:04:19,620
+Donc le discriminateur veut obtenir le plus d’images qui sont réelles et
+
+51
+00:04:19,620 --> 00:04:24,029
+les classer comme réelles et le plus d'images qui sont fausses et les classer comme fausses.
+
+52
+00:04:24,029 --> 00:04:26,389
+C'est donc ici que nous avons ce jeu MinMax
+
+53
+00:04:26,389 --> 00:04:30,229
+où chacun réseau essaie de minimiser ou de
+
+54
+00:04:30,229 --> 00:04:37,129
+maximiser leur propre objectif. En fait, dans l’article original,
+
+55
+00:04:37,129 --> 00:04:42,259
+si vous regardez l’algorithme, il s'agit là encore d’une d’un extrait de l’article,
+
+56
+00:04:42,259 --> 00:04:47,750
+nous passons de manière itérative de l'un à l'autre. D'abord, nous entraînons d'abord le réseau à maximiser
+
+57
+00:04:47,750 --> 00:04:52,400
+en remontant la descente de gradient stochastique, donc ici nous mettons à jour le discriminateur
+
+58
+00:04:52,400 --> 00:04:57,319
+pour quelques pas et puis on passe au générateur et
+
+59
+00:04:57,319 --> 00:05:02,270
+pour quelques pas, nous essayons de minimiser l'objectif du générateur. Nous faisons des va-et-vient entre les deux.
+
+60
+00:05:02,270 --> 00:05:05,659
+C'est un jeu délicat où
+
+61
+00:05:05,659 --> 00:05:09,439
+si le discriminateur fonctionne bien trop vite, le générateur ne peut pas apprendre et ne peut pas le duper
+
+62
+00:05:09,439 --> 00:05:12,770
+et si le générateur fonctionne trop bien, alors le discriminateur ne peut pas trop bien fonctionner.
+
+63
+00:05:12,770 --> 00:05:19,370
+C'est donc un équilibre très délicat entre les deux et
+
+64
+00:05:19,370 --> 00:05:22,729
+nous pouvons générer des choses vraiment intéressantes.
+
+65
+00:05:22,729 --> 00:05:28,159
+Voici une image de l'article original sur les RAG et donc ici vous voyez des chiffres qui ont été générés.
+
+66
+00:05:28,159 --> 00:05:33,169
+Donc ce sont des chiffres qui n'ont jamais été vus avant l'entraînement avec la base de données MNIST et
+
+67
+00:05:33,169 --> 00:05:36,860
+vous pouvez voir ici quelques exemples de chiffres qui ont été générés.
+
+68
+00:05:36,860 --> 00:05:40,610
+Et ici ils ont choisi ce qu’ils ont trouvé comme étant les chiffres les plus proches dans l'ensemble de données mais, là encore,
+
+69
+00:05:40,610 --> 00:05:45,560
+le réseau était capable d’apprendre en n'ayant jamais vraiment vu de chiffres auparavant, mais en essayant simplement de
+
+70
+00:05:45,560 --> 00:05:50,000
+tromper le discriminateur en lui proposant des chiffres réalistes.
+
+71
+00:05:50,000 --> 00:05:54,050
+Ils ont fait la même chose avec les images, alors voici quelques images réelles qu'ils ont utilisées
+
+72
+00:05:54,050 --> 00:05:59,360
+sur un ensemble de données et voici quelques images de visages que le réseau a générées.
+
+73
+00:05:59,360 --> 00:06:03,349
+Parfois les images font un peu peur, comme celle-ci est un peu effrayante,
+
+74
+00:06:03,349 --> 00:06:07,759
+mais c'était le premier article sur les RAG
+
+75
+00:06:07,759 --> 00:06:14,479
+publié par Ian Goodfellow. L’histoire veut que idée de cette architecture,
+
+76
+00:06:14,479 --> 00:06:17,990
+ou ce type d'algorithmes, a traversé l’esprit des chercheurs lorsqu’ils discutaient ensemble
+
+77
+00:06:17,990 --> 00:06:23,750
+aux Trois Brasseurs, une brasserie de Montréal.
+
+78
+00:06:23,750 --> 00:06:27,710
+Et ils ont eu cette idée folle que
+
+79
+00:06:27,710 --> 00:06:31,610
+peut-être si on mettent les réseaux de neurones en compétition les uns contre les autres, cela pourrait fonctionner.
+
+80
+00:06:31,610 --> 00:06:36,560
+Il se trouve que ça fonctionne et maintenant les RAG constituent un domaine à part entière.
+
+81
+00:06:36,560 --> 00:06:40,070
+Regardez l'article original dans lequel ils ont remercié Les Trois Brasseurs dans les contributions.
+
+82
+00:06:40,070 --> 00:06:45,710
+Je ne sais pas exactement si toute l’histoire est vraie
+
+83
+00:06:45,710 --> 00:06:51,440
+mais ils remercient définitivement Les Trois Brasseurs dans leur article. Alors pourquoi mentionnons-nous cela?
+
+84
+00:06:51,440 --> 00:06:55,040
+En fait, une fois que l'article sur les RAG a été publié, les gens ont pensé à appliquer
+
+85
+00:06:55,040 --> 00:06:58,490
+les réseaux neuronaux convolutifs aux RAG et voyons ce que nous pouvons faire avec cela.
+
+86
+00:06:58,490 --> 00:07:03,020
+Tout d'abord, ils ont utilisé les convolutions transposées
+
+87
+00:07:03,020 --> 00:07:06,560
+pour faire ce sur-échantillonnage, nous avons donc parlé un peu
+
+88
+00:07:06,560 --> 00:07:10,550
+des convolutions transposées et c'est là qu'elles sont vraiment utiles.
+
+89
+00:07:10,550 --> 00:07:13,670
+Jusqu’à présent, pour la classification, nous ne faisons que réduire nos volumes, mais maintenant
+
+90
+00:07:13,670 --> 00:07:18,380
+nous utilisons ce concept de convolution transposée pour sur-échantillonner nos images aussi.
+
+91
+00:07:18,380 --> 00:07:23,810
+Alors nos réseaux peuvent apprendre sur la base d’un signal bruyant comme entrée
+
+92
+00:07:23,810 --> 00:07:28,670
+et nous effectuons un sur-échantillonnage jusqu'à ce que nous obtenions une image réaliste.
+
+93
+00:07:28,670 --> 00:07:32,690
+Dans l'article sur le DCGAN que je vous recommande d'aller lire, le lien est juste là,
+
+94
+00:07:32,690 --> 00:07:37,850
+ils ont fait des calculs de visage très intéressants. Donc ce qu'ils font, c'est qu'ils prennent
+
+95
+00:07:37,850 --> 00:07:43,640
+une femme souriante et ils soustraient la représentation d'une femme neutre,
+
+96
+00:07:43,640 --> 00:07:48,950
+ensuite ils ajoutent la représentation d'un homme neutre et
+
+97
+00:07:48,950 --> 00:07:53,750
+ils obtiennent un homme souriant. Donc ils démontrent qu'en utilisant les caractéristiques que
+
+98
+00:07:53,750 --> 00:07:59,560
+les réseaux apprennent, ceux-ci sont capables de faire ce calcul dans cet espace de RAG.
+
+99
+00:07:59,560 --> 00:08:03,890
+Quelques années plus tard, nous avons alors des recherches très intéressantes
+
+100
+00:08:03,890 --> 00:08:08,780
+et davantage de travail dans le domaine pour générer des visages d'apparence très réalistes.
+
+101
+00:08:08,780 --> 00:08:15,320
+Donc voici un travail qui a été publié par Nvidia récemment.
+
+102
+00:08:15,320 --> 00:08:18,800
+Jouons à un jeu : essayons de déterminer quelle image a été générée par un réseau
+
+103
+00:08:18,800 --> 00:08:24,500
+et quelle image est réelle. Alors prenez le temps de regarder ces images.
+
+104
+00:08:24,500 --> 00:08:29,000
+Votons en levant simplement la main. Alors qui pense que c'est la vraie personne sur la première image?
+
+105
+00:08:29,000 --> 00:08:35,990
+Nous avons quelques mains qui se lèvent.
+
+106
+00:08:35,990 --> 00:08:41,330
+Et qui pense que c'est la personne réelle? Bien, donc il semble que la plupart d'entre vous pensent que cette image
+
+107
+00:08:41,330 --> 00:08:45,950
+est la personne réelle et que l'autre est une personne générée. En fait, il s'avère que les deux sont des images générées.
+
+108
+00:08:45,950 --> 00:08:52,340
+C’est fou de voir la quantité de détails qui entrent dans ces images et
+
+109
+00:08:52,340 --> 00:08:57,200
+elles peuvent duper la plupart des gens. Si vous regardez de près l’oreille ici,
+
+110
+00:08:57,200 --> 00:09:01,190
+il y a un petit artefact. Je ne peux pas vous blâmer,
+
+111
+00:09:01,190 --> 00:09:05,480
+il pourrait être difficile de le voir en se basant sur l’image du projecteur.
+
+112
+00:09:05,480 --> 00:09:09,740
+Même ici, vous pouvez voir quelques artefacts, mais encore une fois, tout ça pour dire que si vous êtes capable de mettre
+
+113
+00:09:09,740 --> 00:09:12,770
+ces réseaux ensemble de manière intelligente, ceux-ci peuvent apprendre
+
+114
+00:09:12,770 --> 00:09:19,220
+des représentations vraiment intéressantes. Nous pouvons aussi faire quelque chose appelé le transfert de styles.
+
+115
+00:09:19,220 --> 00:09:25,250
+Dans ce document, ils prennent une image et
+
+116
+00:09:25,250 --> 00:09:29,150
+ils prennent une autre image source et ils essaient de fusionner les deux. Donc si vous combinez ces deux personnes,
+
+117
+00:09:29,150 --> 00:09:33,320
+à quoi ressemblerait l’image? Par exemple, prenez cette personne ici,
+
+118
+00:09:33,320 --> 00:09:37,700
+prenez cet enfant ici et si vous deviez représenter cette personne comme étant
+
+119
+00:09:37,700 --> 00:09:42,710
+le mélange de cette personne et cet enfant, c'est ce que votre réseau va générer.
+
+120
+00:09:42,710 --> 00:09:46,010
+Ce sont ces idées vraiment intéressantes et vous pouvez imaginer toutes sortes de
+
+121
+00:09:46,010 --> 00:09:49,910
+travaux et ils sont à nouveau assez convaincants. Si l'on observe
+
+122
+00:09:49,910 --> 00:09:54,020
+toutes ces représentations d'enfants ici, donc vous prenez cette personne comme source et vous dites au réseau
+
+123
+00:09:54,020 --> 00:10:03,080
+de la représenter comme ce qui est montré ici, comme un enfant.
+
+124
+00:10:03,080 --> 00:10:08,930
+Vous savez à l'ère des fausses informations, il y a beaucoup de soucis à propos des fausses nouvelles,
+
+125
+00:10:08,930 --> 00:10:12,500
+mais j'aime penser aux applications plus positives. Ici, nous avons quelqu'un qui
+
+126
+00:10:12,500 --> 00:10:16,640
+n'était pas vraiment satisfait de l'apparence du nouveau film du Roi Lion et il a décidé de faire un transfert de styles
+
+127
+00:10:16,640 --> 00:10:20,600
+en prenant la version du Roi Lion réaliste et en projetant le style du film du Roi Lion animé.
+
+128
+00:10:20,600 --> 00:10:27,650
+Encore une fois, c'est une utilisation vraiment géniale du transfert de style ici où nous pouvons obtenir
+
+129
+00:10:27,650 --> 00:10:31,780
+des représentations de dessins animés basées sur des images réelles.
+
+130
+00:10:31,780 --> 00:10:38,000
+Donc je vais présenter un peu plus de travail sur les RAG. Quelque chose de vraiment intéressant est
+
+131
+00:10:38,000 --> 00:10:43,490
+le concept de cycleGAN. Beaucoup d'entre vous ont probablement déjà vu cette application
+
+132
+00:10:43,490 --> 00:10:47,270
+qui est devenue virale il y a quelques semaines, où l'on prend l'image de quelqu'un et on la transforme en une personne plus âgée.
+
+133
+00:10:47,270 --> 00:10:52,640
+Évidemment, je me suis amusé avec l'application,
+
+134
+00:10:52,640 --> 00:10:57,410
+alors vous prenez votre imageet vous la rentrez dans l’application. J'ai pris un selfie, et ensuite l’application a généré une image de moi en vieillard.
+
+135
+00:10:57,410 --> 00:11:01,640
+Je ne suis pas tout à fait sûr de savoir comment fonctionne FaceApp,
+
+136
+00:11:01,640 --> 00:11:07,130
+mais c'est probablement quelque chose qui se rapproche de ce que fait cycleGAN.
+
+137
+00:11:07,130 --> 00:11:12,500
+Dans le concept de cycleGAN, ils ont introduit le concept de perte de cohérence du cycle
+
+138
+00:11:12,500 --> 00:11:17,450
+et c'est une idée vraiment intéressante.
+
+139
+00:11:17,450 --> 00:11:22,640
+Comment ça fonctionne, c’est que vous voulez entraîner votre réseau à être cyclique.
+
+140
+00:11:22,640 --> 00:11:27,110
+Donc si vous avez une entrée, disons une image de moi, et vous avez une sorte de générateur qui génère le vieillissement,
+
+141
+00:11:27,110 --> 00:11:31,820
+vous voulez également entraîner un autre réseau qui est un générateur d’anti-vieillissement et l'idée
+
+142
+00:11:31,820 --> 00:11:35,990
+est que lorsque vous passez l'image au générateur de vieillissement, puis au générateur d’anti-vieillissement,
+
+143
+00:11:35,990 --> 00:11:40,250
+elle devrait pouvoir tromper un autre discriminateur dont le travail consiste à déterminer
+
+144
+00:11:40,250 --> 00:11:45,530
+s’il s'agit d’une image d'une jeune personne ou non. Alors vous entraînez ces réseaux
+
+145
+00:11:45,530 --> 00:11:49,250
+de façon cyclique et vous pouvez alors cartographier de manière réaliste
+
+146
+00:11:49,250 --> 00:11:53,810
+d'un domaine à l'autre sans nécessairement avoir d'images
+
+147
+00:11:53,810 --> 00:11:58,730
+qui ont été explicitement entraînées pour être directement cartographiées.
+
+148
+00:11:58,730 --> 00:12:03,080
+C’est le concept de perte qui est défini dans leur document,. Je ne vais pas rentrer dans les détails,
+
+149
+00:12:03,080 --> 00:12:08,600
+mais là encore, leur contribution est la perte cyclique
+
+150
+00:12:08,600 --> 00:12:12,950
+qu'ils ont ajouté à la perte du RAG que nous avons vu plus tôt,
+
+151
+00:12:12,950 --> 00:12:16,730
+où la reconstruction de l'image doit être aussi proche que possible de l'image originale
+
+152
+00:12:16,730 --> 00:12:22,180
+après avoir exécuté toutes ces étapes. Nous pouvons obtenir des résultats vraiment intéressants.
+
+153
+00:12:22,180 --> 00:12:27,500
+Ici, par exemple, nous pouvons faire correspondre un cheval à un zèbre de façon réaliste.
+
+154
+00:12:27,500 --> 00:12:33,440
+Je ne vois pas pourquoi vous voudriez le faire, mais vous pouvez le faire.
+
+155
+00:12:33,440 --> 00:12:38,180
+C'est un travail vraiment incroyable, et je vous recommande d'aller lire l’article original sur cycleGAN.
+
+156
+00:12:38,180 --> 00:12:42,320
+C'est vraiment bien écrit il y a aussi tout le code disponible
+
+157
+00:12:42,320 --> 00:12:46,400
+pour générer ces exemples et générer également vos propres exemples.
+
+158
+00:12:46,400 --> 00:12:50,510
+D'autres exemples de ce que vous pouvez faire avec cycleGAN est de prendre
+
+159
+00:12:50,510 --> 00:12:55,220
+un tableau de Monet et le transformer en une image réaliste.
+
+160
+00:12:55,220 --> 00:12:59,390
+À l’inverse, vous pouvez prendre une image réaliste et la convertir dans le style de Monet
+
+161
+00:12:59,390 --> 00:13:04,040
+ou de Van Gogh. Vous pouvez avoir des applications très sympas.
+
+162
+00:13:04,040 --> 00:13:07,430
+Une autre chose que vous pouvez faire est de coloriser les images.
+
+163
+00:13:07,430 --> 00:13:11,330
+Donc si vous avez de vieilles images en noir et blanc, vous pouvez alors trouver
+
+164
+00:13:11,330 --> 00:13:18,380
+des techniques pour les coloriser afin qu'ils soient aussi réalistes que possible.
+
+165
+00:13:18,380 --> 00:13:22,840
+Une autre application vraiment sympa aussi est le projet GANfield. Donc quelqu'un a pensé que c'était une bonne idée
+
+166
+00:13:22,840 --> 00:13:28,690
+d'utiliser les RAG pour générer des images de Garfield.
+
+167
+00:13:28,690 --> 00:13:34,240
+Ce qu’il a fait, c'est qu’il a rassemblé toutes les bandes dessinées Garfield qu'il a pu trouver,
+
+168
+00:13:34,240 --> 00:13:42,310
+il a généré un ensemble de données gigantesque et il a créé un générateur pour générer de nouvelles cases de Garfield.
+
+169
+00:13:42,310 --> 00:13:47,290
+C'est un peu flippant, mais réaliste. Ces images ressemblent quand même à Garfield,
+
+170
+00:13:47,290 --> 00:13:51,060
+sauf le texte et il y a des raisons pour lesquelles le texte n'est pas très bien sorti.
+
+171
+00:13:51,060 --> 00:13:56,440
+La personne l'explique en détail dans un article de son blog
+
+172
+00:13:56,440 --> 00:13:59,440
+et je vous recommande de le lire, car il donne un aperçu du pipeline de la collecte
+
+173
+00:13:59,440 --> 00:14:03,790
+de votre propre ensemble de données et de ce qui peut mal tourner.
+
+174
+00:14:03,790 --> 00:14:07,870
+Nous voyons vraiment le visage de Garfield reconstitué
+
+175
+00:14:07,870 --> 00:14:12,330
+et il semble passer par de différentes dimensions dans cette BD, ce qui me semble assez intéressant.

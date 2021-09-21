@@ -1,0 +1,9 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Question 2. Clustering is a type of _________ learning. &lt;&lt;&#10;[[&#10;supervised {{There are no labels provided explicitly in the dataset}}&#10;(unsupervised {{The target is not a real valued variable}})&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>Question 2. Le regroupement (clustering) est un type d&apos;apprentissage _________.</label>
+    <optioninput>
+      <option correct="False">supervisé <optionhint>Il n&apos;y a pas d&apos;étiquettes fournies explicitement dans l&apos;ensemble de données</optionhint></option>
+      <option correct="True">non supervisé <optionhint>La cible n&apos;est pas une variable à valeur réelle</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>
