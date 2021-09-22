@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Quelles sont les deux entrées de la fonction d&apos;attention dans le décodeur d&apos;un modèle seq2seq (séquence à séquence)?</label>
+<checkboxgroup>
+    <choice correct="false">A. La séquence d&apos;entrée <choicehint selected="true">A. Incorrect, la séquence d&apos;entrée est envoyée au codeur pour être traitée</choicehint></choice>
+    <choice correct="false">B. La sortie de l&apos;étape précédente <choicehint selected="true">B. Incorrect, la sortie de l&apos;étape précédente n&apos;est pas transmise à la fonction d’attention.</choicehint></choice>
+    <choice correct="true">C. L&apos;état interne du décodeur <choicehint selected="true">C. Correct</choicehint></choice>
+    <choice correct="true">D. Les entrées codées <choicehint selected="true">D. Correct</choicehint></choice>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

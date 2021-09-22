@@ -1,0 +1,796 @@
+﻿1
+00:00:13,990 --> 00:00:16,260
+
+Alors commençons par le TLN.
+
+2
+00:00:16,260 --> 00:00:22,100
+Voici donc la définition du TLN, copiée de Wikipedia
+
+3
+00:00:22,100 --> 00:00:24,910
+Mais je pense que la partie intéressante est celle en gras.
+
+4
+00:00:24,910 --> 00:00:30,430
+Le TLN s'intéresse donc essentiellement à l'interaction entre les humains
+
+5
+00:00:30,430 --> 00:00:36,050
+et un ordinateur et cette interaction se fait par le biais de la langue.
+
+6
+00:00:36,050 --> 00:00:40,300
+Et un mot clé ici est le langage naturel.
+
+7
+00:00:40,300 --> 00:00:46,040
+Nous nous intéressons donc à des langues comme le français, l'anglais et l'espagnol
+
+8
+00:00:46,040 --> 00:00:49,270
+mais nous ne nous intéressons pas aux langages artificiels comme le langage de requête ou
+
+9
+00:00:49,270 --> 00:00:52,030
+les langages de programmation.
+
+10
+00:00:52,030 --> 00:00:57,930
+Et en TLN, les tâches sont nombreuses et dans les diapositives suivantes, nous
+
+11
+00:00:57,930 --> 00:01:03,589
+en verrons quelques exemples,
+
+12
+00:01:03,589 --> 00:01:07,310
+Vous voyez donc ici des tâches,
+
+13
+00:01:07,310 --> 00:01:11,330
+qui sont des exemples parmi de nombreux autres.
+
+14
+00:01:11,330 --> 00:01:16,979
+Vous voyez aussi une sorte de taxonomie
+
+15
+00:01:16,979 --> 00:01:18,500
+pour ces problèmes.
+
+16
+00:01:18,500 --> 00:01:24,539
+En haut à gauche, nous avons ce groupe que j'appelle
+
+17
+00:01:24,539 --> 00:01:26,280
+classification au niveau des mots.
+
+18
+00:01:26,280 --> 00:01:31,590
+Nous avons donc ici des tâches où nous devons attribuer une étiquette pour
+
+19
+00:01:31,590 --> 00:01:33,600
+chaque mot
+
+20
+00:01:33,600 --> 00:01:36,179
+et en fait vous avez déjà vu un exemple qui était
+
+21
+00:01:36,179 --> 00:01:39,890
+la reconnaissance de l'entité nommée dans la première présentation.
+
+22
+00:01:39,890 --> 00:01:43,710
+Le deuxième groupe est appelé classification au niveau de la phrase.
+
+23
+00:01:43,710 --> 00:01:46,030
+Donc ici
+
+24
+00:01:46,030 --> 00:01:50,310
+nous avons des tâches où nous voulons attribuer une étiquette à une phrase complète,
+
+25
+00:01:50,310 --> 00:01:54,509
+par exemple, le filtre anti-spam que nous avons déjà mentionné.
+
+26
+00:01:54,509 --> 00:01:57,939
+C'est un bon exemple parce que vous avez un e-mail complet, donc la séquence complète, mais
+
+27
+00:01:57,939 --> 00:02:02,799
+le résultat est une étiquette qui indique s’il s'agit d'un spam ou non.
+
+28
+00:02:02,799 --> 00:02:04,539
+Et ce groupe de tâches est peut-être moins connu :
+
+29
+00:02:04,539 --> 00:02:09,110
+nous avons également la classification par paires de phrases
+
+30
+00:02:09,110 --> 00:02:13,750
+Donc nous avons deux phrases et nous voulons étiqueter
+
+31
+00:02:13,750 --> 00:02:19,350
+la relation entre ces deux phrases. Nous en verrons un exemple
+
+32
+00:02:19,350 --> 00:02:21,870
+dans la prochaine diapositive.
+
+33
+00:02:21,870 --> 00:02:27,400
+Le dernier groupe que vous devriez connaître est le modèle génératf
+
+34
+00:02:27,400 --> 00:02:32,250
+En gros, il s'agit des modèles séquence à séquence que nous avons vus lors de
+
+35
+00:02:32,250 --> 00:02:38,470
+la deuxième présentation avec des problèmes tels que la traduction automatique.
+
+36
+00:02:38,470 --> 00:02:43,880
+Je commencerai donc par expliquer la classification au niveau des mots et je vous montrerai
+
+37
+00:02:43,880 --> 00:02:47,140
+le problème de la reconnaissance des entités nommées, que nous avons déjà vu.
+
+38
+00:02:47,140 --> 00:02:50,940
+Vous vous souvenez peut-être
+
+39
+00:02:50,940 --> 00:02:55,490
+de son fonctionnement et vous voyez ici cette phrase « Alan Turing lived in England ».
+
+40
+00:02:55,490 --> 00:02:59,700
+Notre but était d'attribuer une étiquette à chaque mot de la
+
+41
+00:02:59,700 --> 00:03:00,700
+phrase.
+
+42
+00:03:00,700 --> 00:03:03,280
+Nous avons un ensemble d’étiquettes :
+
+43
+00:03:03,280 --> 00:03:05,780
+la personne, l'heure, le lieu, et
+
+44
+00:03:05,780 --> 00:03:11,030
+nous avions notamment une étiquette spéciale qui indique simplement que le mot n'est pas une entité.
+
+45
+00:03:11,030 --> 00:03:15,610
+Et ici vous voyez la sortie et nous avons vu cela avec les RNR dans
+
+46
+00:03:15,610 --> 00:03:19,030
+la première présentation, mais maintenant nous allons voir une solution plus génétique.
+
+47
+00:03:19,030 --> 00:03:22,700
+Examinons d’abord un exemple.
+
+48
+00:03:22,700 --> 00:03:25,870
+Je me concentrerai sur une seule étape dans
+
+49
+00:03:25,870 --> 00:03:27,840
+cette présentation
+
+50
+00:03:27,840 --> 00:03:31,810
+mais évidemment, vous devez répéter toutes ces étapes
+
+51
+00:03:31,810 --> 00:03:37,390
+pour tous les éléments de l’entrée parce que nous avons dit que nous
+
+52
+00:03:37,390 --> 00:03:41,840
+voulons une étiquette par mot.
+
+53
+00:03:41,840 --> 00:03:42,840
+Alors examinons cet exemple.
+
+54
+00:03:42,840 --> 00:03:46,320
+Ici, je me concentre sur le mot Turing et vous voyez que
+
+55
+00:03:46,320 --> 00:03:55,060
+je dis simplement que je vais saisir les données en entrées dans cette boîte verte ici.
+
+56
+00:03:55,060 --> 00:03:58,670
+Et vous voyez que cette boîte verte s'appelle « modèle » et que ce modèle
+
+57
+00:03:58,670 --> 00:04:03,600
+comprend n couches. Je ne vais pas entrer dans les détails,
+
+58
+00:04:03,600 --> 00:04:07,390
+mais c'est une bonne chose car ici nous pouvons insérer tous les modèles
+
+59
+00:04:07,390 --> 00:04:11,080
+que vous avez vu jusqu'à présent. Vous pouvez utiliser le RNR, le LMCT, le GRU
+
+60
+00:04:11,080 --> 00:04:14,010
+ou un modèle avec auto-attention.
+
+61
+00:04:14,010 --> 00:04:15,500
+Tous les modèles fonctionneront
+
+62
+00:04:15,500 --> 00:04:20,510
+selon leurs propres équations
+
+63
+00:04:20,510 --> 00:04:26,260
+Et à la fin, nous aurons cette couche supérieure où nous aurons ces états codés.
+
+64
+00:04:26,260 --> 00:04:31,449
+Vous voyez donc qu'au sommet, nous avons h_0, h_1 et ainsi de suite. Et comme nous l'avons dit,
+
+65
+00:04:31,449 --> 00:04:35,400
+ces états encodés sont essentiellement une version encodée
+
+66
+00:04:35,400 --> 00:04:42,020
+d’une entrée en particulier qui essaie aussi d'intégrer le contexte des autres éléments.
+
+67
+00:04:42,020 --> 00:04:47,199
+Et dans ce cas particulier, étant donné que je me concentre sur le mot Turing,
+
+68
+00:04:47,199 --> 00:04:50,409
+cela signifie que je me concentre sur le pas de temps 1 et que
+
+69
+00:04:50,409 --> 00:04:58,400
+je ne m'intéresse qu'à cet état caché ici, qui est h_1.
+
+70
+00:04:58,490 --> 00:05:00,350
+Ce que je dois faire pour résoudre cette tâche à ce stade,
+
+71
+00:05:00,350 --> 00:05:02,449
+c'est joindre un classificateur en plus du modèle.
+
+72
+00:05:02,449 --> 00:05:08,409
+Par classificateur, j'entends donc faire une projection.
+
+73
+00:05:08,409 --> 00:05:15,930
+Cette projection me donnera donc essentiellement un score par étiquette.
+
+74
+00:05:15,930 --> 00:05:20,499
+Et nous espérons que le score le plus élevé sera donné à l'étiquette actuelle.
+
+75
+00:05:20,499 --> 00:05:25,550
+Nous préférons des scores normalisés et c'est pourquoi
+
+76
+00:05:25,550 --> 00:05:33,169
+Nous utilisons une fonction softmax pour obtenir une version normalisée de ces scores
+
+77
+00:05:33,169 --> 00:05:37,150
+Ensuite, nous prenons le score le plus élevé ici.
+
+78
+00:05:37,150 --> 00:05:40,639
+Il s'agit donc de l’étiquette personne (PER).
+
+79
+00:05:40,639 --> 00:05:44,050
+Vous voyez encore ici comment résoudre le problème de la reconnaissance des entités désignées.
+
+80
+00:05:44,050 --> 00:05:47,830
+Mais dans la première présentation, vous avez vu comment utiliser un RNR,
+
+81
+00:05:47,830 --> 00:05:49,699
+mais ici vous pouvez utiliser n'importe quel modèle.
+
+82
+00:05:49,699 --> 00:05:51,229
+Ce qui est intéressant,
+
+83
+00:05:51,229 --> 00:05:56,909
+c’est comment nous saisissons les données en entrées, donc cette partie ici,
+
+84
+00:05:56,909 --> 00:06:00,379
+et la façon dont nous extrayons la sortie, ce qui signifie essentiellement que pour le classificateur que nous utilisons,
+
+85
+00:06:00,379 --> 00:06:03,499
+vous devez exécuter ce classificateur à chaque pas de temps
+
+86
+00:06:03,499 --> 00:06:07,099
+parce que nous voulons une étiquette pour chaque pas de temps.
+
+87
+00:06:07,099 --> 00:06:10,360
+C'est donc ainsi que nous pouvons résoudre un problème de classification au niveau des mots.
+
+88
+00:06:10,360 --> 00:06:14,949
+Maintenant voyons comment résoudre un problème de classification au niveau des phrases.
+
+89
+00:06:14,949 --> 00:06:17,309
+Et en fait, il s'avère que c'est très similaire.
+
+90
+00:06:17,309 --> 00:06:20,349
+D'abord, je vais vous présenter le problème.
+
+91
+00:06:20,349 --> 00:06:28,270
+Voici donc un problème d'analyse de sentiments : c'est un problème de TLN où
+
+92
+00:06:28,270 --> 00:06:35,090
+nous avons une phrase et nous voulons apposer une étiquette qui
+
+93
+00:06:35,090 --> 00:06:39,330
+exprime le sentiment de cette phrase. Comme dans cet exemple,
+
+94
+00:06:39,330 --> 00:06:45,200
+vous avez un texte et qui provient peut-être d'une critique de film.
+
+95
+00:06:45,250 --> 00:06:51,199
+Il peut s'agir du site Web IMDb qui est un site Web où
+
+96
+00:06:51,199 --> 00:06:57,250
+nous retrouvons des critiques de films et peut-être que nous avons ce texte « will never watch this again » (ne regarderai plus jamais ça).
+
+97
+00:06:57,250 --> 00:07:01,720
+Et le but du modèle est d'attribuer cette étiquette.
+
+98
+00:07:01,720 --> 00:07:03,630
+Nous avons donc peut-être un ensemble d'étiquettes comme « excellent »,
+
+99
+00:07:03,630 --> 00:07:09,870
+« passable », « médiocre » et « terrible » et nous espérons que le modèle va choisir
+
+100
+00:07:09,870 --> 00:07:14,240
+la bonne étiquette qui, dans ce cas, est terrible, Une chose qui est vraiment
+
+101
+00:07:14,240 --> 00:07:15,240
+importante ici,
+
+102
+00:07:15,240 --> 00:07:17,509
+c’est que nous n'avons qu'une seule étiquette pour la phrase complète.
+
+103
+00:07:17,509 --> 00:07:23,699
+Ce n'est plus comme le dernier exemple où nous avions une étiquette par mot.
+
+104
+00:07:23,699 --> 00:07:27,409
+Alors comment résoudre ce problème? En fait, c'est très similaire.
+
+105
+00:07:27,409 --> 00:07:29,479
+Vous voyez que je prends l'entrée,
+
+106
+00:07:29,479 --> 00:07:33,330
+j'envoie cette entrée au modèle
+
+107
+00:07:33,330 --> 00:07:38,449
+et encore une fois, je ne précise pas le type de modèle : il peut s'agir d'un LMCT, d’un modèle avec auto-attention et ainsi de suite.
+
+108
+00:07:38,449 --> 00:07:44,150
+C’est similaire au dernier exemple : je m'intéresse à la dernière couche
+
+109
+00:07:44,150 --> 00:07:48,499
+parce qu'il doit recueillir beaucoup plus d'informations sur l'apport
+
+110
+00:07:48,499 --> 00:07:56,400
+mais dans ce cas, j'ignore tous ces états encodés.
+
+111
+00:07:56,400 --> 00:07:59,169
+Je prends seulement le dernier
+
+112
+00:07:59,169 --> 00:08:03,779
+et la raison est que je veux obtenir une seule étiquette pour toute la phrase.
+
+113
+00:08:03,779 --> 00:08:07,889
+Alors nous espérons que le modèle apprendra à mettre
+
+114
+00:08:07,889 --> 00:08:12,000
+toutes les informations pertinentes dans ce vecteur encodé en particulier.
+
+115
+00:08:12,000 --> 00:08:19,900
+Et avec ce vecteur codé, nous faisons exactement ce que nous faisions dans les anciens exemples :
+
+116
+00:08:19,900 --> 00:08:22,629
+nous faisons une projection.
+
+117
+00:08:22,629 --> 00:08:27,240
+Nous obtenons donc un score pour chaque étiquette,
+
+118
+00:08:27,240 --> 00:08:32,620
+nous appliquons une fonction softmax et ensuite nous prenons le score le plus élevé.
+
+119
+00:08:32,620 --> 00:08:38,159
+Vous voyez donc quelque chose d'intéressant : le modèle que nous utilisons ici
+
+120
+00:08:38,159 --> 00:08:43,210
+pourrait être la même architecture que celle que nous avons utilisée
+
+121
+00:08:43,210 --> 00:08:47,370
+dans le cas précédent et vous pouvez prendre cela en note,
+
+122
+00:08:47,370 --> 00:08:51,440
+et vous verrez que c'est également le cas pour le groupe suivant.
+
+123
+00:08:51,440 --> 00:08:52,440
+C'est une bonne chose,
+
+124
+00:08:52,440 --> 00:08:57,529
+et je vous expliquerai pourquoi à la fin de cette présentation.
+
+125
+00:08:57,529 --> 00:09:04,920
+Le groupe suivant est donc la classification par paires de phrases.
+
+126
+00:09:04,920 --> 00:09:08,000
+Donc ici, au lieu d'avoir une seule phrase, j'en ai deux
+
+127
+00:09:08,000 --> 00:09:12,600
+et je veux saisir la relation entre ces deux phrases qui
+
+128
+00:09:12,630 --> 00:09:15,149
+dépend de la tâche que j'essaie de résoudre.
+
+129
+00:09:15,149 --> 00:09:22,630
+Je vais donc parler ici de cette tâche qui s'appelle l'implication.
+
+130
+00:09:22,630 --> 00:09:27,079
+L'idée avec l’implication est que si nous avons deux phrases,
+
+131
+00:09:27,079 --> 00:09:31,400
+nous essayons de comprendre si la première phrase implique la seconde.
+
+132
+00:09:31,410 --> 00:09:34,120
+Examinons donc l'exemple suivant :
+
+133
+00:09:34,120 --> 00:09:39,000
+Vous avez la première phrase est « Karl a gagné un match de tennis ».
+
+134
+00:09:39,000 --> 00:09:44,580
+La deuxième phrase est « Karl a joué une partie de tennis ».
+
+135
+00:09:44,580 --> 00:09:48,000
+Et dans ce cas-ci, la relation est effectivement une implication,
+
+136
+00:09:48,000 --> 00:09:51,680
+ ce qui signifie que le premier implique le second car pour gagner un match de tennis,
+
+137
+00:09:51,680 --> 00:09:53,920
+il faut jouer une partie de tennis.
+
+138
+00:09:53,920 --> 00:09:57,589
+Nous avons aussi deux autres étiquettes.
+
+139
+00:09:57,589 --> 00:10:02,279
+Nous avons l’implication que nous avons vu, nous avons la contradiction et nous
+
+140
+00:10:02,279 --> 00:10:04,110
+avoir cette étiquette dite neutre.
+
+141
+00:10:04,110 --> 00:10:08,610
+La contradiction est lorsque les deux énoncés ne peuvent pas être vrais en même temps.
+
+142
+00:10:08,610 --> 00:10:14,220
+Par exemple, si je disais que Karl est une personne et que je disais ensuite dans la deuxième phrase que
+
+143
+00:10:14,220 --> 00:10:18,020
+Karl est un pays, cela ne fonctionne pas
+
+144
+00:10:18,020 --> 00:10:24,560
+et ce serait donc une contradiction. Mais il y a aussi ce cas neutre où, par exemple, je dis que 
+
+145
+00:10:24,560 --> 00:10:30,000
+Karl est une personne et ensuite je dis que le Canada est un pays. Il n'y a pas de relation entre ces deux phrases
+
+146
+00:10:30,000 --> 00:10:33,870
+donc dans ce cas, j'utiliserais le mot « neutre ».
+
+147
+00:10:33,870 --> 00:10:39,329
+Voyons donc comment résoudre cette tâche.
+
+148
+00:10:39,329 --> 00:10:43,700
+Voyons d'abord ce que nous essayons de faire avant d'examiner le modèle.
+
+149
+00:10:43,750 --> 00:10:47,940
+Vous voyez donc que maintenant l'entrée est composée d'au moins deux phrases.
+
+150
+00:10:47,940 --> 00:10:53,500
+La première phrase est « Karl a gagné un match de tennis ». Vous voyez que nous avons une unité lexicale spéciale ici
+
+151
+00:10:53,500 --> 00:10:54,690
+que nous avons appelé SEP.
+
+152
+00:10:54,690 --> 00:10:57,019
+C'est à l’aide de cette unité lexicale que nous indiquons au modèle
+
+153
+00:10:57,019 --> 00:11:02,400
+que nous avons fini avec la première phrase, et maintenant nous commençons à saisir la deuxième phrase.
+
+154
+00:11:02,459 --> 00:11:07,110
+Après cette unité lexicale, nous avons la deuxième phrase.
+
+155
+00:11:07,110 --> 00:11:12,769
+Tout cela constitue l'entrée de notre tâche et le résultat n'est qu'une étiquette
+
+156
+00:11:12,769 --> 00:11:16,800
+qui peut être implication, contradiction, ou neutre.
+
+157
+00:11:16,800 --> 00:11:21,000
+Dans ce cas-ci, c'est une implication. Voyons comment résoudre cette tâche
+
+158
+00:11:21,000 --> 00:11:24,880
+avec le modèle.
+
+159
+00:11:24,880 --> 00:11:31,190
+En fait, c'est encore semblable à l’exemple précédent : nous avons l'entrée,
+
+160
+00:11:31,190 --> 00:11:38,699
+et dans ce cas-ci nous avons deux phrases et nous avons cette unité lexicale SEP
+
+161
+00:11:38,699 --> 00:11:43,300
+qui indique la limite entre la première phrase et la seconde.
+
+162
+00:11:43,300 --> 00:11:47,540
+Mais vous voyez à nouveau que tout ça constitue l'entrée de cette boîte verte
+
+163
+00:11:47,540 --> 00:11:49,540
+qu'on appelle modèle.
+
+164
+00:11:49,540 --> 00:11:53,680
+Encore une fois, je ne précise pas le type de modèle : il peut s'agir d'un LMCT, d’un modèle avec auto-attention et ainsi de suite.
+
+165
+00:11:53,680 --> 00:11:58,009
+Ce modèle comprend de nombreuses couches et ce qui m'intéresse
+
+166
+00:11:58,009 --> 00:12:01,220
+est la dernière couche.
+
+167
+00:12:01,220 --> 00:12:05,069
+Étant donné que je ne veux qu'une seule étiquette,
+
+168
+00:12:05,069 --> 00:12:11,600
+j’observe en particulier le dernier état encodé ici.
+
+169
+00:12:11,680 --> 00:12:15,160
+C’est exactement ce que nous faisions dans le dernier exemple, donc nous allons
+
+170
+00:12:15,160 --> 00:12:16,640
+joindre un classificateur.
+
+171
+00:12:16,640 --> 00:12:24,089
+Nous commençons par faire une projection afin d'avoir un score pour chaque étiquette softmax.
+
+172
+00:12:24,089 --> 00:12:28,980
+Et puis je prends le résultat avec le score le plus élevé.
+
+173
+00:12:28,980 --> 00:12:31,699
+Donc, avant de passer au groupe suivant qui sera un peu différent.
+
+174
+00:12:31,699 --> 00:12:34,519
+Jusqu’ici, vous avez vu au moins trois groupes
+
+175
+00:12:34,519 --> 00:12:37,270
+qui ont tous ont des points communs.
+
+176
+00:12:37,270 --> 00:12:39,460
+Nous changeons la façon dont nous saisissons les données en entrées
+
+177
+00:12:39,460 --> 00:12:43,860
+et nous changeons la façon dont nous extrayons la sortie en haut mais pour le modèle
+
+178
+00:12:43,860 --> 00:12:48,149
+qui est l'élément central, nous pouvons toujours utiliser
+
+179
+00:12:48,149 --> 00:12:51,230
+la même architecture. C’est très intéressant car le dernier modèle
+
+180
+00:12:51,230 --> 00:12:58,170
+que nous montrerons dans cette présentation, le modèle BERT, est fondé sur cette idée.
+
+181
+00:12:58,170 --> 00:13:02,100
+Nous avons encore un groupe qui est le modèle génératif.
+
+182
+00:13:02,100 --> 00:13:06,440
+Ce ne sera donc pas comme dans les trois premiers groupes.
+
+183
+00:13:06,440 --> 00:13:09,350
+Nous avons donc une approche complètement différente, mais vous le connaissez bien
+
+184
+00:13:09,350 --> 00:13:11,839
+parce qu'elle provient de la deuxième présentation.
+
+185
+00:13:11,839 --> 00:13:16,319
+Dans ce cas-ci, j'ai choisi un exemple de traduction automatique que vous avez déjà vu.
+
+186
+00:13:16,319 --> 00:13:21,551
+C'est donc à nouveau cette tâche de traduire d’une langue vers une autre.
+
+187
+00:13:21,551 --> 00:13:24,750
+Nous avons vu l'exemple « Je suis malade / I am sick »
+
+188
+00:13:24,750 --> 00:13:28,230
+et maintenant vous savez comment résoudre ce problème.
+
+189
+00:13:28,230 --> 00:13:31,870
+Vous prenez un modèle séquence à séquence, donc la structure encodeur-décodeur
+
+190
+00:13:31,870 --> 00:13:35,580
+que nous avons vue dans la présentation précédente.
+
+191
+00:13:35,580 --> 00:13:38,319
+Si vous voulez de bons résultats, vous utiliserez le mécanisme d’attention parce qu'il
+
+192
+00:13:38,319 --> 00:13:42,769
+améliore nettement le flux d'informations entre l’encodeur et le décodeur.
+
+193
+00:13:42,769 --> 00:13:47,279
+Et vous implémentez le décodeur
+
+194
+00:13:47,279 --> 00:13:51,959
+avec une manière autorégressive de produire la sortie.
+
+195
+00:13:51,959 --> 00:13:55,450
+Vous pouvez aussi utiliser l'architecture de transformateur que nous avons vue
+
+196
+00:13:55,450 --> 00:14:00,629
+à la fin de la deuxième présentation.
+
+197
+00:14:00,629 --> 00:14:05,709
+C'est une image que vous avez déjà vue
+
+198
+00:14:05,709 --> 00:14:09,120
+où nous avons examiné comment traduire et utiliser le mécanisme d’attention, donc je n'entrerai pas dans les détails
+
+199
+00:14:09,120 --> 00:14:28,739
+puisque nous avons passé la présentation précédente sur ce sujet.

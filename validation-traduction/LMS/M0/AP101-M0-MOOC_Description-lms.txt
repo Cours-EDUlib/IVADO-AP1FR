@@ -1,0 +1,21 @@
+<p>L'apprentissage profond est une technique d'apprentissage automatique qui a permis d'am&eacute;liorer consid&eacute;rablement les r&eacute;sultats obtenus pr&eacute;c&eacute;demment dans les domaines de la vision par ordinateur, de la reconnaissance vocale, de la traduction automatique et autres. De nombreux autres domaines sont d&eacute;j&agrave; touch&eacute;s par cette nouvelle technologie, ou le seront. En r&eacute;ponse &agrave; l'int&eacute;r&ecirc;t suscit&eacute; par cette technologie, et pour r&eacute;pondre aux besoins de formation, l'IVADO et Mila se sont associ&eacute;s &agrave; l'Institut des sciences des donn&eacute;es de l'UBC pour offrir cette formation &agrave; Montr&eacute;al du 9 au 13 septembre 2019.</p>
+<p></p>
+<p>Le contenu de ce MOOC s'adresse principalement aux professionnels de l'industrie et aux experts en la mati&egrave;re ayant des connaissances de base en math&eacute;matiques et en programmation (ing&eacute;nieurs, informaticiens, statisticiens, gestionnaires de projets techniques, chefs de produits, ing&eacute;nieurs de syst&egrave;mes, etc.). Les professeurs et les &eacute;tudiants dipl&ocirc;m&eacute;s en sciences ou en ing&eacute;nierie (principalement ceux qui ne se sont pas encore familiaris&eacute;s avec l'apprentissage profond) peuvent &eacute;galement le trouver int&eacute;ressant.</p>
+<p><span style="font-size: 1.4em; font-weight: 600;">Pr&eacute;requis</span></p>
+<ul>
+<ul>
+<li>Connaissance minimale en programmation (id&eacute;alement Python)</li>
+<li>Compr&eacute;hension de base du calcul matriciel (d&eacute;riv&eacute;es partielles, matrices jacobiennes et hessiennes)</li>
+<li>Connaissance de base des probabilit&eacute;s et des statistiques (distributions&nbsp;de probabilit&eacute;s, variables al&eacute;atoires, &eacute;chantillonnage, inf&eacute;rence)&nbsp;</li>
+</ul>
+</ul>
+<p><span style="font-size: 1.4em;"><b>Objectifs</b></span></p>
+<p>&Agrave; la fin du cours en ligne, les participants devraient &ecirc;tre en mesure de</p>
+<ul>
+<li>Comprendre les bases et la terminologie li&eacute;es &agrave; l'apprentissage profond</li>
+<li>Comprendre la m&eacute;thodologie de r&eacute;alisation d'un projet en apprentissage&nbsp;profond</li>
+<li>Identifier les types de r&eacute;seaux de neurones &agrave; utiliser pour r&eacute;soudre diff&eacute;rents types de probl&egrave;mes</li>
+</ul>
+<ul>
+<li>Se familiariser avec les biblioth&egrave;ques d'apprentissage profond gr&acirc;ce &agrave; des s&eacute;ances pratiques et des tutoriels</li>
+</ul>

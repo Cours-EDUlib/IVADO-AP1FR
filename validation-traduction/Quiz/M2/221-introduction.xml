@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which analogy between optimization and mountaineering is false? &lt;&lt;&#10;&#10;( ) Parameter to coordinate {{This is a true analogy. For each set of parameters (coordinates), there is an associated loss value (altitude).}}&#10;(x) Loss to slope {{The loss is analogous to the altitude, whereas the gradient is analogous to the slope. }}&#10;( ) Update to displacement {{This is a true analogy. By updating the parameter values (displacement), the value of the loss function (the altitude) might change.}}&#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle analogie entre l&apos;optimisation et l&apos;alpinisme est incorrecte?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Paramètre aux coordonnées <choicehint>il s&apos;agit d&apos;une bonne analogie. Pour chaque ensemble de paramètres (coordonnées), une valeur de perte (altitude) est associée.</choicehint></choice>
+      <choice correct="true">Perte à la pente <choicehint>la perte est analogue à l&apos;altitude, alors que le gradient est analogue à la pente.</choicehint></choice>
+      <choice correct="false">Mise à jour au déplacement <choicehint>il s&apos;agit d&apos;une bonne analogie. La mise à jour des valeurs des paramètres (déplacement) peut modifier la valeur de la fonction de perte (altitude).</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

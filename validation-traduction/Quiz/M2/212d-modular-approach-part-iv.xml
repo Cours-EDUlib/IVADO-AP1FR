@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; The goal in  _________ architecture is to learn to predict the output of another model.&lt;&lt;&#10;&#10;[[&#10;AutoEncoder  {{This one is used to learn a latent representation}}&#10;(Teacher-Student) &#10;Multi-input Encoder-Decoder {{This one is used for multi-modal data}}&#10;Encoder-Decoder {{This one is used to learn a latent representation}}&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>L&apos;objectif de l&apos;architecture ________ est d&apos;apprendre à prédire la sortie d&apos;un autre modèle.</label>
+    <optioninput>
+      <option correct="False">AutoEncodeur <optionhint>celui-ci est utilisé pour apprendre une représentation latente</optionhint></option>
+      <option correct="True">Enseignant-étudiant</option>
+      <option correct="False">Encodeur-décodeur multientrées <optionhint>celui-ci est utilisé pour les données multimodales</optionhint></option>
+      <option correct="False">Encodeur-décodeur <optionhint>celui-ci est utilisé pour apprendre une représentation latente</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>

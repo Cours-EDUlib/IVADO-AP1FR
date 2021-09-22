@@ -1,0 +1,203 @@
+﻿1
+00:00:13,429 --> 00:00:18,020
+Avant de présenter l’auto-attention, récapitulons
+
+2
+00:00:18,020 --> 00:00:23,100
+le fonctionnement des RNN. La raison est que nous allons essayer de
+
+3
+00:00:23,100 --> 00:00:27,810
+comprendre comment un RNN fonctionne afin de comprendre ce que l'auto-attention
+
+4
+00:00:27,810 --> 00:00:35,460
+devrait faire pour remplacer le RNN. Donc RNN appliquait cette équation aux éléments,
+
+5
+00:00:35,460 --> 00:00:39,480
+un élément à la fois. Examinons l’exemple suivant :
+
+6
+00:00:39,480 --> 00:00:46,800
+le RNN essaie de produire ce nouveau vecteur codé h_2 qui
+
+7
+00:00:46,800 --> 00:00:53,340
+est en fait une nouvelle version codée de l'entrée actuelle, qui est x_2,
+
+8
+00:00:53,340 --> 00:00:56,940
+mais en tenant aussi compte du contexte du passé. Si vous vous souvenez bien,
+
+9
+00:00:56,940 --> 00:01:01,199
+le RNN essayait de tenir en compte la relation entre les éléments et la façon dont il s’y prend,
+
+10
+00:01:01,199 --> 00:01:06,030
+c'est qu’en appliquant l'équation, il tient compte de l'élément actuel,
+
+11
+00:01:06,030 --> 00:01:10,710
+mais aussi de l'état interne précédent qui, idéalement, a capturé le contexte et
+
+12
+00:01:10,710 --> 00:01:14,790
+l'information de l'élément précédent dans la séquence.
+
+13
+00:01:14,790 --> 00:01:20,189
+C’est ainsi que nous pouvons les combiner pour obtenir une vision de cette information mise en contexte.
+
+14
+00:01:20,189 --> 00:01:27,270
+Vous voyez que le RNN pouvait observer uniquement les informations du passé
+
+15
+00:01:27,270 --> 00:01:30,439
+et uniquement l’élément actuel.
+
+16
+00:01:30,439 --> 00:01:35,070
+Nous verrons que ce n'est pas le cas de l'auto-attention, donc
+
+17
+00:01:35,070 --> 00:01:42,899
+l'auto-attention cherche à faire quelque chose de similaire mais en utilisant l'idée de l'attention.
+
+18
+00:01:42,899 --> 00:01:47,640
+Si vous vous souvenez bien, l'attention consistait essentiellement à résoudre
+
+19
+00:01:47,640 --> 00:01:53,939
+un problème donné à un état particulier et dans un ordre donné. Le mécanisme d’attention trouve les éléments
+
+20
+00:01:53,939 --> 00:01:59,820
+qui sont importants dans cette séquence. Ici, le problème est formulé de la manière suivante :
+
+21
+00:01:59,820 --> 00:02:05,009
+considérons une séquence, qui était la séquence d'entrée précédente. Si je prends
+
+22
+00:02:05,009 --> 00:02:11,129
+un élément de cette séquence, je veux créer cette nouvelle
+
+23
+00:02:11,129 --> 00:02:15,840
+version codée et utiliser l'attention pour trouver les éléments de la séquence qui
+
+24
+00:02:15,840 --> 00:02:20,220
+sont importants pour le contexte de cet élément. Examinons un exemple,
+
+25
+00:02:20,220 --> 00:02:23,010
+pour que ce soit plus clair : supposons que nous avons
+
+26
+00:02:23,010 --> 00:02:29,069
+une séquence qui est exactement la même que celle que vous avez vue plus tôt. Vous voyez que
+
+27
+00:02:29,069 --> 00:02:35,459
+je me concentre sur le premier élément ici, donc x_0. Et en fait j'ai mis x_0 ici pour que ce soit plus clair.
+
+28
+00:02:35,459 --> 00:02:40,680
+Donc je veux calculer ceci. Dans le RNN, c’était appelé l'état interne,
+
+29
+00:02:40,680 --> 00:02:45,030
+mais nous n'utilisons pas ce mot ici. Nous l’appelons plutôt l'état caché ou la nouvelle version codée
+
+30
+00:02:45,030 --> 00:02:51,510
+de cet élément et nous voulons utiliser l'attention pour le calcul.
+
+31
+00:02:51,510 --> 00:02:55,739
+Alors ce que nous voulons faire, c’est utiliser l'attention pour trouver tous les éléments dans cette séquence
+
+32
+00:02:55,739 --> 00:03:04,400
+qui sont pertinents pour encoder le contexte important de cet élément,
+
+33
+00:03:04,400 --> 00:03:10,799
+ce qui donne quelque chose comme ça. Nous utilisons l'attention pour comparer l'élément actuel x_0,
+
+34
+00:03:10,799 --> 00:03:16,080
+avec tous les autres éléments, y compris x_0, et attribuer des poids
+
+35
+00:03:16,080 --> 00:03:23,190
+qui indiquent quels éléments de la séquence sont importants pour
+
+36
+00:03:23,190 --> 00:03:28,079
+l’élément x_0. C'est exactement ce que nous faisions avec le mécanisme d’attention et
+
+37
+00:03:28,079 --> 00:03:36,709
+du moment que j'ai les poids, je vais faire une somme pondérée.
+
+38
+00:03:36,709 --> 00:03:44,730
+La sortie de cette somme pondérée est mon état caché h_0,
+
+39
+00:03:44,730 --> 00:03:50,400
+donc la nouvelle version codée de x_0 qui, idéalement, tient aussi en compte le contexte
+
+40
+00:03:50,400 --> 00:03:55,350
+des autres éléments et, là encore, nous utilisons l'attention pour décider quel élément était
+
+41
+00:03:55,350 --> 00:04:04,920
+important à tenir en compte dans ce contexte. À ce stade, nous avons
+
+42
+00:04:04,920 --> 00:04:11,609
+seulement le premier vecteur codé h_0, alors comme d'habitude, nous devons répéter cela encore et encore.
+
+43
+00:04:11,609 --> 00:04:18,150
+Nous ferons la même chose ici, donc c'est exactement le même calcul,
+
+44
+00:04:18,150 --> 00:04:24,510
+vous voyez que maintenant je me concentre sur x_1 et en fait j'ai x_1 ici.
+
+45
+00:04:24,510 --> 00:04:32,910
+Ensuite, nous allons procéder de la même façon pour tous les éléments de cette séquence et à la fin j’obtiens ceci.
+
+46
+00:04:32,910 --> 00:04:40,169
+Maintenant j'ai un état caché, donc un état codé
+
+47
+00:04:40,169 --> 00:04:43,919
+qui tient en compte le contexte pertinent des autres éléments pour chaque élément.
+
+48
+00:04:43,919 --> 00:04:47,700
+Et vous pouvez voir que l'auto-attention
+
+49
+00:04:47,700 --> 00:04:52,410
+n'a pas une structure de gauche à droite. Étant donné que nous faisons une somme pondérée, il peut extraire cette
+
+50
+00:04:52,410 --> 00:04:57,000
+l'information de n'importe où, donc de tous les éléments en fonction de l'équation
+
+51
+00:04:57,000 --> 00:04:59,360
+d’attention.

@@ -1,0 +1,367 @@
+﻿1
+00:00:14,309 --> 00:00:19,439
+Maintenant il est temps d'examiner le fonctionnement de la fonction d'attention.
+
+2
+00:00:19,439 --> 00:00:28,199
+Comment pouvons-nous attribuer des poids aux éléments de la séquence?
+
+3
+00:00:28,199 --> 00:00:32,399
+En fait, il y a plusieurs possibilités d’implémentation de l’attention.
+
+4
+00:00:32,399 --> 00:00:37,680
+Je vous montre une des plus simples mais qui est aussi très efficace.
+
+5
+00:00:37,680 --> 00:00:43,739
+Ici, l'attention n'est qu'un produit ponctuel,
+
+6
+00:00:43,739 --> 00:00:50,039
+et dans cet exemple, vous pouvez voir h_0, h_1 et h_2 .
+
+7
+00:00:50,039 --> 00:00:54,059
+Il s’agit des même h que ceux que nous avons vu dans l’encodeur et nous voulons calculer le
+
+8
+00:00:54,059 --> 00:00:59,190
+les poids de ces éléments dans cette séquence. Vous voyez que
+
+9
+00:00:59,190 --> 00:01:05,970
+l'autre entrée est l'état du décodeur que j'appelle s_(t-1).
+
+10
+00:01:05,970 --> 00:01:11,460
+La façon dont nous calculons les poids, c'est juste en faisant un produit scalaire entre l’état de décodage
+
+11
+00:01:11,460 --> 00:01:16,229
+et chaque élément de la séquence, comme ici vous avez l'état de décodage qui est
+
+12
+00:01:16,229 --> 00:01:23,400
+le produit scalaire de s_(t-1) et h_0, ici vous voyez le même état de décodage s_(t-1)
+
+13
+00:01:23,400 --> 00:01:28,829
+mais maintenant l'élément est h_1 qui est l’élément correspondant et encore ici,
+
+14
+00:01:28,829 --> 00:01:34,920
+s_(t-1), même état de décodage mais maintenant l'élément est h_2. 
+
+15
+00:01:34,920 --> 00:01:43,590
+L'intuition est que le modèle apprendra d'une manière ou d'une autre que ce produit scalaire est élevé si le
+
+16
+00:01:43,590 --> 00:01:48,060
+le mot est important. Étant donné qu'il s'agit d'un produit scalaire,
+
+17
+00:01:48,060 --> 00:01:52,200
+je me retrouve avec un scalaire, qui est un nombre. Plus ce nombre est élevé,
+
+18
+00:01:52,200 --> 00:01:58,320
+plus le mot est important. Mais à ce stade, il reste une étape
+
+19
+00:01:58,320 --> 00:02:04,020
+parce que nous avons des chiffres ici, mais nous voulons les normaliser afin d'avoir des mots.
+
+20
+00:02:04,020 --> 00:02:08,520
+Comme d'habitude, comme vous l'avez vu dans le cours d’hier, lorsque nous voulons
+
+21
+00:02:08,520 --> 00:02:13,840
+normaliser certaines quantités, nous pouvons utiliser la fonction exponentielle normalisée (softmax).
+
+22
+00:02:13,840 --> 00:02:17,050
+À la sortie de la fonction softmax, nous avons ici ces poids qui sont
+
+23
+00:02:17,050 --> 00:02:20,500
+les mêmes poids que nous avons mentionnés précédemment, qui sont compris entre 0 et 1
+
+24
+00:02:20,500 --> 00:02:28,150
+et ils ont une somme de 1. Et si vous vous souvenez bien, une fois que nous avons ces poids,
+
+25
+00:02:28,150 --> 00:02:34,209
+ce que nous voulons faire, c'est faire cette somme pondérée. Alors nous prenons ces poids
+
+26
+00:02:34,209 --> 00:02:40,299
+et nous multiplions maintenant par le h correspondant, de sorte que si le poids
+
+27
+00:02:40,299 --> 00:02:44,319
+est très élevé, je vais obtenir beaucoup d'informations de ce h en particulier.
+
+28
+00:02:44,319 --> 00:02:48,340
+C'est ainsi que je peux contrôler de manière sélective les informations à prendre et
+
+29
+00:02:48,340 --> 00:02:54,610
+je dois trouver ce dernier vecteur c, qui est le vecteur de contexte.
+
+30
+00:02:54,610 --> 00:03:03,370
+Le vecteur de contexte est ce que nous avons introduit dans le décodeur. Ici, je voudrais montrer
+
+31
+00:03:03,370 --> 00:03:08,890
+une certaine visualisation de l’attention pour illustrer que ça fonctionne vraiment
+
+32
+00:03:08,890 --> 00:03:13,629
+comme je l’ai expliqué. Ici, vous avez une tâche de traduction, mais dans ce cas,
+
+33
+00:03:13,629 --> 00:03:18,280
+c'est de l'anglais vers le français et dans les exemples précédents, c’était du français vers l'anglais. Dans ce cas-ci,
+
+34
+00:03:18,280 --> 00:03:23,109
+vous voyez l'entrée en bas, vous voyez la sortie en haut et vous voyez
+
+35
+00:03:23,109 --> 00:03:29,079
+ces lignes qui représentent les points que l'attention observe à chaque pas de temps.
+
+36
+00:03:29,079 --> 00:03:35,109
+Alors vous voyez le cas facile au début, lorsque nous essayons de
+
+37
+00:03:35,109 --> 00:03:41,889
+produire cet article ici, l'attention se concentre surtout sur
+
+38
+00:03:41,889 --> 00:03:46,690
+l’article correspondant dans l'entrée, donc c'est un cas facile. La même chose se produit ici avec
+
+39
+00:03:46,690 --> 00:03:55,269
+le mot « agreement » mais ici vous voyez un cas intéressant :
+
+40
+00:03:55,269 --> 00:04:00,400
+en traduisant de l'anglais au français, nous inversons l'ordre des mots, alors « European
+
+41
+00:04:00,400 --> 00:04:05,319
+Economic Area » deviendra « zone économique européenne » et vous voyez que
+
+42
+00:04:05,319 --> 00:04:10,120
+le mécanisme d'attention fonctionne comme il faut, comme lorsque
+
+43
+00:04:10,120 --> 00:04:14,410
+le décodeur produit le mot « zone » qui est la traduction du mot « area »,
+
+44
+00:04:14,410 --> 00:04:19,150
+il observe le mot « area » qui se trouvait plus loin dans la séquence d’entrée.
+
+45
+00:04:19,150 --> 00:04:24,550
+Le mot « economic » se trouve dans une position similaire mais vous voyez que la même chose
+
+46
+00:04:24,550 --> 00:04:28,370
+se produit avec le mot « European », Donc ici l'attention se concentre sur le
+
+47
+00:04:28,370 --> 00:04:33,189
+mot correct qui est « European ». Ici vous voyez un autre exemple intéressant  :
+
+48
+00:04:33,189 --> 00:04:37,460
+dans certains cas, nous avons un nombre différent de mots pour exprimer le même concept,
+
+49
+00:04:37,460 --> 00:04:42,949
+comme ici nous avons « was signed » qui deviendra « a été signé », donc maintenant nous avons
+
+50
+00:04:42,949 --> 00:04:48,139
+trois mots au lieu de deux. Vous voyez que lorsque le décodeur produit la sortie « a »
+
+51
+00:04:48,139 --> 00:04:52,639
+suivi de « été », il observe le même mot qui est « was », vous voyez que ce n'est pas
+
+52
+00:04:52,639 --> 00:04:59,599
+exactement un mot mais il s'agit surtout d’observer le mot « was ».
+
+53
+00:04:59,599 --> 00:05:06,229
+Ici, quand il produit « a été signé », il observe le mot « signed ». Encore une fois,
+
+54
+00:05:06,229 --> 00:05:13,279
+nous avons la visualisation de ce que l'attention fait ici et nous pouvons voir
+
+55
+00:05:13,279 --> 00:05:19,550
+que l’attention essaie de mettre en corrélation la séquence d’entrée
+
+56
+00:05:19,550 --> 00:05:23,180
+de l'encodeur avec ce que le décodeur essaie de produire, c’est-à-dire la sortie.
+
+57
+00:05:23,180 --> 00:05:31,490
+Il est intéressant de constater que l'attention ne se limite pas aux problèmes
+
+58
+00:05:31,490 --> 00:05:37,639
+de traitement du langage naturel. En fait, il y a des applications dans différents domaines.
+
+59
+00:05:37,639 --> 00:05:43,430
+Vous vous souvenez peut-être de la tâche de génération de légendes de la première présentation,
+
+60
+00:05:43,430 --> 00:05:47,629
+l'exemple où une femme lançait un frisbee, donc nous avons une image
+
+61
+00:05:47,629 --> 00:05:52,219
+et nous voulons obtenir une description de cette image et le modèle
+
+62
+00:05:52,219 --> 00:05:57,620
+doit le faire automatiquement. En fait, nous pouvons utiliser un modèle séquence à séquence
+
+63
+00:05:57,620 --> 00:06:03,469
+avec mécanisme d’attention car le décodeur fonctionnera comme prévu, comme vous pouvez voir ici à droite.
+
+64
+00:06:03,469 --> 00:06:10,550
+Le décodeur produit du texte, mais la différence se trouve à la gauche :
+
+65
+00:06:10,550 --> 00:06:14,930
+ici, au lieu d'avoir l’encodeur qui traite la séquence d’entrée, comme nous avons vu avant,
+
+66
+00:06:14,930 --> 00:06:19,490
+nous avons une certaine architecture ici et
+
+67
+00:06:19,490 --> 00:06:23,150
+je ne précise pas de quelle architecture il s’agit, mais il peut s’agir d'une des architectures que vous avez vues
+
+68
+00:06:23,150 --> 00:06:28,610
+dans le cours sur les CNN. Et vous voyez que cette architecture crée en quelque sorte
+
+69
+00:06:28,610 --> 00:06:34,459
+une représentation interne de cette image
+
+70
+00:06:34,459 --> 00:06:39,319
+et en fait, c’est ce qui est à la place de l'état interne auparavant que j'envoyais au décodeur,
+
+71
+00:06:39,319 --> 00:06:44,480
+mais je lui envoie maintenant cette représentation interne.Ce qui est encore plus intéressant,
+
+72
+00:06:44,480 --> 00:06:49,430
+c’est de voir que l'attention peut aussi fonctionner dans ce cas.
+
+73
+00:06:49,430 --> 00:06:55,730
+Pour vous donner un exemple, ici nous avons le mot « boats »
+
+74
+00:06:55,730 --> 00:07:01,520
+et ce que nous avons comme attente, c'est que lorsque le décodeur essaie de produire le mot « boats »,
+
+75
+00:07:01,520 --> 00:07:08,810
+il observe en quelque sorte la partie de l'image où se trouve le bateau. Nous pouvons
+
+76
+00:07:08,810 --> 00:07:14,120
+voir cela plus en détail avec un exemple que vous avez déjà vu.
+
+77
+00:07:14,120 --> 00:07:19,040
+Encore une fois, c'est un cas de génération des légendes et vous voyez que l'entrée ici est cette image,
+
+78
+00:07:19,040 --> 00:07:23,810
+donc la première image est l'entrée ici et ceci est
+
+79
+00:07:23,810 --> 00:07:27,710
+la sortie finale du système. Le système devrait essayer de produire
+
+80
+00:07:27,710 --> 00:07:31,880
+« une femme lance un frisbee dans un parc », mais ce que vous voyez d’intéressant ici,
+
+81
+00:07:31,880 --> 00:07:38,390
+c'est ce que l'attention observe lorsque nous produisons les différents mots.
+
+82
+00:07:38,390 --> 00:07:43,370
+Concentrons-nous sur ce cas-ci. D’abord, nous produisons le mot « femme » et vous pouvez voir
+
+83
+00:07:43,370 --> 00:07:48,020
+que l'attention se concentre principalement sur la figure humaine et aussi
+
+84
+00:07:48,020 --> 00:07:53,630
+sur l'enfant, mais vous comprenez l'idée. Lorsque nous passons au frisbee,
+
+85
+00:07:53,630 --> 00:07:58,340
+vous pouvez voir que lorsqu'il est temps de produire le mot frisbee,
+
+86
+00:07:58,340 --> 00:08:03,400
+l’attention se concentre sur l'objet, c’est-à-dire le frisbee, donc encore une fois le mécanisme fonctionne comme prévu.
+
+87
+00:08:03,400 --> 00:08:11,600
+Lorsque nous passons mot « parc », vous voyez que l'attention se concentre maintenant sur l'arrière-plan.
+
+88
+00:08:11,600 --> 00:08:17,420
+Encore une fois, l’attention observe la bonne chose. Alors vous pouvez voir comment l'attention
+
+89
+00:08:17,420 --> 00:08:24,170
+est vraiment une intuition clé dans ce domaine car la possibilité
+
+90
+00:08:24,170 --> 00:08:29,990
+d’examiner les données et d’extraire, sur demande, les informations dont on a besoin
+
+91
+00:08:29,990 --> 00:08:35,150
+pour un état particulier améliore la performance du décodeur
+
+92
+00:08:35,150 --> 00:08:37,960
+de façon considérable.

@@ -1,0 +1,11 @@
+<problem>
+<optionresponse>
+  <label>GoogLeNet a introduit ________, qui est un bloc d&apos;opérations réutilisées et GoogLeNet en a ___.</label>
+<optioninput>
+    <option correct="False">Le module de création, 10 <optionhint>Incorrect, il en a 9</optionhint></option>
+    <option correct="False">Le bloc résiduel, 9 <optionhint>Incorrect, GoogLeNet a introduit un bloc de création, et non un bloc résiduel</optionhint></option>
+    <option correct="True">Le module de création, 9</option>
+    <option correct="False">Le bloc résiduel, 10 <optionhint>Incorrect, GoogLeNet a introduit un bloc de création, et non un bloc résiduel</optionhint></option>
+  </optioninput>
+</optionresponse>
+</problem>

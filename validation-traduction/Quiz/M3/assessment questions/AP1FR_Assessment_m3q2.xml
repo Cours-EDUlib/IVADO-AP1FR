@@ -1,0 +1,14 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Comment les images en niveaux de gris sont-elles introduites dans un RNC ?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="true">Elles sont données en entrées sous forme de matrices de valeurs de pixels. <choicehint>Correct</choicehint></choice>
+    <choice correct="false">Elles sont données en entrées sous forme de convolutions. <choicehint>Les convolutions sont des opérations mathématiques fondamentales des RNC.</choicehint></choice>
+    <choice correct="false">Elles sont données en entrées sous forme d’ensembles de paramètres. <choicehint>Les paramètres représentent le modèle, pas les images.</choicehint></choice>
+    <choice correct="false">Elles sont données en entrées sous forme de blocs de construction modulaires. <choicehint>Les blocs de construction modulaires sont utilisés pour construire les architectures de RNC, ce ne sont pas les images en entrée.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+<demandhint>
+  <hint>Elles vont de 0 à 255.</hint>
+</demandhint>
+</problem>

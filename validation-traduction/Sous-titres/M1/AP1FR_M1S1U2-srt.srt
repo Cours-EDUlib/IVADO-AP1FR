@@ -1,0 +1,627 @@
+0
+00:00:13,710 --> 00:00:20,619
+Alors maintenant, nous verrons la méthodologie associée à l'apprentissage automatique. C'est une
+
+1
+00:00:20,619 --> 00:00:28,720
+méthodologie que nous avons testée pour plus de 15 projets.
+
+2
+00:00:28,720 --> 00:00:36,610
+J'essaierai de résumer les difficultés et ce qui rend
+
+3
+00:00:36,610 --> 00:00:41,350
+les projets d'apprentissage automatique différents d'un simple projet en génie logiciel,
+
+4
+00:00:41,350 --> 00:00:48,670
+il y a quelques subtilités qui sont importantes à considérer. La méthodologie je
+
+5
+00:00:48,670 --> 00:00:53,559
+vais la résumer en six points. Donc le premier est: la première chose que vous devez
+
+6
+00:00:53,559 --> 00:00:57,430
+faire lorsque vous voulez réaliser un projet d'apprentissage automatique
+
+7
+00:00:57,430 --> 00:01:02,770
+est de définir une tâche à faire par l'ordinateur, puis pour mesurer si l'ordinateur accomplit vraiment cette
+
+8
+00:01:02,770 --> 00:01:08,009
+tâche, vous aurez besoin d'une mesure de performance, d'une valeur numérique
+
+9
+00:01:08,009 --> 00:01:13,660
+qui vous dira si l'algorithme accomplit vraiment la tâche ou non.
+
+10
+00:01:13,660 --> 00:01:18,069
+Si vous avez un score de 0, cela signifie qu'il n'atteint pas la tâche, tandis
+
+11
+00:01:18,069 --> 00:01:23,890
+qu'avec score de 1, il accomplit parfaitement la tâche. La troisième étape consiste à
+
+12
+00:01:23,890 --> 00:01:28,599
+rassembler des données pour former votre modèle. Si vous faites de l'apprentissage automatique sans
+
+13
+00:01:28,599 --> 00:01:35,340
+données, vous ne serez pas en mesure de former des modèles, donc les données sont vraiment nécessaires ici.
+
+14
+00:01:35,340 --> 00:01:43,000
+Alors le numéro quatre, ce sera la plupart du travail d'un scientifique des données.
+
+15
+00:01:43,000 --> 00:01:48,789
+Vous effectuerez de nombreuses expériences pour trouver le meilleur modèle pour accomplir
+
+16
+00:01:48,789 --> 00:01:54,190
+votre tâche. Les modèles qui maximiseront votre mesure de performance, vous
+
+17
+00:01:54,190 --> 00:01:59,110
+les déploierez en production. Ne sous-estimez pas le
+
+18
+00:01:59,110 --> 00:02:04,810
+point numéro cinq: parfois il peut être très difficile de prendre un très bon modèle
+
+19
+00:02:04,810 --> 00:02:09,130
+dans un protocole expérimental et de le mettre à l'échelle pour qu'il puisse
+
+20
+00:02:09,130 --> 00:02:16,590
+servir des milliers, voire des millions d'utilisateurs. Six, c'est récupérer plus de données et
+
+21
+00:02:16,590 --> 00:02:23,409
+itérer. J'ai dessiné cette boucle ici à gauche et en apprentissage automatique il y a
+
+22
+00:02:23,409 --> 00:02:27,609
+cette boucle qui se produit très fréquemment: elle
+
+23
+00:02:27,609 --> 00:02:32,650
+signifie que lorsque vous avez un bon modèle qui offrira certaines
+
+24
+00:02:32,650 --> 00:02:38,739
+fonctionnalités uniques pour vos utilisateurs, plus d'utilisateurs utiliseront votre application.
+
+25
+00:02:38,739 --> 00:02:43,810
+Avec plus d'utilisateurs, vous collectez plus de données, et avec plus de données vous pouvez avoir de meilleurs modèles
+
+26
+00:02:43,810 --> 00:02:49,030
+qui attireront plus d'utilisateurs. Avec encore plus de données, vous pouvez définir de nouvelles tâches,
+
+27
+00:02:49,030 --> 00:02:55,209
+de nouvelles fonctionnalités pour votre système et vous souhaitez motiver les gens à utiliser votre application
+
+28
+00:02:55,209 --> 00:02:59,859
+autant que possible afin que vous puissiez utiliser les données qu'ils apportent avec eux
+
+29
+00:02:59,860 --> 00:03:09,220
+pour améliorer votre système. Donc, le premier point: définir la tâche
+
+30
+00:03:09,220 --> 00:03:15,540
+qu'est-ce que ça veut dire? Une description de tâche ne concerne
+
+31
+00:03:15,540 --> 00:03:20,680
+que ce que nous voulons que l'ordinateur accomplisse. À ce stade,
+
+32
+00:03:20,700 --> 00:03:25,800
+vous ne devriez pas penser à la façon de le faire, on y pensera plus tard. La
+
+33
+00:03:25,810 --> 00:03:29,949
+description de la tâche doit être courte et informelle, pas vraiment besoin de
+
+34
+00:03:29,949 --> 00:03:34,799
+descriptions mathématiques de la tâche, elle doit être courte et informelle.
+
+35
+00:03:34,799 --> 00:03:40,629
+Vous devez être en mesure de définir l'entrée et la sortie de votre modèle; en
+
+36
+00:03:40,629 --> 00:03:45,159
+apprentissage automatique, nous parlerons du domaine du modèle et de la cible que
+
+37
+00:03:45,159 --> 00:03:53,019
+nous voulons prédire. Après avoir défini votre tâche, vous pouvez vous demander:
+
+38
+00:03:53,019 --> 00:03:58,239
+"ai-je vraiment besoin du machine learning?" C'est quelque chose qui semble complexe
+
+39
+00:03:58,239 --> 00:04:04,959
+à utiliser. Si votre tâche est difficile à décrire, le "comment" pour accomplir
+
+40
+00:04:04,959 --> 00:04:09,909
+la tâche est très difficile à décrire, on verra des exemples, et il est plus facile de
+
+41
+00:04:09,909 --> 00:04:15,579
+chercher des données, alors l'AA est probablement une bonne idée. Si les données
+
+42
+00:04:15,579 --> 00:04:21,130
+que vous souhaitez traiter sont vraiment complexes, [par exemple] la
+
+43
+00:04:21,130 --> 00:04:27,009
+séquence d' ADN : c'est beaucoup d'information, on ne veut pas programmer
+
+44
+00:04:27,009 --> 00:04:32,199
+la manière d'analyser toutes les informations dans l'ADN: c'est trop complexe et
+
+45
+00:04:32,199 --> 00:04:35,569
+peut-être que la collecte de données sera plus facile et vous laisserez la
+
+46
+00:04:35,569 --> 00:04:42,559
+machine traiter les informations complexes pour vous. Dernièrement, si vous avez
+
+47
+00:04:42,559 --> 00:04:49,520
+besoin d’adaptativité: si votre utilisateur a certaines préférences maintenant,
+
+48
+00:04:49,520 --> 00:04:56,330
+mais que leurs préférences peuvent changer dans le temps, on ne veut pas recoder un
+
+49
+00:04:56,330 --> 00:05:02,270
+nouvel algorithme pour prendre en compte le changement des préférences
+
+50
+00:05:02,270 --> 00:05:07,639
+de votre utilisateur, vous voulez l'apprendre automatiquement:
+
+51
+00:05:07,639 --> 00:05:13,099
+votre algorithme s'adaptera à la distribution des données qui changera au fil du temps.
+
+52
+00:05:13,099 --> 00:05:22,159
+Voyons quelques exemples informels de tâches: l'une des premières tâches que les
+
+53
+00:05:22,159 --> 00:05:27,349
+gens voulaient résoudre avec l'AA était la détection des pourriels. Je suppose que
+
+54
+00:05:27,349 --> 00:05:33,319
+c'était une tâche avec laquelle les professeurs avaient du mal et ils voulaient
+
+55
+00:05:33,319 --> 00:05:40,099
+juste se débarrasser de cette tâche. Le deuxième exemple d'une tâche
+
+56
+00:05:40,099 --> 00:05:45,469
+est la restauration des couleurs des images en noir et blanc. Je prends de vieilles
+
+57
+00:05:45,469 --> 00:05:50,240
+images et je veux les restaurer. Une autre tâche peut être la détection de scènes
+
+58
+00:05:50,240 --> 00:05:58,579
+violentes dans des vidéo. Si vous regardez les deux mots en gras, qu'est-ce
+
+59
+00:05:58,579 --> 00:06:03,919
+qu'un pourriel? Peut-être que quelque chose d'inintéressant pour moi sera intéressant
+
+60
+00:06:03,919 --> 00:06:10,119
+pour d'autres. Donc, l'algorithme dépendra de l'utilisateur: il n'y aura pas de
+
+61
+00:06:10,119 --> 00:06:16,089
+définition de pourriel qui peut s'appliquer à n'importe qui. Si j'ai des millions
+
+62
+00:06:16,089 --> 00:06:24,669
+d'utilisateurs, j'ai peut-être besoin d'un algorithme qui s'adapte à chacun d'eux
+
+63
+00:06:24,669 --> 00:06:31,699
+d'une manière unique. Si vous prenez la définition de "violence", il est facile de
+
+64
+00:06:31,699 --> 00:06:35,959
+définir ce qu'est la violence en termes de langage naturel, mais cette définition en
+
+65
+00:06:35,959 --> 00:06:42,169
+termes de ce qui est dans une image ou une vidéo, essayez de la coder par vous-mêmes,
+
+66
+00:06:42,169 --> 00:06:49,040
+c'est très difficile de couvrir tous les différents types de violence possibles
+
+67
+00:06:49,040 --> 00:06:55,880
+dans les données. Puisque la définition est difficile à formaliser ou à programmer,
+
+68
+00:06:55,880 --> 00:07:00,530
+l'AA est un bon candidat: il suffit d'obtenir des données
+
+69
+00:07:00,530 --> 00:07:06,080
+et d'attribuer une étiquette: violente ou non-violente. Vous laisserez l'algorithme
+
+70
+00:07:06,080 --> 00:07:11,690
+apprendre le concept de la violence pour prédire la prochaine erreur d'un système.
+
+71
+00:07:11,690 --> 00:07:16,280
+Si vous avez un système complexe évoluant au fil du temps, peut-être qu'une série
+
+72
+00:07:16,280 --> 00:07:21,800
+d'événements conduira à un échec. Il est difficile pour les humains et pour les
+
+73
+00:07:21,800 --> 00:07:26,540
+experts de véritablement comprendre la série d'événements qui conduira à l'échec.
+
+74
+00:07:26,540 --> 00:07:32,930
+Peut-être qu'utiliser l'AA peut vous aider à comprendre cette série d'événements.
+
+75
+00:07:32,930 --> 00:07:38,150
+La recommendation de nouveaux éléments en fonction des préférences de l'utilisateur
+
+76
+00:07:38,150 --> 00:07:44,840
+est similaire au pourriel: les préférences dépendent de la personne. Je ne veux pas
+
+77
+00:07:44,840 --> 00:07:49,790
+coder un algorithme pour chaque utilisateur. Le prochain est très intéressant, c'est
+
+78
+00:07:49,790 --> 00:07:55,730
+de la recherche ouverte aujourd'hui: générer de nouvelles molécules avec certaines
+
+79
+00:07:55,730 --> 00:08:00,110
+propriétés voulues. L'entrée est une description des propriétés voulues
+
+80
+00:08:00,110 --> 00:08:05,240
+et le modèle apprendra comment combiner ces propriétés à partir de d'autres molécules
+
+81
+00:08:05,240 --> 00:08:10,790
+avec des propriétés similaires. Il tentera de prédire une nouvelle structure de
+
+82
+00:08:10,790 --> 00:08:18,470
+molécule stable. Comme je l'ai dit, ce dernier est de la recherche, ce qui m'amène à
+
+83
+00:08:18,470 --> 00:08:25,340
+une question possible: est-ce une tâche réaliste? Je sais donc que dans les
+
+84
+00:08:25,340 --> 00:08:30,580
+journaux, nous pouvons voir que l'IA résoudra tous les problèmes de la société, mais
+
+85
+00:08:30,580 --> 00:08:38,410
+de nos jours, ces techniques ont des limites, des limites très dures que nous devons
+
+86
+00:08:38,410 --> 00:08:45,470
+encore surmonter a l'aide de recherches. Il est difficile de savoir si une tâche est
+
+87
+00:08:45,470 --> 00:08:52,280
+réalisable ou non: vous pouvez demander à ceux autour de vous qui suivent
+
+88
+00:08:52,280 --> 00:08:59,090
+de près l'IA, mais je vous recommande de suivre la littérature scientifique: vous
+
+89
+00:08:59,090 --> 00:09:02,390
+devez tous consacrer un peu de temps durant votre travail à la lecture
+
+90
+00:09:02,390 --> 00:09:06,800
+de certains articles pour voir où en est l'état de l'art en termes de recherche.
+
+91
+00:09:06,800 --> 00:09:12,170
+Ce faisant, vous accumulez des preuves que la tâche que vous voulez résoudre n'est pas
+
+92
+00:09:12,170 --> 00:09:17,150
+si différente d'une autre tâche résolue par autre laboratoire il y a quelques mois.
+
+93
+00:09:17,150 --> 00:09:22,250
+Cependant, il y a deux difficultés: la première consiste à examiner les
+
+94
+00:09:22,250 --> 00:09:30,170
+données utilisées par l'article que vous lisez: ces données sont-elles disponibles
+
+95
+00:09:30,170 --> 00:09:36,140
+sur le Web ou disposez-vous d'un ensemble de données similaire? Si vous regardez les
+
+96
+00:09:36,140 --> 00:09:42,320
+recherches de Facebook ou de Google, ils utilisent parfois beaucoup de données
+
+97
+00:09:42,320 --> 00:09:49,010
+inaccessibles aux autres dans leur ensemble de données. La dernière est également très
+
+98
+00:09:49,010 --> 00:09:54,050
+importante, c'est l'accès aux ressources informatiques: si vous lisez un article où
+
+99
+00:09:54,050 --> 00:09:59,720
+Google affirme avoir résolu une tâche, puis vous lisez attentivement et ils ont
+
+100
+00:09:59,720 --> 00:10:05,330
+utilisé 300 GPU pendant, un GPU est une unité de traitement graphique, une carte
+
+101
+00:10:05,330 --> 00:10:13,100
+graphique et une coûte environ 1000 $ disons. S'ils utilisent 300 GPU pendant un
+
+102
+00:10:13,100 --> 00:10:17,150
+mois pour entraîner leur modèle, est-ce quelque chose que vous pouvez faire dans votre
+
+103
+00:10:17,150 --> 00:10:25,700
+entreprise? J'ai vu quelques expériences que Google a faites dans un article,
+
+104
+00:10:25,700 --> 00:10:32,210
+l'expérience coûte environ 100 000 $ à faire. Donc, vous devez être prudent
+
+105
+00:10:32,210 --> 00:10:37,190
+avec les données et les ressources informatiques disponibles. Je vous recommande aussi
+
+106
+00:10:37,190 --> 00:10:40,580
+d'aller à des conférences scientifiques afin que vous puissiez discuter
+
+107
+00:10:40,580 --> 00:10:46,580
+de votre tâche et de votre idée à la communauté scientifique pour  voir si elle est
+
+108
+00:10:46,580 --> 00:10:52,370
+réaliste ou non. Ce qui ne l'est pas aujourd'hui, peut-être que dans deux ou trois
+
+109
+00:10:52,370 --> 00:10:59,750
+ans, ça sera réalisable. Donc, le deuxième point était de
+
+110
+00:10:59,750 --> 00:11:04,640
+définir les mesures de performance: une bonne mesure de performance doit évaluer
+
+111
+00:11:04,640 --> 00:11:10,190
+si l'algorithme a atteint avec succès un objectif spécifique, c'est donc une valeur
+
+112
+00:11:10,190 --> 00:11:15,860
+numérique que vous pouvez communiquer aux autres, comme la précision.
+
+113
+00:11:15,860 --> 00:11:21,680
+La précision est le nombre d'exemples bien prédits sur le nombre total d'exemples.
+
+114
+00:11:21,680 --> 00:11:29,779
+Il est simple de dire que mon modèle a atteint une précision de 95% sur un ensemble de
+
+115
+00:11:29,779 --> 00:11:35,060
+données connu. Ça facilite donc l'interprétation et la communication. Cette métrique
+
+116
+00:11:35,060 --> 00:11:39,380
+aussi être générique: elle ne doit pas être adapté au modèle que vous utilisez. Ce
+
+117
+00:11:39,380 --> 00:11:42,680
+n'est pas parce que vous utilisez l'apprentissage profond que vous devez choisir une
+
+118
+00:11:42,680 --> 00:11:49,029
+mesure de performance utilisée par la communauté d'apprentissage profond. Elle
+
+119
+00:11:49,029 --> 00:11:54,920
+doit véritablement évaluer votre système. Si vous avez des algorithmes qui ne sont pas
+
+120
+00:11:54,920 --> 00:11:58,970
+de l'AA, il faut tout de même utiliser la même mesure de performance pour comparer les
+
+121
+00:11:58,970 --> 00:12:04,579
+algorithmes ensemble sur la même base. Le dernier point important est
+
+122
+00:12:04,579 --> 00:12:10,010
+que lorsque vous évaluez votre modèle, vous devez le faire dans un contexte similaire
+
+123
+00:12:10,010 --> 00:12:14,450
+à celui de la production. Vous devez donc simuler les données que le modèle
+
+124
+00:12:14,450 --> 00:12:20,329
+recevra une fois déployé afin de l'évaluer. Nous reviendrons à
+
+125
+00:12:20,329 --> 00:12:25,130
+cette question plus tard, mais vous voulez être sûr qu'avec une mesure de performance
+
+126
+00:12:25,130 --> 00:12:29,000
+plus élevée, ou une valeur élevée de votre mesure de performance, que lorsque vous
+
+127
+00:12:29,000 --> 00:12:35,870
+déploierez votre modèle et que vous le donnerez à votre utilisateur, vous aurez les
+
+128
+00:12:35,870 --> 00:12:44,149
+mêmes performances. La prochaine étape est l'obtention des données nécessaires pour
+
+129
+00:12:44,149 --> 00:12:49,699
+entraîner un modèle. C'est surtout l'apprentissage supervisé qui fonctionne bien de
+
+130
+00:12:49,699 --> 00:12:54,529
+nos jours, l'apprentissage supervisé consiste à avoir un point de données comme entrée
+
+131
+00:12:54,529 --> 00:13:00,290
+de mon modèle. Le modèle prédira une étiquette ou une cible, et je comparerai cette
+
+132
+00:13:00,290 --> 00:13:05,510
+cible avec la véritable étiquette probablement attribuée par un expert.
+
+133
+00:13:05,510 --> 00:13:10,490
+Un exemple simple est bien sûrla reconnaissance de chats dans des images.
+
+134
+00:13:10,490 --> 00:13:16,940
+J'aurai besoin que des gens annotent chaque image pour dire s'il y a un chat ou non
+
+135
+00:13:16,940 --> 00:13:22,940
+dans l'image, L'annotation des données prend du temps et coûte de l'argent: en
+
+136
+00:13:22,940 --> 00:13:29,450
+apprentissage profond, une règle approximative est que j'ai besoin d'environ 100 000
+
+137
+00:13:29,450 --> 00:13:36,680
+points de données pour entraîner un modèle. Il faut donc beaucoup de temps pour
+
+138
+00:13:36,680 --> 00:13:42,380
+annoter les données. Si c'est pour une tâche où l'étiquette doit être attribuée par un
+
+139
+00:13:42,380 --> 00:13:48,500
+expert comme l'imagerie médicale, j'ai besoin de personnes très qualifiées pour
+
+140
+00:13:48,500 --> 00:13:53,930
+identifier où le problème se trouve dans cette image, alors ça coûtera encore plus.
+
+141
+00:13:53,930 --> 00:13:58,880
+Il y a quelques astuces pour faciliter l'annotation des données. Il existe aussi des
+
+142
+00:13:58,880 --> 00:14:07,010
+plateformes comme Mechanical Turk pour distribuer cette annotation, mais vous ne
+
+143
+00:14:07,010 --> 00:14:11,870
+devriez jamais sacrifier la qualité à la quantité: ce n'est pas parce que vous venez
+
+144
+00:14:11,870 --> 00:14:17,660
+d'apprendre que vous avez besoin d'environ 100 000 exemples afin d'être sûr que
+
+145
+00:14:17,660 --> 00:14:24,200
+le modèle pourra apprendre, vous devriez vraiment avoir de bonnes étiquettes et non
+
+146
+00:14:24,200 --> 00:14:31,580
+des étiquettes erronées. Il est plus facile d'apprendre avec peu de bonnes étiquettes
+
+147
+00:14:31,580 --> 00:14:38,630
+que beaucoup d'étiquettes bruyantes, et donc même si vous utilisez une plate-forme
+
+148
+00:14:38,630 --> 00:14:43,970
+comme Mechanical Turk, il existe un mécanisme pour assurer la qualité. Par exemple,
+
+149
+00:14:43,970 --> 00:14:48,620
+pour un point de données, vous pouvez demander à plusieurs annotateurs de donner leur
+
+150
+00:14:48,620 --> 00:14:53,180
+réponse. Si les réponses sont les mêmes, alors vous êtes plus confiant que c'est
+
+151
+00:14:53,180 --> 00:15:00,020
+la bonne réponse. Aussi, lorsque vous déployez votre modèle dans une application, vous
+
+152
+00:15:00,020 --> 00:15:03,830
+pouvez identifier les opportunités de collecte de données. C'est quelque chose que je
+
+153
+00:15:03,830 --> 00:15:09,560
+vois très souvent avec des applications en ligne: je peux fournir des commentaires sur
+
+154
+00:15:09,560 --> 00:15:13,820
+l'application et bien sûr, leurs scientifiques des données utilisent ces commentaires
+
+155
+00:15:13,820 --> 00:15:22,550
+pour essayer d'améliorer l'application. Par contre, assurez-vous que les commentaires
+
+156
+00:15:22,550 --> 00:15:26,170
+donnés par l'utilisateur sont des commentaires de haute qualité.

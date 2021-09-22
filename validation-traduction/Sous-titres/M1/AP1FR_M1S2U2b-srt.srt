@@ -1,0 +1,479 @@
+0
+00:00:14,259 --> 00:00:20,340
+Pour minimiser, nous allons simplement définir ce modèle h, qui dépend de l'ensemble de données,
+
+1
+00:00:20,340 --> 00:00:25,849
+comme le modèle qui minimise le risque empirique, cette formule-ci.
+
+2
+00:00:25,849 --> 00:00:34,100
+Donc h_S est le minimiseur du risque empirique, et la principale question en apprentissage automatique
+
+3
+00:00:34,100 --> 00:00:41,420
+que beaucoup de gens étudient et essayent de résoudre est: le risque empirique évalué sur le
+
+4
+00:00:41,420 --> 00:00:46,920
+meilleur modèle que j'ai trouvé sur mon ensemble d'entraînement, se généralise-t-il bien à
+
+5
+00:00:46,920 --> 00:00:53,489
+n'importe quel exemple dans l'univers? Ces deux quantités sont-elles vraiment différentes, ou sont-elles
+
+6
+00:00:53,489 --> 00:01:01,300
+très similaires? Puis-je espérer simplement trouver le minimiseur de risque empirique ici, h_S, et
+
+7
+00:01:01,300 --> 00:01:09,240
+croire qu'il généralisera à tous les exemples de production? La principale
+
+8
+00:01:09,240 --> 00:01:18,010
+différence est entre ces deux choses ici. Commençons par un
+
+9
+00:01:18,010 --> 00:01:23,870
+modèle simple qui n'est pas du tout de l'apprentissage profond, et c'est un prédicteur optimal,
+
+10
+00:01:23,870 --> 00:01:30,170
+c'est une table de recherche. C'est le modèle le plus simple auquel vous pouvez penser. Je vais
+
+11
+00:01:30,170 --> 00:01:35,400
+recevoir une nouvelle image, disons x. Je vais regarder dans mon ensemble de données d'entraînement si cette
+
+12
+00:01:35,400 --> 00:01:41,550
+image est dans l'ensemble de données d'entraînement. Si c'est le cas, j'ai l'étiquette, car elle se trouve dans mon
+
+13
+00:01:41,550 --> 00:01:46,880
+ensemble de données d'entraînement, donc cette table de recherche renverra simplement l'étiquette
+
+14
+00:01:46,880 --> 00:01:53,170
+dans l'ensemble de données d'entraînement, si elle existe. Bien sûr, une grande partie des points de données ne sont pas dans mon
+
+15
+00:01:53,170 --> 00:01:57,670
+ensemble de données d'entraînement. Je dois donc retourner une valeur par défaut et ici je vais juste retourner
+
+16
+00:01:57,670 --> 00:02:06,980
+0. Voici un exemple simple en 2D: ici j'ai la caractéristique 1
+
+17
+00:02:06,980 --> 00:02:10,229
+qui est entre zéro et un, et cet axe est la
+
+18
+00:02:10,229 --> 00:02:18,550
+caractéristique 2, également normalisée entre zéro et un. La zone verte contient des points
+
+19
+00:02:18,550 --> 00:02:23,310
+étiquetés zéro et la zone jaune ici, des points étiquetés
+
+20
+00:02:23,310 --> 00:02:30,459
+un. J'ai six points de données dans mon ensemble d'entraînement, c'est donc une vrai distribution
+
+21
+00:02:30,459 --> 00:02:36,299
+de données, c'est le D que nous ne pouvons généralement pas avoir pour des données réelles.
+
+22
+00:02:36,299 --> 00:02:41,469
+Puisque c'est un exemple-jouet, je le fais juste pour l'exercice, nous connaissons D. Donc, nous sommes en
+
+23
+00:02:41,469 --> 00:02:46,030
+mesure de calculer le risque réel, et nous verrons comment la table de consultation
+
+24
+00:02:46,030 --> 00:02:53,689
+performe sur ce problème. Rappelez-vous que si le point est dans mon ensemble d'entraînement, je peux
+
+25
+00:02:53,689 --> 00:02:59,090
+récupérer la vraie étiquette et le retourner. S'il n'est pas dans mon ensemble de données, je renvoie
+
+26
+00:02:59,090 --> 00:03:06,670
+zéro comme valeur par défaut. Quelles sont les frontières de décision sur cet espace, sur
+
+27
+00:03:06,670 --> 00:03:14,430
+l'espace des caractéristiques un et deux ici? Mon modèle renvoie 0 presque
+
+28
+00:03:14,430 --> 00:03:21,359
+partout sauf sur les 3 points qui sont étiquetés 1 dans mon ensemble d'entraînement.
+
+29
+00:03:21,359 --> 00:03:26,129
+Alors si je prends un point, en production je recevrai ce point ici, le modèle
+
+30
+00:03:26,129 --> 00:03:32,209
+retourne zéro parce qu'il ne fait pas partie de mon ensemble de données d'entraînement: le risque empirique est
+
+31
+00:03:32,209 --> 00:03:40,230
+nul, c'est un modèle optimal, mais le risque réel est de 0,5, car la surface
+
+32
+00:03:40,230 --> 00:03:49,590
+à l'intérieur de la vraie frontière est 0,5 et la surface extérieure ici est également 0,5.
+
+33
+00:03:49,590 --> 00:03:56,890
+Donc si je regarde les erreurs faites par le modèle, toute la surface associée à l'étiquette
+
+34
+00:03:56,890 --> 00:04:03,620
+1 ici, est attribuée par le modèle à l'étiquette 0. J'ai donc 0,5 erreurs, et j'ai
+
+35
+00:04:03,620 --> 00:04:08,809
+déjà un énorme écart entre les deux. J'ai un exemple où un modèle qui est
+
+36
+00:04:08,809 --> 00:04:18,120
+optimal sur le risque empirique, n'est pas du tout optimal sur le risque réel.
+
+37
+00:04:18,120 --> 00:04:22,610
+C'est ce qu'on appelle le sur-apprentissage: c'est vraiment le principal problème que vous devrez
+
+38
+00:04:22,610 --> 00:04:27,230
+affronter lorsque vous entraînerez des modèles, c'est qu'il y aura une différence
+
+39
+00:04:27,230 --> 00:04:32,500
+entre les risques, le risque réel et le risque empirique que vous
+
+40
+00:04:32,500 --> 00:04:42,230
+pouvez évaluer sur votre ensemble de données. Nous allons donc entraîner un autre modèle plus intelligent
+
+41
+00:04:42,230 --> 00:04:48,560
+nommé "voisins les plus proches". Pour la méthode des voisins les plus proches, si je reçois un nouveau point de données,
+
+42
+00:04:48,560 --> 00:04:57,250
+par exemple celui-ci en jaune, je vais chercher dans mon ensemble de données d'entraînement pour
+
+43
+00:04:57,250 --> 00:05:01,530
+trouver le point le plus proche de celui-ci. C'est donc ce point-ci dans mon ensemble
+
+44
+00:05:01,530 --> 00:05:07,440
+de données d'entraînement. Je vais retourner l'étiquette associée à ce point, et maintenant
+
+45
+00:05:07,440 --> 00:05:12,530
+les frontières de décision seront plus intéressantes: j'aurai une partition de
+
+46
+00:05:12,530 --> 00:05:19,410
+mon espace d'entrée, et vous pouvez voir ici la frontière de décision où si
+
+47
+00:05:19,410 --> 00:05:25,650
+je suis de ce côté, tous les points de ce côté sont plus proches de ce point que
+
+48
+00:05:25,650 --> 00:05:32,450
+n'importe quel autre point de l'image. C'est donc ce que cette zone signifie.
+
+49
+00:05:32,450 --> 00:05:37,690
+La zone jaune ici est plus proche de l'un de ces trois points que de tout autre point,
+
+50
+00:05:37,690 --> 00:05:45,250
+etc. Vous pouvez voir que j'ai calculé à la main bien sûr, ce n'est pas la valeur exacte,
+
+51
+00:05:45,250 --> 00:05:51,640
+mais le risque réel est plus petit, car ici j'ai une erreur: j'attribue l'étiquette verte
+
+52
+00:05:51,640 --> 00:05:59,900
+0 à la surface de l'étiquette 1. Ici j'ai une erreur, ici aussi, dans cette partie j'ai une
+
+53
+00:05:59,900 --> 00:06:06,770
+grosse erreur, et ici aussi, et ici, mais les frontières de décision semblent beaucoup plus
+
+54
+00:06:06,770 --> 00:06:12,590
+intéressantes que la table de recherche. Si j'ajoute un nouveau point ici,
+
+55
+00:06:12,590 --> 00:06:18,710
+vous pouvez voir que la frontière de décision s'adapte très rapidement,
+
+56
+00:06:18,710 --> 00:06:26,060
+très efficacement. Alors juste pour réviser un peu le concept,
+
+57
+00:06:26,060 --> 00:06:37,370
+la question principale est: est-ce que ces deux quantités, seront proches ou pas?
+
+58
+00:06:37,370 --> 00:06:38,370
+Ça dépendra du
+
+59
+00:06:38,370 --> 00:06:43,370
+nombre d'exemples dans mon ensemble d'entraînement. Si je n'ai que quatre exemples, c'est un
+
+60
+00:06:43,370 --> 00:06:47,390
+problème d'estimation: j'essaie d'estimer une quantité
+
+61
+00:06:47,390 --> 00:06:52,020
+mesurée sur un nombre infini d'exemples avec seulement quatre exemples. Statistiquement,
+
+62
+00:06:52,020 --> 00:06:57,500
+il n'y a aucune manière d'estimer cette quantité avec cette quantité que
+
+63
+00:06:57,500 --> 00:07:00,860
+l'on appelle "erreur d'estimation". Il y a aussi
+
+64
+00:07:00,860 --> 00:07:03,140
+un autre type de problème qui peut se produire:
+
+65
+00:07:03,140 --> 00:07:10,670
+je peux choisir une mauvaise classe d'hypothèses. Mon algorithme d'apprentissage va regarder
+
+66
+00:07:10,670 --> 00:07:14,150
+ce H, tous les modèles possibles dans ce
+
+67
+00:07:14,150 --> 00:07:20,680
+H ici. Si j'utilise un mauvais modèle dans ce H, il peut trouver des modèles qui
+
+68
+00:07:20,680 --> 00:07:27,450
+minimisent le risque empirique très facilement, comme avec la table de correspondance.
+
+69
+00:07:27,450 --> 00:07:32,730
+Cependant, ces modèles ne se généraliseront pas, et il est très important de
+
+70
+00:07:32,730 --> 00:07:39,280
+bien spécifier la classe d'hypothèse ici.
+
+71
+00:07:39,280 --> 00:07:42,490
+Un autre type de modèle est le modèle linéaire, donc
+
+72
+00:07:42,490 --> 00:07:46,450
+un modèle linéaire prendra des données x, ici
+
+73
+00:07:46,450 --> 00:07:52,020
+il y a deux caractéristiques, 1 et 2, et nous calculerons le produit scalaire
+
+74
+00:07:52,020 --> 00:08:00,370
+entre certains paramètres W avec ce point de données. Nous ajouterons une valeur appelée le biais et
+
+75
+00:08:00,370 --> 00:08:05,840
+nous prendrons le signe de cette expression. Si elle est positive, nous dirons: étiquette 1
+
+76
+00:08:05,840 --> 00:08:13,560
+et si elle est négative, nous dirons: étiquette 0. Pour cet exemple, donc pour deux caractéristiques, le
+
+77
+00:08:13,560 --> 00:08:21,420
+produit scalaire correspond à l'expression w_1 fois x_1 plus
+
+78
+00:08:21,420 --> 00:08:26,760
+w_2 fois x_2 plus b. Regardons la frontière de décision d'un
+
+79
+00:08:26,760 --> 00:08:35,200
+classificateur linéaire: bien sûr, c'est une ligne ici si nous utilisons les caractéristiques x_1 et x_2.
+
+80
+00:08:35,200 --> 00:08:40,840
+Cette limite de décision ne peut pas minimiser le risque empirique, il n'y a aucun
+
+81
+00:08:40,840 --> 00:08:46,420
+moyen de tracer une ligne droite qui classera tous les points verts
+
+82
+00:08:46,420 --> 00:08:51,070
+ensemble et tous les points jaunes ensemble. Ce modèle n'a pas assez de
+
+83
+00:08:51,070 --> 00:08:58,260
+complexité pour vraiment bien classer sur l'ensemble d'entraînement. Sur le risque réel,
+
+84
+00:08:58,260 --> 00:09:04,360
+ça ne fonctionne pas très bien non plus parce que vous avez cette énorme partie ici, cette énorme
+
+85
+00:09:04,360 --> 00:09:08,930
+surface qui est attribuée à l'étiquette 1, mais qui devrait être affectée à l'étiquette 0
+
+86
+00:09:08,930 --> 00:09:15,170
+telle qu'ici. Vous avez également cette immense zone qui a été affectée à
+
+87
+00:09:15,170 --> 00:09:23,040
+l'étiquette 0 par le modèle, et où la véritable étiquette est l'étiquette 1.
+
+88
+00:09:23,040 --> 00:09:29,630
+Ce modèle a donc sous-appris (underfit) les données: je n'ai pas un bon risque empirique, et si
+
+89
+00:09:29,630 --> 00:09:37,720
+j'ajoute un point de données ici, vous pouvez voir que je ne peux pas faire beaucoup mieux.
+
+90
+00:09:37,720 --> 00:09:42,510
+Je ne peux pas faire beaucoup mieux parce que la complexité du modèle n'est pas suffisante pour le
+
+91
+00:09:42,510 --> 00:09:50,140
+capturer. Nous venons de voir deux types très différents de classes d'hypothèses, et
+
+92
+00:09:50,140 --> 00:09:55,060
+nous avons également vu la table de recherche, mais ce n'est pas un bon modèle en aucune façon. Nous avons vu le
+
+93
+00:09:55,060 --> 00:10:00,470
+classificateur "voisin le plus proche" et le classificateur linéaire. Pour le classificateur
+
+94
+00:10:00,470 --> 00:10:04,790
+"voisin le plus proche", lorsque je le déploie en production, je dois stocker en mémoire tous les
+
+95
+00:10:04,790 --> 00:10:10,130
+points dans mon ensemble de données: cela s'appelle l'apprentissage basé sur les exemples. J'ai donc besoin de beaucoup
+
+96
+00:10:10,130 --> 00:10:16,160
+de mémoire et ensuite j'ai besoin d'un bon algorithme pour trouver rapidement
+
+97
+00:10:16,160 --> 00:10:22,770
+le point le plus proche dans mon ensemble de données. Pour ce classificateur, nous pouvons voir que les
+
+98
+00:10:22,770 --> 00:10:28,460
+frontières de décision sont complexes et sensibles à de nouveaux exemples. Pour les
+
+99
+00:10:28,460 --> 00:10:37,690
+classificateurs linéaires, nous utilisons deux paramètres, trois en fait: w_1 w_2 et b. Une fois que j'ai de
+
+100
+00:10:37,690 --> 00:10:41,640
+bonnes valeurs pour ces trois paramètres, je n'ai plus besoin de l'ensemble de données.
+
+101
+00:10:41,640 --> 00:10:46,200
+Lorsque je déploierai le modèle , J'ai juste besoin de ces trois paramètres qui
+
+102
+00:10:46,200 --> 00:10:51,490
+codent toutes les connaissances de l'ensemble d'entraînement dans le
+
+103
+00:10:51,490 --> 00:10:57,770
+modèle. Les limites de décision sont donc simples mais aussi robustes à de nouveaux exemples.
+
+104
+00:10:57,770 --> 00:11:05,510
+Ce n'est pas en utilisant de nouveaux points de données, en ayant un ensemble de données plus important
+
+105
+00:11:05,510 --> 00:11:10,491
+que le classificateur linéaire aura de meilleures performances: la complexité n'est pas suffisante.
+
+106
+00:11:10,491 --> 00:11:16,529
+Les modèles d'apprentissage profond sont paramétriques, mais ils ont beaucoup de capacité, ils
+
+107
+00:11:16,529 --> 00:11:22,770
+ont beaucoup de complexité et ils peuvent presque sur-apprendre n'importe quel ensemble de données
+
+108
+00:11:22,770 --> 00:11:30,920
+que vous pouvez fournir à ce type de modèle. Ils sont donc paramétriques mais les
+
+109
+00:11:30,920 --> 00:11:37,420
+frontières de décision sont très complexes, car elles ont beaucoup de paramètres.
+
+110
+00:11:37,420 --> 00:11:42,610
+Donc juste pour comparer à nouveau les deux classes d'hypothèses, on dira que la méthode du
+
+111
+00:11:42,610 --> 00:11:48,430
+"voisin le plus proche" a une erreur d'estimation, car il est probable que le plus proche voisin
+
+112
+00:11:48,430 --> 00:11:54,080
+contienne la vraie distribution des données, ce D que nous essayons d'estimer.
+
+113
+00:11:54,080 --> 00:12:00,220
+Par contre, si nous n'avons pas suffisamment de données, les frontières de décision peuvent varier
+
+114
+00:12:00,220 --> 00:12:06,760
+considérablement. Il y a beaucoup de variance selon les données que j'ai utilisées
+
+115
+00:12:06,760 --> 00:12:13,160
+dans mon ensemble d'entraînement. Si j'utilise un classificateur linéaire, alors j'ai un biais élevé, car
+
+116
+00:12:13,160 --> 00:12:19,029
+les données n'ont probablement pas été générées par un modèle de classificateur linéaire.
+
+117
+00:12:19,029 --> 00:12:23,149
+Ici, parce que je ne peux pas minimiser le risque empirique, il y a donc un biais élevé
+
+118
+00:12:23,149 --> 00:12:28,660
+associé à ce modèle-ci. Si j'ajoute de nouveaux points de données, je n'améliorerai pas
+
+119
+00:12:28,660 --> 00:12:31,800
+le risque empirique, je le ferai pas le diminuer.

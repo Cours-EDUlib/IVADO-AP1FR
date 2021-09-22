@@ -1,0 +1,11 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Combien de couches successives de 3x3 noyaux faudrait-il pour avoir un champ de réception efficace de 11x11 ? Supposons une foulée de 1.</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">2</choice>
+    <choice correct="false">11</choice>
+    <choice correct="false">4</choice>
+    <choice correct="true">5 <choicehint>Un noyau 3x3 a un champ réceptif 3x3, 2 ont un champ réceptif 5x5, 3 ont 7x7, etc</choicehint>.</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

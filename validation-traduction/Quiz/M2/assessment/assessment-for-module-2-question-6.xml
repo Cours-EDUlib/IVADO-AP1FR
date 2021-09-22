@@ -1,0 +1,23 @@
+<problem display_name="Question 6" markdown="We have the following computational graph. &#10;&#10;&lt;img src=&quot;/static/Module_3_Question_6_computational_graph_figure_1.png&quot; height=&quot;300&quot; alt=&quot;The computational graph contains 5 fully connected layers: 4 layers of three nodes (including the input layer), and one layer of one node at the output.&quot;/&gt;&#10;&#10;The naive algorithm to compute the gradient consists of exploring each possible path from the top node to the input nodes. If we consider exploring one edge as an operation:&#10;&#10;&gt;&gt; a) how many operations does this algorithm require to compute the gradient? &lt;&lt;&#10;&#10;(x) 81 {{Correct}}&#10;( ) 30 {{Incorrect}}&#10;( ) 48 {{Incorrect}}&#10;( ) 64 {{Incorrect}}&#10;&#10;&gt;&gt; b) how many operations does backpropagation require to compute the gradient? &lt;&lt;&#10;&#10;( ) 81 {{Incorrect}}&#10;(x) 30 {{Correct}}&#10;( ) 48 {{Incorrect}}&#10;( ) 64 {{Incorrect}}&#10;" max_attempts="2">
+  <p>Nous avons le graphe de calcul suivant.</p>
+  <img src="/static/Module_3_Question_6_computational_graph_figure_1.png" height="300" alt="The computational graph contains 5 fully connected layers: 4 layers of three nodes (including the input layer), and one layer of one node at the output."/>
+  <p>L&apos;algorithme naïf pour calculer le gradient consiste à explorer chaque chemin possible du nœud final aux nœuds d&apos;entrée. Si nous considérons l&apos;exploration d&apos;une arête comme une opération :</p>
+  <label>a) De combien d&apos;opérations cet algorithme a-t-il besoin pour calculer le gradient ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">81 <choicehint>Bonne réponse</choicehint></choice>
+      <choice correct="false">30 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">48 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">64 <choicehint>Mauvaise réponse</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <label>b) Combien d&apos;opérations la rétropropagation nécessite-t-elle pour calculer le gradient ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">81 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="true">30 <choicehint>Bonne réponse</choicehint></choice>
+      <choice correct="false">48 <choicehint>Mauvaise réponse</choicehint></choice>
+      <choice correct="false">64 <choicehint>Mauvaise réponse</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,10 @@
+<problem>
+<multiplechoiceresponse>
+  <label>L&apos;équité dans la composition stipule qu&apos;en satisfaisant l&apos;équité de groupe ou individuelle de manière isolée, des systèmes entiers composés de ces classificateurs isolés sont équitables.</label>
+<description>Cet énoncé est-il vrai ou faux?</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Vrai <choicehint>Les classificateurs qui sont équitables séparément (équité individuelle ou de groupe) ne constituent pas nécessairement des systèmes équitables.</choicehint></choice>
+    <choice correct="true">Faux <choicehint>Les classificateurs qui sont équitables séparément (équité individuelle ou de groupe) ne constituent pas nécessairement des systèmes équitables.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

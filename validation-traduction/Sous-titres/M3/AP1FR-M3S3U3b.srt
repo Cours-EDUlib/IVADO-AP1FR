@@ -1,0 +1,275 @@
+﻿1
+00:00:13,240 --> 00:00:18,110
+C’était en 2014, au moment où les mèmes
+
+2
+00:00:18,110 --> 00:00:23,630
+étaient très populaires. Alors entre 2014 et 2015, si vous étiez en apprentissage profond,
+
+3
+00:00:23,630 --> 00:00:27,679
+c’était impossible de faire une seule conférence ou un seul discours d'apprentissage profond
+
+4
+00:00:27,679 --> 00:00:33,140
+sans inclure des mèmes. Alors comme clin d'œil, j’ai mis ce mème ici.
+
+5
+00:00:33,140 --> 00:00:37,040
+C’est le mème de « nous devons aller plus en profondeur » et il a fortement influencé l'ensemble de la communauté d'apprentissage profond
+
+6
+00:00:37,040 --> 00:00:44,690
+et nous verrons comment. Alors nous passons maintenant à 2014 et nous
+
+7
+00:00:44,690 --> 00:00:50,030
+avons des réseaux convolutifs très profonds pour les projets de
+
+8
+00:00:50,030 --> 00:00:55,850
+reconnaissance d'images à grande échelle dans un article publié par Simonyan et Andrew Zisserman, qui étaient de l’Université Oxford.
+
+9
+00:00:55,850 --> 00:01:01,460
+Ils se sont inspirés d'AlexNet et ils ont trouvé
+
+10
+00:01:01,460 --> 00:01:04,820
+une architecture beaucoup plus performante qu'AlexNet. Vous pouvez voir
+
+11
+00:01:04,820 --> 00:01:09,200
+déjà l'énorme baisse. Nous allons sauter l'année 2013, c'était une architecture très similaire
+
+12
+00:01:09,200 --> 00:01:13,280
+à AlexNet, mais qui suggérait quelques améliorations.
+
+13
+00:01:13,280 --> 00:01:19,159
+Passons à 2014 pour examiner ce qui s'est passé à ce moment-là. Nous avons donc à nouveau cette idée de profondeur.
+
+14
+00:01:19,159 --> 00:01:24,500
+Il s'agit donc d'une citation directement tirée de l'article : « nous ne nous sommes pas écartés
+
+15
+00:01:24,500 --> 00:01:29,270
+de l'architecture ConvNet classique de LeCun et al. (1989), mais nous l’avons améliorée en
+
+16
+00:01:29,270 --> 00:01:32,990
+augmentant considérablement la profondeur du réseau. En ce moment, il y a vraiment cette idée
+
+17
+00:01:32,990 --> 00:01:38,479
+que si vous allez plus en profondeur, vous obtiendrez de meilleures performances.
+
+18
+00:01:38,479 --> 00:01:42,950
+Examinons l'architecture, qui est très similaire à ce que nous avons vu
+
+19
+00:01:42,950 --> 00:01:48,020
+jusqu'à présent. Alors nous avons une série de convolutions suivies
+
+20
+00:01:48,020 --> 00:01:52,549
+d’activations non linéaires, des mises en commun par maximum et, encore une fois, ce concept de composantes de base.
+
+21
+00:01:52,549 --> 00:01:57,409
+Ici nous avons deux convolutions suivies d'une mise en commun par maximum, ça se produit encore, qui est ensuite transmis
+
+22
+00:01:57,409 --> 00:02:00,979
+à trois convolutions suivies d'une mise en commun par maximum ; cela se produit encore trois fois
+
+23
+00:02:00,979 --> 00:02:05,509
+suivies de quelques couches entièrement convolutives.
+
+24
+00:02:05,509 --> 00:02:10,340
+Mais ce sont les mêmes composantes de base qui reviennent encore et encore.
+
+25
+00:02:10,340 --> 00:02:15,019
+Les principales contributions qu’ils ont apporté consistent tout d'abord à mettre des noyaux de plus petite taille partout.
+
+26
+00:02:15,019 --> 00:02:19,970
+Dans le document original d'AlexNet, nous avons vu qu'il y avait des noyaux de 11 par 11 et
+
+27
+00:02:19,970 --> 00:02:23,900
+ils ont décidé que non, nous allons mettre 3 par 3 et il y a une raison
+
+28
+00:02:23,900 --> 00:02:26,750
+pour laquelle ils ont fait cela, nous allons en parler plus tard.
+
+29
+00:02:26,750 --> 00:02:32,690
+Ils ont aussi ajouté des couches supplémentaires. Dans ce cas précis, le modèle s'appelle VGG-16.
+
+30
+00:02:32,690 --> 00:02:37,430
+Si vous faites le calcul, vous verrez qu'il y a en fait 16 couches au total pour
+
+31
+00:02:37,430 --> 00:02:41,450
+ce modèle. Une autre chose vraiment intéressante est que la résolution spatiale
+
+32
+00:02:41,450 --> 00:02:46,220
+est préservée après chaque couche convolutive, ce qui signifie que
+
+33
+00:02:46,220 --> 00:02:50,060
+lorsque vous restez à l'intérieur d'un bloc, jusqu'à ce que vous atteigniez la mise en commun par maximum,
+
+34
+00:02:50,060 --> 00:02:55,000
+la résolution spatiale est toujours la même. Cela revient à faire la même convolution
+
+35
+00:02:55,000 --> 00:03:00,230
+que nous avons vue plus tôt. Le sous-échantillonnage se produit
+
+36
+00:03:00,230 --> 00:03:06,530
+seulement lorsqu'ils font leur mise en commun par maximum. Alors dans l'article original, ils ont proposé
+
+37
+00:03:06,530 --> 00:03:11,569
+de nombreuses configurations différentes du modèle VGG. Nous voyons donc ici VGG-11,
+
+38
+00:03:11,569 --> 00:03:16,400
+VGG-13 et le nombre indique toujours le nombre de couches qui sont
+
+39
+00:03:16,400 --> 00:03:20,540
+présentes dans le modèle. Ça commence toujours par une image d'entrée et ensuite ce que change,
+
+40
+00:03:20,540 --> 00:03:24,709
+c’est la quantité de convolutions et aussi la profondeur. Ici, nous voyons 64,
+
+41
+00:03:24,709 --> 00:03:28,880
+donc nous avons une profondeur de 64 après notre première convolution, une profondeur
+
+42
+00:03:28,880 --> 00:03:34,760
+de 64 après notre deuxième suivie d'une mise en commun par maximum, suivie d'une profondeur de 128, et ainsi de suite.
+
+43
+00:03:34,760 --> 00:03:39,349
+Vous parcourez votre réseau jusqu'à ce que vous ayez enfin vos couches entièrement connectées
+
+44
+00:03:39,349 --> 00:03:44,900
+et votre fonction softmax. Maintenant, comparons les modèles en termes de couches et de paramètres.
+
+45
+00:03:44,900 --> 00:03:52,639
+Nous avons vu qu'AlexNet avait huit couches ,VGG-16 en avait 16 et VGG-19 en avait 19.
+
+46
+00:03:52,639 --> 00:03:55,519
+Vous pouvez voir que le nombre de paramètres a déjà commencé à augmenter considérablement.
+
+47
+00:03:55,519 --> 00:03:58,639
+C’est déjà plus que le double du nombre de paramètres et nous avons
+
+48
+00:03:58,639 --> 00:04:03,049
+plus ou moins le double du nombre de couches, mais vous pouvez voir comment
+
+49
+00:04:03,049 --> 00:04:08,750
+il pourrait y avoir un problème de mise à l'échelle de ce type de modèles.
+
+50
+00:04:08,750 --> 00:04:12,769
+Tout d’abord, pourquoi ont-ils utilisé des chaînes de convolutions 3 par 3 plutôt qu'une seule
+
+51
+00:04:12,769 --> 00:04:16,579
+convolution 7par 7? Nous l'avons mentionné plus tôt, c'est le concept de
+
+52
+00:04:16,579 --> 00:04:20,690
+champ réceptif et dans leur document, ils disent qu'il est facile de voir
+
+53
+00:04:20,690 --> 00:04:25,010
+qu’en empilant deux couches convolutives 3 par 3, on a un champ réceptif efficace de 5 par 5.
+
+54
+00:04:25,010 --> 00:04:31,400
+Si vous en empilez trois, c’est un champ réceptif efficace 7 par 7.
+
+55
+00:04:31,400 --> 00:04:34,430
+L'intuition est la suivante, et nous en avons parlé un peu plus tôt dans la journée :
+
+56
+00:04:34,430 --> 00:04:37,919
+si nous prenons ce résultat précis de notre convolution,
+
+57
+00:04:37,919 --> 00:04:41,699
+nous voyons ici qu'elle a examiné une fenêtre 3 par 3 pour obtenir une seule sortie.
+
+58
+00:04:41,699 --> 00:04:47,099
+Et en parcourant ce 3 par 3, cette fenêtre 3 par 3 a maintenant un champ réceptif
+
+59
+00:04:47,099 --> 00:04:51,449
+de 5 par 5. Et encore une fois, si vous ajoutez une autre couche par-dessus,
+
+60
+00:04:51,449 --> 00:04:57,210
+vous allez obtenir 7 par 7, une autre couche, vous allez obtenir 9 par 9, etc.
+
+61
+00:04:57,210 --> 00:05:01,020
+Pourquoi choisiraient-ils les 3 par 3 par rapport aux 7 par 7, par exemple?
+
+62
+00:05:01,020 --> 00:05:07,259
+Il y a deux raisons : d'une part, vous pouvez ajouter des activations non linéaires
+
+63
+00:05:07,259 --> 00:05:11,370
+entre les deux, ce qui rend déjà votre modèle bien plus complexe.
+
+64
+00:05:11,370 --> 00:05:14,520
+Ça augmente la complexité de votre réseau en termes de représentations qu'il peut apprendre.
+
+65
+00:05:14,520 --> 00:05:19,219
+Et une autre raison est que si vous faites le calcul, vous découvrez en fait que
+
+66
+00:05:19,219 --> 00:05:24,210
+plusieurs 3 par 3, pour obtenir un champ réceptif efficace de 7 par 7,
+
+67
+00:05:24,210 --> 00:05:28,680
+est en fait moins cher en termes de paramètres qu'un simple 7 par 7.
+
+68
+00:05:28,680 --> 00:05:32,909
+En faisant ces multiples 3 par 3, vous pouvez aller plus loin avec encore moins de paramètres,
+
+69
+00:05:32,909 --> 00:05:37,460
+qui était également l'une des motivations de leur choix de conception.

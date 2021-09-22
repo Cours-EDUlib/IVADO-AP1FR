@@ -1,0 +1,295 @@
+﻿1
+00:00:13,179 --> 00:00:18,529
+Il s'avère que nous pouvons faire quelque chose appelé l’apprentissage par transfert,
+
+2
+00:00:18,529 --> 00:00:22,730
+où nous prenons ce qui a été appris par nos modèles sur ImageNet et nous le transférons à 
+
+3
+00:00:22,730 --> 00:00:27,289
+différents ensembles de données. L'intuition est qu'ImageNet s’étend sur une grande quantité
+
+4
+00:00:27,289 --> 00:00:31,400
+de catégories, nous avons vu que nous pouvons avoir des vélos tandems et
+
+5
+00:00:31,400 --> 00:00:35,000
+nous pouvons avoir des caméléons africains. Alors s’il peut apprendre des caractéristiques utiles pour
+
+6
+00:00:35,000 --> 00:00:39,110
+les distinguer, si vous avez des ensembles de données composés de plantes, par exemple,
+
+7
+00:00:39,110 --> 00:00:44,030
+ou de personnes, ou de catégories similaires qui sont dans ImageNet. Il est probable que ImageNet
+
+8
+00:00:44,030 --> 00:00:49,340
+a appris une représentation utile que vous pouvez ensuite exploiter.
+
+9
+00:00:49,340 --> 00:00:54,110
+Ce que nous faisons en apprentissage par transfert, c'est que nous nous contentons de couper la tête de
+
+10
+00:00:54,110 --> 00:00:58,640
+nos réseaux neuronaux convolutifs entraînés. Donc nous conservons toutes les couches convolutives,
+
+11
+00:00:58,640 --> 00:01:03,890
+nous éliminons les couches entièrement connectées et nous les remplaçons par nos propres couches.
+
+12
+00:01:03,890 --> 00:01:07,580
+Alors à quoi cela ressemble-t-il? Nous prenons notre RNC entraîné sur ImageNet,
+
+13
+00:01:07,580 --> 00:01:11,149
+et encore une fois, ImageNet est disponible pour tous. ImageNet est un ensemble de données à code source ouvert
+
+14
+00:01:11,149 --> 00:01:14,900
+et vous pouvez même télécharger des modèles qui ont déjà été entraînés sur ImageNet
+
+15
+00:01:14,900 --> 00:01:18,740
+et ça vous évite le temps qu’il faudrait pour s'entraîner sur ImageNet et
+
+16
+00:01:18,740 --> 00:01:23,180
+vous éliminez ensuite les dernières couches et les remplacez par vos propres couches,
+
+17
+00:01:23,180 --> 00:01:27,079
+donc des couches que vous initialisez au hasard avec des K classes basées sur le nombre de classes
+
+18
+00:01:27,079 --> 00:01:30,920
+que vous pouvez avoir sur votre ensemble de données. Ensuite, vous prenez vos nouvelles données et vous recommencez
+
+19
+00:01:30,920 --> 00:01:35,840
+l'entraînement. Le RNC entraîné reste figé et vous espérez que
+
+20
+00:01:35,840 --> 00:01:39,470
+vos dernières couches pourront bien avoir une bonne capacité de généralisation sur votre ensemble de données.
+
+21
+00:01:39,470 --> 00:01:43,040
+Il s'avère que cela fonctionne assez bien dans la pratique et
+
+22
+00:01:43,040 --> 00:01:47,720
+le plus souvent, les gens choisissent de prendre ImageNet comme point de départ
+
+23
+00:01:47,720 --> 00:01:55,009
+pour la construction de tout type d'architecture. Cette méthode fonctionne particulièrement bien
+
+24
+00:01:55,009 --> 00:01:59,479
+si le domaine de votre ensemble de données est similaire à celui d'ImageNet. Donc, encore une fois,
+
+25
+00:01:59,479 --> 00:02:04,610
+si vous classez des voitures, des gens, des chats, des chiens, cela fonctionnera particulièrement bien, et si vous essayez de
+
+26
+00:02:04,610 --> 00:02:09,140
+faire de l'apprentissage par transfert d'ImageNet basés sur les données de spectrogrammes,
+
+27
+00:02:09,140 --> 00:02:12,890
+ça pourrait être un peu plus difficile parce que les caractéristiques qui ont été apprises d'ImageNet
+
+28
+00:02:12,890 --> 00:02:19,760
+n'étaient pas nécessairement entraînées sur les données de spectrogrammes. Un autre point est
+
+29
+00:02:19,760 --> 00:02:23,060
+qu’il n'est pas nécessaire de figer uniquement ces couches : il est aussi possible
+
+30
+00:02:23,060 --> 00:02:27,200
+de refaire l'entraînement des couches convolutives basé sur des poids pré-entraînés.
+
+31
+00:02:27,200 --> 00:02:32,120
+Cela peut aussi bien fonctionner selon manière dont vous le faites et cela sera aussi affecté
+
+32
+00:02:32,120 --> 00:02:35,810
+par les différents choix que vous faites, donc en fonction du modèle que vous choisissez,
+
+33
+00:02:35,810 --> 00:02:39,140
+des hyperparamètres que vous choisissez, alors vous avez intérêt à faire attention
+
+34
+00:02:39,140 --> 00:02:42,980
+au choix du taux d'apprentissage. Par exemple,
+
+35
+00:02:42,980 --> 00:02:46,160
+si vous vous entraînez à partir d'un RNC pré-entraîné, vous ne voulez pas
+
+36
+00:02:46,160 --> 00:02:49,700
+que vos poids changent trop radicalement dès le départ, vous voulez en quelque sorte aider
+
+37
+00:02:49,700 --> 00:02:58,180
+le réseau à conserver ce qu'il a déjà appris.
+
+38
+00:02:58,180 --> 00:03:04,220
+C'est ce que nous voyons souvent dans la pratique ; beaucoup de modèles utiliseront un RNC pré-entraîné
+
+39
+00:03:04,220 --> 00:03:08,299
+et ce que ce RNC pré-entraîné signifie, c'est qu'il s'agit d'un réseau qui a été préformé
+
+40
+00:03:08,299 --> 00:03:12,560
+sur ImageNet et nous l'utilisons ensuite pour différentes tâches dans toutes sortes de pipelines.
+
+41
+00:03:12,560 --> 00:03:16,459
+Nous considérons donc qu'il s'agit d'une sorte
+
+42
+00:03:16,459 --> 00:03:21,590
+d'extracteur de caractéristiques,. Nous prenons un RNC préf-entraîné
+
+43
+00:03:21,590 --> 00:03:25,579
+sur ImageNet, mais ça pourrait être un modèle VGG ou ResNet. Vous prenez un modèle
+
+44
+00:03:25,579 --> 00:03:29,720
+qui fonctionne bien et vous utilisez ensuite l’extraction de caractéristiques de votre modèle
+
+45
+00:03:29,720 --> 00:03:34,489
+pour ensuite entraîner un pipeline de différents réseaux neuronaux et vous pourriez alors avoir
+
+46
+00:03:34,489 --> 00:03:38,060
+une tâche très différente, donc vous ne voudrez peut-être même pas faire une tâche de classification,
+
+47
+00:03:38,060 --> 00:03:40,970
+vous voulez peut-être faire une tâche complètement différente, mais vous savez que les caractéristiques que
+
+48
+00:03:40,970 --> 00:03:45,560
+ImageNet a apprises sont très riches et vous pourriez utiliser ces caractéristiques dans votre pipeline,
+
+49
+00:03:45,560 --> 00:03:53,780
+qui est utilisé comme extracteur de caractéristiques génériques.
+
+50
+00:03:53,780 --> 00:03:56,780
+Voici un exemple de cela, mais qui va dans l'autre sens.
+
+51
+00:03:56,780 --> 00:04:01,489
+Alors Facebook, ou Yann LeCun en particulier, et je recommande vraiment de
+
+52
+00:04:01,489 --> 00:04:05,239
+le suivre sur Twitter, car il publie toujours ces différentes modèles
+
+53
+00:04:05,239 --> 00:04:10,579
+et les ensembles de données sur lesquels il travaille avec son équipe. Alors ils ont vraiment fait quelque chose d’intéressant :
+
+54
+00:04:10,579 --> 00:04:15,919
+ils ont compilé un ensemble de données très volumineux, vous pouvez donc imaginer que
+
+55
+00:04:15,919 --> 00:04:20,780
+Facebook n'a pas des millions d'images mais des milliards d'images.
+
+56
+00:04:20,780 --> 00:04:24,590
+ImageNet était à l'échelle de quelques millions, mais Facebook a des images à l'échelle de quelques milliards.
+
+57
+00:04:24,590 --> 00:04:29,150
+Ils ne pouvaient plus faire appel à la production participative pour étiqueter quelques milliards d’images,
+
+58
+00:04:29,150 --> 00:04:32,990
+mais ce qu'ils ont fait à la place, c’était très ingénieux, ils sont partis du fait que les gens
+
+59
+00:04:32,990 --> 00:04:37,580
+marquent leurs propres images avec des mots-clics.
+
+60
+00:04:37,580 --> 00:04:41,720
+Donc ils ont pris des milliards d'images et ils ont pris les 17 000 mots-clics les plus populaires
+
+61
+00:04:41,720 --> 00:04:45,620
+qui ont été trouvés sur ces images et ce qu'ils ont fait,
+
+62
+00:04:45,620 --> 00:04:49,610
+c’était une sorte d’ImageNet à une échelle beaucoup plus grande. Ils ont donc pris un modèle géant et
+
+63
+00:04:49,610 --> 00:04:54,410
+ils l’ont entraîné pour prédire les mots-clics à partir de ces images. C’est très intéressant
+
+64
+00:04:54,410 --> 00:04:59,900
+et je vous recommande encore une fois d'aller lire cette publication.
+
+65
+00:04:59,900 --> 00:05:02,870
+S’ils avaient fait l’entraînement sur une seule machine, ils estiment qu'il leur aurait fallu plus
+
+66
+00:05:02,870 --> 00:05:06,770
+d’une année pour compléter l’entraînement du modèle. Donc, ils ont dû
+
+67
+00:05:06,770 --> 00:05:13,040
+répartir cela sur 336 GPU et en utilisant 336 GPU, il fallait encore
+
+68
+00:05:13,040 --> 00:05:17,419
+entre guillemets, seulement quelques semaines d’entraînement. Vous pouvez avoir une idée de la complexité de ce réseau.
+
+69
+00:05:17,419 --> 00:05:21,260
+ Ce qu'ils ont fait ensuite est exactement le même concept de
+
+70
+00:05:21,260 --> 00:05:25,550
+réglage fin, mais au lieu de faire un réglage fin sur un ensemble de données différent, ils ont procédé à un réglage fin
+
+71
+00:05:25,550 --> 00:05:30,350
+sur ImageNet et, bien sûr, ils ont complètement écrasé l'erreur de classification par critère top-1
+
+72
+00:05:30,350 --> 00:05:34,130
+sur ImageNet. Je ne sais pas si cela aurait été une soumission valable
+
+73
+00:05:34,130 --> 00:05:38,419
+au concours ILSVRC parce qu'ils ont utilisé l'apprentissage par transfert dans ce cas,
+
+74
+00:05:38,419 --> 00:05:44,440
+mais c'est juste pour vous montrer à quel point l'apprentissage par transfert peut être utile pour différentes tâches.

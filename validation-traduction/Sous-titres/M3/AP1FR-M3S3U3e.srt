@@ -1,0 +1,135 @@
+﻿1
+00:00:13,179 --> 00:00:18,650
+Finalement, passons à 2019. Le concours ILSVRC s'est officiellement terminé en 2017,
+
+2
+00:00:18,650 --> 00:00:23,390
+et depuis il y a eu différentes variations de modèles.
+
+3
+00:00:23,390 --> 00:00:29,359
+GoogLeNet a connu différentes versions ; ResNet a également produit
+
+4
+00:00:29,359 --> 00:00:33,830
+des améliorations du modèle mais les idées principales restent les mêmes.
+
+5
+00:00:33,830 --> 00:00:37,160
+En 2019,un article très intéressant a été publié, il s'agit donc d'un article publié récemment
+
+6
+00:00:37,160 --> 00:00:41,390
+que je pense qu’il vaut la peine de mentionner, qui est appelé EfficientNet.
+
+7
+00:00:41,390 --> 00:00:46,010
+Dans ce cas, ils ont trouvé un moyen d’agrandir ou réduire différents réseaux de neurones convolutifs.
+
+8
+00:00:46,010 --> 00:00:49,460
+J'ai mis le lien vers le document ici et je vous recommande de le lire. Ce qui est vraiment intéressant,
+
+9
+00:00:49,460 --> 00:00:54,800
+c'est qu'ils ont utilisé un algorithme très sophistiqué pour déterminer
+
+10
+00:00:54,800 --> 00:00:59,989
+quel est le meilleur réseau de base et ensuite ils ont utilisé un tas de formulations mathématiques différentes pour
+
+11
+00:00:59,989 --> 00:01:03,440
+trouver comment agrandir ou réduire le réseau. Alors ce qui est vraiment intéressant ici,
+
+12
+00:01:03,440 --> 00:01:08,210
+c’est que vous pouvez voir que nous avons ici en rouge différentes variations de
+
+13
+00:01:08,210 --> 00:01:11,990
+EfficientNet en fonction de la manière dont ils peuvent l'agrandir ou le réduire, et nous avons
+
+14
+00:01:11,990 --> 00:01:16,280
+le nombre de paramètres ici et le score de classification par critère top-1 d'Imagenet ici.
+
+15
+00:01:16,280 --> 00:01:21,110
+Vous pouvez voir qu'en agrandissant de votre modèle, vous pouvez en fait obtenir
+
+16
+00:01:21,110 --> 00:01:24,979
+une plus grande exactitude que les différents modèles de pointe.
+
+17
+00:01:24,979 --> 00:01:30,860
+Alors vous voyez par exemple ResNet-152 est ici et nous pouvons obtenir une exactitude beaucoup plus élevée avec
+
+18
+00:01:30,860 --> 00:01:35,810
+beaucoup moins de paramètres. Donc la recherche continue d'évoluer dans ce domaine,
+
+19
+00:01:35,810 --> 00:01:39,829
+il y a toujours des nouvelles recherches qui sortent et qui prétendent être meilleures et parfois
+
+20
+00:01:39,829 --> 00:01:43,100
+un article révolutionnaire est publié.
+
+21
+00:01:43,100 --> 00:01:49,909
+Il est vraiment intéressant de se tenir au courant de ces différents modèles.
+
+22
+00:01:49,909 --> 00:01:53,869
+Récapitulons brièvement tous les réseaux de classification que nous avons vus.
+
+23
+00:01:53,869 --> 00:02:00,290
+Ils ont été réglés pour mieux fonctionner sur ImageNet, donc nous avons
+
+24
+00:02:00,290 --> 00:02:04,610
+un très grand ensemble de données de quelques millions d'images et nous avons un millier de catégories.
+
+25
+00:02:04,610 --> 00:02:09,259
+Ils suivent tous ce patron de conception très similaire ; nous commençons par une RNC non entraîné,
+
+26
+00:02:09,259 --> 00:02:12,860
+on trouve une certaine architecture, on met ensemble un tas de couches entièrement connectés
+
+27
+00:02:12,860 --> 00:02:17,600
+et à la fin, nous faisons un softmax pour notre millier de sorties ou de catégories.
+
+28
+00:02:17,600 --> 00:02:21,590
+Nous l’entraînons ensuite sur ImageNet et nous espérons obtenir
+
+29
+00:02:21,590 --> 00:02:24,440
+un réseau neuronal convolutif entraîné qui
+
+30
+00:02:24,440 --> 00:02:30,950
+sera capable de classer nos images. Alors comment pouvons-nous utiliser ce que nous avons appris
+
+31
+00:02:30,950 --> 00:02:34,970
+sur des ensembles de données plus petits? Peut-être que vous venez du domaine, vous avez vos propres ensembles de données internes
+
+32
+00:02:34,970 --> 00:02:39,110
+et vous n'avez pas accès à des millions d'images
+
+33
+00:02:39,110 --> 00:02:43,040
+ni à des milliers de catégories et vous voulez pouvoir continuer à utiliser ce qui a été appris
+
+34
+00:02:43,040 --> 00:02:45,730
+par ImageNet.

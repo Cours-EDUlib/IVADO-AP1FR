@@ -1,0 +1,11 @@
+<problem display_name="Dropdown" markdown="&gt;&gt; _____________ is an expensive way of computing the impact of a parameter.&lt;&lt;&#10;&#10;[[&#10;Backpropagation {{ On the contrary, backpropagation is a cheap and efficient way}}&#10;Loss minimization {{This one does not show the impact of a parameter}}&#10;(Finite difference method) &#10;Gradient transformation {{Gradient transformation is a step in the backpropagation algorithm}}&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>La _____________ est un moyen coûteux de calculer l&apos;impact d&apos;un paramètre.</label>
+    <optioninput>
+      <option correct="False">Rétropropagation <optionhint>au contraire, la rétropropagation est un moyen peu coûteux et efficace</optionhint></option>
+      <option correct="False">Minimisation de perte <optionhint>celle-ci ne montre pas l&apos;impact d&apos;un paramètre</optionhint></option>
+      <option correct="True">Méthode des différences finies</option>
+      <option correct="False">Transformation du gradient <optionhint>la transformation du gradient est une étape de l&apos;algorithme de rétropropagation</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>
