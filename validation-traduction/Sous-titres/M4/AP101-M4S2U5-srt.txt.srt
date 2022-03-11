@@ -1,0 +1,59 @@
+﻿1
+00:00:13,269 --> 00:00:19,009
+Avant la fin, je voudrais vous montrer quelques bibliothèques et références
+
+2
+00:00:19,009 --> 00:00:22,820
+et je tiens à vous dire que vous n'avez pas besoin de mettre en œuvre tout ce que nous avons vu,
+
+3
+00:00:22,820 --> 00:00:28,220
+ce sont des choses qui existent déjà. Dans PyTorch et TensorFlow, vous avez certainement accès des RNR,
+
+4
+00:00:28,220 --> 00:00:36,320
+et vous avez toutes les architectures : le tanh, le GRU et le LMCT.
+
+5
+00:00:36,320 --> 00:00:40,580
+Il existe des mises en œuvre pour l'architecture de transformateur que vous pouvez trouver
+
+6
+00:00:40,580 --> 00:00:45,910
+sur le web, notamment le premier que vous voyez ici, qui est la version officielle
+
+7
+00:00:45,910 --> 00:00:51,050
+qui est aussi maintenue par certains des auteurs de l'article.
+
+8
+00:00:51,050 --> 00:00:58,309
+Mais il existe aussi une très bonne mise en œuvre dans PyTorch.
+
+9
+00:00:58,309 --> 00:01:02,420
+Pour ce qui est des références, je vous encourage fortement à aller consulter cet excellent blog de Cristopher Olah,
+
+10
+00:01:02,420 --> 00:01:07,310
+dont certaines photos dans cette présentation ont été tirées.
+
+11
+00:01:07,310 --> 00:01:13,550
+J'aimerais également souligner la qualité de ce livre, et si vous voulez
+
+12
+00:01:13,550 --> 00:01:17,900
+en savoir plus sur l'apprentissage profond, vous pouvez aussi consulter ce livre en ligne
+
+13
+00:01:17,900 --> 00:01:24,680
+et il s'agit de très bonnes ressources pour obtenir plus de détails sur
+
+14
+00:01:24,680 --> 00:01:29,810
+toute la présentation et aussi la suivante. C'est tout pour cette présentation,
+
+15
+00:01:29,810 --> 00:01:35,880
+merci d’avoir écouté.

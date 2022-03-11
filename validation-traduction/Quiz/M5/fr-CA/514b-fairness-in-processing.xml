@@ -1,0 +1,19 @@
+<problem display_name="Quiz" markdown="&gt;&gt;Select two (2) properties of an optimization problem that can be affected by adding fairness constraints.&lt;&lt;&#10;&#10;[ ] A. The quality of the data for the problem is not good {{selected: A. Incorrect: The quality of the data is not affected by adding a fairness constraint to the problem}}&#10;[x] B. The problem may be hard, but behaves well in the learning process {{selected: B. Correct! }}&#10;[ ] C. The optimization problem may be convex {{selected: C. Incorrect: This is irrelevant, but adding the fairness constraints could change the loss surface}} &#10;[x] D. The problem may be hard, but has a structure that can be exploited in some way {{selected: D. Correct! }} &#10;&#10;{{ ((A B C)) Please choose 2 options. }}&#10;{{ ((A B D)) Please choose 2 options. }}&#10;{{ ((A C D)) Please choose 2 options. }}&#10;{{ ((B C D)) Please choose 2 options. }}&#10;{{ ((A B C D)) Please choose 2 options. }}&#10;&#10;|| Review the video from 1:15 to 2:03||&#10;&#10;&#10;" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Sélectionnez deux (2) propriétés d&apos;un problème d&apos;optimisation qui peuvent être affectées par l&apos;ajout de contraintes d&apos;équité.</label>
+    <checkboxgroup>
+      <choice correct="false">A. La qualité de données du problème n&apos;est pas bonne <choicehint selected="true">A. Incorrect : La qualité des données n&apos;est pas affectée par l&apos;ajout d&apos;une contrainte d&apos;équité au problème</choicehint></choice>
+      <choice correct="true">B. Le problème peut être difficile, mais se comporte bien dans le processus d&apos;apprentissage <choicehint selected="true">B. Correct !</choicehint></choice>
+      <choice correct="false">C. Le problème d&apos;optimisation peut être convexe <choicehint selected="true">C. Incorrect : Cela n&apos;est pas pertinent, mais l&apos;ajout des contraintes d&apos;équité pourrait modifier la surface de perte</choicehint></choice>
+      <choice correct="true">D. Le problème est peut-être difficile, mais il a une structure qui peut être exploitée d&apos;une certaine manière <choicehint selected="true">D. Correct !</choicehint></choice>
+      <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+  <demandhint>
+    <hint>Veuillez revoir la vidéo de 01:15 à 02:03</hint>
+  </demandhint>
+</problem>

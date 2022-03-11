@@ -1,0 +1,11 @@
+<problem>
+<multiplechoiceresponse>
+  <label>En ce qui concerne l&apos;équité de groupe, lequel est énoncés suivants est faux?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">L&apos;équité de groupe peut être définie comme une probabilité égale d&apos;être classé la classe prédite positive. <choicehint>C&apos;est en effet vrai. Un exemple d&apos;équation d&apos;équité de groupe est [mathjaxinline] p(d=1|G=f) = p(d=1|G=m)[/mathjaxinline] qui signifie que « la probabilité qu&apos;une classe prédite positive soit prédite si que l&apos;attribut protégé est féminin (genre = féminin) est égale à la classe prédite positive si l&apos;attribut protégé est masculin (genre = masculin) ».</choicehint></choice>
+    <choice correct="false">L&apos;équité de groupe est également connue sous le nom de parité statistique (ou démographique), de taux d&apos;acceptation égal et d’étalonnage. <choicehint>C&apos;est en effet vrai. Tous ces variations sont des termes valables pour désigner l&apos;équité de groupe.</choicehint></choice>
+    <choice correct="true">L&apos;équité de groupe dans le contexte de l&apos;équité par sensibilisation stipule que des personnes similaires doivent avoir une classification similaire. <choicehint>Cet énoncé est faux. Il s&apos;agit en fait de la définition de l&apos;équité individuelle. L&apos;équité de groupe est définie comme la probabilité égale d&apos;être classé dans la classe prédite positive.</choicehint></choice>
+    <choice correct="false">Afin de garantir l&apos;équité de groupe, le modèle peut sélectionner des candidats qualifiés dans un groupe, mais des candidats non qualifiés dans un autre groupe. <choicehint>C&apos;est en effet vrai. La notion d&apos;équité de groupe permet à un classificateur de sélectionner des candidats qualifiés dans un groupe féminin par exemple, mais des personnes non qualifiées dans un groupe masculin.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

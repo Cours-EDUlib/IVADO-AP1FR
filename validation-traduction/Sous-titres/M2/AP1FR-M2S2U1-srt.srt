@@ -1,0 +1,263 @@
+1
+00:00:14,070 --> 00:00:19,720
+La prochaine conférence portera sur le graphe de calcul et la rétropropagation.
+
+2
+00:00:19,720 --> 00:00:26,060
+Maintenant nous allons aller un peu sous le capot de l'algorithme utilisé pour entraîner ce
+
+3
+00:00:26,060 --> 00:00:33,320
+type de modèle et qui comporte tous les modules que nous venons de voir.
+
+4
+00:00:33,320 --> 00:00:41,930
+Donc l'analogie est que lorsque les voitures ont été inventées, elles n'étaient pas très
+
+5
+00:00:41,930 --> 00:00:48,430
+robustes et pour ne faisaient pas ce que nous voulions qu'elles fassent. Peut-être qu'à
+
+6
+00:00:48,430 --> 00:00:52,870
+l’époque, les gens étaient plus intéressés par la mécanique de la voiture pour être sûr
+
+7
+00:00:52,870 --> 00:00:56,930
+qu'en cas de problème, on pouvait réparer la voiture facilement afin de se rendre à la
+
+8
+00:00:56,930 --> 00:01:04,440
+destination. De nos jours, les voitures ne sont que de la technologie. Dans quelques années, nous allons simplement entrer
+
+9
+00:01:04,440 --> 00:01:08,540
+dans une voiture il n'y aura pas de bouton. Nous dirons simplement que nous voulons aller
+
+10
+00:01:08,540 --> 00:01:13,780
+à un certain endroit et nous y arriverons facilement, ce sera une technologie. 
+
+11
+00:01:13,780 --> 00:01:19,590
+L’apprentissage profond est plus au début d'une voiture que la nouvelle version et c'est pourquoi
+
+12
+00:01:19,590 --> 00:01:24,290
+nous devrions entrer un peu dans les détails de la façon dont les modèles sont entraînés
+
+13
+00:01:24,290 --> 00:01:29,700
+avec cet algorithme appelé « rétropropagation ». Quand je faisais mes études en apprentissage
+
+14
+00:01:29,700 --> 00:01:34,840
+automatique et en apprentissage profond, j’avais besoin de coder moi-même la rétropropagation pour vraiment
+
+15
+00:01:34,840 --> 00:01:40,150
+comprendre ce que cet algorithme fait. Aujourd'hui, je pense que les gens codent de moins en
+
+16
+00:01:40,150 --> 00:01:46,180
+moins la rétropropagation car c’est difficile et ça a été
+
+17
+00:01:46,180 --> 00:01:50,010
+implémenté efficacement dans PyTorch et Tensorflow. Nous voulons faire
+
+18
+00:01:50,010 --> 00:01:53,270
+quelque chose de plus intéressant, mais il faut au moins comprendre les concepts de
+
+19
+00:01:53,270 --> 00:02:00,270
+rétropropagation, ça reste important de nos jours. Voici une liste complète d'ingrédients
+
+20
+00:02:00,270 --> 00:02:06,469
+pour l'apprentissage profond supervisé, juste un survol. Nous avons donc besoin d'une définition de tâche,
+
+21
+00:02:06,469 --> 00:02:11,730
+d’une mesure d'évaluation, d'une grande quantité de données étiquetées de haute qualité; comme règle
+
+22
+00:02:11,730 --> 00:02:19,269
+générale, nous disons souvent que nous avons besoin de plus de 100 000 exemples étiquetés,
+
+23
+00:02:19,269 --> 00:02:23,000
+et nous avons besoin d'un algorithme d'apprentissage et pour l’apprentissage profond, il y aura
+
+24
+00:02:23,000 --> 00:02:27,480
+trois parties à cet algorithme d'apprentissage. Cet algorithme d'apprentissage prendra un
+
+25
+00:02:27,480 --> 00:02:32,139
+graphe de calcul dérivable de bout en bout. Nous aurons besoin d'un
+
+26
+00:02:32,139 --> 00:02:35,690
+algorithme de calcul de gradient appelé rétropropagation et nous aurons besoin d'un
+
+27
+00:02:35,690 --> 00:02:41,940
+optimiseur de paramètres. Nous verrons les deux premiers ingrédients durant cette conférence
+
+28
+00:02:41,940 --> 00:02:46,731
+et le dernier, l'optimiseur de paramètres, durant la prochaine conférence. Maintenant je
+
+29
+00:02:46,731 --> 00:02:55,570
+vais utiliser cette analogie avec l'alpinisme: nous avons notre fonction de perte que nous avons définie
+
+30
+00:02:55,570 --> 00:02:59,570
+dans la leçon d'apprentissage automatique. La fonction de perte donnera une
+
+31
+00:02:59,570 --> 00:03:04,630
+rétroaction au modèle pour chaque exemple unique. Pour un exemple, je peux avoir une
+
+32
+00:03:04,630 --> 00:03:11,290
+rétroaction ça se fait en raison de l'hypothèse iid que nous avons vue. Pour chaque
+
+33
+00:03:11,290 --> 00:03:18,010
+exemple dans mon ensemble de données, je peux faire la moyenne de la perte et je n'aurai qu'une seule valeur.
+
+34
+00:03:18,010 --> 00:03:23,760
+Cette valeur, je peux la localiser dans l'espace des paramètres. Alors, les modules
+
+35
+00:03:23,760 --> 00:03:28,280
+auront quelques paramètres; je récupérerai tous les paramètres de mon
+
+36
+00:03:28,280 --> 00:03:37,070
+graphe de calcul et je localiserai dans cet espace où se trouve l'emplacement de ce
+
+37
+00:03:37,070 --> 00:03:42,699
+modèle, puis je vais attribuer la perte à ce point. Intuitivement, nous pouvons dire que
+
+38
+00:03:42,699 --> 00:03:49,320
+pour tous les paramètres dans ce paysage de l'espace des paramètres de mon modèle, j'ai
+
+39
+00:03:49,320 --> 00:03:55,570
+une valeur de perte et je peux avoir ces lignes qui sont des paramètres qui partagent la
+
+40
+00:03:55,570 --> 00:04:02,530
+même valeur. Ici, c'est une carte autour de la montagne:
+
+41
+00:04:02,530 --> 00:04:10,920
+nous avons la montagne ici et nous pouvons voir que l'élévation descend très
+
+42
+00:04:10,920 --> 00:04:16,590
+vite ici, et ici c'est plus lent. C'est vraiment la même idée pour
+
+43
+00:04:16,590 --> 00:04:23,030
+entraîner un modèle. Ici, si j'utilise l'analogie que l'altitude est la perte
+
+44
+00:04:23,030 --> 00:04:27,220
+moyenne sur tous mes exemples d'entraînement,
+
+45
+00:04:27,220 --> 00:04:32,530
+alors ici c'est la perte la plus élevée possible, c'est un très mauvais modèle. Je peux
+
+46
+00:04:32,530 --> 00:04:37,680
+naviguer dans cet espace de paramètres pour trouver un endroit où le modèle
+
+47
+00:04:37,680 --> 00:04:46,480
+minimise la perte sur l'ensemble d'entraînement. Ici, la longitude sera un
+
+48
+00:04:46,480 --> 00:04:52,100
+paramètre et la latitude sera un autre paramètre, mais pour les réseaux de neurones profonds,
+
+49
+00:04:52,100 --> 00:04:57,910
+nous avons des millions de paramètres. Ça fait donc de l'alpinisme dans
+
+50
+00:04:57,910 --> 00:05:02,940
+un espace de plus de 1 million de dimensions, ce qui peut être très intéressant.
+
+51
+00:05:02,940 --> 00:05:11,870
+Donc ici le gradient sera une information de la pente autour de moi.
+
+52
+00:05:11,870 --> 00:05:15,160
+La tâche est donc que je vais initialiser les paramètres de
+
+53
+00:05:15,160 --> 00:05:22,560
+mon modèle. Je vais atterrir quelque part sur ce paysage au hasard parce que
+
+54
+00:05:22,560 --> 00:05:29,120
+j'initialise les paramètres au hasard et puis il y a un énorme brouillard autour de moi.
+
+55
+00:05:29,120 --> 00:05:35,470
+Je n'ai pas cette carte, je ne peux pas dire oh je vais simplement passer de mes paramètres initiaux
+
+56
+00:05:35,470 --> 00:05:41,620
+au point optimal ici, il y a beaucoup de brouillard autour de moi. Alors, j'utiliserai cette
+
+57
+00:05:41,620 --> 00:05:47,480
+information appelée gradient et je peux simplement la calculer en testant autour de moi à
+
+58
+00:05:47,480 --> 00:05:52,230
+quel point la pente est raide, c'est l'information que le gradient me donnera
+
+59
+00:05:52,230 --> 00:05:58,270
+sur ce paysage. Avec ces informations de la pente, je peux
+
+60
+00:05:58,270 --> 00:06:02,830
+dire qu’ici c'est très raide: j'utiliserai mon optimiseur qui me dira
+
+61
+00:06:02,830 --> 00:06:08,830
+si je dois aller dans cette direction, ou peut-être utiliser les informations passées pour
+
+62
+00:06:08,830 --> 00:06:14,800
+changer ma direction dans l'espace des paramètres. L'analogie est qu'un paramètre
+
+63
+00:06:14,800 --> 00:06:21,139
+est une coordonnée, la fonction de perte est l'altitude et ici je veux aller du
+
+64
+00:06:21,139 --> 00:06:25,770
+haut de la montagne au bas de la montagne. J'ai un gradient qui
+
+65
+00:06:25,770 --> 00:06:31,330
+représente la pente et j'ai une actualisation des paramètres donnée par l'optimiseur qui
+
+66
+00:06:31,330 --> 00:06:33,979
+correspond au déplacement dans ce paysage.

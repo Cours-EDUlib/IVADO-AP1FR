@@ -1,0 +1,12 @@
+<problem display_name="Quiz" markdown="&gt;&gt; What are the three correct features of the BERT model?  &lt;&lt;&#10;&#10;[x] A. BERT uses a Transformer-based architecture as opposed to ELMO, which uses RNNs {{ selected: A. Correct. This makes the training much more parallelizable than architectures based on RNNs.}}&#10;[x] B. BERT pre-trains on masked language modelling instead of classical language modelling {{ selected: B. Correct. Masked language modelling is a form of self-supervised training, making it easier to acquire data.  }}&#10;[ ] C. BERT uses bidirectional deep recurrent neural networks  {{ selected: C. Incorrect, BERT’s architecture is based on transformers, not RNNs }}&#10;[x] D. BERT can access both past and future contexts when predicting a missing word {{ selected: D. Correct. The Attention Mechanism in Transformer-based architectures has access to context from the future and the past. }}&#10;&#10;{{ ((A B C D)) Please choose 3 options. }}" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Quelles sont les trois caractéristiques vraies du modèle BERT ?</label>
+    <checkboxgroup>
+      <choice correct="true">A. BERT utilise une architecture basée sur les transformateurs, contrairement au modèle ELMO, qui utilise des RNR <choicehint selected="true">A. Correct. Cela rend l’entraînement beaucoup plus facile à paralléliser que les architectures basées sur les RNR.</choicehint></choice>
+      <choice correct="true">B. BERT fait le préentraînement sur la modélisation du langage masquée au lieu de la modélisation du langage classique <choicehint selected="true">B. Correct. La modélisation du langage masquée est une forme d’entraînement autosupervisé, qui facilite l&apos;acquisition de données.</choicehint></choice>
+      <choice correct="false">C. BERT utilise des réseaux de neurones récurrents bidirectionnels profonds <choicehint selected="true">C. Incorrect, l&apos;architecture de BERT est basée sur des transformateurs, et non des RNR</choicehint></choice>
+      <choice correct="true">D. BERT peut accéder aux contextes du passé et du futur lorsqu&apos;il prédit un mot manquant <choicehint selected="true">D. Correct. Le mécanisme d&apos;attention dans les architectures à base de transformateurs peut accéder aux contextes du futur et du passé.</choicehint></choice>
+      <compoundhint value="A B C D">C&apos;est en effet vrai.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

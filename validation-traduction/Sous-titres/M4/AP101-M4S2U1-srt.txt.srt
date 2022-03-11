@@ -1,0 +1,359 @@
+﻿1
+00:00:13,190 --> 00:00:18,360
+Cette présentation porte sur le modèle séquence à séquence, donc je vais vous
+
+2
+00:00:18,360 --> 00:00:25,140
+montrer cette nouvelle architecture qui va nous donner plus de flexibilité,
+
+3
+00:00:25,140 --> 00:00:31,260
+ce qui nous permet de résoudre des problèmes comme la traduction automatique.
+
+4
+00:00:31,260 --> 00:00:36,870
+Voici le plan : nous allons donc commencer par
+
+5
+00:00:36,870 --> 00:00:44,670
+un récapitulatif de la première présentation pour voir les points les plus importants
+
+6
+00:00:44,670 --> 00:00:49,229
+de celle-ci, et nous aborderons aussi certains de ces points dans
+
+7
+00:00:49,229 --> 00:00:54,420
+cette présentation. Ensuite, nous allons introduire les modèles séquence à séquence.
+
+8
+00:00:54,420 --> 00:00:59,610
+L’idée est similaire à ce que nous faisons d'habitude : nous allons examiner quel type de
+
+9
+00:00:59,610 --> 00:01:05,360
+problème que nous essayons de résoudre, ensuite nous présenterons les modèles et
+
+10
+00:01:05,360 --> 00:01:12,330
+nous les exécuterons sur un exemple, étape par étape, afin de bien comprendre comment ils fonctionnent.
+
+11
+00:01:12,330 --> 00:01:19,920
+Nous verrons aussi que ce modèle comporte un problème et nous allons essayer
+
+12
+00:01:19,920 --> 00:01:25,380
+de le résoudre au point numéro trois où nous introduirons
+
+13
+00:01:25,380 --> 00:01:30,540
+le mécanisme d'attention. Nous verrons que l'idée d'attention est
+
+14
+00:01:30,540 --> 00:01:37,290
+une idée clé et ingénieuse dans ce domaine qui améliorera certainement le résultat et
+
+15
+00:01:37,290 --> 00:01:40,680
+le flux d'informations dans le modèle séquence à séquence.
+
+16
+00:01:40,680 --> 00:01:46,440
+Au point suivant, celui qui porte sur le réseau de neurones à auto-attention,
+
+17
+00:01:46,440 --> 00:01:53,670
+nous aborderons cette architecture, qui est très importante dans ce domaine :
+
+18
+00:01:53,670 --> 00:02:00,540
+elle est entièrement basée sur l'idée d'attention et aujourd'hui, la plupart
+
+19
+00:02:00,540 --> 00:02:05,000
+des systèmes de pointe en traitement du langage naturel sont encore basés
+
+20
+00:02:05,000 --> 00:02:09,119
+sur l'idée qui provient de l'article scientifique qui a introduit le réseau de neurones à auto-attention.
+
+21
+00:02:09,119 --> 00:02:17,190
+À la fin, je vous montrerai quelques bibliothèques et références.
+
+22
+00:02:17,190 --> 00:02:21,990
+Alors je vais commencer par la récapitulation : maintenant cette diapositive devrait vous être familière,
+
+23
+00:02:21,990 --> 00:02:27,450
+donc ici vous voyez le RNN, notamment, vous voyez à gauche
+
+24
+00:02:27,450 --> 00:02:34,140
+ce que nous appelons la représentation générale du RNN. Vous voyez
+
+25
+00:02:34,140 --> 00:02:39,990
+à droite la représentation du RNN déployé sur la séquence d'entrée
+
+26
+00:02:39,990 --> 00:02:46,920
+pour générer la séquence de sortie. Je voudrais souligner les deux
+
+27
+00:02:46,920 --> 00:02:53,580
+points importants de cette architecture : d'abord, elle passera sur les éléments
+
+28
+00:02:53,580 --> 00:02:59,490
+de la séquence d'entrée une à la fois, donc elle ne fonctionne pas sur la séquence au complet et en ce faisant,
+
+29
+00:02:59,490 --> 00:03:05,490
+elle garde un état interne. Nous avons vu que
+
+30
+00:03:05,490 --> 00:03:11,910
+dans cet état interne, le RNN tente de capturer l’information pertinente
+
+31
+00:03:11,910 --> 00:03:17,370
+qui circulait jusqu'à présent dans la séquence afin qu'elle puissent être utilisée au pas de temps présent
+
+32
+00:03:17,370 --> 00:03:24,270
+ou à un pas de temps dans le futur. Un autre point qui était important, c’est que
+
+33
+00:03:24,270 --> 00:03:29,130
+les paramètres du RNN sont partagés au fil du temps. Ici vous voyez V, W et U
+
+34
+00:03:29,130 --> 00:03:34,590
+et si vous regardez la représentation du RNN déployé à droite,
+
+35
+00:03:34,590 --> 00:03:43,680
+il y a les même paramètres à chaque pas de temps. Ensuite nous avons vu comment entraîner un RNN.
+
+36
+00:03:43,680 --> 00:03:52,050
+C’était un peu complexe parce que nous avons vu comment faire la rétropropagation
+
+37
+00:03:52,050 --> 00:03:59,760
+sur ce graphe de calcul et nous avons vu que c'est la rétropropagation habituelle en apprentissage profond,
+
+38
+00:03:59,760 --> 00:04:06,510
+mais avec deux différences : la première est que nous avons
+
+39
+00:04:06,510 --> 00:04:12,180
+plus qu’une sortie, dans cet exemple, vous voyez trois sorties et cela signifie que nous
+
+40
+00:04:12,180 --> 00:04:18,959
+obtiendrons plus d'une erreur, et dans ce cas-ci nous avons trois erreurs. Nous avons vu
+
+41
+00:04:18,959 --> 00:04:24,480
+comment résoudre ce problème, nous calculons essentiellement le gradient de toutes ces erreurs séparément
+
+42
+00:04:24,480 --> 00:04:28,650
+par rapport aux paramètres, puis nous les additionnons à la fin. C’est comme
+
+43
+00:04:28,650 --> 00:04:35,130
+une boucle for et c'était le premier point qui caractérise le RNN. Le deuxième
+
+44
+00:04:35,130 --> 00:04:42,450
+point, c’est que même si on résout une seule erreur, le gradient du paramètre que j’essaie de calculer
+
+45
+00:04:42,450 --> 00:04:47,910
+ a peut-être été utilisé plus d'une fois et
+
+46
+00:04:47,910 --> 00:04:52,590
+comme nous l'avons déjà mentionné, nous partageons le paramètre dans le temps et dans
+
+47
+00:04:52,590 --> 00:04:57,480
+dans ce cas-ci, nous devons à nouveau calculer tous ces gradients séparément
+
+48
+00:04:57,480 --> 00:05:02,430
+et de les additionner à la fin. C'est pourquoi j'ai dit qu'à la fin, c'est comme si nous avions
+
+49
+00:05:02,430 --> 00:05:08,880
+deux boucles for, l'une qui passe sur les erreurs et l'autre qui passe sur
+
+50
+00:05:08,880 --> 00:05:13,920
+les endroits où le paramètre a été utilisé dans ce graphe de calcul.
+
+51
+00:05:13,920 --> 00:05:17,790
+À la fin, si nous additionnons tout, nous avons le gradient correct et maintenant nous
+
+52
+00:05:17,790 --> 00:05:26,370
+ont une rétropropagation correcte. Mais nous avons vu qu'en faisant la rétropropagation,
+
+53
+00:05:26,370 --> 00:05:31,860
+nous pouvons avoir un problème si nous avons beaucoup d'éléments dans la séquence.
+
+54
+00:05:31,860 --> 00:05:37,920
+C’était principalement à cause du fait que pour faire la rétropropagation dans le passé, je dois passer
+
+55
+00:05:37,920 --> 00:05:43,710
+sur ces états internes, ce qui entraîne essentiellement une longue
+
+56
+00:05:43,710 --> 00:05:49,950
+chaîne de calcul où chaque élément est un gradient de l'état interne
+
+57
+00:05:49,950 --> 00:05:55,860
+par rapport au précédent et nous avons vu que cela entraînait deux problèmes :
+
+58
+00:05:55,860 --> 00:06:00,270
+l'explosion du gradient et la disparition du gradient. Nous avions une solution pour la
+
+59
+00:06:00,270 --> 00:06:04,650
+l’explosion du gradient, nous pouvons simplement écrêter le gradient mais nous n'avons pas de solution
+
+60
+00:06:04,650 --> 00:06:11,940
+pour la disparition du gradient et, pour cette raison, nous avons introduit une autre
+
+61
+00:06:11,940 --> 00:06:20,580
+l'architecture,le  réseau de neurones récurrent à longue mémoire à court terme, ou LSTM, et nous avons vu qu’il existe
+
+62
+00:06:20,580 --> 00:06:23,850
+deux intuitions clés dans cette architecture ; la première est que nous
+
+63
+00:06:23,850 --> 00:06:29,669
+avons une cellule de mémoire, donc au lieu d'avoir une seule voie pour la circulation de l'information
+
+64
+00:06:29,669 --> 00:06:33,780
+comme avant, où nous avions seulement l'état interne, maintenant nous avons aussi
+
+65
+00:06:33,780 --> 00:06:39,780
+cette cellule de mémoire qui se spécialisera idéalement dans la capture de dépendances à long terme,
+
+66
+00:06:39,780 --> 00:06:44,430
+qui permet à l'information de circuler sur de nombreux pas dans
+
+67
+00:06:44,430 --> 00:06:51,960
+le futur. Nous avons également ajouté l'intuition du mécanisme de portes.
+
+68
+00:06:51,960 --> 00:06:59,070
+Nous souhaitons contrôler de manière sélective le flux d'informations et pour ce faire,
+
+69
+00:06:59,070 --> 00:07:04,500
+nous utilisons les portes. Une porte est simplement un élément dont la valeur peut être entre 0
+
+70
+00:07:04,500 --> 00:07:09,330
+et 1 et elle indique à mon modèle la quantité d'informations qui doit circuler
+
+71
+00:07:09,330 --> 00:07:15,600
+à un point particulier. Nous avons vu que le LSTM comporte trois types de portes : deux pour contrôler
+
+72
+00:07:15,600 --> 00:07:19,590
+l'entrée et la sortie, et une que nous appelons la « porte d’oubli » qui contrôle
+
+73
+00:07:19,590 --> 00:07:29,600
+la quantité l'information doit passer d'un pas à un autre. Enfin, nous avons aussi vu
+
+74
+00:07:29,600 --> 00:07:35,670
+comment rendre cette architecture capable d’approximer des fonctions encore plus complexes.
+
+75
+00:07:35,670 --> 00:07:41,280
+À gauche, dans cette présentation, vous voyez comment rendre cette architecture plus
+
+76
+00:07:41,280 --> 00:07:48,330
+profonde, ce qui signifie que nous pouvons empiler des couches de RNN.
+
+77
+00:07:48,330 --> 00:07:55,740
+Cela peut être fait facilement et l’état interne d'un RNN devient l'entrée
+
+78
+00:07:55,740 --> 00:08:01,920
+du RNN suivant. Ici et dans cet exemple je n'ai que deux couches mais je peux en empiler
+
+79
+00:08:01,920 --> 00:08:11,840
+plusieurs et aujourd'hui il est commun d’avoir 12 ou 24 couches. Un autre moyen de rendre
+
+80
+00:08:11,840 --> 00:08:20,190
+le RNN plus efficace est d'utiliser des techniques bidirectionnelles. Dans certains
+
+81
+00:08:20,190 --> 00:08:23,580
+problèmes, il est non seulement important d'examiner les informations qui proviennent
+
+82
+00:08:23,580 --> 00:08:26,880
+du passé dans ma séquence mais aussi les informations qui proviennent du futur.
+
+83
+00:08:26,880 --> 00:08:32,370
+Dans le RNN que nous montrons dans la première présentation, la direction était toujours de gauche à droite,
+
+84
+00:08:32,370 --> 00:08:38,730
+donc nous pouvons seulement examiner le passé. Dans cette diapositive à droite nous
+
+85
+00:08:38,730 --> 00:08:42,210
+pouvons voir aussi comment exploiter les informations du futur car nous
+
+86
+00:08:42,210 --> 00:08:47,700
+utilisons deux RNN différents : l'un va de gauche à droite et l'autre de droite à gauche
+
+87
+00:08:47,700 --> 00:08:54,660
+et ensuite nous les combinons ensemble pour fusionner en quelque sorte les sorties.
+
+88
+00:08:54,660 --> 00:08:58,850
+Ainsi, lorsque nous sommes à un moment donné, nous pouvons examiner le passé
+
+89
+00:08:58,850 --> 00:09:04,009
+grâce au RNN de gauche à droite et le futur grâce au RNN
+
+90
+00:09:04,009 --> 00:09:07,990
+de droite à gauche.

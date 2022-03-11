@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt;You can augment your dataset as much as you want without any risk of overfitting. || Is this statement true or false? &lt;&lt;&#10;&#10;( ) True&#10;(x) False {{There is a limit to what network can generalize when training on the same data distribution, even when using data augmentation. It can still overfit your augmented data but it helps regularize your network}}&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Vous pouvez augmenter votre ensemble de données autant que vous le souhaitez sans risque de surapprentissage.</label>
+    <description>Cette déclaration est-elle vraie ou fausse ?</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai</choice>
+      <choice correct="true">Faux <choicehint>Il y a une limite à la généralisation du modèle lors d&apos;un entraînement sur la même distribution de données, même en utilisant l&apos;augmentation des données. Il peut toujours surapprendre vos données augmentées, mais ça aide à régulariser votre réseau</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

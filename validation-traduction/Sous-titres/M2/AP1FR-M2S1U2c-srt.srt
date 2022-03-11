@@ -1,0 +1,351 @@
+﻿1
+00:00:14,320 --> 00:00:20,939
+Bon alors maintenant, vous pensez peut-être: comment les chercheurs en apprentissage profond peuvent penser
+
+2
+00:00:20,939 --> 00:00:27,259
+à ces architectures super complexes? Je vous montre juste l'architecture « Inception »:
+
+3
+00:00:27,259 --> 00:00:31,949
+comment est-il possible que notre programmeur regarde les données et se dise « Hmm,
+
+4
+00:00:31,949 --> 00:00:37,850
+probablement l'architecture « Inception » est la meilleure pour apprendre cette tâche »? Peut-être
+
+5
+00:00:37,850 --> 00:00:43,190
+que l'architecture « Inception » est le meilleur espace d’hypothèse pour apprendre de ces données.
+
+6
+00:00:43,190 --> 00:00:49,960
+Comment pouvons-nous avoir l'intuition de créer un tel modèle? En fait, je pense qu'il
+
+7
+00:00:49,960 --> 00:00:54,920
+y a des tendances de conception qui émergent dans la littérature: il y a
+
+8
+00:00:54,920 --> 00:01:00,420
+des tendances de comment combiner ensemble des modules que les gens réutilisent encore
+
+9
+00:01:00,420 --> 00:01:07,890
+et encore pour trouver la meilleure architecture pour différentes tâches.
+
+10
+00:01:07,890 --> 00:01:14,880
+Nous verrons certaines tendances que j'ai vus très souvent dans la littérature,
+
+11
+00:01:14,880 --> 00:01:21,420
+j'en ai énuméré certaines ici et nous ne les verrons pas tous:
+
+12
+00:01:21,420 --> 00:01:24,340
+certaines d'entre elles seront couvertes dans d'autres conférences, mais nous verrons
+
+13
+00:01:24,340 --> 00:01:26,729
+au moins ces quelques premières ici.
+
+14
+00:01:26,729 --> 00:01:34,040
+Voici lle modèle de 'encodeur-décodeur: ici il y aura un encodeur
+
+15
+00:01:34,040 --> 00:01:39,329
+et un décodeur dans chacun de ces modules. Il peut y avoir beaucoup de modules, beaucoup de
+
+16
+00:01:39,329 --> 00:01:44,840
+complexité, mais l'architecture globale aura deux composantes: un encodeur
+
+17
+00:01:44,840 --> 00:01:49,409
+qui produira ce que nous appelons la représentation latente Z,
+
+18
+00:01:49,409 --> 00:01:55,820
+et nous donnerons cette représentation latente à un décodeur qui
+
+19
+00:01:55,820 --> 00:02:02,700
+prédira une réponse, qui retournera ma prédiction. Rappelez-vous que les données peuvent être
+
+20
+00:02:02,700 --> 00:02:09,850
+dans un espace de grande dimension, donc cette représentation latente sera très souvent dans un
+
+21
+00:02:09,850 --> 00:02:14,820
+espace de dimension inférieure, elle sera dans un vecteur beaucoup plus petit que le
+
+22
+00:02:14,820 --> 00:02:20,549
+vecteur donné en entrée à l'architecture.
+
+23
+00:02:20,549 --> 00:02:24,940
+Ce schéma encodeur-décodeur est utilisé par l'auto-encodeur, c'est vraiment la
+
+24
+00:02:24,940 --> 00:02:30,220
+définition de l'auto-encodeur. Il a également été utilisé pour la modélisation séquence-à-séquence
+
+25
+00:02:30,220 --> 00:02:35,579
+par un réseau de neurones récurrent que vous verrez jeudi. En vision,
+
+26
+00:02:35,579 --> 00:02:41,970
+vous pouvez également voir le réseau encodeur-décodeur. Vous verrez le U-net et lorsque
+
+27
+00:02:41,970 --> 00:02:46,770
+vous verrez le U-net, essayez de voir le schéma encodeur-décodeur dans cette
+
+28
+00:02:46,770 --> 00:02:53,350
+image. Vous le verrez demain avec Jeremy. L'auto-encodeur est un
+
+29
+00:02:53,350 --> 00:03:00,880
+très ancien modèle dans la littérature, c'est un modèle pour faire de
+
+30
+00:03:00,880 --> 00:03:07,980
+l’apprentissage non supervisé: il n’y a pas d'étiquettes, j'ai juste comme exemple des images.
+
+31
+00:03:07,980 --> 00:03:12,560
+Ce que je veux faire est d'essayer de trouver la variété de petite dimension dont je
+
+32
+00:03:12,560 --> 00:03:19,919
+parlais avant. Alors, je commence avec cette image dans un espace de grande dimension,
+
+33
+00:03:19,919 --> 00:03:26,000
+je la donne à un encodeur qui sera un module dense avec des fonctions d'activation,
+
+34
+00:03:26,000 --> 00:03:33,380
+puis il projettera cette image à une petite représentation que nous appellerons
+
+35
+00:03:33,380 --> 00:03:40,370
+le code qui encode toutes les informations qui peuvent être tous les facteurs
+
+36
+00:03:40,370 --> 00:03:47,260
+de variation que je peux déplacer pour changer l'image, mais en gardant toujours
+
+37
+00:03:47,260 --> 00:03:51,220
+l’objet dans l'image; c'était le but de cette architecture. Donc, si j’ai
+
+38
+00:03:51,220 --> 00:03:57,880
+un chat, je veux peut-être changer la valeur de z2 et ça changera le chat,
+
+39
+00:03:57,880 --> 00:04:01,440
+mais j'aurai toujours un chat dans l'image: c'est ce que je veux apprendre avec ce
+
+40
+00:04:01,440 --> 00:04:09,160
+modèle. Je donnerai donc le code à un décodeur et le décodeur générera
+
+41
+00:04:09,160 --> 00:04:16,410
+la même image que l'entrée et ici, l'enseignant dira que ceci est
+
+42
+00:04:16,410 --> 00:04:20,370
+l’image réelle ceci est la prédiction. Je peux donc utiliser une fonction de perte qui
+
+43
+00:04:20,370 --> 00:04:27,500
+comparera les deux, la reconstruction de mon image d'origine et de cette image, et je peux
+
+44
+00:04:27,500 --> 00:04:33,750
+utiliser cette rétroaction pour entraîner le modèle à bien reconstruire.
+
+45
+00:04:33,750 --> 00:04:38,850
+Le code doit être dans un espace dimensionnel plus petit, c'est comme un goulot d'étranglement:
+
+46
+00:04:38,850 --> 00:04:46,560
+si je vais de disons 1000 dimensions à un vecteur de taille 10
+
+47
+00:04:46,560 --> 00:04:53,131
+et ensuite j'essaye de reconstruire mon vecteur de 1000 dimensions, la dimension 10
+
+48
+00:04:53,131 --> 00:04:56,750
+sera un goulot d'étranglement: elle doit contenir toutes les informations nécessaires pour
+
+49
+00:04:56,750 --> 00:05:02,880
+reconstruire l'image, c'est pourquoi mon image n'est pas parfaitement reconstruite. 
+
+50
+00:05:02,880 --> 00:05:09,540
+cCe faisant, nous espérons trouver la variété de faible dimension,
+
+51
+00:05:09,540 --> 00:05:14,310
+mais l'auto-encodeur ne fonctionne pas très bien, cette version vanille ne fonctionne pas
+
+52
+00:05:14,310 --> 00:05:18,100
+très bien. Il existe des variantes d'auto-encodeurs qui
+
+53
+00:05:18,100 --> 00:05:24,180
+fonctionnent beaucoup mieux, mais elles sont en dehors du cadre de cette conférence. Par contre, les auto-encodeurs
+
+54
+00:05:24,180 --> 00:05:29,100
+sont toujours un domaine de recherche très actif en raison de ce
+
+55
+00:05:29,100 --> 00:05:34,090
+schéma intéressant pour l'architecture. Il est également 
+
+56
+00:05:34,090 --> 00:05:38,850
+possible d’avoir des encodeurs-décodeurs à plusieurs entrées: disons que j'ai
+
+57
+00:05:38,850 --> 00:05:45,220
+différents flux d'informations, un pour l'encodeur 1, un pour l'encodeur 2. J'aurai
+
+58
+00:05:45,220 --> 00:05:50,030
+ce modèle où tout mes flux seront associés à une branche de mon
+
+59
+00:05:50,030 --> 00:05:55,140
+réseau et toutes ces branches me fourniront une représentation. Ensuite,
+
+60
+00:05:55,140 --> 00:06:00,240
+j’essayerai de fusionner cette représentation pour les agréger et je la donnerai à un
+
+61
+00:06:00,240 --> 00:06:05,980
+décodeur qui prédira la réponse afin que je puisse traiter différentes modalités.
+
+62
+00:06:05,980 --> 00:06:11,170
+ici, je peux avoir du son et des images, et je veux prédire quelque chose à partir de deux
+
+63
+00:06:11,170 --> 00:06:18,620
+modalités différentes. Je peux également faire un apprentissage de métrique: je peux donner deux images
+
+64
+00:06:18,620 --> 00:06:23,900
+et essayer d'apprendre la distance entre les deux (si elles sont similaires ou non).
+
+65
+00:06:23,900 --> 00:06:28,990
+Marginalement, je peux faire une relation d'apprentissage sur tout type de données.
+
+66
+00:06:28,990 --> 00:06:35,610
+Si les deux encodeurs sont capables de traiter du texte je peux maintenant comparer deux
+
+67
+00:06:35,610 --> 00:06:42,590
+documents avec ce type d'architecture: comme exemple simple, ici
+
+68
+00:06:42,590 --> 00:06:49,389
+cet encodeur va encoder ma photo d'un chat et cet encodeur va encoder
+
+69
+00:06:49,389 --> 00:06:53,610
+l’audio qui lui est lié. Disons que ma tâche est que, dans mon
+
+70
+00:06:53,610 --> 00:06:58,330
+appartement, j’ai des caméras et un microphone et je veux prédire ce qu'il y a dans
+
+71
+00:06:58,330 --> 00:07:03,060
+mon appartement. La réponse serait l'un des nombreux concepts que j'ai dans mon
+
+72
+00:07:03,060 --> 00:07:08,430
+dictionnaire. Je peux traiter ces deux modalités avec ces deux
+
+73
+00:07:08,430 --> 00:07:13,120
+encodeurs, fusionner la représentation pour qu'elle ne soit qu'une somme des deux
+
+74
+00:07:13,120 --> 00:07:18,389
+représentations qui seront données à la sortie. Ici je peux concaténer les deux
+
+75
+00:07:18,389 --> 00:07:23,800
+vecteurs ensemble, je peux faire une opération différente pour fusionner les deux
+
+76
+00:07:23,800 --> 00:07:31,050
+représentations et je la donnerai à un décodeur qui fera ensuite la prédiction.
+
+77
+00:07:31,050 --> 00:07:39,200
+Je pourrai entraîner ce modèle à reconnaître des objets visuellement et à partir de l'audio.
+
+78
+00:07:39,200 --> 00:07:45,530
+Si je supprime ce décodeur et que je récupère les représentations des deux
+
+79
+00:07:45,530 --> 00:07:52,169
+encodeurs, si je l'entraîne correctement, il est logique de calculer les distances dans cet espace
+
+80
+00:07:52,169 --> 00:07:56,560
+parce que c'est comme si je prenais deux modalités et que je projetais les deux à
+
+81
+00:07:56,560 --> 00:08:04,580
+l’intérieur de cet espace commun. Puisqu'ils sont entraînés pour que l'audio lié
+
+82
+00:08:04,580 --> 00:08:10,570
+à un chat et l’image liée au chat soient plus proches, je peux calculer les distances
+
+83
+00:08:10,570 --> 00:08:16,380
+et je peux construire un moteur de recherche où je dis: « donnez-moi le son le plus
+
+84
+00:08:16,380 --> 00:08:21,770
+probable associé à ce chat ». En calculant simplement la distance dans cet
+
+85
+00:08:21,770 --> 00:08:28,230
+espace latent, je peux récupérer ce point de données et nous dirons que c'est le son
+
+86
+00:08:28,230 --> 00:08:34,639
+le plus probable associé avec cette image et vice-versa. Alors avec
+
+87
+00:08:34,639 --> 00:08:39,699
+ce type d'architecture, nous pouvons faire des choses puissantes en termes de comparaison de
+
+88
+00:08:39,699 --> 00:08:41,750
+données multimodales.

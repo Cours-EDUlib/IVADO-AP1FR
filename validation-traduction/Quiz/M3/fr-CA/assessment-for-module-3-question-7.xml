@@ -1,0 +1,15 @@
+<problem display_name="Question 7" markdown="&gt;&gt; Assume we use the same network from the previous question for CIFAR-10 images (RGB images with size 32x32) and have the same number of classes at the output (10 classes), how many trainable parameters would our network have? &lt;&lt;&#10;&#10;(x) 34 538 {{1st layer: 16 filters of size 5x5x3 + 16 biases = 3*(16*5*5) weights + 16 biases = 1216;&#10;2nd layer: 32 filters of size 5x5x16 + 32 biases = 16*32*5*5 weights + 32biases = 12 832;&#10;FC layer: 8*8*32*10 weights + 10 biases = 20490;&#10;Total: 34 538}}&#10;( ) 34 570 &#10;( ) 86 814 {{RGB does not mean that you have 3x as many parameters as the grayscale model, you need to do the convolution arithmetic per layer.}}&#10;( ) 64 454&#10;&#10;||FC layer: 8*8*32*10 weights + 10 biases.||&#10;||Total = 1st layer + 2nd layer + FC layer.||&#10;" max_attempts="2">
+  <multiplechoiceresponse>
+    <label>Supposons que nous utilisions le même réseau que celui de la question précédente pour les images CIFAR-10 (images RVB de taille 32x32) et que nous avions le même nombre de classes à la sortie (10 classes), combien de paramètres entraînables notre réseau aurait-il ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">34 538 <choicehint>1ère couche</choicehint>:<choicehint> 16 filtres de taille 5x5x3 + 16 biais = 3*(16*5*5) poids + 16 biais = 1216 ; 2ème couche : 32 filtres de taille 5x5x16 + 32 biais = 16*32*5*5 poids + 32 biais = 12 832 ; couche dense: 8*8*32*10 poids + 10 biais = 20490 ; Total : 34 538</choicehint></choice>
+      <choice correct="false">34 570</choice>
+      <choice correct="false">86 814 <choicehint>RVB ne signifie pas que vous avez 3x plus de paramètres que le modèle à niveaux de gris, vous devez faire l&apos;arithmétique de convolution par couche.</choicehint></choice>
+      <choice correct="false">64 454</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Couche dense: 8*8*32*10 poids + 10 biais.</hint>
+    <hint>Total = 1ère couche + 2ème couche + couche FC.</hint>
+  </demandhint>
+</problem>

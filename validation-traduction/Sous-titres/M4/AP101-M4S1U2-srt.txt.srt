@@ -1,0 +1,499 @@
+﻿1
+00:00:13,299 --> 00:00:23,060
+Donc, à ce stade nous sommes prêts à introduire les RNN. Je vais commencer
+
+2
+00:00:23,060 --> 00:00:26,480
+par la définition. Le RNN applique une fonction à une séquence d’entrée
+
+3
+00:00:26,480 --> 00:00:30,740
+pour produire une séquence de sortie, mais la partie intéressante est
+
+4
+00:00:30,740 --> 00:00:38,510
+ce qui vient après. Il le fait en travaillant sur les éléments un par un, donc
+
+5
+00:00:38,510 --> 00:00:42,739
+il ne traite pas la séquence complète, il traite plutôt les éléments de la
+
+6
+00:00:42,739 --> 00:00:47,629
+séquence une à la fois en suivant l'ordre. C’est le premier point intéressant.
+
+7
+00:00:47,629 --> 00:00:53,899
+Le deuxième point est qu'il possède un état interne et essentiellement
+
+8
+00:00:53,899 --> 00:00:59,230
+dans cet état interne, le RNN tente de capturer
+
+9
+00:00:59,230 --> 00:01:07,100
+les informations pertinentes qui ont été vues jusqu'à présent dans le calcul.
+
+10
+00:01:07,100 --> 00:01:12,470
+Ce n’est pas grave si tout n'est pas clair à ce stade, nous allons passer en revue un
+
+11
+00:01:12,470 --> 00:01:18,409
+exemple pour bien comprendre ces deux intuitions. Ici vous voyez cette image
+
+12
+00:01:18,409 --> 00:01:25,700
+qui est en quelque sorte l'image la plus courante pour représenter un RNN et vous pouvez voir
+
+13
+00:01:25,700 --> 00:01:29,540
+qu'il y a une entrée, qui est x, et qu'il y a une sortie, qui est y, et l’état interne
+
+14
+00:01:29,540 --> 00:01:35,600
+qui est appelé h parce que c'est aussi un état caché. Sans doute
+
+15
+00:01:35,600 --> 00:01:40,340
+le seul détail à prendre en compte à ce stade est qu'il existe un indice t.
+
+16
+00:01:40,340 --> 00:01:45,170
+Comme nous l'avons mentionné, le RNN travaille sur la séquence,
+
+17
+00:01:45,170 --> 00:01:49,790
+un élément à la fois, et cet indice indique sur quel élément je travaille.
+
+18
+00:01:49,790 --> 00:01:56,630
+Examinons un exemple pour que cela soit plus clair. Je vais d’abord présenter
+
+19
+00:01:56,630 --> 00:02:01,040
+le problème pour cet exemple : c’est un problème de
+
+20
+00:02:01,040 --> 00:02:06,789
+traitement automatique du langage naturel appelé la reconnaissance d’entité nommée.
+
+21
+00:02:06,789 --> 00:02:12,500
+C’est un problème très connu dans ce domaine, mais si vous n'en avez pas entendu parler,
+
+22
+00:02:12,500 --> 00:02:20,090
+c'est un problème où j'ai un texte et je veux attribuer une étiquette à chaque mot.
+
+23
+00:02:20,090 --> 00:02:24,319
+Cette étiquette m’indique si le mot est une entité
+
+24
+00:02:24,319 --> 00:02:30,739
+et de quel type d'entité il s'agit. Dans ce cas, je n'ai que trois
+
+25
+00:02:30,739 --> 00:02:37,819
+étiquettes  : personne, lieu, et l’étiquette tiret.
+
+26
+00:02:37,819 --> 00:02:42,260
+Celle-ci est une étiquette spéciale qui indique simplement que le mot n'est pas une entité, donc si je prends
+
+27
+00:02:42,260 --> 00:02:46,129
+cet exemple, vous voyez l'entrée qui est « Alan Turing lived in England »
+
+28
+00:02:46,129 --> 00:02:53,659
+et la sortie sera l’étiquette « personne ». Les deux premiers mots
+
+29
+00:02:53,659 --> 00:03:00,409
+réfèrent à une personne, donc je vais leur attribuer l’étiquette de « personne ». Le mot « lived » n'est pas une entité nommée,
+
+30
+00:03:00,409 --> 00:03:05,540
+alors vous voyez que j'utilise l'étiquette - et le dernier mot est un lieu, donc je vais
+
+31
+00:03:05,540 --> 00:03:10,819
+utiliser l'étiquette « LOC » (lieu). Donc ici vous voyez le problème mais maintenant examinons comment
+
+32
+00:03:10,819 --> 00:03:18,469
+utiliser le RNN pour résoudre ce problème. Ici, j'ai encore écrit la définition
+
+33
+00:03:18,469 --> 00:03:26,090
+alors nous pouvons l’utiliser et vous voyez que maintenant, eh bien, il ne s'est rien passé parce que je dois encore
+
+34
+00:03:26,090 --> 00:03:29,689
+exécuter mon RNN ; ce que vous voyez, c'est que j'ai ma séquence d’entrée, qui est
+
+35
+00:03:29,689 --> 00:03:34,069
+« Alan Turing lived in England » et vous voyez que j'ai cette boîte verte
+
+36
+00:03:34,069 --> 00:03:38,060
+à gauche qui est l'état interne que j'ai mentionné précédemment.
+
+37
+00:03:38,060 --> 00:03:42,829
+Et à ce stade, l'état interne ne contient pas encore d'informations intéressantes
+
+38
+00:03:42,829 --> 00:03:48,199
+parce que nous devons encore exécuter le RNN, donc c'est juste un moyen d'initialiser mon système
+
+39
+00:03:48,199 --> 00:03:52,579
+car comme vous le verrez dans les équations, j'ai besoin d'un état interne pour commencer.
+
+40
+00:03:52,579 --> 00:03:58,280
+Cela peut être initialisé de manière aléatoire, par exemple. Alors à ce stade, nous
+
+41
+00:03:58,280 --> 00:04:04,280
+commençons à appliquer notre RNN et, comme nous l'avons dit, nous voulons le faire pas à pas,
+
+42
+00:04:04,280 --> 00:04:10,669
+ce qui signifie que nous partons du pas zéro, qui est le mot « Alan » et en fait le RNN
+
+43
+00:04:10,669 --> 00:04:16,719
+exécute deux opérations à chaque pas de temps : la première opération consiste à
+
+44
+00:04:16,719 --> 00:04:25,159
+calculer un état interne mis à jour, h_0, et cela se fait en suivant
+
+45
+00:04:25,159 --> 00:04:29,030
+certaines équations. Nous verrons ces équations plus tard,
+
+46
+00:04:29,030 --> 00:04:34,580
+mais il est intéressant de noter que pour créer cet état interne mis à jour,
+
+47
+00:04:34,580 --> 00:04:41,490
+l’entrée est l'élément actuel, seulement « Alan » dans ce cas-ci, et l'entrée est aussi
+
+48
+00:04:41,490 --> 00:04:46,530
+l’état interne précédent. C'est de cette manière que nous pouvons avoir les informations pour faire fonctionner le RNN sur un flux de temps.
+
+49
+00:04:46,530 --> 00:04:50,630
+Une fois que le RNN a mis à jour
+
+50
+00:04:50,630 --> 00:04:57,030
+cet état interne et a créé h_0, il passe à la deuxième opération qui est de
+
+51
+00:04:57,030 --> 00:05:04,860
+produire la sortie. La sortie est une fonction de l'état interne
+
+52
+00:05:04,860 --> 00:05:11,010
+que nous venons de produire, donc seulement h_0 et maintenant l'idée est de
+
+53
+00:05:11,010 --> 00:05:16,140
+répéter cela encore et encore pour chaque pas de temps, alors disons que maintenant nous passons au
+
+54
+00:05:16,140 --> 00:05:22,710
+premier pas de temps, qui est « Turing » et vous voyez que nous faisons exactement la même chose et encore une fois je
+
+55
+00:05:22,710 --> 00:05:29,100
+voudrait souligner que l'entrée n'est que le mot Turing et
+
+56
+00:05:29,100 --> 00:05:33,930
+l’état interne précédent. Nous ne prenons pas en compte les autres mots, donc un seul élément à la fois.
+
+57
+00:05:33,930 --> 00:05:39,950
+Une fois que j'ai créé cet état interne h_1, nous produisons la sortie et
+
+58
+00:05:39,950 --> 00:05:45,120
+évidemment nous recommençons ces deux opérations que nous appliquons,
+
+59
+00:05:45,120 --> 00:05:49,200
+donc mettre à jour l'état interne et produire la sortie. Dans ce cas particulier,
+
+60
+00:05:49,200 --> 00:05:55,890
+c'est l'étiquette avec un tiret (-). Nous continuons la procédure et je vais m'arrêter ici pour une seconde
+
+61
+00:05:55,890 --> 00:06:00,270
+parce que je crois que c'est un cas intéressant. Ici, le RNN
+
+62
+00:06:00,270 --> 00:06:05,610
+tente de prédire l'étiquette pour le monde Angleterre et peut-être le RNN
+
+63
+00:06:05,610 --> 00:06:09,680
+ne sait pas que l'Angleterre est un endroit ou bien,
+
+64
+00:06:09,680 --> 00:06:14,970
+à cause de la majuscule, il sait que c’est peut-être un nom de personne ou un lieu, mais
+
+65
+00:06:14,970 --> 00:06:18,510
+il ne sait pas lequel choisir. Ce qui est intéressant avec le RNN,
+
+66
+00:06:18,510 --> 00:06:23,810
+c’est qu'il peut se baser sur les informations tirées du passé. Alors la raison pour laquelle
+
+67
+00:06:23,810 --> 00:06:28,950
+l'entrée n'est pas seulement l'élément mais aussi l’état interne est que nous espérons que
+
+68
+00:06:28,950 --> 00:06:33,240
+le RNN conserve dans l’état interne les informations pertinentes qui
+
+69
+00:06:33,240 --> 00:06:38,430
+sont nécessaires pour la prévision actuelle et pour les prévisions futures et, espérons que
+
+70
+00:06:38,430 --> 00:06:43,080
+le RNN dans cet exemple stocke dans cet état interne h_3, le fait que nous avons vu
+
+71
+00:06:43,080 --> 00:06:48,630
+le mot « in ». Il sait que le mot « in » vient généralement avant un nom de lieu.
+
+72
+00:06:48,630 --> 00:06:53,549
+En réunissant ces deux informations, le RNN a
+
+73
+00:06:53,549 --> 00:06:58,769
+plus d'informations pour prévoir la sortie correcte qui, dans ce cas, est un lieu.
+
+74
+00:06:58,769 --> 00:07:06,869
+À ce stade, nous avons vu cet exemple, alors nous avons comment
+
+75
+00:07:06,869 --> 00:07:10,919
+faire fonctionner le RNN sur la séquence. Nous pouvons aussi dire que
+
+76
+00:07:10,919 --> 00:07:15,089
+nous déployons le RNN sur la séquence. Essayons de formaliser cette architecture
+
+77
+00:07:15,089 --> 00:07:21,299
+un peu plus. Nous pouvons introduire les variables que nous
+
+78
+00:07:21,299 --> 00:07:26,759
+allons utiliser. Donc nous avons déjà vu que nous utiliserons x pour la séquence d'entrée
+
+79
+00:07:26,759 --> 00:07:34,469
+et y pour la séquence de sortie et h pour la séquence d'état interne. En particulier,
+
+80
+00:07:34,469 --> 00:07:39,029
+nous avons vu que nous avons des indices parce que nous avons divers éléments et que l'indice nous indique
+
+81
+00:07:39,029 --> 00:07:44,939
+l’élément auquel on fait référence. À ce stade, nous pouvons faire une autre étape
+
+82
+00:07:44,939 --> 00:07:54,329
+et faire ceci. Alors nous passons de cette version « déployée » à gauche à
+
+83
+00:07:54,329 --> 00:07:58,829
+cette représentation générique à droite qui nous aidera à introduire l'équation.
+
+84
+00:07:58,829 --> 00:08:04,829
+Ce que j'ai fait ici n'est pas trop complexe ; en gros, je représente juste
+
+85
+00:08:04,829 --> 00:08:11,429
+un pas de temps générique « t » au lieu de toute la séquence. Pour vous donner un exemple,
+
+86
+00:08:11,429 --> 00:08:16,199
+je me concentre sur le premier pas de temps. Disons qu'au lieu d’utiliser le pas de temps un, j'utilise
+
+87
+00:08:16,199 --> 00:08:21,329
+l’indice t. J'ai créé cette architecture, et ce qui n’est peut-être pas clair
+
+88
+00:08:21,329 --> 00:08:28,049
+est cette boucle d’asservissement ici et celle-ci nous dit que comme si
+
+89
+00:08:28,049 --> 00:08:33,029
+je reviens à l'exemple un, l’état interne sera également utilisé comme
+
+90
+00:08:33,029 --> 00:08:42,240
+entrée pour le prochain pas de temps de l'application du RNN, donc l'équation suivante.
+
+91
+00:08:42,240 --> 00:08:48,720
+Maintenant que nous avons cette représentation générique, nous pouvons
+
+92
+00:08:48,720 --> 00:08:56,550
+présenter les équations qui régissent le RNN, donc la première chose que nous avons dit
+
+93
+00:08:56,550 --> 00:09:04,860
+que nous avons deux opérations et vous voyez bien les deux équations ici : la première opération et
+
+94
+00:09:04,860 --> 00:09:09,840
+la plus importante du RNN est la création de
+
+95
+00:09:09,840 --> 00:09:18,930
+l'état interne mis à jour, c'est-à-dire h_t, et vous voyez que h_t est juste une fonction de x_t
+
+96
+00:09:18,930 --> 00:09:25,200
+et de l'état interne précédent, donc h_(t-1), ce que
+
+97
+00:09:25,200 --> 00:09:31,260
+vous pouvez voir dans cette image. Comme il s’agit de l’apprentissage profond,
+
+98
+00:09:31,260 --> 00:09:37,380
+nous avons aussi des paramètres et dans ce cas-ci, les paramètres sont U, W et le biais b_h à la fin.
+
+99
+00:09:37,380 --> 00:09:43,380
+Donc vous voyez que nous faisons une multiplication, nous additionnons tout ensemble
+
+100
+00:09:43,380 --> 00:09:48,600
+et nous appliquons la non-linéarité. Dans ce cas, la non-linéarité est la
+
+101
+00:09:48,600 --> 00:09:55,710
+tangente hyperbolique que nous appelons désormais tanh et à la fin
+
+102
+00:09:55,710 --> 00:10:01,950
+j’obtiens cet état interne h_t. Maintenant que la première opération est effectuée, nous devons
+
+103
+00:10:01,950 --> 00:10:06,360
+effectuer la deuxième opération qui consiste à produire la sortie,
+
+104
+00:10:06,360 --> 00:10:14,520
+y_t que vous voyez ici. C’est assez similaire, vous voyez que y_t est une fonction
+
+105
+00:10:14,520 --> 00:10:19,830
+de l'état interne seulement , donc ce h_t que je viens de calculer dans l’opération précédente
+
+106
+00:10:19,830 --> 00:10:25,890
+et vous voyez que nous avons plus des paramètres : nous avons V et
+
+107
+00:10:25,890 --> 00:10:33,650
+le biais b_y. Nous multiplions, nous additionnons et nous appliquons une non-linéarité que j'appelle g et
+
+108
+00:10:33,650 --> 00:10:39,960
+c'est la sortie. La raison pour laquelle je n’indique pas la non-linéarité
+
+109
+00:10:39,960 --> 00:10:46,230
+que vous utilisez ici est parce qu’elle dépend du problème. Si nous gardons
+
+110
+00:10:46,230 --> 00:10:49,890
+l’exemple de reconnaissance d'entités nommées, dans ce cas, il s'agissait d'une tâche de classification et
+
+111
+00:10:49,890 --> 00:10:53,300
+vous auriez pu appliquer une fonction softmax.
+
+112
+00:10:53,300 --> 00:10:57,600
+Mais vous pouvez aussi appliquer d'autres non-linéarités comme
+
+113
+00:10:57,600 --> 00:11:02,460
+des fonctions sigmoïdes et ainsi de suite. À ce stade, nous présentons ici ces
+
+114
+00:11:02,460 --> 00:11:10,710
+paramètres dans ces deux équations, nous introduisons donc U, W, V et les deux biais.
+
+115
+00:11:10,710 --> 00:11:17,070
+Un point très intéressant à retenir et qui a un impact sur la façon dont
+
+116
+00:11:17,070 --> 00:11:22,620
+nous entraînons le modèle est l'architecture : nous devons retenir que ces
+
+117
+00:11:22,620 --> 00:11:27,720
+paramètres sont partagés tout le temps, alors ce n'est clair dans cette image
+
+118
+00:11:27,720 --> 00:11:33,990
+mais ce sera plus clair si nous déployons le RNN, donc si vous vous concentrez sur la partie
+
+119
+00:11:33,990 --> 00:11:40,379
+à droite, vous voyez qu'une fois de plus, nous avons le RNN qui fonctionne sur différents pas de temps 
+
+120
+00:11:40,379 --> 00:11:45,060
+et vous voyez que si je me concentre sur le paramètre W, c'est toujours le même,
+
+121
+00:11:45,060 --> 00:11:49,980
+donc c'est W dans le premier pas de temps est W dans le deuxième et ainsi de suite. Nous utilisons le même paramètre
+
+122
+00:11:49,980 --> 00:11:54,839
+encore et encore et c'est parce que le réseau de neurones récurrent
+
+123
+00:11:54,839 --> 00:11:58,620
+applique toujours la même fonction à chaque pas de temps. Cela signifie que
+
+124
+00:11:58,620 --> 00:12:02,430
+nous utilisons le même paramètre à chaque pas de temps et nous verrons que cela a un impact
+
+125
+00:12:02,430 --> 00:12:14,419
+sur l’entraînement.

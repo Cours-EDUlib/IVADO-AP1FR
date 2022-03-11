@@ -1,0 +1,13 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which three attributes about distributed representations are true? || Please choose 3 options.|| &lt;&lt;&#10;&#10;[x] A. Many processing units per concept {{ selected: A Correct}}&#10;[x] B. Efficient {{selected: B. Correct}}&#10;[x] C. Many concepts per processing unit {{selected: C. Correct}}&#10;[ ] D. Easy to interpret  {{selected: D. Incorrect, since there are many processing units per concept and there are many concepts per processing unit, it is not easy to interpret distributed representations }}&#10;&#10;{{ ((A B C D)) Please choose 3 options. }}" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Quels sont les trois vrais attributs des représentations distribuées?</label>
+    <description>Veuillez choisir 3 options.</description>
+    <checkboxgroup>
+      <choice correct="true">A. Chaque concept est associé à plusieurs unités de traitement <choicehint selected="true">A Correct</choicehint></choice>
+      <choice correct="true">B. Les représentations distribuées sont efficaces <choicehint selected="true">B. Correct</choicehint></choice>
+      <choice correct="true">C. Chaque unité de traitement est associée à plusieurs concepts <choicehint selected="true">C. Correct</choicehint></choice>
+      <choice correct="false">D. Les représentations distribuées sont faciles à interpréter <choicehint selected="true">D. Incorrect: puisqu&apos;il y a de nombreuses unités de traitement par concept et de nombreux concepts par unité de traitement, ce n&apos;est pas facile d&apos;interpréter les représentations distribuées</choicehint></choice>
+      <compoundhint value="A B C D">Veuillez choisir 3 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

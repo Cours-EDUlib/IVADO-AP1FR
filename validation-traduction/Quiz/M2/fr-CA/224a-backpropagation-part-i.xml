@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which equation correctly represents the gradient for the simple graph used at the beginning of the video? &lt;&lt;&#10;&#10;( ) [mathjaxinline] (\nabla_z)_j = \sum_i g_i' (\sum_j f_{i\rightarrow j} (x_j) ) f'_{j\rightarrow i} (x_j) [/mathjaxinline] {{ The layer is from  [mathjaxinline] j [/mathjaxinline] to [mathjaxinline] i [/mathjaxinline] }}&#10;&#10;( ) [mathjaxinline] (\nabla_z)_j = \sum_i g_i' (\sum_j f_{j\rightarrow i} (x_j) ) f_{j\rightarrow i} (x_j) [/mathjaxinline] {{ The last term is [mathjaxinline] f’ [/mathjaxinline] not  [mathjaxinline] f [/mathjaxinline]}} &#10;&#10;(x) [mathjaxinline] (\nabla_z)_j = \sum_i g_i' (\sum_j f_{j\rightarrow i} (x_j) ) f'_{j\rightarrow i} (x_j) [/mathjaxinline] &#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle équation représente correctement le gradient du graphe simple utilisé au début de la vidéo ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">[mathjaxinline] (\nabla_z)_j = \sum_i g_i&apos; (\sum_j f_{i\rightarrow j} (x_j) ) f&apos;_{j\rightarrow i} (x_j) [/mathjaxinline] <choicehint>La couche est de [mathjaxinline] j [/mathjaxinline] à [mathjaxinline] i [/mathjaxinline]</choicehint></choice>
+      <choice correct="false">[mathjaxinline] (\nabla_z)_j = \sum_i g_i&apos; (\sum_j f_{j\rightarrow i} (x_j) ) f_{j\rightarrow i} (x_j) [/mathjaxinline] <choicehint>Le dernier terme est [mathjaxinline] f’ [/mathjaxinline] pas [mathjaxinline] f [/mathjaxinline]</choicehint></choice>
+      <choice correct="true">[mathjaxinline] (\nabla_z)_j = \sum_i g_i&apos; (\sum_j f_{j\rightarrow i} (x_j) ) f&apos;_{j\rightarrow i} (x_j) [/mathjaxinline]</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

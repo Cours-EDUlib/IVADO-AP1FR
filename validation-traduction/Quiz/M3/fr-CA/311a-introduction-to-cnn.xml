@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; CNNs were introduced to encourage neural networks to focus on _________ in images. &lt;&lt;&#10;&#10;[[&#10;sharpness {{While CNNs can learn to focus on sharpness, it may learn to focus on other aspects.}}&#10;global features {{Global features are more complex and unique to images, which makes them harder to learn.}}&#10;(local features) {{CNNs focus on local features and build up complex representations of images by composing these local features together through multiple layers.}}&#10;brightness {{While CNNs can learn to focus on brightness, it may learn to focus on other aspects.}}&#10;]]&#10;&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>Les RNC ont été introduits pour encourager les réseaux de neurones à se concentrer sur _________ dans les images.</label>
+    <optioninput>
+      <option correct="False">La netteté <optionhint>Si les RNC peuvent apprendre à se concentrer sur la netteté, ils peuvent aussi apprendre à se concentrer sur d&apos;autres aspects.</optionhint></option>
+      <option correct="False">Les caractéristiques globales <optionhint> Les caractéristiques globales sont plus complexes et uniques aux images, ce qui les rend plus difficiles à apprendre</optionhint>.</option>
+      <option correct="True">Les caractéristiques locales <optionhint>Les RNC se concentrent sur les caractéristiques locales et construisent des représentations complexes d&apos;images en composant ces caractéristiques locales ensemble à travers plusieurs couches</optionhint>.</option>
+      <option correct="False">La luminosité <optionhint>Si les RNC peuvent apprendre à se concentrer sur la luminosité, ils peuvent aussi apprendre à se concentrer sur d&apos;autres aspects.</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>

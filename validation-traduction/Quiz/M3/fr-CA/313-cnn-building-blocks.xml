@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which of the following is the correct order of the building blocks in a typical CNN? &lt;&lt;&#10;&#10;( ) Non-linear activation → convolution → pooling {{ The convolution comes before non-linear activation}}&#10;( ) Non-linear activation → pooling → convolution {{ Convolution comes before pooling and non-linear activation}}&#10;(x) Convolution → non-linear activation → pooling" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quel est l&apos;ordre correct des éléments constitutifs d&apos;un RNC typique ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Activation non linéaire → convolution → mise en commun <choicehint>La convolution précède l&apos;activation non linéaire</choicehint></choice>
+      <choice correct="false">Activation non linéaire → mise en commun → convolution<choicehint>La convolution vient avant la mise en commun et l&apos;activation non linéaire</choicehint></choice>
+      <choice correct="true">Convolution → activation non linéaire → mise en commun</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

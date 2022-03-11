@@ -1,0 +1,14 @@
+<problem display_name="Quiz" markdown="&gt;&gt; The metric to evaluate a bounding box is called ________ and it is the ratio of ________ over ________. &lt;&lt;&#10;&#10;( ) Structured output, area of overlap, area of union  {{ The metric is called intersection over union }}&#10;( ) Union over intersection, area of overlap, area of union  {{ The metric is called intersection over union, not union over intersection }}&#10;(x) Intersection over union, area of overlap, area of union &#10;( ) Intersection over union, area of union, area of overlap  {{ The ratio is the area of overlap over area of union }}&#10;&#10;||Check the video at 2:52. ||&#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>La mesure permettant d&apos;évaluer une boîte englobante est appelée ________ et il s&apos;agit du rapport entre ________ et ________.</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Sortie structurée, zone d’intersection, zone d&apos;union <choicehint>La métrique est appelée intersection sur union</choicehint></choice>
+      <choice correct="false">Union sur intersection, zone d’intersection, zone d&apos;union <choicehint>La métrique est appelée intersection sur union, et non union sur intersection</choicehint></choice>
+      <choice correct="true">Intersection sur union, zone d’intersection, zone d&apos;union</choice>
+      <choice correct="false">Intersection sur union, zone d&apos;union, zone d’intersection <choicehint>Le ratio est la zone d’intersection sur la zone d&apos;union</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Regardez la vidéo à 2:52.</hint>
+  </demandhint>
+</problem>

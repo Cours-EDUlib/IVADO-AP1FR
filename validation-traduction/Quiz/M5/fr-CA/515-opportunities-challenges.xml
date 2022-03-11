@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt;Fairness under composition states that by satisfying group or individual fairness in isolation, whole systems built by these isolated classifiers are fair.|| Is this statement true or false? &lt;&lt;&#10;&#10;( ) True {{Classifiers that are fair in isolation (individual or group fairness) do not necessarily compose into fair systems.}}&#10;(x) False {{Classifiers that are fair in isolation (individual or group fairness) do not necessarily compose into fair systems.}}&#10;&#10;&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>L&apos;équité dans la composition stipule qu&apos;en satisfaisant à l&apos;équité de groupe ou individuelle de manière isolée, des systèmes entiers composés de ces classificateurs isolés sont équitables.</label>
+    <description>Cette déclaration est-elle vraie ou fausse ?</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>Les classificateurs qui sont équitables séparément (équité individuelle ou de groupe) ne constituent pas nécessairement des systèmes équitables.</choicehint></choice>
+      <choice correct="true">Faux <choicehint>Les classificateurs qui sont équitables séparément (équité individuelle ou de groupe) ne constituent pas nécessairement des systèmes équitables.</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

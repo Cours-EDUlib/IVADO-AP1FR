@@ -1,0 +1,11 @@
+<problem display_name="Question 1" markdown="&gt;&gt;Which of the following building blocks are you likely to find in a typical CNN architecture?&lt;&lt;&#10;&#10;[x] A. Pooling layers {{ selected: A. True. Pooling layers are used for downsampling.}}&#10;[x] B. Convolutional layers {{selected: B. True. Convolutional layers are the key component in Convolutional Neural Networks. }}&#10;[x] C. Fully connected layers {{selected: C. True. CNNs will often be topped with MLPs and then a softmax to obtain a probability distribution that sums to 1. }}&#10;[x] D. Activation functions {{selected: D. True. Activation functions introduce nonlinearity into the architecture.}}&#10;&#10;" max_attempts="2">
+  <choiceresponse>
+    <label>Parmi les éléments suivants, quels sont ceux que vous êtes susceptible de trouver dans une architecture typique de RNC (CNN) ?</label>
+    <checkboxgroup>
+      <choice correct="true">A. Des couches de mise en commun<choicehint selected="true">A. Vrai</choicehint>.<choicehint selected="true"> Les couches de mise en commun sont utilisées pour le sous-échantillonnage.</choicehint></choice>
+      <choice correct="true">B. Des couches convolutives<choicehint selected="true">B. vrai Les couches convolutives sont la composante clé des réseaux de neurones convolutifs.</choicehint></choice>
+      <choice correct="true">C. Des couches entièrement connectées <choicehint selected="true">C. Vrai</choicehint>.<choicehint selected="true"> Les RNC ont souvent des couches denses suivies d&apos;une fonction softmax à la fin du réseau pour obtenir une distribution de probabilité dont la somme est de 1.</choicehint></choice>
+      <choice correct="true">D. Les fonctions d’activation <choicehint selected="true">D. vrai Les fonctions d&apos;activation introduisent la non-linéarité dans l&apos;architecture.</choicehint></choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

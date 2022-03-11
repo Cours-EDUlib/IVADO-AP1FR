@@ -1,0 +1,8 @@
+<p>Mirko begins the section on Sequence-to-Sequence models by recapping the RNN and its variants such as the LSTM, which will be the base for this new architecture.</p>
+<p>All reverence materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/695f1a4ca0ea464b9b898695473ab7c6/66fa872ed98e4fde9d9209a7fe12879f/10?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%4004be35519d5947139a5241679d13b893" target="_blank">4.2 - References</a></p>
+<p></p>
+
+
+
+<!-- Next step -->
+<p>There is no quiz for this section. Please move on to the next video.</p>

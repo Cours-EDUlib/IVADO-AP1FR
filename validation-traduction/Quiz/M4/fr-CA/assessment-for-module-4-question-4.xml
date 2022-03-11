@@ -1,0 +1,15 @@
+<problem display_name="Question 4" markdown="&gt;&gt;What two principles help NLP practitioners link words to semantics? ||Please choose 2 options.|| &lt;&lt;&#10;&#10;[x] A. The distributional hypothesis {{ selected: A. True, the distributional hypothesis states that words that carry a similar meaning tend to appear in a similar context. This can be used to create a relationship between words, context and semantics. }}&#10;[ ] B. Local connectivity {{selected: B. Incorrect, local connectivity is a core principle for CNNs, but not for NLP. }}&#10;[x] C. The principle of compositionality {{selected: C. True, the principle of compositionality is important because it states that by understanding the words and the rules that link them together, the meaning of a complex expression can be retrieved. This principle aligns naturally with the feature-building idea behind deep learning.}}&#10;&#10;{{ ((A B C)) Please choose 2 options. }}&#10;&#10;||What is the link between local connectivity and the convolution operation?||" max_attempts="2">
+  <choiceresponse>
+    <label>Quels sont les deux principes qui aident les experts en TLN à relier les mots à la sémantique ?</label>
+    <description>Veuillez choisir 2 options.</description>
+    <checkboxgroup>
+      <choice correct="true">A. L&apos;hypothèse distributionnaliste <choicehint selected="true">A. Vrai, l&apos;hypothèse de répartition indique que les mots qui ont un sens similaire ont tendance à apparaître dans un contexte similaire. Elle peut être utilisée pour créer une relation entre les mots, le contexte et la sémantique.</choicehint></choice>
+      <choice correct="false">B. La connectivité locale <choicehint selected="true">B. Incorrect, la connectivité locale est un principe de base pour les CNN, mais pas pour le TLN.</choicehint></choice>
+      <choice correct="true">C. Le principe de compositionnalité <choicehint selected="true">C. Vrai, le principe de compositionnalité est important, car il stipule que la compréhension des mots et des règles qui les relient entre eux aide à déterminer le sens d&apos;une expression complexe. Ce principe s&apos;aligne naturellement sur la découverte de caractéristiques, l’idée derrière l&apos;apprentissage profond.</choicehint></choice>
+      <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+  <demandhint>
+    <hint>Quel est le lien entre la connectivité locale et l&apos;opération de convolution?</hint>
+  </demandhint>
+</problem>

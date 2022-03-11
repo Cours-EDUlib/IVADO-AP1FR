@@ -1,0 +1,191 @@
+﻿1
+00:00:13,330 --> 00:00:19,900
+Alors maintenant il est temps d'introduire le transformateur (réseau de neurones à auto-attention). Le transformateur a été introduit
+
+2
+00:00:19,900 --> 00:00:24,710
+dans cet article il y a deux ans, l’article est intitulé <i>Attention is all you need</i>.
+
+3
+00:00:24,710 --> 00:00:29,599
+Vous pouvez sans doute avoir l'intuition ici qu'il sera fortement basé sur
+
+4
+00:00:29,599 --> 00:00:37,989
+l’idée d'attention. L'article traitant du transformateur propose beaucoup
+
+5
+00:00:37,989 --> 00:00:42,739
+de points intéressants qui sont utilisés pour rendre cette architecture très efficace et pour qu’elle
+
+6
+00:00:42,739 --> 00:00:47,000
+fonctionne extrêmement bien. Nous n'avons malheureusement pas le temps de passer en revue toutes ces points.
+
+7
+00:00:47,000 --> 00:00:51,289
+Je vais donc en mentionner brièvement quelques-uns, mais je vais me concentrer
+
+8
+00:00:51,289 --> 00:00:55,550
+sur deux en particulier qui nous intéressent :
+
+9
+00:00:55,550 --> 00:01:01,340
+la partie qui remplacera le RNN. Mais avant d’aborder ces points avec vous, vous pouvez voir ici à droite
+
+10
+00:01:01,340 --> 00:01:06,530
+l'architecture du transformateur. Alors vous pouvez voir qu'elle est complexe,
+
+11
+00:01:06,530 --> 00:01:12,590
+mais vous devriez être capable de repérer l'architecture familière de l’encodeur-décodeur.
+
+12
+00:01:12,590 --> 00:01:16,790
+Vous voyez l’élément à gauche, qui s'agit de l'encodeur qui traite
+
+13
+00:01:16,790 --> 00:01:22,369
+la séquence d'entrée et l’élément à droite, ce sera le décodeur qui
+
+14
+00:01:22,369 --> 00:01:27,799
+produit la séquence de sortie. Nous avons mentionnée précédemment que nous voulons garder
+
+15
+00:01:27,799 --> 00:01:30,799
+trois choses du modèle séquence à séquence avec attention :
+
+16
+00:01:30,799 --> 00:01:34,820
+l'architecture encodeur-décodeur que vous voyez ici, le mécanisme d'attention et
+
+17
+00:01:34,820 --> 00:01:39,470
+vous pouvez le voir ici, donc ici vous voyez l'attention multi-têtes qui va de
+
+18
+00:01:39,470 --> 00:01:43,640
+l’encodeur au décodeur afin que celui-ci puisse observer les informations précédentes exactement comme nous l'avons fait
+
+19
+00:01:43,640 --> 00:01:48,020
+avec l'exemple du modèle séquence à séquence. En fait, vous voyez que
+
+20
+00:01:48,020 --> 00:01:53,540
+l'attention est également utilisée dans d'autres points, vous voyez donc qu'elle est utilisée ici et aussi là.
+
+21
+00:01:53,540 --> 00:01:57,979
+Et c'est cette partie que nous verrons plus en détail dans le reste
+
+22
+00:01:57,979 --> 00:02:02,840
+de la présentation. Le troisième point que nous avons mentionné est que
+
+23
+00:02:02,840 --> 00:02:08,840
+nous voulons garder la nature autorégressive du décodeur et vous ne pouvez pas le voir
+
+24
+00:02:08,840 --> 00:02:12,920
+dans l’image, mais c’est toujours le cas,
+
+25
+00:02:12,920 --> 00:02:21,380
+le décodeur fonctionne toujours de manière autorégressive.
+
+26
+00:02:21,380 --> 00:02:24,709
+Alors ici vous voyez les points clés de cet article en ce qui concerne
+
+27
+00:02:24,709 --> 00:02:29,810
+l'architecture et le premier point est celui qui nous intéresse vraiment,
+
+28
+00:02:29,810 --> 00:02:34,849
+donc le RNN sera remplacé par l’auto-attention et
+
+29
+00:02:34,849 --> 00:02:41,510
+l'attention multi-têtes, nous verrons ces deux techniques dans la prochaine diapositive.
+
+30
+00:02:41,510 --> 00:02:45,049
+Je vais mentionner une autre chose, mais je n'entrerai pas dans les détails.
+
+31
+00:02:45,049 --> 00:02:51,439
+Les transformateurs utilisent des codages de position, qui est une façon de comprendre la position des mots
+
+32
+00:02:51,439 --> 00:02:56,389
+dans cette architecture et cela donne plus d'informations sur la position.
+
+33
+00:02:56,389 --> 00:03:01,579
+Ils utilisent également des connexions résiduelles, donc c'est exactement ce que vous avez vu hier avec les CNN.
+
+34
+00:03:01,579 --> 00:03:07,609
+La raison pour laquelle nous utilisons la connexion résiduelle est que vous voyez ici
+
+35
+00:03:07,609 --> 00:03:13,519
+cette architecture, le transformateur est représenté par N et x,
+
+36
+00:03:13,519 --> 00:03:18,859
+qui signifie en gros que je peux avoir plusieurs couches et en fait, il comporte plusieurs couches.
+
+37
+00:03:18,859 --> 00:03:23,930
+Je crois que dans le document original, le transformateur en comportait 12 mais aujourd'hui nous pouvons utiliser 24 couches et
+
+38
+00:03:23,930 --> 00:03:28,400
+il existe certainement des architectures qui en comportent plus de 24. Cela signifie que le gradient
+
+39
+00:03:28,400 --> 00:03:33,169
+a de la difficulté à s'intégrer dans cette architecture très complexe, exactement comme dans le cours de hier,
+
+40
+00:03:33,169 --> 00:03:38,389
+où nous avons utilisé cette connexion résiduelle que vous voyez ici pour permettre
+
+41
+00:03:38,389 --> 00:03:45,260
+au gradient de circuler plus facilement. Il y a aussi une normalisation des couches, alors hier vous avez vu
+
+42
+00:03:45,260 --> 00:03:48,650
+la normalisation par lots, donc nous normalisons par rapport
+
+43
+00:03:48,650 --> 00:03:54,169
+à la dimension des lots. Ici, c’est la même idée mais nous normalisons dans la dimension des couches
+
+44
+00:03:54,169 --> 00:04:00,169
+ainsi que dans la dimension temporelle. Les transformateurs utilisent aussi un réseau de neurones à propagation directe en fonction de la position,
+
+45
+00:04:00,169 --> 00:04:03,799
+ce qui signifie essentiellement qu'ils ont un perceptron multicouche
+
+46
+00:04:03,799 --> 00:04:07,370
+qu’ils peuvent utiliser à chaque élément. L'intuition ici est que cela permet
+
+47
+00:04:07,370 --> 00:04:12,680
+au modèle d’avoir plus de flexibilité, mais les deux points vraiment intéressants sont les suivants :
+
+48
+00:04:12,680 --> 00:04:17,889
+l'auto-attention et l'attention multi-têtes que nous allons voir après.

@@ -1,0 +1,17 @@
+<problem display_name="Question 6" markdown="null" max_attempts="2">
+  <multiplechoiceresponse>
+    <p>Considérons l&apos;architecture suivante utilisée sur MNIST. Nous avons 10 classes et des images d&apos;entrée de taille 28x28.</p>
+    <img src="/static/quiz_336b.png" width="100%" alt="First layer: convolution. 16 filters, kernel size = 5 stride = 1 padding = 2. Second layer: max pooling. kernel size = 2. Third layer: convolution. 32 filters, kernel size = 5 stride = 1 padding = 2. Fourth layer: max pooling. kernel size = 2. Fifth layer: Fully connected layer. Dimensions are 7 by 7 by 32. Sixth layer: Output layer. Size 10. Seventh layer: loss. softmax + cross-entropy." height="auto"/>
+    <label>Combien de paramètres pouvant être entraînés avons-nous au total ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">784</choice>
+      <choice correct="false">64 454</choice>
+      <choice correct="true">28 938 <choicehint>1st layer: 28 938  16 filtres de taille 5x5 + 16 biais = 16*5*5 + 16 = 416 ; 2ème couche : 16 * 32 filtres de taille 5x5 + 32 biais = 16*32*5*5 + 32 = 12 832 ; couche dense: 7*7*32*10 + 10 biais = 15 690 ; Total = 416 + 12 832 + 15 690 = 28 938</choicehint></choice>
+      <choice correct="false">28 800</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>1ère couche : 16 filtres de taille 5x5 + 16 biais</hint>
+    <hint>Total = 1ère couche + 2ème couche + couche dense</hint>
+  </demandhint>
+</problem>

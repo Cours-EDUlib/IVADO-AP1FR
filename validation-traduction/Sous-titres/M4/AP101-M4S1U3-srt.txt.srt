@@ -1,0 +1,471 @@
+﻿1
+00:00:13,309 --> 00:00:21,359
+Donc à ce stade, laissez-moi faire un bref résumé. Nous ayons vu une classe
+
+2
+00:00:21,359 --> 00:00:27,750
+de problèmes que nous voulons résoudre. La principale caractéristique est que
+
+3
+00:00:27,750 --> 00:00:33,420
+les données peuvent être sous forme de séquences. Nous avons essayé de les résoudre avec un MLP
+
+4
+00:00:33,420 --> 00:00:38,370
+et avec un CNN. Nous avons vu qu'il y a certains inconvénients et qu'en raison de ceux-ci
+
+5
+00:00:38,370 --> 00:00:44,489
+nous avons introduit une nouvelle architecture que nous appelons le réseau neuronal récurrent
+
+6
+00:00:44,489 --> 00:00:49,140
+pour résoudre ces problèmes. Nous avons vu l’exemple courant et nous avons notamment
+
+7
+00:00:49,140 --> 00:00:55,860
+abouti à l'équation. Voici les deux points importants à retenir concernant le RNN :
+
+8
+00:00:55,860 --> 00:01:01,199
+le premier point est qu'il traite la séquence en prenant en compte un élément à la fois.
+
+9
+00:01:01,199 --> 00:01:07,380
+Le deuxième point est qu’il garde un état interne et dans cet état interne,
+
+10
+00:01:07,380 --> 00:01:14,130
+il tente de stocker les informations du calcul qui sont pertinentes jusqu'à présent
+
+11
+00:01:14,130 --> 00:01:18,420
+et qui peuvent aider à faire la prévision actuelle ou des prévisions futures.
+
+12
+00:01:18,420 --> 00:01:23,070
+Il y a un autre point important :
+
+13
+00:01:23,070 --> 00:01:28,920
+ces paramètres sont partagés au fil du temps et nous allons voir plus à ce sujet dans la présentation.
+
+14
+00:01:28,920 --> 00:01:34,350
+Alors comment entraîner un RNN? La première chose à noter, avant de passer
+
+15
+00:01:34,350 --> 00:01:40,430
+à la diapositive est que le RNN est un modèle d'apprentissage profond, ce qui veut dire que 
+
+16
+00:01:40,430 --> 00:01:50,130
+les techniques d’entraînement s'appliquent. Cela signifie que nous allons faire fonctionner notre modèle sur les
+
+17
+00:01:50,130 --> 00:01:56,549
+données d’apprentissage. En ce faisant, nous aurons des prédictions.
+
+18
+00:01:56,549 --> 00:02:03,060
+Nous allons comparer ces prévisions avec les objectifs, ou les résultats attendus,
+
+19
+00:02:03,060 --> 00:02:08,789
+et nous utiliserons une fonction pour calculer l'erreur. Une fois l'erreur détectée, nous essaierons de
+
+20
+00:02:08,789 --> 00:02:12,720
+comprendre dans quelle mesure les différents paramètres du modèle ont contribué à
+
+21
+00:02:12,720 --> 00:02:17,280
+cette erreur. Si le paramètre
+
+22
+00:02:17,280 --> 00:02:20,849
+a contribué beaucoup, il faut apporter beaucoup de changements à ce paramètre afin de
+
+23
+00:02:20,849 --> 00:02:24,510
+minimiser l'erreur. Si ce paramètre, disons, n'a pas contribué à l'erreur,
+
+24
+00:02:24,510 --> 00:02:29,040
+alors nous n'y touchons pas. Quand nous parlons de calculer à quelle mesure
+
+25
+00:02:29,040 --> 00:02:33,480
+le paramètre contribue à l'erreur, cela signifie que nous calculons essentiellement le gradient de
+
+26
+00:02:33,480 --> 00:02:38,040
+l’erreur par rapport à ce paramètre. Vous avez appris comment faire cela au deuxième jour.
+
+27
+00:02:38,040 --> 00:02:47,000
+C'est la formation générale d’apprentissage profond, mais ici nous avons
+
+28
+00:02:47,000 --> 00:02:55,200
+deux questions à considérer : la première est que si vous regardez cette diapositive,
+
+29
+00:02:55,200 --> 00:02:59,610
+dans cet exemple, nous avons un nombre T de sorties et
+
+30
+00:02:59,610 --> 00:03:05,849
+cela signifie que je vais me retrouver avec un nombre T d’erreurs. Donc je n'ai pas seulement
+
+31
+00:03:05,849 --> 00:03:12,120
+une erreur, j'en ai plusieurs et nous devons prendre des mesures pour y remédier. Nous pouvons dire que
+
+32
+00:03:12,120 --> 00:03:16,019
+l'erreur globale qui est définie au bas de la diapositive est essentiellement
+
+33
+00:03:16,019 --> 00:03:21,959
+la somme des différentes erreurs, mais nous ne savons toujours pas comment calculer le
+
+34
+00:03:21,959 --> 00:03:27,900
+gradient parce que nous avons plus d'une erreur à prendre en compte. Voyons comment
+
+35
+00:03:27,900 --> 00:03:35,519
+faire cela : il s'avère que ce n'est pas si difficile parce qu'en fin de compte,
+
+36
+00:03:35,519 --> 00:03:42,000
+nou calculons le gradient par rapport à toutes les
+
+37
+00:03:42,000 --> 00:03:48,030
+erreurs séparément et nous allons simplement additionner le gradient à la fin.
+
+38
+00:03:48,030 --> 00:03:54,209
+En gros, c’est comme une boucle for qui passe sur ces erreurs et vous pouvez le voir dans cet exemple ici.
+
+39
+00:03:54,209 --> 00:04:00,660
+Donc ici je me concentre juste sur le paramètre V et encore une fois vous voyez qu’il y a
+
+40
+00:04:00,660 --> 00:04:05,790
+trois erreurs et nous allons calculer le gradient de ces trois erreurs
+
+41
+00:04:05,790 --> 00:04:12,680
+séparément et les additionner à la fin. Voyons-en un exemple.
+
+42
+00:04:12,680 --> 00:04:18,209
+Donc ici nous commençons par l'erreur E_2, qui est celle de droite et vous voyez que nous
+
+43
+00:04:18,209 --> 00:04:26,000
+calculons le gradient de E_2 par rapport à V.
+
+44
+00:04:26,190 --> 00:04:30,570
+Nous pouvons appliquer la règle de dérivation en chaîne si nécessaire, mais au final, supposons que nous nous retrouvons avec
+
+45
+00:04:30,570 --> 00:04:35,460
+ce gradient ici, donc ce n'est qu'une partie du travail, comme nous avons dit que nous allons considérer
+
+46
+00:04:35,460 --> 00:04:39,720
+toutes les erreurs si nous voulons une rétropropagation correcte. Maintenant nous passons à
+
+47
+00:04:39,720 --> 00:04:45,180
+l'autre erreur E_1 et nous calculons ici le gradient de E_1 par rapport à V.
+
+48
+00:04:45,180 --> 00:04:51,890
+Une fois que c’est fait, nous devons le faire avec la dernière erreur qui est E_0.
+
+49
+00:04:51,890 --> 00:04:57,300
+Comme vous pouvez voir, nous savons comment faire car c'est le calcul du gradient
+
+50
+00:04:57,300 --> 00:05:02,330
+habituel, il suffit de le faire séparément pour chaque erreur et à la fin
+
+51
+00:05:02,330 --> 00:05:09,060
+on additionne tous ces gradients et on obtient le gradient pour
+
+52
+00:05:09,060 --> 00:05:14,250
+l’erreur globale par rapport à V. C'est le gradient correct dont nous avons besoin
+
+53
+00:05:14,250 --> 00:05:20,070
+pour la rétropropagation. Cela peut sembler complexe, mais en fin de compte, c'est juste une boucle for qui passe
+
+54
+00:05:20,070 --> 00:05:28,620
+sur ces erreurs et l'opération principale consiste à calculer le gradient.
+
+55
+00:05:28,620 --> 00:05:33,480
+Donc c’était le premier problème, mais il y a un autre problème, même si nous nous concentrons
+
+56
+00:05:33,480 --> 00:05:38,730
+sur une erreur, comme dans cet exemple, je me concentre sur l'erreur E_2 et je
+
+57
+00:05:38,730 --> 00:05:47,370
+prends en compte le paramètre U. Étant donné que les paramètres sont partagés dans le calcul,
+
+58
+00:05:47,370 --> 00:05:51,870
+ce paramètre U a peut-être été utilisé plus d'une fois et
+
+59
+00:05:51,870 --> 00:05:56,730
+dans ce cas-ci, vous voyez qu'il a été utilisé trois fois, ce qui signifie
+
+60
+00:05:56,730 --> 00:06:03,690
+qu’il faut tenir compte de ces trois fois dans le calcul effectué ici
+
+61
+00:06:03,690 --> 00:06:09,030
+et c'est ce qu'on appelle la rétropropagation à travers le temps. C’est un nom sophistiqué
+
+62
+00:06:09,030 --> 00:06:14,370
+pour indiquer que nous ne considérons pas seulement le paramètre
+
+63
+00:06:14,370 --> 00:06:17,880
+au pas de temps actuel, mais nous considérons aussi ceux du passé, donc c'est comme
+
+64
+00:06:17,880 --> 00:06:23,100
+si nous remontons dans le temps. Mais même si vous vous concentrez sur une erreur, les paramètres ont peut-être
+
+65
+00:06:23,100 --> 00:06:27,720
+a été utilisés plus d'une fois parce qu'ils sont partagés au fil du temps, alors voyons comment remédier à cela.
+
+66
+00:06:27,720 --> 00:06:30,150
+C'est la même idée qu’avant :
+
+67
+00:06:30,150 --> 00:06:35,729
+nous voulons calculer tous ces gradients séparément, donc le gradient de
+
+68
+00:06:35,729 --> 00:06:39,750
+E_2 par rapport au U, à droite sur cette diapositive,
+
+69
+00:06:39,750 --> 00:06:42,630
+et ensuite le gradient de E_2 par rapport au U du milieu et ainsi de suite,
+
+70
+00:06:42,630 --> 00:06:47,700
+et nous les additionnons à la fin. L'idée est similaire à ce que nous avons vu avant.
+
+71
+00:06:47,700 --> 00:06:51,630
+J'ai déjà mentionné à plusieurs reprises la raison pour laquelle on appelle cela la rétropropagation temporelle.
+
+72
+00:06:51,630 --> 00:06:57,600
+Je vais vous montrer un exemple pour que vous comprenez ce que nous faisons.
+
+73
+00:06:57,600 --> 00:07:01,530
+Ici, je prends en compte seulement
+
+74
+00:07:01,530 --> 00:07:07,800
+E_2 et je veux calculer le gradient par rapport à U.Je vais commencer par U ici
+
+75
+00:07:07,800 --> 00:07:13,350
+et vous voyez que le gradient ici est
+
+76
+00:07:13,350 --> 00:07:16,980
+la multiplication de ces deux gradients car je passe de E_2 à h_2 et
+
+77
+00:07:16,980 --> 00:07:21,720
+puis h_2 à x_2, ce qui correspond à la règle de dérivation en chaîne que vous avez vue
+
+78
+00:07:21,720 --> 00:07:29,310
+avec Gaétan lors de la deuxième journée. À ce stade, nous en avons fini avec le gradient
+
+79
+00:07:29,310 --> 00:07:36,510
+pour U mais maintenant je dois continuer et je dois prendre en compte U ici.
+
+80
+00:07:36,510 --> 00:07:39,600
+Alors pour U, vous voyez que je calcule
+
+81
+00:07:39,600 --> 00:07:44,370
+E_2 par rapport à h_2, h_2 par rapport à h_1, et ensuite h_1
+
+82
+00:07:44,370 --> 00:07:49,050
+par rapport à U et, à ce stade, j'ai aussi fini avec U.
+
+83
+00:07:49,050 --> 00:07:55,620
+Ici, je les additionne tous mais je dois encore en faire un, celui de gauche.
+
+84
+00:07:55,620 --> 00:08:05,340
+Encore une fois, on passe de E_2 à h_2, h_2 à h_1, h_1 à h_0, et ensuite h_0 à U et je peux
+
+85
+00:08:05,340 --> 00:08:13,200
+appliquer cette règle de dérivation en chaîne car toutes fonctions sont des compositions de fonctions.
+
+86
+00:08:13,200 --> 00:08:17,310
+Ce qui est intéressant, c'est que pour avoir ce gradient par rapport à U,
+
+87
+00:08:17,310 --> 00:08:23,280
+je dois faire la somme de ces trois éléments.
+
+88
+00:08:23,280 --> 00:08:27,990
+Une chose intéressante qui se produit et qui causera
+
+89
+00:08:27,990 --> 00:08:32,130
+des problèmes plus tard, c'est que plus on va à gauche, donc plus on
+
+90
+00:08:32,130 --> 00:08:37,469
+prend en compte U qui est loin dans le temps, plus cette chaîne de
+
+91
+00:08:37,469 --> 00:08:44,940
+la multiplication s'allonge. Nous verrons que cela peut poser problème.
+
+92
+00:08:44,940 --> 00:08:49,170
+À ce stade, nous venons de finir avec E_2, nous devons donc nous rappeler que
+
+93
+00:08:49,170 --> 00:08:53,190
+nous voulons faire de même pour toutes les autres erreurs.
+
+94
+00:08:53,190 --> 00:08:58,500
+Alors ici vous voyez que je dois aussi prendre en compte E_1.
+
+95
+00:08:58,500 --> 00:09:05,270
+C'est à peu près la même idée, donc pour E_1 je ne devrai considérer que deux U,
+
+96
+00:09:05,270 --> 00:09:11,220
+parce que les deux seuls U que j'ai utilisés pour calculer
+
+97
+00:09:11,220 --> 00:09:18,690
+la prédiction y_1 qui contribue à E_1 provient des deux premiers pas de temps.
+
+98
+00:09:18,690 --> 00:09:22,560
+Encore une fois, je vais de E_1 jusqu'à U ici, qui est la première ligne et
+
+99
+00:09:22,560 --> 00:09:27,810
+puis de E_1 jusqu'à cet autre U qui est la deuxième ligne et maintenant
+
+100
+00:09:27,810 --> 00:09:32,570
+c'est le gradient de E_1 par rapport à U. Il en reste un à faire, qui est E_0.
+
+101
+00:09:32,570 --> 00:09:39,090
+C'est plus facile car U n'a été utilisé qu'une seule fois, donc vous voyez
+
+102
+00:09:39,090 --> 00:09:45,200
+que ce n'est qu’une ligne et je peux facilement calculer le gradient.
+
+103
+00:09:45,200 --> 00:09:53,310
+Cela peut sembler compliqué, mais en fin de compte, ce que nous avons ici est simplement
+
+104
+00:09:53,310 --> 00:09:57,180
+deux boucles for imbriquées. Si vous pensez en termes de génie logiciel,
+
+105
+00:09:57,180 --> 00:10:03,530
+dans la première, nous passons en revue les différentes erreurs, donc E_0, E_1 et E_2.
+
+106
+00:10:03,530 --> 00:10:06,510
+Une fois que nous avons corrigé l'une de ces erreurs, disons E_2,
+
+107
+00:10:06,510 --> 00:10:10,410
+nous devons également tenir en compte que le paramètre a peut-être été utilisé plus souvent.
+
+108
+00:10:10,410 --> 00:10:15,120
+Ici nous avons la deuxième boucle for qui passera par tous ces endroits dans le
+
+109
+00:10:15,120 --> 00:10:20,070
+graphe de calcul où le paramètre a été utilisé et l'opération principale
+
+110
+00:10:20,070 --> 00:10:28,590
+à l'intérieur de ces deux boucles for est juste de calculer le gradient.
+
+111
+00:10:28,590 --> 00:10:34,110
+Cela peut sembler compliqué, mais la bonne nouvelle est que si vous utilisez PyTorch ou
+
+112
+00:10:34,110 --> 00:10:39,089
+TensorFlow, ils feront le travail à votre place et ils le feront correctement
+
+113
+00:10:39,089 --> 00:10:44,850
+et avec efficacité. Il y a deux raisons pour lesquelles nous avons vu comment faire cette opération.
+
+114
+00:10:44,850 --> 00:10:49,950
+Premièrement, c’est pour que vous ayez une intuition de ce qui se passe dans le système.
+
+115
+00:10:49,950 --> 00:10:52,320
+Deuxièmement, si vous vous souvenez bien, je vous ai dit que cette chaîne de
+
+116
+00:10:52,320 --> 00:10:56,310
+la multiplication devenait de plus en plus longue à mesure que l'on remontait dans le temps
+
+117
+00:10:56,310 --> 00:11:00,960
+en faisant la rétropropagation et ce sera une intuition importante pour les problèmes que nous
+
+118
+00:11:00,960 --> 00:11:04,820
+allons aborder dans les sections suivantes.

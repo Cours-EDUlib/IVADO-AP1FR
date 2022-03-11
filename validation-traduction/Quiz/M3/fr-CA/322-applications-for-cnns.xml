@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; ___________ determines, which pixels correspond to the detected objects. &lt;&lt;&#10;&#10;[[&#10;Image classification {{ This one is used to predict the category of an image }}&#10;Object detection {{This one is used to predict the coordinates of a bounding box surrounding an object in an image}}&#10;(Image segmentation)  &#10;Caption generation {{This one is used to generate captions for images}}&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>La ___________ détermine quels pixels correspondent aux objets détectés.</label>
+    <optioninput>
+      <option correct="False">Classification des images <optionhint>Celle-ci est utilisée pour prédire la catégorie d&apos;une image</optionhint></option>
+      <option correct="False">Détection d&apos;objets <optionhint>Celle-ci est utilisée pour prédire les coordonnées d&apos;une boîte englobante entourant un objet dans une image</optionhint></option>
+      <option correct="True">Segmentation d‘images</option>
+      <option correct="False">Génération de légendes <optionhint>Celle-ci est utilisée pour générer les légendes des images</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>

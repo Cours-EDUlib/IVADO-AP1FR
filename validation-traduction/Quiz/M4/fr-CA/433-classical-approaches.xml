@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt;Which token strategy should I use to avoid the extreme cases of too big vocabulary size and too long sequences? &lt;&lt;&#10;&#10;( ) Words {{ Using words as tokens can result in a very large vocabulary size.}}&#10;(x) Subwords {{Correct! Subwords strike a good compromise between vocabulary size and sequence length.}}&#10;( ) Character {{ Using characters as tokens can result in very long sequences, which can create long-term dependencies that are difficult to capture.}}&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle stratégie d’unité lexicale dois-je utiliser pour éviter les cas extrêmes de taille du vocabulaire trop importante et de séquences trop longues?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Mots <choicehint>L&apos;utilisation de mots comme unités lexicales peut donner lieu à une très grande taille du vocabulaire.</choicehint></choice>
+      <choice correct="true">Facteurs <choicehint>Correct! Les facteurs constituent un bon compromis entre la taille du vocabulaire et la longueur des séquences.</choicehint></choice>
+      <choice correct="false">Caractères <choicehint>L&apos;utilisation de caractères comme unités lexicales peut donner lieu à des séquences très longues, ce qui peut créer des dépendances à long terme qui sont difficiles à tenir en compte.</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

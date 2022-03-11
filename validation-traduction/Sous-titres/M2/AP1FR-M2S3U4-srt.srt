@@ -1,0 +1,419 @@
+1
+00:00:14,030 --> 00:00:20,160
+Donc la dernière partie est: pourquoi faisons-nous de l'optimisation stochastique et non pas uniquement de
+
+2
+00:00:20,160 --> 00:00:27,740
+l’optimisation? Rappelez-vous hier que nous avions la fonction de risque, l’espérance
+
+3
+00:00:27,740 --> 00:00:33,420
+sur la distribution des données. J'évaluerai cette fonction de perte pour tous
+
+4
+00:00:33,420 --> 00:00:39,700
+les exemples possibles dans l'univers c'est quelque chose que je ne peux pas calculer sur un
+
+5
+00:00:39,700 --> 00:00:44,190
+ordinateur. J'ai ma première approximation qui me donnera le
+
+6
+00:00:44,190 --> 00:00:49,539
+risque empirique: je calcule le risque empirique sur l'ensemble d'entraînement et
+
+7
+00:00:49,539 --> 00:00:54,809
+je vais sommer sur tous les exemples dans mon ensemble d'entraînement. Je vais
+
+8
+00:00:54,809 --> 00:01:00,100
+diviser par ce nombre, mais si vous avez des millions ou des milliards d'exemples, avez-vous
+
+9
+00:01:00,100 --> 00:01:06,000
+vraiment besoin de calculer la perte pour chaque exemple individuel pour les 1
+
+10
+00:01:06,000 --> 00:01:10,810
+milliard d'exemples, puis utiliser l'optimiseur pour calculer une étape et ajuster?
+
+11
+00:01:10,810 --> 00:01:16,270
+Ou, y a-t-il autre chose que nous pouvons faire pour aller plus vite? En fait, je peux juste
+
+12
+00:01:16,270 --> 00:01:22,840
+échantillonner à partir de mon ensemble d'entraînement, créer un mini batch, disons au lieu d'utiliser
+
+13
+00:01:22,840 --> 00:01:28,170
+1 milliard d'exemples pour calculer le risque empirique je vais juste utiliser 10
+
+14
+00:01:28,170 --> 00:01:35,409
+exemples, donc K est beaucoup plus petit que N. Maintenant, j'ai
+
+15
+00:01:35,409 --> 00:01:41,630
+une estimation du gradient du risque empirique parce que j'utilise seulement
+
+16
+00:01:41,630 --> 00:01:45,250
+quelques exemples pour calculer mon gradient. Un
+
+17
+00:01:45,250 --> 00:01:48,130
+mini-lot aurait généralement entre 10
+
+18
+00:01:48,130 --> 00:01:55,509
+et 500 ou 1000 exemples, cela dépend du nombre d'exemples que vous
+
+19
+00:01:55,509 --> 00:02:01,679
+pouvez stocker sur le GPU. C'est donc l'idée de mini-lot et de
+
+20
+00:02:01,679 --> 00:02:06,800
+descente de gradient stochastique: nous voulons aller plus vite. Le cas le plus extrême est
+
+21
+00:02:06,800 --> 00:02:12,540
+juste de fixer K = 1. Pour un exemple, je récupère un gradient
+
+22
+00:02:12,540 --> 00:02:18,250
+par rapport à cet exemple et je me déplace dans l'espace des paramètres, mais maintenant,
+
+23
+00:02:18,250 --> 00:02:20,680
+la deuxième approximation ici sera très bruyante,
+
+24
+00:02:20,680 --> 00:02:26,849
+car j'utilise un seul exemple ici.Ssi c'est un mauvais exemple, cela peut m'amener
+
+25
+00:02:26,849 --> 00:02:30,900
+dans l'espace des paramètres à un endroit où le le modèle ne sera pas
+
+26
+00:02:30,900 --> 00:02:36,440
+bon pour les autres exemples, donc c'est seulement pour montrer
+
+27
+00:02:36,440 --> 00:02:43,890
+visuellement ce qui se passe. Donc ici, je
+
+28
+00:02:43,890 --> 00:02:49,510
+calcule la perte empirique, j'utilise tous mes exemples. Maintenant, je crée un mini-lot. Ici, je peux calculer une
+
+29
+00:02:49,510 --> 00:02:53,849
+estimation du gradient et je le donne à l'optimiseur. L'optimiseur
+
+30
+00:02:53,849 --> 00:02:58,170
+ne sait pas s'il s'agit d'une estimation du gradient ou non. Dans Adam, il ne sait pas si
+
+31
+00:02:58,170 --> 00:03:04,430
+c'est une optimisation stochastique, mais généralement cet optimiseur est
+
+32
+00:03:04,430 --> 00:03:09,980
+robuste. Il existe d'autres optimiseurs dans la littérature scientifique qui traitent vraiment
+
+33
+00:03:09,980 --> 00:03:15,580
+de l'optimisation stochastique, mais nous n'utilisons pas encore ce type d'optimiseur.
+
+34
+00:03:15,580 --> 00:03:18,959
+Nous avons donc une estimation du gradient ici que nous donnons à l'optimiseur, nous nous
+
+35
+00:03:18,959 --> 00:03:23,379
+déplaçons dans l'espace des paramètres. On refait la même chose après ce mini-lot, nous nous déplaçons dans
+
+36
+00:03:23,379 --> 00:03:31,230
+l'espace des paramètres, etc., puis avec celui-ci. Ce que nous pouvons voir, c'est que si je ne
+
+37
+00:03:31,230 --> 00:03:40,430
+choisis pas une taille du mini-lot pour laquelle
+
+38
+00:03:40,430 --> 00:03:44,739
+je peux définir mon ensemble de données par ce nombre d'exemples, dans mon mini batch,
+
+39
+00:03:44,739 --> 00:03:50,540
+si j'ai juste un exemple restant à la fin ici, cet exemple aura
+
+40
+00:03:50,540 --> 00:03:55,850
+beaucoup de poids, beaucoup de puissance parce que je vais calculer, je vais estimer
+
+41
+00:03:55,850 --> 00:04:00,370
+le gradient uniquement par rapport à cet exemple. Il déplacera tous les
+
+42
+00:04:00,370 --> 00:04:08,090
+paramètres avec ce gradient, en contraste à cet exemple pour lequel le
+
+43
+00:04:08,090 --> 00:04:13,799
+gradient sera moyenné avec les autres exemples. Le modèle sera donc plus
+
+44
+00:04:13,799 --> 00:04:20,019
+sensible à cet exemple, car ce mini-lot n'a qu'une taille de 1 par rapport à une
+
+45
+00:04:20,019 --> 00:04:26,860
+taille de 6 ici. Il faut donc faire attention: la taille du mini-lot sera un hyperparamètre, 
+
+46
+00:04:26,860 --> 00:04:31,330
+vous devez donc le corriger. Alors, soyez prudent lorsque vous fixez cette valeur afin de
+
+47
+00:04:31,330 --> 00:04:34,180
+ne pas avoir un mini batch avec quelques exemples par rapport à
+
+48
+00:04:34,180 --> 00:04:40,810
+l'autre. Pourquoi l'optimisation stochastique est plus difficile que l'optimisation?
+
+49
+00:04:40,810 --> 00:04:46,220
+En fait, c'est comme si j’optimisais plusieurs fonctions en même temps: disons que j'optimise
+
+50
+00:04:46,220 --> 00:04:52,530
+toujours ma fonction quadratique, mais maintenant pour chaque mini batch j'ai une
+
+51
+00:04:52,530 --> 00:04:58,630
+fonction qui lui est associée. Au hasard, je vais sélectionner une fonction et je vais
+
+52
+00:04:58,630 --> 00:05:03,190
+calculer le gradient, puis je vais bouger. Mon optimiseur ne sait pas quelle
+
+53
+00:05:03,190 --> 00:05:09,139
+fonction je choisirai, car je mélange les exemples et je crée
+
+54
+00:05:09,139 --> 00:05:14,919
+mon mini-lot à chaque fois. J'ai toujours besoin de converger vers un seul point, j'ai
+
+55
+00:05:14,919 --> 00:05:20,340
+besoin de converger vers un minimum local. Donc, c'est plus difficile au début, je
+
+56
+00:05:20,340 --> 00:05:27,430
+prendrai un mini-lot. J'ai donc sélectionné implicitement cette fonction de perte ici et
+
+57
+00:05:27,430 --> 00:05:33,250
+pour celle là, j'ai un gradient qui a cette longueur, celle-ci, cette longueur, cette longueur
+
+58
+00:05:33,250 --> 00:05:38,240
+et cette longueur. Alors, je bouge un peu par là. Le mini-lot suivant sélectionnera cette
+
+59
+00:05:38,240 --> 00:05:44,139
+fonction de perte et maintenant, j'utiliserai ce gradient. Le mini-lot suivant sélectionnera
+
+60
+00:05:44,139 --> 00:05:51,060
+cette fonction et ce que vous pouvez voir, c'est que maintenant pour le premier mini-lot,
+
+61
+00:05:51,060 --> 00:05:53,850
+le gradient est dans la direction opposée. Donc,
+
+62
+00:05:53,850 --> 00:05:57,150
+si je veux minimiser la perte de ce
+
+63
+00:05:57,150 --> 00:06:02,520
+mini-lot, je devrais augmenter le paramètre h, mais si je veux minimiser
+
+64
+00:06:02,520 --> 00:06:09,680
+la perte par rapport à ce mini-lot, je devrais diminuer le paramètre h. Alors maintenant,
+
+65
+00:06:09,680 --> 00:06:14,150
+vous verrez le modèle qui oscillera: la fonction de perte va osciller
+
+66
+00:06:14,150 --> 00:06:19,740
+pour chaque mini-lot parce que les fonctions de perte ne sont pas cohérentes ensemble. Je
+
+67
+00:06:19,740 --> 00:06:25,210
+sélectionne simplement 1 fonction de perte au hasard avec un mini-lot et la prochaine fois,
+
+68
+00:06:25,210 --> 00:06:33,370
+peut-être que les informations seront contradictoires comme ici. Je bouge donc
+
+69
+00:06:33,370 --> 00:06:40,551
+ici et ensuite, ça oscillera parce que là il n'y a pas de minimum local. Ce que je peux
+
+70
+00:06:40,551 --> 00:06:47,819
+espérer, c'est que je vais converger vers
+
+71
+00:06:47,819 --> 00:06:50,389
+la perte qui sera la moyenne de toutes ces fonctions de perte.
+
+72
+00:06:50,389 --> 00:06:56,199
+Ce sera un point donné, mais en utilisant cet algorithme simple à la fin, ma perte
+
+73
+00:06:56,199 --> 00:07:04,770
+fluctuera toujours d'un mini-lot à l'autre. Nous pouvons donc penser
+
+74
+00:07:04,770 --> 00:07:09,759
+qu'il est plus difficile de faire une optimisation stochastique: pourquoi le faisons-nous? Parce que
+
+75
+00:07:09,759 --> 00:07:14,630
+nous voulons aller plus vite, nous ne voulons pas traiter 1 milliard d'images afin de se
+
+76
+00:07:14,630 --> 00:07:19,819
+déplacer dans l'espace des paramètres, mais ce bruit semble être problématique. En
+
+77
+00:07:19,819 --> 00:07:24,940
+fait ce n'est pas si problématique: nous avons découvert récemment que le bruit peut
+
+78
+00:07:24,940 --> 00:07:29,949
+aider à éviter les points de selle et l'utilisation de petits mini-lots
+
+79
+00:07:29,949 --> 00:07:37,190
+peut ajouter du bruit dans le processus d'optimisation: vous éviterez les
+
+80
+00:07:37,190 --> 00:07:41,289
+points de selle, ces points problématiques où le gradient ira à zéro avec le bruit
+
+81
+00:07:41,289 --> 00:07:46,629
+induit par la descente de gradient stochastique. Vous pouvez éviter ces points de selle plus
+
+82
+00:07:46,629 --> 00:07:52,660
+facilement et c'est un argument fort pour utiliser des mini-lots qui sont plus petits que les
+
+83
+00:07:52,660 --> 00:07:57,640
+très grands mini-lots. Je vois aussi des recherches pour mieux comprendre
+
+84
+00:07:57,640 --> 00:08:03,150
+comment nous pouvons utiliser de grands mini-lots, mais elles nécessitent des techniques spécifiques pour
+
+85
+00:08:03,150 --> 00:08:09,120
+bien fonctionner et aussi, à cause du bruit induit par ces mini-
+
+86
+00:08:09,120 --> 00:08:16,460
+lots, le modèle sur l'ensemble de validation s'adaptera moins. Le bruit induit par
+
+87
+00:08:16,460 --> 00:08:23,289
+les mini-lots aidera à régulariser le réseau et le réseau pourra
+
+88
+00:08:23,289 --> 00:08:29,750
+mieux se généraliser qu’avec l'utilisation de grands mini-lots.
+
+89
+00:08:29,750 --> 00:08:33,670
+Le message à retenir ici est que l'apprentissage automatique ne concerne pas seulement l'optimisation, nous ne
+
+90
+00:08:33,670 --> 00:08:40,810
+voulons pas obtenir le minimum global, nous devons toujours
+
+91
+00:08:40,810 --> 00:08:47,170
+surveiller la perte sur l'ensemble de validation et nous voulons simplement
+
+92
+00:08:47,170 --> 00:08:52,020
+avoir de bons minimums locaux. Un
+
+93
+00:08:52,020 --> 00:08:58,550
+préconditionnement rapide facilitera l'optimisation car nous redimensionnerons les paramètres afin
+
+94
+00:08:58,550 --> 00:08:59,820
+d’essayer de forcer
+
+95
+00:08:59,820 --> 00:09:05,290
+tous les paramètres à avoir le même impact sur la sortie, pour ne pas avoir un paramètre que
+
+96
+00:09:05,290 --> 00:09:10,700
+je dois déplacer de 100 pour avoir le même impact qu'un autre paramètre que je ne
+
+97
+00:09:10,700 --> 00:09:19,180
+déplace que de 0,1. Le momentum conduit à de meilleurs résultats parce que si les
+
+98
+00:09:19,180 --> 00:09:23,570
+gradients sont cohérents, j'accélérerai. C'est comme si j'augmentais le
+
+99
+00:09:23,570 --> 00:09:29,610
+taux d' apprentissage en prenant en compte les informations de gradient. Auparavant, si les
+
+100
+00:09:29,610 --> 00:09:34,640
+informations de gradient étaient contradictoires, alors le taux d'apprentissage diminuaient très rapidement.
+
+101
+00:09:34,640 --> 00:09:41,250
+C’est donc une sorte d'adaptation au gradient que j'ai vu auparavant.
+
+102
+00:09:41,250 --> 00:09:46,030
+Le bruit peut être bénéfique pour s’échapper des points de selle, vous ne devriez pas avoir
+
+103
+00:09:46,030 --> 00:09:51,930
+peur d'utiliser des mini-lots qui sont plus petits juste à cause du bruit, ça peut
+
+104
+00:09:51,930 --> 00:09:58,660
+mieux régulariser. Voici les références que j'utilise pour cet exposé et merci
+
+105
+00:09:58,660 --> 00:09:59,130
+beaucoup.

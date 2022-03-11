@@ -1,0 +1,279 @@
+1
+00:00:14,099 --> 00:00:19,080
+Une autre technique est appelée « momentum ». Le momentum
+
+2
+00:00:19,080 --> 00:00:25,030
+est inspirée de la physique, donc l'idée est que si je
+
+3
+00:00:25,030 --> 00:00:32,000
+descends une pente et que tous les gradients pointent dans la même direction,
+
+4
+00:00:32,000 --> 00:00:37,500
+ma vitesse augmentera à cause de l'accélération. Quand j'arriverai
+
+5
+00:00:37,500 --> 00:00:43,770
+en bas, ma vitesse diminuera parce que maintenant, le gradient ne pointe
+
+6
+00:00:43,770 --> 00:00:49,859
+plus vers le bas. Nous devons donc l'interpréter comme de l'énergie potentielle: l'énergie potentielle
+
+7
+00:00:49,859 --> 00:00:58,289
+est la masse multipliée par la force gravitationnelle de l'élévation à une position dans mon
+
+8
+00:00:58,289 --> 00:01:05,010
+espace de paramètres h. L'élévation sera la valeur de la perte et la force sera
+
+9
+00:01:05,010 --> 00:01:12,190
+égale à la masse multipliée par l'accélération qui est égale à moins la dérivée
+
+10
+00:01:12,190 --> 00:01:17,280
+de l'énergie potentielle à cet endroit. Si je prends la dérivée de cette
+
+11
+00:01:17,280 --> 00:01:24,490
+fonction au point x, ces deux sont juste des valeurs constantes: je prends la dérivée de
+
+12
+00:01:24,490 --> 00:01:31,250
+h par rapport à x, donc j'obtiens ceci. Maintenant, nous allons essayer de simuler ce
+
+13
+00:01:31,250 --> 00:01:37,000
+système physique: je vais donc discrétiser le temps et je vais calculer un terme
+
+14
+00:01:37,000 --> 00:01:43,119
+associé à l'accélération, un terme pour la vitesse et un terme pour la position.
+
+15
+00:01:43,119 --> 00:01:51,600
+Je vais donc calculer ma valeur au temps t en utilisant cette formule
+
+16
+00:01:51,600 --> 00:02:00,149
+m a = ceci. Donc, je divise juste par m et j'ai juste moins g dérivée de h au
+
+17
+00:02:00,149 --> 00:02:05,409
+point x_t. Avec l'accélération, je peux multiplier par la discrétisation
+
+18
+00:02:05,409 --> 00:02:13,981
+de mon temps Delta t, je l'ajoute à la valeur précédente de ma vitesse et ici, je
+
+19
+00:02:13,981 --> 00:02:20,630
+peux avoir un coefficient Mu pour représenter la friction à delta t. Je perds une partie de
+
+20
+00:02:20,630 --> 00:02:25,320
+la vitesse en raison de certains frottements et j'ajoute les
+
+21
+00:02:25,320 --> 00:02:32,780
+deux. Maintenant, je mets à jour la position avec la position plus la vitesse multipliée par
+
+22
+00:02:32,780 --> 00:02:37,320
+la discrétisation du temps en optimisation. Nous allons supprimer le Delta t qui sera
+
+23
+00:02:37,320 --> 00:02:46,190
+égal à 1 et obtenir ces trois équations. Je combinerai ceci
+
+24
+00:02:46,190 --> 00:02:52,410
+et celui-ci et maintenant, j'ai ma descente de gradient avec l'algorithme de momentum. Je
+
+25
+00:02:52,410 --> 00:03:01,980
+vais donc simuler avec cette équation de la physique le fait que j'accélère
+
+26
+00:03:01,980 --> 00:03:08,960
+si mes gradients pointent dans la même direction à chaque itération. Alors, je commence
+
+27
+00:03:08,960 --> 00:03:13,430
+ici, vous pouvez voir que j'ai un certain momentum. Je vais dépasser, je vais remonter,
+
+28
+00:03:13,430 --> 00:03:21,160
+puis je ralentis, un peu de dépassement ici. Cet algorithme n'est donc
+
+29
+00:03:21,160 --> 00:03:26,840
+pas très bon sur cette fonction pour trouver le minimum, car je n'ai pas
+
+30
+00:03:26,840 --> 00:03:30,900
+assez de friction à cause de ce dépassement. Je prends trop de vitesse
+
+31
+00:03:30,900 --> 00:03:39,490
+au début et je vais manquer le minimum. Cet algorithme n'est pas un
+
+32
+00:03:39,490 --> 00:03:46,700
+algorithme de descente à cause de la vitesse que je prends de l'itération précédente. La
+
+33
+00:03:46,700 --> 00:03:52,720
+nouvelle direction que j'obtiendrai, peut-être que ce n’est pas une direction qui diminuera
+
+34
+00:03:52,720 --> 00:03:59,170
+ma perte, peut-être qu’elle l'augmentera. Nous pouvons donc voir ici que la perte augmentera
+
+35
+00:03:59,170 --> 00:04:05,200
+parce que j'ai trop de momentum, mais ensuite elle diminue. Si j’ai trop de momentum, j’ai
+
+36
+00:04:05,200 --> 00:04:12,090
+cette oscillation: ça ne semble pas être un algorithme prometteur, mais nous verrons
+
+37
+00:04:12,090 --> 00:04:20,540
+pour d'autres fonctions de perte. Pour celui-ci, j’ai juste trouvé les meilleures valeurs pour optimiser
+
+38
+00:04:20,540 --> 00:04:24,690
+celui-ci donc c'est super rapide avec le momentum.
+
+39
+00:04:24,690 --> 00:04:29,880
+On ne peut pas vraiment voir la belle dynamique de rouler sur la surface
+
+40
+00:04:29,880 --> 00:04:36,440
+parce que mon taux d'apprentissage est trop élevé: je rebondis dans l'espace des paramètres
+
+41
+00:04:36,440 --> 00:04:41,380
+et ici, ce qui se passe, c'est qu'au début j'ai un gradient élevé dans
+
+42
+00:04:41,380 --> 00:04:47,070
+cette direction, puis j'arrive de ce côté et
+
+43
+00:04:47,070 --> 00:04:50,960
+le gradient est dans la direction opposée. À cause du momentum,
+
+44
+00:04:50,960 --> 00:04:56,100
+j'ai maintenant deux gradients contradictoires: dans la première itération, c'était dans cette direction
+
+45
+00:04:56,100 --> 00:05:02,490
+dans la deuxième, dans cette direction. J'atterris donc au milieu ici et ici le
+
+46
+00:05:02,490 --> 00:05:09,660
+gradient sera petit pour cette direction. J'aurai
+
+47
+00:05:09,660 --> 00:05:13,880
+un petit gradient dans cette direction, mais j'ai toujours mon
+
+48
+00:05:13,880 --> 00:05:19,740
+momentum venant de l'étape précédente. Alors, je dépasse un peu, mais ensuite je
+
+49
+00:05:19,740 --> 00:05:29,030
+convergerai plus rapidement vers l'optimum que la descente de gradient pur.
+
+50
+00:05:29,030 --> 00:05:34,090
+Nous pouvons voir la différence ici: puisque les gradients
+
+51
+00:05:34,090 --> 00:05:40,540
+sont contradictoires, ils s’annuleront et cela réduira la vitesse.
+
+52
+00:05:40,540 --> 00:05:44,920
+Au lieu de simplement rebondir d'un côté à l'autre, ils s’annulent,
+
+53
+00:05:44,920 --> 00:05:52,460
+je peux stabiliser un peu la dynamique sur cette fonction de perte et ainsi,
+
+54
+00:05:52,460 --> 00:05:57,070
+avec ces deux concepts, vous pouvez interpréter de nombreux algorithmes
+
+55
+00:05:57,070 --> 00:06:01,630
+qui ont été proposés pour l'apprentissage profond. Maintenant, le plus célèbre
+
+56
+00:06:01,630 --> 00:06:08,680
+que tout le monde utilise par défaut est Adam. Adam combine les deux idées: l'idée
+
+57
+00:06:08,680 --> 00:06:13,550
+de préconditionnement et l'idée de momentum. Alors, nous avons la même
+
+58
+00:06:13,550 --> 00:06:18,490
+équation ici qu’auparavant dans le terme de préconditionnement, puis ici, nous avons
+
+59
+00:06:18,490 --> 00:06:24,930
+l’équation de la quantité de mouvement: donc ce ne sont que deux moyennes mobiles dans le temps pour
+
+60
+00:06:24,930 --> 00:06:28,250
+ces deux quantités. Au lieu d'utiliser le gradient
+
+61
+00:06:28,250 --> 00:06:34,220
+ici, j'utilise le terme de momentum. Je vais aussi préconditionner ces deux
+
+62
+00:06:34,220 --> 00:06:41,000
+équations avec cet optimiseur, vous pouvez déjà bien optimiser en apprentissage
+
+63
+00:06:41,000 --> 00:06:46,270
+profond. Je recommande de toujours utiliser Adam au début pour être sûr que vous pouvez
+
+64
+00:06:46,270 --> 00:06:50,020
+optimiser la fonction et être en mesure d'apprendre sur vos données pour minimiser la
+
+65
+00:06:50,020 --> 00:06:57,300
+fonction de perte sur l'ensemble d'entraînement. Oui, c'est un bon optimiseur: n’implémentez pas
+
+66
+00:06:57,300 --> 00:07:02,240
+ces trois équations directement, il y a deux autres équations que je n'ai pas couvert.
+
+67
+00:07:02,240 --> 00:07:07,699
+C'est seulement parce qu'il y a un problème d'initialisation de m et v: il faut
+
+68
+00:07:07,699 --> 00:07:13,650
+corriger ce problème, ça va induire un biais dans cette quantité.
+
+69
+00:07:13,650 --> 00:07:18,200
+Il faut corriger ce biais avec deux autres équations, mais ce n'est pas vraiment
+
+70
+00:07:18,200 --> 00:07:19,240
+un détail important.

@@ -1,0 +1,16 @@
+<problem display_name="Quiz" markdown="&gt;&gt; What are the two inputs to each RNN cell in the named entity recognition task? &lt;&lt;&#10;&#10;[ ] A. The whole input sequence {{ selected: A. Incorrect, one of the inputs is an element of the input sequence, not all of it at the same time }}&#10;[x] B. An element in the input sequence, i.e. a word in the sentence {{ selected: B. Correct}}&#10;[ ] C. Output of the previous step {{ selected: C. Incorrect, one of the inputs is the previous hidden/internal state of the RNN, not the output }}&#10;[x] D. Internal/hidden state of the previous step {{ selected: D. Correct}}&#10;&#10;{{ ((A B C)) Please choose 2 options. }}&#10;{{ ((A B D)) Please choose 2 options. }}&#10;{{ ((A C D)) Please choose 2 options. }}&#10;{{ ((B C D)) Please choose 2 options. }}&#10;{{ ((A B C D)) Please choose 2 options. }}" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Quelles sont les deux entrées de chaque cellule du RNR dans la tâche de reconnaissance d&apos;entités nommées?</label>
+    <checkboxgroup>
+      <choice correct="false">A. Toute la séquence d&apos;entrée <choicehint selected="true">A. Incorrect, l&apos;une des entrées est un élément de la séquence d&apos;entrée, pas toutes en même temps</choicehint></choice>
+      <choice correct="true">B. Un élément de la séquence d’entrée, c&apos;est-à-dire un mot de la phrase <choicehint selected="true">B. Correct</choicehint></choice>
+      <choice correct="false">C. La sortie du pas de temps précédent <choicehint selected="true">C. Incorrect, l&apos;une des entrées est l&apos;état caché/interne précédent du RNR, et non la sortie</choicehint></choice>
+      <choice correct="true">D. État interne/caché du pas de temps précédent <choicehint selected="true">D. Correct</choicehint></choice>
+      <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

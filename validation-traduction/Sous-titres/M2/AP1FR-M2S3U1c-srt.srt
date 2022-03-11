@@ -1,0 +1,328 @@
+﻿1
+00:00:14,500 --> 00:00:21,950
+Alors on va utiliser ce gradient comme direction de descente: considérons les paramètres au
+
+2
+00:00:21,950 --> 00:00:27,480
+temps t + 1. Au début, je serai au temps t = 0 et je dois
+
+3
+00:00:27,480 --> 00:00:31,320
+initialiser mes paramètres. Les paramètres seront initialisés en
+
+4
+00:00:31,320 --> 00:00:39,390
+appelant la méthode d'initialisation dans les modules. Ensuite, je ferai un pas: je
+
+5
+00:00:39,390 --> 00:00:45,420
+demanderai au modèle de calculer la propagation avant, la rétropropagation, me retourner un gradient et cet
+
+6
+00:00:45,420 --> 00:00:52,940
+optimiseur calculera les paramètres au temps t moins Eta. Eta est un taux d'apprentissage,
+
+7
+00:00:52,940 --> 00:01:00,329
+une taille de pas: je multiplierai ce taux d'apprentissage avec le gradient, ce n'est
+
+8
+00:01:00,329 --> 00:01:05,280
+qu'une mise à l'échelle du gradient afin que je puisse être sûr que le gradient n'est pas trop
+
+9
+00:01:05,280 --> 00:01:10,080
+long: peut-être que mon approximation linéaire ne sera pas valide si le
+
+10
+00:01:10,080 --> 00:01:15,780
+pas est trop grand. Nous utiliserons donc la taille du pas, c'est un hyperparamètre
+
+11
+00:01:15,780 --> 00:01:21,780
+que généralement nous devons ajuster nous-mêmes. Vous pouvez essayer d'utiliser le
+
+12
+00:01:21,780 --> 00:01:28,520
+réglage hyperparamétrique pour ajuster ce taux d'apprentissage, mais d'après mon expérience, je peux trouver
+
+13
+00:01:28,520 --> 00:01:33,670
+assez facilement de bonnes valeurs en faisant rapidement plusieurs expériences juste au début
+
+14
+00:01:33,670 --> 00:01:40,570
+de l'apprentissage. C’est un hyperparamètre, et nous venons de créer
+
+15
+00:01:40,570 --> 00:01:46,710
+cet algorithme: c'est un algorithme valide et nous verrons comment il fonctionne sur notre
+
+16
+00:01:46,710 --> 00:01:50,960
+fonction quadratique qui approxime ce qui se passe autour du minimum
+
+17
+00:01:50,960 --> 00:01:59,460
+local. Donc ici, c'est l’espace des paramètres,
+paramètre 1, paramètre 2. Ma fonction de perte
+
+18
+00:01:59,460 --> 00:02:07,909
+est représentée par les courbes de niveau de contour. Je pars d'ici
+
+19
+00:02:07,909 --> 00:02:12,570
+et vous pouvez voir que le modèle ira au minimum, c'est un minimum global
+
+20
+00:02:12,570 --> 00:02:18,310
+ici et cela fonctionnera bien. Alors j'ai créé des vidéos:
+
+21
+00:02:18,310 --> 00:02:24,870
+maintenant, si j'augmente à nouveau la sensibilité du paramètre x et je garde la
+
+22
+00:02:24,870 --> 00:02:30,680
+sensibilité du paramètre y la même et j'utilise le même taux d'apprentissage,
+
+23
+00:02:30,680 --> 00:02:35,650
+maintenant nous voyons ce comportement: puisque le taux d'apprentissage est trop élevé
+
+24
+00:02:35,650 --> 00:02:43,840
+pour l'axe x, ça rebondit d'un côté à l'autre, mais ça
+
+25
+00:02:43,840 --> 00:02:51,310
+convergera tout de même. À un moment donné, ça arrivera ici et ensuite ça convergera ici.
+
+26
+00:02:51,310 --> 00:03:00,630
+Au lieu de converger en 14 pas, il faut maintenant 140 pas pour converger: c'est
+
+27
+00:03:00,630 --> 00:03:07,560
+toujours le même algorithme avec le même taux d'apprentissage. Le pire des cas est que
+
+28
+00:03:07,560 --> 00:03:15,500
+maintenant, j'ai ce paramètre qui est dix fois plus sensible que ce paramètre:
+
+29
+00:03:15,500 --> 00:03:19,220
+le modèle ne converge plus, nous pouvons voir que la perte sera
+
+30
+00:03:19,220 --> 00:03:23,810
+bloquée ici parce que le taux d'apprentissage est trop élevé.
+
+31
+00:03:23,810 --> 00:03:28,730
+Maintenant, la direction me ramènerait juste de l'autre côté et encore de ce
+
+32
+00:03:28,730 --> 00:03:33,760
+côté je vais aller exactement au même point de l'autre côté, donc je fais juste me
+
+33
+00:03:33,760 --> 00:03:39,380
+déplacer et il n'y a pas d'amélioration. Alors, la descente de gradient n'est pas
+
+34
+00:03:39,380 --> 00:03:45,690
+un algorithme qui fonctionnera pour n'importe quelle fonction possible, il ne fonctionne même pas
+
+35
+00:03:45,690 --> 00:03:52,410
+pour la fonction quadratique si je garde le taux d'apprentissage constant. Une solution
+
+36
+00:03:52,410 --> 00:03:56,260
+est de diviser le taux d'apprentissage par [10] pour obtenir 0,01.
+
+37
+00:03:56,260 --> 00:04:04,900
+Si la direction est trop longue, je dois juste diminuer la longueur
+
+38
+00:04:04,900 --> 00:04:08,780
+de cette direction: j'utiliserai donc un taux d'apprentissage que je diviserai par dix,
+
+39
+00:04:08,780 --> 00:04:12,519
+0,01, et c'est ça la dynamique: j'aurai cette
+
+40
+00:04:12,519 --> 00:04:21,709
+dynamique d' apprentissage. Donc au début, ce sera relativement rapide, mais dès que j'arriverai
+
+41
+00:04:21,709 --> 00:04:28,530
+sur l'axe des y, c'est super lent à converger.
+
+42
+00:04:28,530 --> 00:04:32,340
+Par contre, au moins je convergerai vers le minimum global.
+
+43
+00:04:32,340 --> 00:04:38,520
+Alors ce taux d’apprentissage semble bien fonctionner dans cette direction, mais il est trop petit pour
+
+44
+00:04:38,520 --> 00:04:45,720
+cette direction. Comment pouvons-nous quantifier le problème? Cela est lié à
+
+45
+00:04:45,720 --> 00:04:51,440
+une quantité appelée le conditionnement: c’est le rapport de
+
+46
+00:04:51,440 --> 00:04:57,070
+la valeur absolue de la plus grande valeur propre divisée par la plus petite
+
+47
+00:04:57,070 --> 00:05:01,560
+valeur propre. Je ne passerai pas en revue ce qu'est une
+
+48
+00:05:01,560 --> 00:05:02,560
+valeur propre,
+
+49
+00:05:02,560 --> 00:05:13,650
+mais une valeur propre est liée aux axes de l'ellipse: si je tourne
+
+50
+00:05:13,650 --> 00:05:18,530
+l’ellipse dans une certaine direction, la valeur propre sera la mesure sur
+
+51
+00:05:18,530 --> 00:05:26,389
+l'axe de l'ellipse et non sur l'axe de mon espace de paramètres.
+
+52
+00:05:26,389 --> 00:05:30,970
+Ici par contre, l'ellipse est alignée avec l'espace de paramètres parce que j'ai une
+
+53
+00:05:30,970 --> 00:05:37,639
+matrice diagonale: le nombre de conditions n'est que de 10 sur 1. Ce que nous voulons donc
+
+54
+00:05:37,639 --> 00:05:44,050
+faire est généralement d'avoir un conditionnement qui est proche de 1. Ici, nous pouvons
+
+55
+00:05:44,050 --> 00:05:50,460
+voir qu'un conditionnement de 10 n'est pas bon pour la descente de gradient. Donc, ce qui
+
+56
+00:05:50,460 --> 00:05:57,150
+ne fonctionne pas dans cet algorithme,c'est ce taux d'apprentissage, cet Eta.
+
+57
+00:05:57,150 --> 00:06:03,199
+Si vous regardez les unités physiques de cette équation ici, je reçois deux
+
+58
+00:06:03,199 --> 00:06:07,740
+paramètres, les paramètres x1 x2. Ils sont remplacés par l'ancienne valeur de
+
+59
+00:06:07,740 --> 00:06:12,500
+ces deux paramètres moins Eta, puis j'ai le gradient pour le premier
+
+60
+00:06:12,500 --> 00:06:17,199
+paramètre et le gradient pour le deuxième paramètre. Les paramètres
+
+61
+00:06:17,199 --> 00:06:23,699
+peuvent vivre peut-être ici, la fonction prendra une longueur exprimée
+
+62
+00:06:23,699 --> 00:06:28,810
+pour la première caractéristique en kilomètre et pour la seconde caractéristique, en millimètres.
+
+63
+00:06:28,810 --> 00:06:34,020
+La fonction mappera le gradient à une matrice d'énergie comme
+
+64
+00:06:34,020 --> 00:06:41,330
+d’habitude et ici, la première dérivée partielle, ces unités seront en
+
+65
+00:06:41,330 --> 00:06:47,669
+joules par kilomètre. Le second sera en joules par millimètre, alors
+
+66
+00:06:47,669 --> 00:06:52,970
+comment puis-je convertir cette quantité pour avoir les mêmes unités physiques que ces deux
+
+67
+00:06:52,970 --> 00:07:03,319
+quantités pour obtenir des kilomètres et des millimètres? Si Eta n'a pas d'unités physiques,
+
+68
+00:07:03,319 --> 00:07:08,230
+alors j'ajoute des choses complètement différentes en termes
+
+69
+00:07:08,230 --> 00:07:12,050
+d’unités physiques, ils ne sont pas du tout la même chose.
+
+70
+00:07:12,050 --> 00:07:17,550
+Alors, Eta doit convertir les unités de ces deux quantités en quelque chose qui est
+
+71
+00:07:17,550 --> 00:07:22,979
+compatible pour ces deux quantités, ce ne sont que des unités physiques.
+
+72
+00:07:22,979 --> 00:07:28,460
+J'ajoute les unités physiques de cet algorithme et pour ce faire, je peux juste ajouter une matrice
+
+73
+00:07:28,460 --> 00:07:34,800
+devant mon gradient que je nommerai MT. Elle sera une matrice diagonale,
+
+74
+00:07:34,800 --> 00:07:39,430
+car il suffit d'avoir les bonnes unités physiques. m11, je vais l'interpréter
+
+75
+00:07:39,430 --> 00:07:45,979
+comme étant des kilomètres carrés par Joule et m22 sera des millimètres carrés par Joule.
+
+76
+00:07:45,979 --> 00:07:52,729
+Si je multiplie celui-ci avec celui-ci, les Joules s’annuleront, le carré
+
+77
+00:07:52,729 --> 00:07:59,789
+sera supprimé par le dénominateur ici. Je récupère des kilomètres pour le premier
+
+78
+00:07:59,789 --> 00:08:05,020
+et des millimètres pour le second, donc j'ai besoin de cette matrice devant
+
+79
+00:08:05,020 --> 00:08:11,770
+mon gradient pour que cette équation de gradient ait du sens. Sinon, mon
+
+80
+00:08:11,770 --> 00:08:15,930
+implémentation naïve de la descente de gradient n'avait pas de sens en termes
+
+81
+00:08:15,930 --> 00:08:19,949
+d’unités physiques. J'ai besoin de cette matrice devant qui
+
+82
+00:08:19,949 --> 00:08:23,200
+redimensionnera mon gradient de la bonne manière.

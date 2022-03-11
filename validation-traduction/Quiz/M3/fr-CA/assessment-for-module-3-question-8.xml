@@ -1,0 +1,11 @@
+<problem display_name="Question 8" markdown="&gt;&gt;How many successive layers of 3x3 kernels would you need to have an effective receptive field of 11x11? Assume a stride of 1. &lt;&lt;&#10;&#10;( ) 2 &#10;( ) 11 &#10;( ) 4 &#10;(x) 5 {{One 3x3 kernel has a 3x3 receptive field, 2 have a 5x5 receptive field, 3 have 7x7, etc.}}&#10;&#10;" max_attempts="2">
+  <multiplechoiceresponse>
+    <label>Combien de couches successives de 3x3 noyaux faudrait-il pour avoir un champ réceptif efficace de 11x11 ? Supposons une foulée de 1.</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">2</choice>
+      <choice correct="false">11</choice>
+      <choice correct="false">4</choice>
+      <choice correct="true">5 <choicehint>Un noyau 3x3 a un champ réceptif 3x3, 2 ont un champ réceptif 5x5, 3 ont 7x7, etc</choicehint>.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

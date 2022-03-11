@@ -1,0 +1,5 @@
+<p style="text-align: center;">You have made it to the third assessment!<img src="/static/SommativeAssessment.png" alt="" style="margin-top: -40px; position: relative; display: block;" width="70" height="70" /></p>
+<p>The following eleven questions will assess how well you have grasped the main concepts related to convolutional neural networks (CNN).</p>
+<p>You will get two (2) attempts to answer each question and only 1 (one) attempt for true-or-false type questions. Remember that assessment questions equate to 100% of your final grade. A certificate will be issued upon obtaining the passing grade of ≥ 70 for the course. You are welcome to use hints if you see those.</p>
+<p>Good luck!</p>
+<p></p>

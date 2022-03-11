@@ -1,0 +1,16 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which two formulas below  about attention mechanism are correct? &lt;&lt;&#10;&#10;[x] A. [mathjaxinline] w_0 + w_1 + \cdots + w_n = 1 [/mathjaxinline]{{ selected: A. Correct}}&#10;[ ] B. [mathjaxinline] w_0 + w_1 + \cdots + w_n = 0.5 [/mathjaxinline]{{ selected: B. Incorrect, these are the outputs of the softmax function and they sum to one}}&#10;[ ] C. [mathjaxinline] c = \sum\limits_{i=0}^n s_i \cdot h_i [/mathjaxinline]{{ selected: C. Incorrect, the context vector [mathjaxinline] c [/mathjaxinline] is the result of summing all the encoded inputs weighted by their attention weight}}&#10;[x] D. [mathjaxinline] c = \sum\limits_{i=0}^n w_i \cdot h_i [/mathjaxinline]{{ selected: D. Correct}}&#10;&#10;{{ ((A B C)) Please choose 2 options. }}&#10;{{ ((A B D)) Please choose 2 options. }}&#10;{{ ((A C D)) Please choose 2 options. }}&#10;{{ ((B C D)) Please choose 2 options. }}&#10;{{ ((A B C D)) Please choose 2 options. }}&#10;" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Quelles sont les deux formules correctes ci-dessous concernant le mécanisme d&apos;attention ?</label>
+    <checkboxgroup>
+      <choice correct="true">A. [mathjaxinline] w_0 + w_1 + \cdots + w_n = 1 [/mathjaxinline] <choicehint selected="true">A. Correct</choicehint></choice>
+      <choice correct="false">B. [mathjaxinline] w_0 + w_1 + \cdots + w_n = 0,5 [/mathjaxinline] <choicehint selected="true">B. Incorrect, ce sont les sorties de la fonction softmax et elles ont une somme de 1</choicehint></choice>
+      <choice correct="false">C. [mathjaxinline] c = \sum\limits_{i=0}^n s_i \cdot h_i [/mathjaxinline] <choicehint selected="true">C. Incorrect, le vecteur de contexte [mathjaxinline] c [/mathjaxinline] est le résultat de la somme de toutes les entrées encodées pondérées par leur poids d&apos;attention</choicehint></choice>
+      <choice correct="true">D. [mathjaxinline] c = \sum\limits_{i=0}^n w_i \cdot h_i [/mathjaxinline] <choicehint selected="true">D. Correct</choicehint></choice>
+      <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

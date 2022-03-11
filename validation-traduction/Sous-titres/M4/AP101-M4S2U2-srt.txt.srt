@@ -1,0 +1,587 @@
+﻿1
+00:00:13,190 --> 00:00:19,710
+Maintenant nous allons parler des modèles de séquence à séquence et nous allons
+
+2
+00:00:19,710 --> 00:00:26,130
+revenir sur cette diapositive que nous avons vue lors de la première présentation, donc dans cette diapositive,
+
+3
+00:00:26,130 --> 00:00:32,130
+nous essayions de classer les problèmes que nous voulons résoudre,
+
+4
+00:00:32,130 --> 00:00:38,489
+selon l'existence ou non d’une séquence à l’entrée, à la sortie, ou à l’entrée et à la sortie.
+
+5
+00:00:38,489 --> 00:00:46,050
+La présentation précédente portait principalement sur ce cas-ci,
+
+6
+00:00:46,050 --> 00:00:51,680
+plusieurs-à-plusieurs.Nous avons vu les architectures de RNN, de LSTM et de GRU
+
+7
+00:00:51,680 --> 00:00:56,250
+qui tentent de résoudre ce genre de problème, alors que dans cette présentation nous nous concentrerons sur ce cas-ci de
+
+8
+00:00:56,250 --> 00:01:00,870
+plusieurs à plusieurs, qui porte le même nom mais la différence est
+
+9
+00:01:00,870 --> 00:01:08,310
+que nous n'imposons désormais aucune contrainte sur le nombre d'éléments qu'il
+
+10
+00:01:08,310 --> 00:01:11,580
+peut y avoir dans la séquence d'entrée et dans la séquence de sortie. C'est très
+
+11
+00:01:11,580 --> 00:01:15,060
+pratique car si nous avons un problème comme la traduction automatique,
+
+12
+00:01:15,060 --> 00:01:19,799
+vous pouvez facilement deviner que lorsque je traduis peut-être du français à l'anglais,
+
+13
+00:01:19,799 --> 00:01:23,610
+le nombre de mots peut être différent. Donc je me retrouverais avec un nombre différent de
+
+14
+00:01:23,610 --> 00:01:27,570
+éléments à la sortie par rapport à ceux à l’entrée et je ne sais pas comment résoudre ce problème
+
+15
+00:01:27,570 --> 00:01:31,409
+à l'aide de l'architecture que nous avons vue dans la première présentation. Maintenant nous allons voir
+
+16
+00:01:31,409 --> 00:01:37,860
+comment le faire avec les modèles séquence à séquence.
+
+17
+00:01:37,860 --> 00:01:40,400
+C’est pour vous donner une meilleure intuition de ce que nous essayons de résoudre.
+
+18
+00:01:40,400 --> 00:01:46,020
+J'ai mentionné la traduction automatique, mais il y a beaucoup d'autres problèmes où
+
+19
+00:01:46,020 --> 00:01:49,200
+la séquence de sortie comporte un nombre différent d'éléments par rapport à celle d’entrée,
+
+20
+00:01:49,200 --> 00:01:53,460
+comme le résumé automatique de texte. Comme nous essayons
+
+21
+00:01:53,460 --> 00:01:56,969
+de résumer le texte, la séquence de sortie sera idéalement
+
+22
+00:01:56,969 --> 00:02:04,590
+plus courte que la séquence d'entrée. Dans cette présentation, je vais utiliser l'exemple courant
+
+23
+00:02:04,590 --> 00:02:09,149
+en traduction automatique et vous voyez ici que nous essayons de traduire du français
+
+24
+00:02:09,149 --> 00:02:13,560
+à l'anglais et vous voyez que la phrase d'entrée est « il pleut »
+
+25
+00:02:13,560 --> 00:02:19,790
+et la sortie est « it is raining ». Si nous essayons de résoudre ce problème à l’aide des
+
+26
+00:02:19,790 --> 00:02:24,740
+architectures que nous avons vues dans la première présentation, nous avons un problème parce que
+
+27
+00:02:24,740 --> 00:02:32,310
+nous avons ces deux entrées ici : « il pleut » va peut-être produire « it is » mais il nous manque
+
+28
+00:02:32,310 --> 00:02:36,540
+encore un élément et c'est encore une fois parce que nous limitons la longueur séquence d’entrée
+
+29
+00:02:36,540 --> 00:02:41,370
+pour qu'elle soit la même que la séquence de sortie. Comment pouvons-nous résoudre ce problème?
+
+30
+00:02:41,370 --> 00:02:48,959
+En fait, l'idée est très simple : je vais créer une architecture avec deux éléments
+
+31
+00:02:48,959 --> 00:02:56,700
+et l’élément de gauche, qu’on appelle l’encodeur,
+
+32
+00:02:56,700 --> 00:03:03,690
+se spécialisera dans la lecture de l'entrée. Donc jl traite la séquence d'entrée en essayant
+
+33
+00:03:03,690 --> 00:03:10,080
+d’extraire les informations pertinentes de la séquence d'entrée, puis il passera
+
+34
+00:03:10,080 --> 00:03:15,300
+ces informations au deuxième élément, qu’on appelle le décodeur et
+
+35
+00:03:15,300 --> 00:03:21,239
+celui-ci se spécialisera dans la production de la sortie, donc il n'est plus
+
+36
+00:03:21,239 --> 00:03:26,489
+plus lié à la séquence d'entrée et c'est la raison pour laquelle il a la flexibilité totale pour
+
+37
+00:03:26,489 --> 00:03:32,310
+générer tout résultat qui permettra de résoudre le problème. Dans le cas présent,
+
+38
+00:03:32,310 --> 00:03:36,900
+il peut générer trois mots, même si l’entrée comportait deux mots. Nous verrons en détail
+
+39
+00:03:36,900 --> 00:03:42,630
+maintenant comment implémenter ces deux éléments, mais une chose que vous pouvez voir tout de suite,
+
+40
+00:03:42,630 --> 00:03:47,370
+c'est la façon dont nous envoyons les informations du codeur au décodeur.
+
+41
+00:03:47,370 --> 00:03:52,950
+Vous voyez donc que l'encodeur fait fonctionner un RNN sur l'entrée
+
+42
+00:03:52,950 --> 00:03:56,940
+qui est « il pleut » dans ce cas-ci, et une chose intéressante est que nous n'avons pas
+
+43
+00:03:56,940 --> 00:04:01,110
+de sortie ici. Nous n'en avons pas parce que la sortie de l'encodeur
+
+44
+00:04:01,110 --> 00:04:05,640
+ne nous intéresse pas. Ce qui nous intéresse, c'est que l’encodeur
+
+45
+00:04:05,640 --> 00:04:15,000
+puisse extraire toute l’information de cette séquence d'entrée et la stocker
+
+46
+00:04:15,000 --> 00:04:22,890
+dans le dernier état interne ici. En fait, c’est
+
+47
+00:04:22,890 --> 00:04:26,640
+toute l’information que nous faisons parvenir au décodeur afin que celui-ci
+
+48
+00:04:26,640 --> 00:04:29,530
+traite seulement cette information et il essaiera de générer la sortie.
+
+49
+00:04:29,530 --> 00:04:36,220
+Nous savons donc à ce stade comment implémenter l’encodeur. En fin de compte,
+
+50
+00:04:36,220 --> 00:04:43,389
+nous pouvons prendre un RNN, qui peut être le tanh, le LSTM, ou le GRU, et nous le l'exécutons sur
+
+51
+00:04:43,389 --> 00:04:50,970
+une séquence, nous ignorons la sortie et nous prenons seulement le dernier état interne et
+
+52
+00:04:50,970 --> 00:04:54,639
+c'est l'information qui ira au décodeur. Alors nous savons comment implémenter
+
+53
+00:04:54,639 --> 00:04:59,110
+l’encodeur, mais nous ne savons pas comment implémenter le décodeur et la raison est
+
+54
+00:04:59,110 --> 00:05:05,560
+que dans tous les cas d'implémentation que nous avons vus dans
+
+55
+00:05:05,560 --> 00:05:10,090
+la première présentation, il y avait une séquence d'entrée, mais dans ce cas, nous n'avons pas de
+
+56
+00:05:10,090 --> 00:05:14,530
+séquence d'entrée. Nous devons donc d'abord trouver un moyen pour que le décodeur
+
+57
+00:05:14,530 --> 00:05:19,000
+puisse travailler même sans séquence d'entrée et nous voulons aussi que
+
+58
+00:05:19,000 --> 00:05:25,740
+le décodeur produise une sortie cohérente. Cela signifie que, par exemple,
+
+59
+00:05:25,740 --> 00:05:34,300
+si le décodeur génère le mot « it » au pas de temps zéro, la probabilité
+
+60
+00:05:34,300 --> 00:05:41,229
+que le deuxième mot soit « is » est maintenant plus élevée. Nous voulons capturer cette relation,
+
+61
+00:05:41,229 --> 00:05:47,039
+donc nous voulons que le décodeur soit capable de savoir ce qui a été généré.
+
+62
+00:05:47,039 --> 00:05:55,960
+La solution consiste à utiliser un modèle de RNN qu’on appelle
+
+63
+00:05:55,960 --> 00:06:05,289
+« autorégressif ». C'est donc en fait une idée simple où l'on utilise
+
+64
+00:06:05,289 --> 00:06:12,940
+la sortie du RNN à un pas de temps donné, disons au temps 0 ici, donc nous prenons
+
+65
+00:06:12,940 --> 00:06:18,729
+cette sortie y_0 et elle deviendra l'entrée pour le prochain pas de temps, qui sera
+
+66
+00:06:18,729 --> 00:06:24,940
+le pas de temps 1 dans ce cas-ci. C'est répété encore et encore, alors
+
+67
+00:06:24,940 --> 00:06:29,380
+vous voyez y_0 ici qui devient l'entrée là et y_1 qui
+
+68
+00:06:29,380 --> 00:06:33,400
+devient cette entrée ici. Ainsi, nous pouvons résoudre les deux problèmes mentionnés.
+
+69
+00:06:33,400 --> 00:06:38,110
+D’abord, nous savons quelle est la séquence d'entrée, parce que nous utilisons
+
+70
+00:06:38,110 --> 00:06:41,500
+la sortie du pas de temps précédent. En ce qui concerne le deuxième problème,
+
+71
+00:06:41,500 --> 00:06:46,390
+maintenant le décodeur est au courant de ce qui a été produit au pas de temps précédent parce que c’est
+
+72
+00:06:46,390 --> 00:06:52,470
+l'entrée du pas de temps actuel. Cette façon d'utiliser le RNN
+
+73
+00:06:52,470 --> 00:06:57,520
+est appelé autorégressif et il est important de mentionner ce symbole particulier ici,
+
+74
+00:06:57,520 --> 00:07:05,320
+<SOS>, ce qui veut dire début de la séquence (start of sequence). C’est toujours le même
+
+75
+00:07:05,320 --> 00:07:10,270
+symbole et vous le pouvez considérer comme un signal que je donne à mon décodeur pour qu’il
+
+76
+00:07:10,270 --> 00:07:19,590
+commence à générer la sortie. À stade, nous savons comment implémenter le
+
+77
+00:07:19,590 --> 00:07:25,270
+décodeur et maintenant regardons un exemple de la façon dont le décodeur peut produire
+
+78
+00:07:25,270 --> 00:07:31,450
+du texte. Alors dans l’entrée, au début, nous avons seulement <SOS>,
+
+79
+00:07:31,450 --> 00:07:36,220
+ce symbole de début de séquence qui est toujours le même,
+
+80
+00:07:36,220 --> 00:07:39,669
+donc peu importe l'exemple que nous essayons de résoudre, c'est
+
+81
+00:07:39,669 --> 00:07:43,390
+toujours la même unité lexicale et c'est comme un signal au décodeur pour commencer à produire
+
+82
+00:07:43,390 --> 00:07:50,140
+la sortie. À ce stade, le décodeur fonctionne comme un RNN habituel, donc il met à jour
+
+83
+00:07:50,140 --> 00:07:54,220
+l'état interne, et vous voyez qu'il a déjà déplacé l'état interne h_(-1)
+
+84
+00:07:54,220 --> 00:08:00,220
+parce qu'il a été initialisé, mais il n'apportait pas
+
+85
+00:08:00,220 --> 00:08:04,540
+d’information, donc pour l'instant nous pouvons l'ignorer. Donc il met à jour l'état interne
+
+86
+00:08:04,540 --> 00:08:09,610
+et il produira le résultat qui, dans ce cas-ci, est ce mot « hi ». Comme vous pouvez voir,
+
+87
+00:08:09,610 --> 00:08:14,410
+étant donné que nous utilisons le RNN
+
+88
+00:08:14,410 --> 00:08:21,160
+de manière autorégressive, ce « hi » devient l'entrée à l'étape suivante, donc maintenant
+
+89
+00:08:21,160 --> 00:08:26,500
+nous exécutons le RNN, ce qui signifie que nous allons créer cet état interne h_1 basé sur
+
+90
+00:08:26,500 --> 00:08:31,270
+cette entrée et basé sur l'état interne précédent, h_0. Encore une fois, nous produisons la sortie
+
+91
+00:08:31,270 --> 00:08:36,339
+« how », qui deviendra la prochaine entrée et ainsi de suite. Alors vous voyez que grâce
+
+92
+00:08:36,339 --> 00:08:42,969
+à cette technique, nous pouvons maintenant générer du texte. Nous avons vu symbole de début de la séquence,
+
+93
+00:08:42,969 --> 00:08:48,190
+<SOS> qui se trouve en bas à gauche, mais il y a aussi cet autre symbole,
+
+94
+00:08:48,190 --> 00:08:55,660
+<EOS>, ou fin de séquence (end of sequence) que vous voyez en haut à droite.
+
+95
+00:08:55,660 --> 00:09:01,150
+C’est un jeton spécial que le décodeur peut produire quand il est temps
+
+96
+00:09:01,150 --> 00:09:05,020
+d'arrêter de générer du texte, ce qui est intéressant car nous donnons au
+
+97
+00:09:05,020 --> 00:09:10,810
+décodeur toute la flexibilité nécessaire pour arrêter cette boucle de génération de texte 
+
+98
+00:09:10,810 --> 00:09:18,370
+lorsqu'il décide que la sortie a déjà été générée. Encore une fois,
+
+99
+00:09:18,370 --> 00:09:22,810
+la fin de la séquence est la même que le début de la séquence dans le sens que
+
+100
+00:09:22,810 --> 00:09:26,860
+c'est toujours le même jeton; il ne change pas d'un exemple à un autre.
+
+101
+00:09:26,860 --> 00:09:33,880
+Alors ici nous avons tout mis ensemble. Nous savons déjà comment
+
+102
+00:09:33,880 --> 00:09:41,020
+implémenter l’encodeur et maintenant nous savons comment implémenter le décodeur. Dans cette diapositive,
+
+103
+00:09:41,020 --> 00:09:47,140
+nous mettons les deux ensemble et nous pouvons passer en revue ces architectures.
+
+104
+00:09:47,140 --> 00:09:52,480
+Encore une fois, l’encodeur ne traite seulement l'entrée, donc dans ce cas-ci,
+
+105
+00:09:52,480 --> 00:09:58,780
+la séquence x. Le point important est que nous n'avons pas besoin de la sortie parce que l’encodeur
+
+106
+00:09:58,780 --> 00:10:04,120
+se spécialise simplement dans le traitement de l'entrée, la capture de toute l’information pertinente
+
+107
+00:10:04,120 --> 00:10:09,700
+et le stockage de cette information dans l'état interne h_2 qui
+
+108
+00:10:09,700 --> 00:10:15,070
+est le dernier état interne de l'encodeur. C'est la seule information
+
+109
+00:10:15,070 --> 00:10:19,600
+que l'on fait parvenir au décodeur afin qu’il soit initialisé par
+
+110
+00:10:19,600 --> 00:10:24,030
+cette information ici qui provient de l'encodeur. Il sera initialisée avec ce symbole de début de séquence
+
+111
+00:10:24,030 --> 00:10:31,720
+et il va fonctionner comme le RNN habituel, donc
+
+112
+00:10:31,720 --> 00:10:36,190
+il va mettre à jour l'état interne et produire la sortie. La différence est que nous utilisons
+
+113
+00:10:36,190 --> 00:10:41,350
+la technique autorégressive, ce qui signifie essentiellement que la sortie deviendra
+
+114
+00:10:41,350 --> 00:10:47,590
+l'entrée suivante et ainsi de suite, jusqu'à ce que le décodeur décide que la sortie est complète
+
+115
+00:10:47,590 --> 00:10:53,800
+et il produira ce jeton de fin de phrase pour que l'algorithme
+
+116
+00:10:53,800 --> 00:11:00,150
+en fonctionnement arrête la tâche. Et là nous avons fini cette tâche.
+
+117
+00:11:00,240 --> 00:11:06,339
+Examinons un exemple réel de la façon dont cela fonctionne. Alors nous allons aussi utiliser
+
+118
+00:11:06,339 --> 00:11:10,360
+cet exemple dans le reste de cette présentation, donc ici
+
+119
+00:11:10,360 --> 00:11:13,930
+nous faisons de la traduction automatique, c'est-à-dire nous traduisons d’une langue à une autre,
+
+120
+00:11:13,930 --> 00:11:19,060
+plus précisément nous traduisons du français vers l’anglais. La séquence d'entrée est
+
+121
+00:11:19,060 --> 00:11:24,850
+la phrase suivante : « je suis malade » et ce qui se passe ici, c'est que nous
+
+122
+00:11:24,850 --> 00:11:30,340
+faisons fonctionner l’encodeur sur la séquence « je suis malade »et, là encore, nous ne considérons pas la sortie,
+
+123
+00:11:30,340 --> 00:11:35,890
+nous voulons simplement que l’encodeur stocke toute l’information pertinente dans
+
+124
+00:11:35,890 --> 00:11:41,500
+cet état interne h_2. Encore une fois, la raison est que c'est la seule communication
+
+125
+00:11:41,500 --> 00:11:46,990
+avec le décodeur. Donc à ce stade, nous commençons à faire fonctionner le décodeur et vous voyez
+
+126
+00:11:46,990 --> 00:11:50,470
+que nous devons encore le faire fonctionner et l’information à laquelle le décodeur a accès
+
+127
+00:11:50,470 --> 00:11:55,870
+est l’état interne h_2 qui capture idéalement toutes les informations de la séquence
+
+128
+00:11:55,870 --> 00:12:03,340
+« je suis malade ». La première entrée est ce symbole de début de séquence
+
+129
+00:12:03,340 --> 00:12:08,170
+qui est un signal pour indiquer au décodeur qu'il est temps de commencer
+
+130
+00:12:08,170 --> 00:12:12,460
+à produire la sortie et le décodeur fonctionnera alors comme
+
+131
+00:12:12,460 --> 00:12:17,050
+un RNN habituel, donc il va mette à jour l'état interne et produire la sortie.
+
+132
+00:12:17,050 --> 00:12:22,960
+La différence c’est que comme nous utilisons un modèle autorégressif, la sortie,
+
+133
+00:12:22,960 --> 00:12:29,500
+qui sera « I », va devenir l’entrée suivante et ensuite nous allons faire fonctionner le RNN
+
+134
+00:12:29,500 --> 00:12:35,350
+encore et encore. Ici nous mettons à jour l'état interne, qui est une fonction
+
+135
+00:12:35,350 --> 00:12:41,080
+de l’état interne précédent et de cette entrée « I » et ensuite nous produisons le verbe, dans ce cas-ci, « am »
+
+136
+00:12:41,080 --> 00:12:47,490
+et cela deviendra la prochaine entrée parce qu'une fois de plus, c'est un modèle autoregressif.
+
+137
+00:12:47,490 --> 00:12:54,610
+Nous faisons la même opération pour « sick » et à la fin le décodeur peut décider qu’il est temps
+
+138
+00:12:54,610 --> 00:13:01,480
+d'arrêter parce qu'il produit cette sortie ici qui est la fin de la phrase,
+
+139
+00:13:01,480 --> 00:13:07,480
+Alors c'est l'architecture séquence à séquence, vous pouvez voir qu'elle
+
+140
+00:13:07,480 --> 00:13:14,080
+nous permet de séparer la partie qui traite l'entrée
+
+141
+00:13:14,080 --> 00:13:17,230
+de la partie qui traite la sortie et grâce à cela, nous avons maintenant une flexibilité totale du
+
+142
+00:13:17,230 --> 00:13:20,980
+nombre d'éléments que nous voulons générer. Une chose à mentionner, c’est que
+
+143
+00:13:20,980 --> 00:13:24,370
+l’encodeur et décodeur sont basés sur deux différents RNN,
+
+144
+00:13:24,370 --> 00:13:28,780
+donc il existe différents ensembles de paramètres pour que l’encodeur puisse
+
+145
+00:13:28,780 --> 00:13:36,550
+vraiment se spécialiser dans son travail et de même pour le décodeur. Encore une fois,
+
+146
+00:13:36,550 --> 00:13:40,210
+le seul point de communication entre l’encodeur et le décodeur est ceci,
+
+147
+00:13:40,210 --> 00:13:45,210
+et ce sera un point important dans le reste de la présentation.

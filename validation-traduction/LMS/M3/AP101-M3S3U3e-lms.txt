@@ -1,0 +1,11 @@
+<p>Jeremy briefly overviews EfficientNet, the architecture at the top of the ImageNet leaderboard as of 2019. It uses principled methods to scale CNNs up or down and propose an efficient tradeoff between accuracy and the number of parameters used. Jeremy wraps up with a high-level overview of the setup of most classification models.</p>
+<p>Here is the link to the article <a href="https://arxiv.org/pdf/1905.11946.pdf" target="[object Object]">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</a>: <a href="https://arxiv.org/pdf/1905.11946.pdf" style="text-decoration-line: none;" target="_blank">https://arxiv.org/pdf/1905.11946.pdf</a>.</p>
+<p>All reference materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/962e7495cf4c4614964f388750806f8f/058ea5a58d564791b4c6ce30cfb59ccc/12?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%4050fea86bea6d483ebe25f59777f96c68" target="_blank">3.3 - References</a></p>
+
+
+
+
+
+
+<!-- Next step -->
+<p>There is no quiz for this section. Please move on to the next video.</p>

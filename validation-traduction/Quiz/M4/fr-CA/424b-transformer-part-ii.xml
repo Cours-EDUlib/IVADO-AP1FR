@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which of the following is not part of the transformer architecture? &lt;&lt;&#10;&#10;( ) Self-attention  {{ Transformer is based on self-attention }}&#10;( ) Multi-head attention  {{ The transformer model has multi-head attention mechanism in it}}&#10;( ) Positional encodings  {{ Tansformer uses positional encoding to encode the order of elements in a sequence}}&#10;(x) Batch normalization &#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Lequel des éléments suivants ne fait pas partie de l&apos;architecture de transformateur ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Auto-attention <choicehint>Le transformateur est basé sur l&apos;auto-attention</choicehint></choice>
+      <choice correct="false">Attention multi-têtes <choicehint>Le modèle de transformateur comporte un mécanisme d&apos;attention à multi-têtes</choicehint></choice>
+      <choice correct="false">Encodages de position <choicehint>Le transformateur utilise les encodages de position pour encoder l&apos;ordre des éléments dans une séquence</choicehint></choice>
+      <choice correct="true">Normalisation par lots</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

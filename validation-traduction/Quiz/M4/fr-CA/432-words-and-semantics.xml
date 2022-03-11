@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Principle of compositionality states that words that occur in the same context tend to have similar meanings. || Select true or false.  &lt;&lt;&#10;&#10;( ) True {{ Compositionality states that the meaning of complex expressions can be determined by the meaning of its constituents; the given statement is meant for distributional semantic hypothesis }}&#10;(x) False &#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Le principe de compositionnalité stipule que les mots qui apparaissent dans le même contexte ont tendance à avoir des significations similaires.</label>
+    <description>Choisissez vrai ou faux.</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>La compositionnalité stipule que la signification d&apos;expressions complexes peut être déterminée par la signification de ses constituants : l&apos;énoncé est destiné à l&apos;hypothèse sémantique distributionnelle</choicehint></choice>
+      <choice correct="true">Faux</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

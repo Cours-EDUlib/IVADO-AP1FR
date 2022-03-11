@@ -1,0 +1,13 @@
+<problem display_name="Quiz" markdown="&gt;&gt; ___________ task from Word2Vec is to predict a token given its surrounding tokens. &lt;&lt;&#10;&#10;[[&#10;Skip-gram {{ Skip-gram predicts the surrounding tokens given the middle token}}&#10;(Continuous bag-of-words) &#10;FastText {{ FastText is a word embedding calculation method different from Word2Vec }}&#10;]]&#10;&#10;|| Check the video at 1:58 onward. ||&#10;&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>Le modèle ___________ de Word2Vec est de prédire une unité lexicale en fonction des unités lexicales environnantes.</label>
+    <optioninput>
+      <option correct="False">skip-gram <optionhint>Skip-gram prédit les unités lexicales environnantes en tenant compte de l’unité lexicale du milieu</optionhint></option>
+      <option correct="True">de sacs de mots continus</option>
+      <option correct="False">FastText <optionhint>FastText est une méthode de calcul de vecteurs-mots différente de Word2Vec</optionhint></option>
+    </optioninput>
+  </optionresponse>
+  <demandhint>
+    <hint>Regardez la vidéo à partir de 01:58.</hint>
+  </demandhint>
+</problem>

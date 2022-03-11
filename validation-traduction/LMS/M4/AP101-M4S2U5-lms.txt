@@ -1,0 +1,4 @@
+<p>PyTorch, TensorFlow and other frameworks have implemented RNNs and Transformers, and Mirko gives links to these. He also presents the references he used and presents the key resources that viewers should consult.</p>
+<p>Please note that the link to the transformers module for PyTorch has changed since the presentation. You can find it now at <a href="https://github.com/huggingface/transformers">https://github.com/huggingface/transformers</a>.</p>
+<p>All reverence materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/695f1a4ca0ea464b9b898695473ab7c6/66fa872ed98e4fde9d9209a7fe12879f/10?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%4004be35519d5947139a5241679d13b893" target="_blank">4.2 - References</a></p>
+<p></p>

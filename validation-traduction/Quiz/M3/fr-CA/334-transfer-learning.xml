@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; When does transfer learning work best between datasets A and B? &lt;&lt;&#10;&#10;( ) When the model performs really well on dataset A {{ The performance of the model on dataset A does not guarantee good transfer learning}}&#10;( ) When the size of dataset A and B is similar {{ The size of the datasets is irrelevant to the transfer learning performance }}&#10;(x) When the domain of dataset B is similar to the domain of dataset A &#10;( ) When the model is small {{ The size of the model is irrelevant to the transfer learning performance}}&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quand l’apprentissage par transfert fonctionne-t-il mieux entre les ensembles de données A et B ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Lorsque le modèle fonctionne vraiment bien sur l&apos;ensemble de données A <choicehint>La performance du modèle sur l&apos;ensemble de données A ne garantit pas un bon apprentissage par transfert.</choicehint></choice>
+      <choice correct="false">Lorsque la taille des ensembles de données A et B est similaire <choicehint>La taille des ensembles de données n&apos;est pas pertinente pour la performance de l&apos;apprentissage par transfert</choicehint></choice>
+      <choice correct="true">Lorsque le domaine du jeu de données B est similaire au domaine du jeu de données A</choice>
+      <choice correct="false">Lorsque le modèle est petit <choicehint>La taille du modèle n&apos;est pas pertinente pour les performances de l&apos;apprentissage par transfert</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

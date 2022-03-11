@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; GoogLeNet introduced ________, which is a reused block of operations and it has ___ of those. &lt;&lt;&#10;&#10;[[&#10;Inception, 10 {{ Incorrect, it has 9 of those}}&#10;Residual block, 9 {{ Incorrect, GoogLeNet introduced an inception block, not residual one }}&#10;(Inception, 9)  &#10;Residual block, 10 {{ Incorrect, GoogLeNet introduced an inception block, not residual one}}&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>GoogLeNet a introduit ________, qui est un bloc d&apos;opérations réutilisées et GoogLeNet en a ___.</label>
+    <optioninput>
+      <option correct="False">Le module de création, 10 <optionhint>Incorrect, il en a 9</optionhint></option>
+      <option correct="False">Le bloc résiduel, 9 <optionhint>Incorrect, GoogLeNet a introduit un bloc de création, et non un bloc résiduel</optionhint></option>
+      <option correct="True">Le module de création, 9</option>
+      <option correct="False">Le bloc résiduel, 10 <optionhint>Incorrect, GoogLeNet a introduit un bloc de création, et non un bloc résiduel</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>

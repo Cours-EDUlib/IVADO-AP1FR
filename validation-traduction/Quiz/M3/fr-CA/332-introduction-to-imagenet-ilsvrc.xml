@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; ImageNet dataset has ________ categories. &lt;&lt;&#10;&#10;[[&#10;10 &#10;100 &#10;(1000)  &#10;10000 &#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>L&apos;ensemble de données d&apos;ImageNet comporte ________ catégories.</label>
+    <optioninput>
+      <option correct="False">10</option>
+      <option correct="False">100</option>
+      <option correct="True">1000</option>
+      <option correct="False">10000</option>
+    </optioninput>
+  </optionresponse>
+</problem>

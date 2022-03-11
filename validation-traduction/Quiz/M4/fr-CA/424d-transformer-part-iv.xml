@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; The output of different self-attention heads are different because the input to the attention heads are first projected to different spaces by a shared weight matrix.  || Select true or false. &lt;&lt;&#10;&#10;( ) True {{ First part of the sentence is true, but the weights between heads are not shared, they are different}}&#10;(x) False&#10;&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Les sorties des différentes têtes d&apos;auto-attention sont différentes parce que les entrées des têtes d&apos;attention sont d&apos;abord projetées dans différents espaces par une matrice de poids partagée.</label>
+    <description>Choisissez vrai ou faux.</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>La première partie de la phrase est vraie, mais les poids entre les têtes ne sont pas partagés, ils sont différents</choicehint></choice>
+      <choice correct="true">Faux</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

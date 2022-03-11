@@ -1,0 +1,13 @@
+<problem display_name="Question 3" markdown="&gt;&gt;The main component of the Transformer architecture that replaces the RNN is ______________. &lt;&lt;&#10;&#10;[[&#10;Batch Normalization {{Batch Normalization is an important innovation brought about before the Transformer and used in its architecture, but it does not replace the RNN.}}&#10;(Self-Attention) {{Self-Attention is highly parallelizable and allows the model to focus on certain parts of the input.}}&#10;The softmax {{The softmax function is used to normalize the model’s output to a probability distribution that sums to 1.}}&#10;]]&#10;&#10;||The name of the paper in which the Transformer architecture is presented is called “Attention Is All You Need”.||&#10;&#10;" max_attempts="2">
+  <optionresponse>
+    <label>La principale composante de l&apos;architecture du transformateur qui remplace le RNR est ______________.</label>
+    <optioninput>
+      <option correct="False">La normalisation par lots <optionhint>La normalisation par lots est une innovation importante apportée avant la création du transformateur et elle est utilisée dans son architecture, mais elle ne remplace pas le RNR.</optionhint></option>
+      <option correct="True">Le mécanisme d’auto-attention <optionhint>L &apos;auto-attention est facile à paralléliser et permet au modèle de se concentrer sur certaines parties de l&apos;entrée.</optionhint></option>
+      <option correct="False">La fonction softmax <optionhint>La fonction softmax est utilisée pour normaliser la sortie du modèle à une distribution de probabilité qui a une somme de 1.</optionhint></option>
+    </optioninput>
+  </optionresponse>
+  <demandhint>
+    <hint>Le nom de l&apos;article dans lequel l&apos;architecture du transformateur est présentée s&apos;intitule « Attention Is All You Need ».</hint>
+  </demandhint>
+</problem>

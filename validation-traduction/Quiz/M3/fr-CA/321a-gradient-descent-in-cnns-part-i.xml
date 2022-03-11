@@ -1,0 +1,9 @@
+<problem display_name="Quiz" markdown="&gt;&gt; What is the derivative of the loss function [mathjaxinline]E = \frac{1}{2} \sum_{i,j} (y_{ij} - \hat{y}_{ij})^2 = \frac{1}{2}L^{(2)} [/mathjaxinline] w.r.t each output? &lt;&lt;&#10;&#10;(x) [mathjaxinline] \frac{\partial E}{\partial y_{ij}} = (y_{ij} - \hat{y}_{ij}) [/mathjaxinline] &#10;( )  [mathjaxinline] \frac{\partial E}{\partial y_{ij}} = \frac{1}{2} (y_{ij} - \hat{y}_{ij}) [/mathjaxinline] {{ There is no ½ for the derivative}}&#10;&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle est la dérivée de la fonction de perte [mathjaxinline]E = \frac{1}{2} \sum_{i,j} (y_{ij} - \hat{y}_{ij})^2 = \frac{1}{2}L^{(2)} [/mathjaxinline] par rapport à chaque sortie?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">[mathjaxinline] \frac{\partial E}{\partial y_{ij}} = (y_{ij} - \hat{y}_{ij}) [/mathjaxinline]</choice>
+      <choice correct="false">[mathjaxinline] \frac{\partial E}{\partial y_{ij}} = \frac{1}{2} (y_{ij} - \hat{y}_{ij}) [/mathjaxinline] <choicehint>Il n&apos;y a pas de ½ pour la dérivée</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

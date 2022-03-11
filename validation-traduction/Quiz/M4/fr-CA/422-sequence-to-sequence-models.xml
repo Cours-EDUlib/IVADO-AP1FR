@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; A/an _________ model is a model where the output of a time step is conditioned on the output of previous time steps. &lt;&lt;&#10;&#10;[[&#10;encoder {{ An encoder model processes the input to create a representation for it}}&#10;bidirectional {{ A bidirectional model processes the input sequence from both left-to-right and right-to-left}}&#10;(autoregressive)&#10;]]&#10;&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>Le modèle _________ est un modèle dans lequel la sortie d&apos;un pas de temps est conditionnée par la sortie des pas de temps précédents.</label>
+    <optioninput>
+      <option correct="False">encodeur <optionhint>Un modèle encodeur traite l&apos;entrée pour en créer une représentation</optionhint></option>
+      <option correct="False">bidirectionnel <optionhint>Un modèle bidirectionnel traite la séquence d&apos;entrée de gauche à droite et de droite à gauche</optionhint></option>
+      <option correct="True">autorégressif</option>
+    </optioninput>
+  </optionresponse>
+</problem>

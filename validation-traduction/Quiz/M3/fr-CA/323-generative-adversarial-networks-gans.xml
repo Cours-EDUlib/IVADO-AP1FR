@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Select the true statement about GANs.&lt;&lt;&#10;&#10;( ) When training the generator, we want to minimize the error that the discriminator will make on a generated image {{ On the contrary, when training the generator, we want to maximize the error that the discriminator will make on a generated image}}&#10;( ) When training the discriminator, we want to maximize the error that the discriminator will make on a generated image {{ We want to minimize the error that the discriminator will make on a generated image}}&#10;(x) When training the discriminator, we want to minimize the error that the discriminator will make on a generated image &#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Sélectionnez la déclaration véridique sur les RAG (GAN).</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Lors de l’entraînement du générateur, nous voulons minimiser l&apos;erreur que le discriminateur aura sur une image générée. Au contraire, lors de l’entraînement du générateur, nous voulons maximiser l&apos;erreur que le discriminateur aura sur une image générée.</choice>
+      <choice correct="false">Lors de l’entraînement du discriminateur, nous voulons maximiser l&apos;erreur que le discriminateur aura sur une image générée <choicehint>Nous voulons minimiser l&apos;erreur que le discriminateur aura sur une image générée</choicehint></choice>
+      <choice correct="true">Lors de l’entraînement du discriminateur, nous voulons minimiser l&apos;erreur qu&apos;il aura sur une image générée</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>
