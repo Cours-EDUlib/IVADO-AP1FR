@@ -1,0 +1,15 @@
+<problem>
+<choiceresponse>
+  <label>Quels sont les trois facteurs de comparaison entre les différents unités lexicales utilisées en traitement du langage naturel ?</label>
+<checkboxgroup>
+    <choice correct="true">A. Taille du vocabulaire<choicehint selected="true">A. Correct. Des unités lexicales plus petites signifieront une taille de vocabulaire restreinte (par exemple 26 lettres contre plus d&apos;un million de mots pour la langue anglaise).</choicehint></choice>
+    <choice correct="true">B. Longueur de la phrase <choicehint selected="true">B. Correct. Des unités lexicales plus petites signifient des phrases plus longues en moyenne. Si le modèle que vous utilisez a du mal à saisir les dépendances à long terme (comme un RNR de base), cela peut devenir problématique.</choicehint></choice>
+    <choice correct="true">C. Nombre d'unités lexicales hors vocabulaire <choicehint selected="true">C. Correct, l&apos;utilisation d’unités lexicales plus grandes (au niveau de mot ou de la phrase) signifie qu&apos;il est moins probable de rencontrer ces exemples lors de l’entraînement. L&apos;utilisation de jetons plus petits (sous-mots ou caractères) signifie qu&apos;il est beaucoup plus probable de rencontrer des unités lexicales pendant l’entraînement.</choicehint></choice>
+    <choice correct="false">D. Manipulation d'unités lexicales hors vocabulaire <choicehint selected="true">D. Incorrect. Bien que les modèles puissent traiter différemment les unités lexicales hors vocabulaire, ce n&apos;est généralement pas un facteur de comparaison important entre les modèles.</choicehint></choice>
+    <compoundhint value="A B C D">Veuillez choisir 3 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+<demandhint>
+  <hint>Regardez la vidéo à partir de 1:12.</hint>
+</demandhint>
+</problem>

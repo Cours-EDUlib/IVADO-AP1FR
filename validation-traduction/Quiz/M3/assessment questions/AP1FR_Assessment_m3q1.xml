@@ -1,0 +1,11 @@
+<problem>
+<choiceresponse>
+  <label>Parmi les éléments suivants, quels sont ceux que vous êtes susceptible de trouver dans une architecture typique de RNC ?</label>
+<checkboxgroup>
+    <choice correct="true">A. Mises en commun <choicehint selected="true">A. Vrai</choicehint>.<choicehint selected="true"> Les couches de mise en commun sont utilisées pour le sous-échantillonnage.</choicehint></choice>
+    <choice correct="true">B. Couches convolutionnelles <choicehint selected="true">B. Vrai</choicehint>.<choicehint selected="true"> Les couches convolutionnelles sont la composante clé des réseau de neurones convolutifs.</choicehint></choice>
+    <choice correct="true">C. Couches entièrement connectées <choicehint selected="true">C. Vrai</choicehint>.<choicehint selected="true"> Les RNC ont souvent une composante MLP suivie d&apos;une fonction softmax pour obtenir une distribution de probabilité dont la somme est de 1.</choicehint></choice>
+    <choice correct="true">D. Fonctions d&apos;activation <choicehint selected="true">D. Vrai</choicehint>.<choicehint selected="true"> Les fonctions d&apos;activation introduisent la non-linéarité dans l&apos;architecture.</choicehint></choice>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

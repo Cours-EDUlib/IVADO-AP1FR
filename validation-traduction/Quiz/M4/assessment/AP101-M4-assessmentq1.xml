@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Parmi les affirmations suivantes, sélectionnez les trois qui s&apos;appliquent aux RNR.</label>
+<description>Veuillez choisir 3 options.</description>
+<checkboxgroup>
+    <choice correct="false">A. On peut rendre les RNR sont profonds en augmentant la longueur des entrées. <choicehint selected="true">A. Incorrect, les RNR sont rendus profonds en « empilant » les RNR, ce qui permet d’envoyer les états cachés d&apos;un RNR à un autre RNR par-dessus. Les RNR sont spécifiquement conçus pour traiter des entrées de taille variable, de sorte que les entrées sont susceptibles de varier en taille (bien que ce ne soit pas une caractéristique nécessaire des entrées).</choicehint></choice>
+    <choice correct="true">B. Les RNR ont été conçus pour s&apos;adapter à des données d’entrée de taille variable. <choicehint selected="true">B. Correct, les perceptrons multicouches et les CNN n&apos;ont pas été conçus pour des données d’entrée de taille variable, ce qui a motivé le développement du RNR.</choicehint></choice>
+    <choice correct="true">C. L&apos;entraînement des RNR peut être fait par rétropropagation mais des problèmes tels que la dissipation du gradient peuvent survenir. <choicehint selected="true">C. Correct, diverses modifications de l&apos;algorithme de rétropropagation ont été proposées pour les RNR, mais il reste le principe directeur de la descente de gradient.</choicehint></choice>
+    <choice correct="true">D. Les RNR ont un état caché dans lequel les informations de tous les éléments précédents de la séquence d&apos;entrée peuvent être conservées. <choicehint selected="true">D. Correct, l&apos;état caché est continuellement mis à jour et conserve les informations pertinentes pour la tâche en cours, bien qu’il existe un risque de goulot d&apos;étranglement de l&apos;information pour les séquences plus longues.</choicehint></choice>
+    <compoundhint value="A B C D">Veuillez choisir 3 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+<demandhint>
+  <hint>Que se passe-t-il si vous « empilez » les RNN ensemble ?</hint>
+</demandhint>
+</problem>

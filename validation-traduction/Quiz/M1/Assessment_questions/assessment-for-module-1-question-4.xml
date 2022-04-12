@@ -1,0 +1,14 @@
+<problem display_name="Question 4" markdown="&gt;&gt;We are interested in solving the task of automatically recognizing flowers in images. We limit the number of flower species to 1000. We have 10 labeled images per species and many unlabeled images of flowers. What is the best learning framework to address this problem?&lt;&lt;&#10;&#10;( ) Supervised learning {{The number of labeled images is too low for fully supervised learning.}}&#10;(x) Semi-supervised learning {{By using techniques in semi-supervised learning to leverage the value of the unlabeled images, you maximize your chance to train a good mode.l}}&#10;( ) Active learning {{It is not clear from the context that the expert is available to label more examples.}}&#10;( ) Self-supervised learning {{Self-supervised learning can be used, but in general, the idea behind self-supervised learning is that the downstream tasks are not known, and so, the labeled dataset is not used during training. In our context, the downstream task is known, and we should use the labeled data as much as possible.}}&#10;&#10;||Think about how you can leverage the information contained in the unlabeled examples.||&#10;" max_attempts="2">
+  <multiplechoiceresponse>
+    <label>Nous voulons résoudre la tâche de reconnaître automatiquement les fleurs dans les images. Nous limitons le nombre d&apos;espèces de fleurs à 1 000. Nous avons 10 images étiquetées par espèce et de nombreuses images de fleurs non étiquetées. Quel est le meilleur cadre d&apos;apprentissage pour régler ce problème?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Apprentissage supervisé <choicehint>le nombre d&apos;images étiquetées est trop faible pour un apprentissage entièrement supervisé.</choicehint></choice>
+      <choice correct="true">Apprentissage semi-supervisé <choicehint>par des techniques d&apos;apprentissage semi-supervisé pour tirer profit de la valeur des images non étiquetées, vous maximisez vos chances d&apos;entraîner un bon modèle</choicehint></choice>
+      <choice correct="false">Apprentissage actif <choicehint>Il n&apos;est pas clair dans le contexte que l&apos;expert est disponible pour étiqueter d&apos;autres exemples.</choicehint></choice>
+      <choice correct="false">Apprentissage auto-supervisé <choicehint>l&apos;apprentissage auto-supervisé peut être utilisé, mais en général, l&apos;idée derrière l&apos;apprentissage auto-supervisé est que les tâches en aval ne sont pas connues, et ainsi, l&apos;ensemble de données étiquetées n&apos;est pas utilisé pendant l’entraînement.</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Réfléchissez à la façon dont vous pouvez tirer profit de l&apos;information contenue dans les exemples non étiquetés.</hint>
+  </demandhint>
+</problem>

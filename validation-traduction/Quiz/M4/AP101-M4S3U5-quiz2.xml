@@ -1,0 +1,10 @@
+<problem>
+<optionresponse>
+  <label>__________ est une solution au problème de la polysémie dans les vecteurs-mots.</label>
+<optioninput>
+    <option correct="False">La modélisation du langage <optionhint>La modélisation du langage n&apos;est pas une solution directe au problème de la polysémie. Cependant, nous pouvons partiellement résoudre le problème en l&apos;utilisant d&apos;une certaine manière</optionhint></option>
+    <option correct="False">Le pré-entraînement <optionhint>Le pré-entraînement est un concept général, mais un type spécifique de pré-entraînement peut être utilisé pour s&apos;attaquer au problème de la polysémie</optionhint></option>
+    <option correct="True">Les vecteurs-mots contextualisés <optionhint>Les vecteurs-mots contextualisés utilisent les informations des unités lexicales voisines pour générer le plongement, donnant ainsi au même mot une représentation vectorielle différente en fonction du contexte dans lequel il est utilisé.</optionhint></option>
+  </optioninput>
+</optionresponse>
+</problem>

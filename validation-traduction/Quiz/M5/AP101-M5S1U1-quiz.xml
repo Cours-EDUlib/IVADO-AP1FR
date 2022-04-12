@@ -1,0 +1,19 @@
+<problem>
+<choiceresponse>
+  <label>Sélectionnez deux énoncés vrais sur l&apos;équité en apprentissage automatique.</label>
+<checkboxgroup>
+    <choice correct="true">A. Il n’y a pas de définition unique pour l’équité puisqu&apos;elle n&apos;est pas un concept général</choice>
+    <choice correct="false">B. Les données sont simplement bruyantes et non biaisées <choicehint selected="true">B. Incorrect: Il y a du bruit et des biais dans les données</choicehint></choice>
+    <choice correct="false">C. L&apos;équité en apprentissage automatique ne devrait être abordée que dans le prétraitement et le post-traitement, les modèles ne sont pas biaisés <choicehint selected="true">C. Incorrect : L&apos;équité doit être prise en compte pendant le traitement en cours ainsi qu&apos;avant et après le traitement</choicehint></choice>
+    <choice correct="true">D. L&apos;utilisation de décisions injustes comme données d&apos;entraînement peut causer les modèles d&apos;apprentissage automatique à apprendre à prendre des décisions injustes.</choice>
+    <compoundhint value="A">A. Bien que cette réponse soit vraie, veuillez sélectionner le deuxième énoncé vrai afin de répondre correctement à cette question</compoundhint>
+    <compoundhint value="D">D. Bien que cette réponse soit vraie, veuillez sélectionner le deuxième énoncé vrai afin de répondre correctement à cette question</compoundhint>
+    <compoundhint value="A D">Ces deux énoncés sont vrais en ce qui concerne l&apos;équité en apprentissage machine.</compoundhint>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

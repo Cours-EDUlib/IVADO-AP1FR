@@ -1,0 +1,14 @@
+<problem display_name="Question 2" markdown="&gt;&gt;Which of the following statements about the modular approach is true?&lt;&lt;&#10;&#10;(x) A module implements some data transformation and is required to perform automatic differentiation.&#10;( ) To create a module, we must implement the following three functions: forward, backward and update. The implementation of backward and update can be handled by automatic differentiation. &#10;( ) An activation function is not a module because it doesn’t have parameters. {{An activation function must propagate gradients from its outputs to its inputs. In this case, the implementation of the update function is empty.}}&#10;( ) A loss function is not a module since it is used to evaluate a model and so, it cannot be part of the model.  {{There is a subtle difference between a model that gives a prediction and the whole computational graph that supports automatic differentiation.}}&#10;&#10;||Refer to the videos in section 3.1.2 about the modular approach.||" max_attempts="2">
+  <multiplechoiceresponse>
+    <label>Parmi les affirmations suivantes concernant l&apos;approche modulaire, laquelle est vraie ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="true">Un module implémente une certaine transformation des données et est nécessaire pour effectuer une dérivation automatique.</choice>
+      <choice correct="false">Pour créer un module, nous devons implémenter les trois fonctions suivantes : la propagation avant, la propagation arrière et la mise à jour des paramètres. L’implémentation de la propagation arrière et de la mise à jour peut être gérée par la dérivation automatique.</choice>
+      <choice correct="false">Une fonction d&apos;activation n&apos;est pas un module, car elle ne comporte pas de paramètres. <choicehint>Une fonction d&apos;activation doit propager les gradients de ses sorties à ses entrées. Dans ce cas, l&apos;implémentation de la fonction de mise à jour est vide.</choicehint></choice>
+      <choice correct="false">Une fonction de perte n&apos;est pas un module, car elle est utilisée pour évaluer un modèle et ne peut donc pas faire partie du modèle. <choicehint>Il existe une différence subtile entre un modèle qui donne une prédiction et l&apos;ensemble du graphe de calcul qui soutient la dérivation automatique.</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Référez-vous aux vidéos de la section 3.1.2 sur l&apos;approche modulaire.</hint>
+  </demandhint>
+</problem>

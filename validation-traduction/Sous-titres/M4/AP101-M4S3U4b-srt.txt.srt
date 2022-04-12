@@ -1,0 +1,375 @@
+﻿1
+00:00:13,050 --> 00:00:19,270
+Alors ces propriétés sont donc celles que nous aimerions avoir dans notre représentation distribuée,
+
+2
+00:00:19,270 --> 00:00:23,380
+que nous appelons habituellement « vecteurs-mots ».
+
+3
+00:00:23,380 --> 00:00:27,130
+Ce sont en gros des représentations distribuées qui sont entraînées de manière à
+
+4
+00:00:27,130 --> 00:00:31,960
+présenter cette propriété que nous avons vue plus tôt. Il existe de nombreux algorithmes pour créer des vecteurs-mots
+
+5
+00:00:31,960 --> 00:00:38,590
+et dans cette présentation, je me concentrerai sur deux d'entre eux,
+
+6
+00:00:38,590 --> 00:00:45,670
+Word2Vec et FastText. Word2Vec, en particulier, n'est pas la première approche
+
+7
+00:00:45,670 --> 00:00:50,290
+pour la génération des vecteurs-mots, mais il est très important
+
+8
+00:00:50,290 --> 00:00:56,370
+parce qu'il génère des vecteurs-mots selon un algorithme très efficace et
+
+9
+00:00:56,370 --> 00:01:00,670
+c'est aussi celui qui a vraiment répandu cette idée de vecteurs-mots dans le domaine du TLN.
+
+10
+00:01:00,670 --> 00:01:07,060
+C'est pourquoi nous commençons par cette approche.
+
+11
+00:01:07,060 --> 00:01:13,510
+Word2Vec est un moyen de calculer les vecteurs-mots. Il est basé sur une modèle linéaire très simple,
+
+12
+00:01:13,510 --> 00:01:19,210
+c'est pourquoi il est très efficace et
+
+13
+00:01:19,210 --> 00:01:22,960
+il est principalement basé sur l’hypothèse distributionnaliste.
+
+14
+00:01:22,960 --> 00:01:28,869
+Nous pouvons résumer cette hypothèse en disant qu’elle permet de
+
+15
+00:01:28,869 --> 00:01:34,090
+créer le lien entre un mot, son contexte et la sémantique.
+
+16
+00:01:34,090 --> 00:01:38,979
+Word2Vec se base sur cette hypothèse pour créer cette représentation distribuée utile.
+
+17
+00:01:38,979 --> 00:01:45,189
+Il existe en fait deux versions de Word2Vec :
+
+18
+00:01:45,189 --> 00:01:49,990
+le modèle de sac de mots continu et skip-gram continu. Nous nous concentrerons surtout sur le premier,
+
+19
+00:01:49,990 --> 00:01:55,210
+mais je vais vous donner également de l'intuition sur le second.
+
+20
+00:01:55,210 --> 00:02:03,520
+L’idée générale de Word2Vec c'est que nous avons une tâche très simple : nous avons une séquence des texte,
+
+21
+00:02:03,520 --> 00:02:13,420
+disons de cinq mots par phrase, nous masquons le mot du milieu et nous demandons au modèle
+
+22
+00:02:13,420 --> 00:02:19,470
+de prédire le mot manquant.
+
+23
+00:02:20,280 --> 00:02:26,760
+C'est une tâche très simple et vous pouvez voir l'exemple ici.
+
+24
+00:02:26,760 --> 00:02:30,900
+Alors nous avons « Alan Turing lived in England », qui est la phrase.
+
+25
+00:02:30,900 --> 00:02:35,670
+Je vais masquer le mot « lived », alors l'entrée pour mon modèle est « Alan Turing in England »
+
+26
+00:02:35,670 --> 00:02:41,280
+la sortie que le modèle devrait produire est le mot que je viens de masquer, qui est « lived ».
+
+27
+00:02:41,280 --> 00:02:50,489
+Ici, pour que ce soit plus clair,
+
+28
+00:02:50,489 --> 00:02:56,400
+l'entrée est la partie à gauche composée de ces quatre mots
+
+29
+00:02:56,400 --> 00:03:02,040
+et la sortie est le mot à droite qui est « lived ». En fait, le modèle est très simple.
+
+30
+00:03:02,040 --> 00:03:11,010
+Vous pouvez tout voir ici. Alors nous avons deux multiplications matricielles : une ici et une là,
+
+31
+00:03:11,010 --> 00:03:19,140
+et une moyenne au milieu. Donc c'est un modèle extrêmement simple.
+
+32
+00:03:19,140 --> 00:03:24,209
+Examinons les détails : donc ici la première chose que nous faisons est trouver
+
+33
+00:03:24,209 --> 00:03:29,940
+la représentation 1 parmi n pour le mot. Nous avons dit que
+
+34
+00:03:29,940 --> 00:03:33,690
+cette représentation n'est pas idéale, mais ici c'est juste pour commencer le modèle.
+
+35
+00:03:33,690 --> 00:03:39,440
+Ce qui importe vraiment, c'est ce qui se passe après la première multiplication, donc ces vecteurs rouges ici,
+
+36
+00:03:39,440 --> 00:03:45,810
+c'est la représentation distribuée,
+
+37
+00:03:45,810 --> 00:03:49,650
+c’est-à-dire les vecteurs-mots que nous essayons de calculer. Vous voyez que le modèle produit
+
+38
+00:03:49,650 --> 00:03:57,170
+un vecteur-mot par mot, ensuite il les additionne tous ensemble
+
+39
+00:03:57,170 --> 00:04:05,190
+pour obtenir donc un vecteur à la fin. Puis nous utilisons ce que nous appelons avant une projection
+
+40
+00:04:05,190 --> 00:04:11,370
+pour obtenir le score de chaque mot possible dans la sortie, nous appliquons la fonction softmax comme d’habitude
+
+41
+00:04:11,370 --> 00:04:16,579
+et ensuite nous extrayons le score le plus élevé qui, dans ce cas-ci, devrait être « lived ».
+
+42
+00:04:16,579 --> 00:04:25,050
+Ce qui est intéressant à propos de ce modèle,
+
+43
+00:04:25,050 --> 00:04:28,320
+c'est que nous n'avons pas besoin de nous préoccuper de la tâche ni du modèle,
+
+44
+00:04:28,320 --> 00:04:34,650
+nous nous concentrons sur cette partie ici.
+
+45
+00:04:34,650 --> 00:04:40,500
+Afin de résoudre cette tâche qui nous importe peu, l’algorithme de Word2Vec
+
+46
+00:04:40,500 --> 00:04:45,750
+doit créer cette représentation intéressante
+
+47
+00:04:45,750 --> 00:04:52,069
+pour chaque mot qui prend en compte l'information sémantique associé à ce mot et
+
+48
+00:04:52,069 --> 00:04:57,360
+c'est exactement ce qui se passe.
+
+49
+00:04:57,360 --> 00:05:04,380
+Le tracé que vous avez vu plus tôt, celui qui montre la relation entre le pays et la capitale, provient de cet article.
+
+50
+00:05:04,380 --> 00:05:09,949
+Cette méthode d’entraînement permet de créer
+
+51
+00:05:09,949 --> 00:05:15,539
+un lien entre le mot et la sémantique.
+
+52
+00:05:15,539 --> 00:05:21,960
+J'ai mentionné qu’il existe une autre façon de traiter cette tâche. En fait, nous pouvons faire l’opération inverse.
+
+53
+00:05:21,960 --> 00:05:27,330
+Plus tôt, nous sommes passés du contexte au mot masqué, mais dans le modèle de skip-gram continu,
+
+54
+00:05:27,330 --> 00:05:31,889
+on fait l’inverse, c'est-à-dire qu'on passe du mot au contexte qui entoure le mot.
+
+55
+00:05:31,889 --> 00:05:36,750
+Je n'entrerai pas dans les détails, mais je dirai simplement que cette approche semble
+
+56
+00:05:36,750 --> 00:05:44,219
+mieux fonctionner si vous avez une petite quantité de données.
+
+57
+00:05:44,219 --> 00:05:49,710
+Nous avons parlé de Word2Vec, mais il y a un autre algorithme de vecteurs-mots dont je veux parler,
+
+58
+00:05:49,710 --> 00:05:56,639
+qui s’appelle FastText et il a été développé par le même auteur. C’est fortement basé sur Word2Vec,
+
+59
+00:05:56,639 --> 00:06:01,050
+donc l'algorithme est à peu près pareil. Ce qui est différent ici,
+
+60
+00:06:01,050 --> 00:06:07,650
+c’est qu’au lieu de considérer une simple cartographie du mot à un plongemenht,
+
+61
+00:06:07,650 --> 00:06:13,650
+nous décomposons aussi le mot.
+
+62
+00:06:13,650 --> 00:06:18,569
+J’ai le mot « where » et je décompose les mots en différents n-grammes.
+
+63
+00:06:18,569 --> 00:06:24,930
+Ici je trace en 3 grammes parce que c'est plus facile, mais vous voyez que
+
+64
+00:06:24,930 --> 00:06:31,289
+j'ai tous ces composantes et je vais créer un vecteur-mot pour chacune de ces composantes
+
+65
+00:06:31,289 --> 00:06:36,210
+et les additionner ensuite toutes ensemble.
+
+66
+00:06:36,210 --> 00:06:41,699
+L'intuition est que je peux obtenir de l’information morphologique intéressante
+
+67
+00:06:41,699 --> 00:06:46,470
+parce que je peux examiner les différentes composantes du mot.
+
+68
+00:06:46,470 --> 00:06:52,800
+Par exemple, en anglais, si l'un de ces éléments est « ly », je peux conclure
+
+69
+00:06:52,800 --> 00:06:59,910
+qu’il s'agit probablement d'un adverbe. Alors je peux intégrer cette information dans mon vecteur-mot final,
+
+70
+00:06:59,910 --> 00:07:04,789
+qui est celui-ci à droite. Un autre avantage très intéressant
+
+71
+00:07:04,789 --> 00:07:12,120
+est que FastText aide à éviter les unités lexicales hors vocabulaire, donc si vous vous souvenez bien,
+
+72
+00:07:12,120 --> 00:07:17,340
+les unités lexicales hors vocabulaire sont ceux qui n'ont pas été vus lors de l'entraînement, donc
+
+73
+00:07:17,340 --> 00:07:21,810
+dans cet exemple, vous avez peut-être le mot « where » qui n'a pas été vu lors de l'entraînement,
+
+74
+00:07:21,810 --> 00:07:26,639
+donc ici nous ne savons pas quoi mettre, mais nous avons probablement vu
+
+75
+00:07:26,639 --> 00:07:31,590
+certaines des composantes de « where » et le modèle est en mesure de trouver
+
+76
+00:07:31,590 --> 00:07:37,979
+une sémantique approximative pour le mot à partir des composantes. Cette information nous est plus utile
+
+77
+00:07:37,979 --> 00:07:42,240
+que de n'avoir aucune information sur ce mot et
+
+78
+00:07:42,240 --> 00:07:47,270
+elle peut nous aider avec la morphologie et les mots hors vocabulaire.
+
+79
+00:07:47,270 --> 00:07:54,659
+Mentionnons un aspect intéressant si nous utilisons Word2Vec ou FastText.
+
+80
+00:07:54,659 --> 00:08:00,930
+Dans tous ces algorithmes, ce que nous faisons est essentiellement
+
+81
+00:08:00,930 --> 00:08:06,330
+un transfert de connaissances, que vous avez aussi vu hier. En gros, ce que nous faisons,
+
+82
+00:08:06,330 --> 00:08:09,330
+c'est que nous utilisons les tâches que nous avons vues plus tôt
+
+83
+00:08:09,330 --> 00:08:14,310
+donc Word2Vec pour former ces plongements, nous appelons cette partie
+
+84
+00:08:14,310 --> 00:08:20,969
+le pré-entraînement, car elle a lieu avant que nous commencions à entraîner un modèle sur les tâches qui nous importent réellement.
+
+85
+00:08:20,969 --> 00:08:24,960
+Ensuite, nous prenons ces vecteurs-mots et
+
+86
+00:08:24,960 --> 00:08:29,400
+nous les utilisons dans le modèle que nous entraînons.
+
+87
+00:08:29,400 --> 00:08:35,610
+L'avantage est que, dans cette phase de pré-entraînement, la tâche n'est pas supervisée,
+
+88
+00:08:35,610 --> 00:08:41,149
+ce qui me permet traiter un grand nombre de données et, grâce à cela, j'espère pouvoir extraire
+
+89
+00:08:41,149 --> 00:08:47,520
+un grand nombre d’informations syntaxiques et sémantiques, puis je peux passer à mes tâches supervisées,
+
+90
+00:08:47,520 --> 00:08:52,170
+celles qui m'importent vraiment et, comme c'est généralement le cas,
+
+91
+00:08:52,170 --> 00:08:57,150
+je n'aurai trop de données mais je peux exploiter les informations que j'ai extraites
+
+92
+00:08:57,150 --> 00:09:00,839
+de la première phase.
+
+93
+00:09:00,839 --> 00:09:06,149
+Nous verrons que nous exploiterons beaucoup cette idée de pré-entraînement dans les deux systèmes suivants
+
+94
+00:09:06,149 --> 00:09:08,510
+que je vais présenter.

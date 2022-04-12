@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Quels sont les deux principaux inconvénients des vecteurs-mots 1 parmi n?</label>
+<checkboxgroup>
+    <choice correct="true">A. La dimension du vecteur est proportionnelle à la taille du vocabulaire <choicehint selected="true">A. Correct</choicehint></choice>
+    <choice correct="false">B. Ils ne peuvent pas être utilisés avec les réseaux de neurones pour l’entraînement <choicehint selected="true">B. Incorrect, ils sont des vecteurs et sont utilisés efficacement avec les réseaux de neurones</choicehint></choice>
+    <choice correct="true">C. Ils ne prennent pas en compte les relations entre les mots <choicehint selected="true">C. Correct</choicehint></choice>
+    <choice correct="false">D. Leurs valeurs sont limitées à des zéros et des uns <choicehint selected="true">D. Incorrect, alors que leurs valeurs ne sont que des zéros et des uns, ce n&apos;est pas l&apos;un des principaux inconvénients</choicehint></choice>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

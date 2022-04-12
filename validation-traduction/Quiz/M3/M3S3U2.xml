@@ -1,0 +1,11 @@
+<problem>
+<optionresponse>
+  <label>L&apos;ensemble de données d&apos;ImageNet comporte ________ catégories.</label>
+<optioninput>
+    <option correct="False">10</option>
+    <option correct="False">100</option>
+    <option correct="True">1000</option>
+    <option correct="False">10000</option>
+  </optioninput>
+</optionresponse>
+</problem>

@@ -1,0 +1,507 @@
+0
+00:00:00,000 --> 00:00:14,549
+
+
+1
+00:00:14,549 --> 00:00:17,240
+Bonjour, je m'appelle Gaétan Marceau Caron.
+
+2
+00:00:17,240 --> 00:00:20,140
+Je fais partie de l'équipe de transfert de technologie
+
+3
+00:00:20,140 --> 00:00:22,980
+au MILA. Je suis un scientifique en recherche appliquée
+
+4
+00:00:22,980 --> 00:00:26,910
+et mon travail consiste à prendre de nouvelles techniques
+
+5
+00:00:26,910 --> 00:00:29,970
+de la littérature de recherche scientifique en
+
+6
+00:00:29,970 --> 00:00:32,150
+apprentissage automatique (AA) et en apprentissage profond (AP)
+
+7
+00:00:32,150 --> 00:00:34,500
+et d'essayer de les adapter pour aider les gens en
+
+8
+00:00:34,500 --> 00:00:37,490
+industrie à l'utiliser pour leurs propres
+
+9
+00:00:37,490 --> 00:00:40,190
+projets, car il n'est pas vrai que nous
+
+10
+00:00:40,190 --> 00:00:43,180
+pouvons simplement prendre un article et essayer de l'appliquer
+
+11
+00:00:43,180 --> 00:00:45,040
+à nos données et que ça fonctionnera en une
+
+12
+00:00:45,040 --> 00:00:47,510
+semaine. C'est quelque chose qui prend du temps et
+
+13
+00:00:47,510 --> 00:00:50,870
+qui nécessite également quelques techniques et
+
+14
+00:00:50,870 --> 00:00:53,190
+méthodologies, et mon objectif aujourd'hui est de
+
+15
+00:00:53,190 --> 00:00:56,210
+vous présenter cette méthodologie. En particulier,
+
+16
+00:00:56,210 --> 00:01:00,390
+dans cette première présentation, la
+
+17
+00:01:00,390 --> 00:01:02,160
+première chose que je veux couvrir est la
+
+18
+00:01:02,160 --> 00:01:03,770
+différence entre
+
+19
+00:01:03,770 --> 00:01:05,610
+l'intelligence artificielle (IA) et l'apprentissage automatique (AA).
+
+20
+00:01:05,610 --> 00:01:08,720
+De nos jours, nous utilisons ces deux termes pour
+
+21
+00:01:08,720 --> 00:01:11,679
+désigner les mêmes techniques, mais en
+
+22
+00:01:11,679 --> 00:01:13,580
+réalité ce n'est pas vrai du tout.
+
+23
+00:01:13,580 --> 00:01:17,680
+L'intelligence artificielle concerne la manière
+
+24
+00:01:17,680 --> 00:01:20,489
+de simuler l'intelligence sur
+
+25
+00:01:20,489 --> 00:01:23,360
+une machine. Si vous voulez en savoir plus
+
+26
+00:01:23,360 --> 00:01:25,090
+sur l'intelligence artificielle, je
+
+27
+00:01:25,090 --> 00:01:27,300
+vous recommande ce livre, c'est la bible
+
+28
+00:01:27,300 --> 00:01:29,500
+de l'intelligence artificielle. Il a été
+
+29
+00:01:29,500 --> 00:01:32,990
+utilisé par de nombreuses universités et est
+
+30
+00:01:32,990 --> 00:01:37,560
+utilisé depuis plus de 10 ans. C'est
+
+31
+00:01:37,560 --> 00:01:39,970
+un livre de 1000 pages sur toutes les
+
+32
+00:01:39,970 --> 00:01:43,220
+techniques pour implémenter le comportement
+
+33
+00:01:43,220 --> 00:01:45,440
+humain, les traits humains, dans la machine pour
+
+34
+00:01:45,440 --> 00:01:49,950
+simuler l'intelligence. À cause de l'utilisation de
+
+35
+00:01:49,950 --> 00:01:51,429
+l'intelligence artificielle, on peut
+
+36
+00:01:51,429 --> 00:01:53,350
+voir que nous faisons de
+
+37
+00:01:53,350 --> 00:01:56,039
+l'anthropomorphisme informatique. Nous utilisons des mots
+
+38
+00:01:56,039 --> 00:01:59,940
+qui sont faits pour décrire les humains pour décrire
+
+39
+00:01:59,940 --> 00:02:01,880
+des machines: quand on dit que la machine
+
+40
+00:02:01,880 --> 00:02:03,470
+pense à quelque chose, ou que la
+
+41
+00:02:03,470 --> 00:02:06,379
+machine crée quelque chose, ou même
+
+42
+00:02:06,379 --> 00:02:09,300
+que la machine comprend ce qu'elle fait,
+
+43
+00:02:09,300 --> 00:02:12,220
+On est en train de prendre ces mots qui étaient
+
+44
+00:02:12,220 --> 00:02:14,989
+pour les humains pour décrire la machine. En fait,
+
+45
+00:02:14,989 --> 00:02:19,690
+la machine ne le fait pas sous le capot, mais
+
+46
+00:02:19,690 --> 00:02:21,030
+la chose intéressante à propos
+
+47
+00:02:21,030 --> 00:02:22,810
+de l'intelligence artificielle est que cette
+
+48
+00:02:22,810 --> 00:02:25,670
+recherche donne un aperçu sur les humains, les animaux
+
+49
+00:02:25,670 --> 00:02:27,820
+et l'ordinateur physique: quelle est la
+
+50
+00:02:27,820 --> 00:02:30,760
+différence entre la machine et l'humain?
+
+51
+00:02:30,760 --> 00:02:34,950
+En fin de compte, sommes-nous juste des machines
+
+52
+00:02:34,950 --> 00:02:36,990
+de Turing? Une machine de Turing est un
+
+53
+00:02:36,990 --> 00:02:41,520
+modèle très simple d'une machine et elle ne
+
+54
+00:02:41,520 --> 00:02:44,770
+traite que des symboles sur une sorte de
+
+55
+00:02:44,770 --> 00:02:47,030
+bande, elle les traite et crée de nouveaux
+
+56
+00:02:47,030 --> 00:02:50,470
+symboles. Peut-être que l'évolution nous a donné
+
+57
+00:02:50,470 --> 00:02:53,370
+quelques règles prédéfinies pour vivre dans notre
+
+58
+00:02:53,370 --> 00:02:57,020
+monde. Sommes-nous juste un ensemble de règles ou
+
+59
+00:02:57,020 --> 00:02:59,320
+sommes-nous plus? L'intelligence artificielle
+
+60
+00:02:59,320 --> 00:03:02,740
+repousse les limites de ce qui nous rend
+
+61
+00:03:02,740 --> 00:03:06,370
+humains par rapport à une machine et toutes les
+
+62
+00:03:06,370 --> 00:03:09,710
+techniques sont possibles. C'est pourquoi
+
+63
+00:03:09,710 --> 00:03:12,990
+c'est un domaine d'étude multidisciplinaire:
+
+64
+00:03:12,990 --> 00:03:15,940
+nous pouvons utiliser toutes les techniques en
+
+65
+00:03:15,940 --> 00:03:20,150
+mathématiques appliquées pour essayer d'atteindre cet objectif.
+
+66
+00:03:20,150 --> 00:03:26,990
+L'une des plus importantes propriétés des humains et des animaux
+
+67
+00:03:26,990 --> 00:03:30,760
+est l'apprentissage, et l'apprentissage automatique (AA)
+
+68
+00:03:30,760 --> 00:03:32,260
+concerne la manière de simuler
+
+69
+00:03:32,260 --> 00:03:35,030
+l'apprentissage à partir d' exemples sur la machine.
+
+70
+00:03:35,030 --> 00:03:38,850
+Dans ce livre , il n'y a que 161 pages sur 1000
+
+71
+00:03:38,850 --> 00:03:42,040
+qui portent sur l'apprentissage, alors quand le livre
+
+72
+00:03:42,040 --> 00:03:44,490
+a été écrit, les gens ne savaient pas à quel point
+
+73
+00:03:44,490 --> 00:03:47,310
+l'apprentissage était important pour simuler
+
+74
+00:03:47,310 --> 00:03:50,130
+l'intelligence. L'objectif est que je vais
+
+75
+00:03:50,130 --> 00:03:53,140
+avoir quelques exemples tirés de la réalité
+
+76
+00:03:53,140 --> 00:03:55,510
+et je vais les fournir à un algorithme
+
+77
+00:03:55,510 --> 00:03:57,090
+et l'algorithme essaiera d'apprendre
+
+78
+00:03:57,090 --> 00:03:59,490
+quelque chose d'utile à partir de
+
+79
+00:03:59,490 --> 00:04:02,990
+ces exemples à l'aide d'un processus d'apprentissage
+
+80
+00:04:02,990 --> 00:04:06,959
+très proche de l'essai-erreur.
+
+81
+00:04:06,959 --> 00:04:09,540
+Sans aucun doute, c'est le sous-domaine
+
+82
+00:04:09,540 --> 00:04:12,120
+le plus actif de l'intelligence artificielle en
+
+83
+00:04:12,120 --> 00:04:14,010
+termes de recherche et en terms
+
+84
+00:04:14,010 --> 00:04:18,739
+d'opportunités d'industrialisation de la recherche.
+
+85
+00:04:18,739 --> 00:04:19,930
+Les nouvelles techniques et
+
+86
+00:04:19,930 --> 00:04:28,720
+l'apprentissage profond (AP) sont un ensemble de techniques
+
+87
+00:04:28,720 --> 00:04:29,880
+d'apprentissage automatique(AA):
+
+88
+00:04:29,880 --> 00:04:32,910
+c'est un sous-ensemble de l'AA qui
+
+89
+00:04:32,910 --> 00:04:35,330
+implémente l'apprentissage dans un espace de grande
+
+90
+00:04:35,330 --> 00:04:36,990
+dimension; la grande dimensionnalité
+
+91
+00:04:36,990 --> 00:04:38,719
+c'est par exemple une image ou une vidéo
+
+92
+00:04:38,719 --> 00:04:42,169
+de haute résolution. L'apprentissage
+
+93
+00:04:42,169 --> 00:04:43,620
+avec ce type de données fonctionne
+
+94
+00:04:43,620 --> 00:04:46,900
+avec une sorte de représentation que nous appelons
+
+95
+00:04:46,900 --> 00:04:48,840
+une "représentation distribuée". Nous verrons
+
+96
+00:04:48,840 --> 00:04:52,810
+clairement ce qu'elles sont, et ces
+
+97
+00:04:52,810 --> 00:04:54,809
+représentations distribuées seront calculées
+
+98
+00:04:54,809 --> 00:04:56,050
+avec des architectures
+
+99
+00:04:56,050 --> 00:05:00,009
+spécifiques. Donc, lorsque vous voyez un nouveau
+
+100
+00:05:00,009 --> 00:05:02,449
+modèle d'apprentissage profond, vous verrez de minuscules
+
+101
+00:05:02,449 --> 00:05:05,029
+boîtes reliées entre elles. C'est ce que nous
+
+102
+00:05:05,029 --> 00:05:08,610
+appelons des architectures: elles implémentent l'apprentissage
+
+103
+00:05:08,610 --> 00:05:09,849
+des représentations.
+
+104
+00:05:09,849 --> 00:05:13,040
+Avant la révolution de l'apprentissage profond,
+
+105
+00:05:13,040 --> 00:05:14,809
+on parlait surtout
+
+106
+00:05:14,809 --> 00:05:17,409
+de réseaux de neurones artificiels. Ceux de
+
+107
+00:05:17,409 --> 00:05:21,699
+vous qui font de l'apprentissage automatique depuis
+
+108
+00:05:21,699 --> 00:05:24,909
+plus de dix ans, vous connaissez probablement les
+
+109
+00:05:24,909 --> 00:05:27,189
+réseaux de neurones artificiels. Quand ce
+
+110
+00:05:27,189 --> 00:05:29,580
+livre a été écrit , seulement 9 pages sur 1000
+
+111
+00:05:29,580 --> 00:05:33,569
+en parlaient, donc il y a vraiment eu un
+
+112
+00:05:33,569 --> 00:05:36,639
+changement de paradigme d'il y a dix ans. Les gens
+
+113
+00:05:36,639 --> 00:05:38,659
+ont réalisé que l'apprentissage profond (AP) est
+
+114
+00:05:38,659 --> 00:05:41,029
+quelque chose qui fonctionne très bien pour
+
+115
+00:05:41,029 --> 00:05:44,500
+les types de données complexes. Maintenant, l'AP prend de plus en
+
+116
+00:05:44,500 --> 00:05:47,960
+plus de place en intelligence artificielle.
+
+117
+00:05:47,960 --> 00:05:49,509
+Si vous voulez en savoir plus sur
+
+118
+00:05:49,509 --> 00:05:52,050
+l'apprentissage profond (AP), je recommande ce livre.
+
+119
+00:05:52,050 --> 00:05:54,680
+Il est disponible gratuitement sur ce site,
+
+120
+00:05:54,680 --> 00:05:57,139
+il a été écrit par Ian Goodfellow pendant
+
+121
+00:05:57,139 --> 00:05:59,590
+son doctorat au MILA avec comme
+
+122
+00:05:59,590 --> 00:06:02,409
+co-auteurs Yoshua Bengio et Aaron Courville.
+
+123
+00:06:02,409 --> 00:06:05,780
+Il couvre de nombreux concepts que vous
+
+124
+00:06:05,780 --> 00:06:09,530
+verrez aujourd'hui, mais avec plus de détails en
+
+125
+00:06:09,530 --> 00:06:12,389
+termes de mathématiques, en termes de
+
+126
+00:06:12,389 --> 00:06:15,200
+formalisation mathématique des concepts.

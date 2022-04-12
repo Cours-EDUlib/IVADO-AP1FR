@@ -1,0 +1,463 @@
+1
+00:00:14,050 --> 00:00:18,740
+Maintenant je dois implémenter la rétropropagation. Je vais donc implémenter
+
+2
+00:00:18,740 --> 00:00:25,700
+trois méthodes pour mon module: la propagation avant que nous avons fait pour le module dense,
+
+3
+00:00:25,700 --> 00:00:30,349
+puis j'implémenterai la propagation arrière qui prendra en entrée un gradient de
+
+4
+00:00:30,349 --> 00:00:36,760
+la perte par rapport à la sortie et le convertira en
+
+5
+00:00:36,760 --> 00:00:43,810
+gradient de la perte par rapport à l'entrée. Puis, la mise à jour prendra
+
+6
+00:00:43,810 --> 00:00:48,170
+l’entraînement de la perte par rapport à la sortie et calculera avec cette quantité
+
+7
+00:00:48,170 --> 00:00:54,350
+le gradient de la perte par rapport aux paramètres. D'accord, nous le ferons pour
+
+8
+00:00:54,350 --> 00:01:00,670
+notre fonction de perte. Ici, je vais utiliser l'entropie croisée binaire: c'est une fonction de perte
+
+9
+00:01:00,670 --> 00:01:06,500
+qui prendra en entrée une prédiction et la véritable étiquette. Supposons que c'est un
+
+10
+00:01:06,500 --> 00:01:15,320
+problème de classification binaire: si y est égal à 0, ce terme disparaîtra et j'aurai
+
+11
+00:01:15,320 --> 00:01:21,830
+moins (1 moins 0) donc j'aurai moins log de (1 moins ma prédiction). Cette
+
+12
+00:01:21,830 --> 00:01:29,740
+prédiction peut avoir des valeurs entre 0 et 1, c'est la probabilité de l'image 2,
+
+13
+00:01:29,740 --> 00:01:34,160
+et puisque cette probabilité est associée à la
+
+14
+00:01:34,160 --> 00:01:40,530
+présence de 2, alors si y est 0, cela signifie que la véritable étiquette est qu'il n'y a pas de 2. Alors,
+
+15
+00:01:40,530 --> 00:01:46,060
+la probabilité de ne pas avoir de 2 dans l'image est de 1 moins p: c'est 1 moins ma
+
+16
+00:01:46,060 --> 00:01:53,290
+prédiction. Ce terme-ci est activé lorsque y est égal à 0. Si y est égal à 1,
+
+17
+00:01:53,290 --> 00:01:59,380
+ici la véritable étiquette est 1, ce terme disparaît: 1 moins 1 est égal à 0 et celui-
+
+18
+00:01:59,380 --> 00:02:05,800
+ci sera activé et maintenant j'ai juste un log négatif de la probabilité de
+
+19
+00:02:05,800 --> 00:02:12,890
+2. Si la probabilité est de 1 log (1) , c’est égal à 0, ce qui signifie que je n'ai pas
+
+20
+00:02:12,890 --> 00:02:18,890
+perte. Cette entropie croisée binaire, je vous recommande de la revoir plus
+
+21
+00:02:18,890 --> 00:02:28,060
+en détail plus tard, mais elle implémente en quelque sorte si mon modèle prédit bien
+
+22
+00:02:28,060 --> 00:02:34,060
+ou pas la bonne étiquette. Elle est dérivable, donc si elle est dérivable,
+
+23
+00:02:34,060 --> 00:02:38,620
+je peux prendre la dérivée de cette fonction par rapport à  y chapeau et
+
+24
+00:02:38,620 --> 00:02:46,700
+c'est cette expression-ci. Comme un exercice, vous pouvez également le faire ce soir. Maintenant que j'ai
+
+25
+00:02:46,700 --> 00:02:53,230
+ces informations, je peux les coder dans ma méthode de propagation arrière. Il n'y a pas de paramètres
+
+26
+00:02:53,230 --> 00:03:02,400
+associés à ce modèle,
+
+27
+00:03:02,400 --> 00:03:05,480
+il prendra en entrée les deux valeurs ici et calculera la gradient
+
+28
+00:03:05,480 --> 00:03:09,400
+de la perte par rapport à cette quantité, par rapport à
+
+29
+00:03:09,400 --> 00:03:16,130
+l’entrée: c'est ce que nous voulons implémenter dans la propagation arrière.
+
+30
+00:03:16,130 --> 00:03:21,120
+Le suivant est le sigmoïde: ici, la propagation avant sera cette expression que
+
+31
+00:03:21,120 --> 00:03:26,630
+nous avons vu. La dérivée du sigmoïde sera exprimée avec le sigmoïde, alors
+
+32
+00:03:26,630 --> 00:03:34,200
+je peux le programmer dans la méthode de propagation arrière. Le sigmoïde n'a pas de paramètres,
+
+33
+00:03:34,200 --> 00:03:42,990
+donc rien à coder pour la mise à jour. Maintenant, j'ai mon module dense: je recevrai
+
+34
+00:03:42,990 --> 00:03:50,290
+un vecteur x, je ferai ma multiplication matrice-vecteur plus b. Durant la propagation arrière,
+
+35
+00:03:50,290 --> 00:03:56,470
+on voit que la dérivée sera W; et la mise à jour,
+
+36
+00:03:56,470 --> 00:04:01,130
+je dois l'implémenter, car j'ai des paramètres à l'intérieur de ce module: ce
+
+37
+00:04:01,130 --> 00:04:06,340
+sera x transposé et l’identité pour b.
+
+38
+00:04:06,340 --> 00:04:11,260
+Rappelez-vous de mon premier exemple du graphe de calcul: pour évaluer la
+
+39
+00:04:11,260 --> 00:04:17,789
+dérivée, je dois savoir quelles sont les valeurs intermédiaires des noeuds
+
+40
+00:04:17,789 --> 00:04:24,479
+y. Alors, je dois faire une propagation avant pour savoir pourquoi je suis dans cet espace. J'évalue donc
+
+41
+00:04:24,479 --> 00:04:30,319
+toutes les variables et une fois que je connais les valeurs de ces variables, je peux calculer
+
+42
+00:04:30,319 --> 00:04:36,770
+la dérivée à cet endroit spécifique dans l'espace. Je vais donc faire une propagation avant sur
+
+43
+00:04:36,770 --> 00:04:44,400
+mon modèle et puis je vais faire une propagation arrière dans la direction opposée. Alors, la
+
+44
+00:04:44,400 --> 00:04:50,749
+règle de chaîne sera cette expression. Il y a un moyen de vérifier que cette expression a du
+
+45
+00:04:50,749 --> 00:04:55,270
+sens: ici je veux calculer la dérivée de la
+
+46
+00:04:55,270 --> 00:05:00,939
+perte par rapport à l'entrée, nous verrons qu'elle peut être utile dans certaines
+
+47
+00:05:00,939 --> 00:05:05,569
+applications, mais c'est uniquement pour cet exercice le moyen de vérifier la règle de
+
+48
+00:05:05,569 --> 00:05:11,759
+chaîne est que si vous considérez ces symboles comme des fractions, vous pouvez annuler
+
+49
+00:05:11,759 --> 00:05:16,819
+le numérateur et le dénominateur de cette expression. Ainsi,
+
+50
+00:05:16,819 --> 00:05:24,400
+vous aurez juste à la fin le l sur dh zéro si vous annulez. J'espère
+
+51
+00:05:24,400 --> 00:05:30,969
+qu'aucun mathématicien ne me parlera à la fin de cet exposé pour me dire
+
+52
+00:05:30,969 --> 00:05:36,449
+que je n'aurais pas dû le dire: ce n'est pas vraiment quelque chose que nous pouvons faire, mais ce n'est
+
+53
+00:05:36,449 --> 00:05:42,960
+qu'une astuce pour se souvenir de la règle de chaîne. Alors, nous voulons calculer tous les éléments
+
+54
+00:05:42,960 --> 00:05:46,939
+de cette expression et le premier sera la dérivée de la perte par
+
+55
+00:05:46,939 --> 00:05:53,740
+rapport à la prédiction de mon modèle: ce sera un scalaire ici. Puis,
+
+56
+00:05:53,740 --> 00:05:58,210
+dans ce module, j'appelle la méthode de propagation arrière pour obtenir la dérivée de la prédiction par
+
+57
+00:05:58,210 --> 00:06:04,430
+rapport à cette représentation h3 et j'obtiendrai un autre scalaire. Puis, je multiplie
+
+58
+00:06:04,430 --> 00:06:09,779
+les deux ensemble pour obtenir un seul scalaire. Ensuite je peux les combiner: maintenant,
+
+59
+00:06:09,779 --> 00:06:15,290
+j'ai cette quantité, la dérivée de la perte par rapport à h3: je vais la donner
+
+60
+00:06:15,290 --> 00:06:22,740
+à la méthode de propagation arrière de mon module dense. Dans le
+
+61
+00:06:22,740 --> 00:06:27,479
+module dense, j'ai aussi besoin de faire la mise à jour: je vais donc calculer la dérivée
+
+62
+00:06:27,479 --> 00:06:33,789
+de la perte par rapport à h3 que je reçois en entrée de ma méthode de mise à jour.
+
+63
+00:06:33,789 --> 00:06:38,349
+Par contre, ici je vais calculer la dérivée de h3 par rapport à tous les paramètres de
+
+64
+00:06:38,349 --> 00:06:45,689
+ma transformation linéaire: je peux donc multiplier les deux et je peux faire la même chose
+
+65
+00:06:45,689 --> 00:06:51,879
+pour la dérivée de h3 par rapport au biais. Je multiplie les deux:
+
+66
+00:06:51,879 --> 00:06:55,470
+maintenant, j'ai la dérivée de la fonction de perte par rapport à ces
+
+67
+00:06:55,470 --> 00:06:59,789
+paramètres, mais je veux aussi avoir la dérivée de la fonction de perte par
+
+68
+00:06:59,789 --> 00:07:04,249
+rapport à ces paramètres. Je dois donc continuer à remonter dans le graphe
+
+69
+00:07:04,249 --> 00:07:09,969
+de calcul. Maintenant, faisons la méthode de propagation arrière pour le module dense:
+
+70
+00:07:09,969 --> 00:07:15,029
+je vais calculer la dérivée de h3 par rapport à l'une des composants de
+
+71
+00:07:15,029 --> 00:07:21,699
+h2, c'est un gradient. Ici, je peux fusionner les deux en multipliant ces deux
+
+72
+00:07:21,699 --> 00:07:28,659
+quantités pour obtenir la dérivée de la perte par rapport à h2. Maintenant, j'ai ma
+
+73
+00:07:28,659 --> 00:07:33,290
+fonction d'activation. Ce qui est intéressant avec la fonction d'activation, c'est
+
+74
+00:07:33,290 --> 00:07:38,889
+qu'elle a transformé la représentation composant par composant: il n'y a pas de lien
+
+75
+00:07:38,889 --> 00:07:45,319
+entre les composants. Donc, si je change la valeur de cette représentation, seulement
+
+76
+00:07:45,319 --> 00:07:48,830
+cette représentation va changer,
+
+77
+00:07:48,830 --> 00:07:55,050
+je n'aurai pas d'impact sur les autres composants de la représentation.
+
+78
+00:07:55,050 --> 00:08:00,919
+Cette matrice est appelée « jacobienne ». Je ne me souviens pas de la convention,
+
+79
+00:08:00,919 --> 00:08:07,599
+mais disons que les lignes sont des entrées et des colonnes sont sorties: cette matrice
+
+80
+00:08:07,599 --> 00:08:13,729
+contient toute les dérivées partielles qui représentent comment la sortie va changer
+
+81
+00:08:13,729 --> 00:08:19,740
+si je change un composant. Par contre, puisqu’ici c'est une
+
+82
+00:08:19,740 --> 00:08:26,409
+fonction d'activation par composant, la structure est diagonale: je peux multiplier les deux à nouveau et maintenant j'ai
+
+83
+00:08:26,409 --> 00:08:28,919
+la dérivée de la perte par rapport à
+
+84
+00:08:28,919 --> 00:08:37,870
+h1 et je fais de même pour ce module. Je peux même prendre
+
+85
+00:08:37,870 --> 00:08:44,250
+la dérivée de la perte par rapport à l'entrée de l'image et nous
+
+86
+00:08:44,250 --> 00:08:49,310
+verrons ce que nous pouvons faire avec cette information.
+
+87
+00:08:49,310 --> 00:08:54,730
+Comme vous l'avez vu dans ces diapositives, j'utilise des vecteurs et des
+
+88
+00:08:54,730 --> 00:09:01,380
+matrices pour représenter la règle de la chaîne: c'est donc aussi de l'algèbre linéaire, donc
+
+89
+00:09:01,380 --> 00:09:06,759
+la propagation avant avec les modules denses et la fonction d'activation, c'est surtout de l’algèbre linéaire.
+
+90
+00:09:06,759 --> 00:09:11,899
+Je peux donc utiliser le GPU pour l'implémenter très efficacement.
+
+91
+00:09:11,899 --> 00:09:16,220
+Puisque je calcule une approximation linéaire de comment tout changement des
+
+92
+00:09:16,220 --> 00:09:20,880
+paramètres affecte la sortie en utilisant la règle de chaîne,
+
+93
+00:09:20,880 --> 00:09:28,220
+je peux également utiliser la multiplication matrice-matrice et l'algèbre linéaire.
+
+94
+00:09:28,220 --> 00:09:32,589
+Ce que je fais vraiment, c’est multiplier les jacobiennes.
+
+95
+00:09:32,589 --> 00:09:37,420
+Les jacobiennes contiendront les quantités qui
+
+96
+00:09:37,420 --> 00:09:41,480
+représentent comment toute les sorties changeront
+
+97
+00:09:41,480 --> 00:09:46,680
+si je change l’entrée. Je ferai la multiplication des jacobiennes et des gradients,
+
+98
+00:09:46,680 --> 00:09:51,620
+une multiplication matrice-vecteur. J'ai encore un degré de liberté ici
+
+99
+00:09:51,620 --> 00:09:58,509
+pour faire une multiplication matrice-matrice. Alors ici, je vais empiler plusieurs exemples
+
+100
+00:09:58,509 --> 00:10:05,970
+au lieu de faire un seul exemple à la fois: je vais donc faire une
+
+101
+00:10:05,970 --> 00:10:14,280
+multiplication matrice-matrice. Je l'ai fait dans ma vie, j'ai implémenté
+
+102
+00:10:14,280 --> 00:10:19,710
+ces trois méthodes: c'est pourquoi je l’ai fait sur les diapositives, nous n'avons plus besoin de le
+
+103
+00:10:19,710 --> 00:10:26,089
+faire. Il nous suffit de spécifier la méthode de propagation avant et avec
+
+104
+00:10:26,089 --> 00:10:33,360
+des techniques très sophistiquées en dérivation automatique, PyTorch et TensorFlow
+
+105
+00:10:33,360 --> 00:10:38,790
+créeront la méthode de propagation arrière et de mise à jour pour vous: elle examinera
+
+106
+00:10:38,790 --> 00:10:46,709
+l'opération mathématique que vous utiliserez, elle la décomposera et codera
+
+107
+00:10:46,709 --> 00:10:55,350
+pour vous la dérivée de cette fonction. C'était également fait pour les
+
+108
+00:10:55,350 --> 00:11:01,550
+module denses et ces fonctions d'activation très populaires. Ils ont également été implémentés très
+
+109
+00:11:01,550 --> 00:11:06,730
+efficacement au niveau du GPU: il y a donc beaucoup de choses qui ont été
+
+110
+00:11:06,730 --> 00:11:11,170
+implémentées efficacement. Si vous voulez créer votre nouveau module, une nouvelle idée, vous n’avez qu’à
+
+111
+00:11:11,170 --> 00:11:15,670
+spécifier la propagation avant: la propagation arrière et la mise à jour seront créées
+
+112
+00:11:15,670 --> 00:11:24,040
+pour vous. Avant, c’était très douloureux: si nous avions cette nouvelle idée, nous faisions
+
+113
+00:11:24,040 --> 00:11:29,920
+beaucoup de calculs sur papier pour dériver notre expression, puis nous la codions.
+
+114
+00:11:29,920 --> 00:11:34,779
+S’il y avait des bogues, ça prenait deux ou trois semaines pour trouver le bogue, par exemple qu'il s'agissait d'un
+
+115
+00:11:34,779 --> 00:11:41,810
+plus au lieu d'un moins. Depuis la dérivation automatique, la vitesse de la
+
+116
+00:11:41,810 --> 00:11:45,060
+recherche est beaucoup plus rapide.

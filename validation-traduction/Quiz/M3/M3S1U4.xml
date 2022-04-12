@@ -1,0 +1,12 @@
+<problem>
+<choiceresponse>
+  <label>Sélectionnez trois avantages des RNC?</label>
+<checkboxgroup>
+    <choice correct="true">Partage des paramètres <choicehint selected="true">Correct</choicehint></choice>
+    <choice correct="true">Champs réceptifs<choicehint selected="true">Correct</choicehint></choice>
+    <choice correct="true">L'importance des caractéristiques locales <choicehint selected="true">Correct</choicehint></choice>
+    <choice correct="false">Chaque entrée contribue de manière égale à la sortie <choicehint selected="true">Choix incorrect, c&apos;est ce qui se passe dans un Perceptron multicouche, pas dans un RNC</choicehint></choice>
+    <compoundhint value="A B C D">Veuillez choisir 3 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

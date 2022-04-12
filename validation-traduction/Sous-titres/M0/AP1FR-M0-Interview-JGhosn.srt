@@ -1,0 +1,368 @@
+0
+00:00:13,660 --> 00:00:18,956
+Je suis donc ici au très apaisant Café Tricot Principal à Montréal avec la
+
+1
+00:00:18,980 --> 00:00:21,456
+Dre Joumana Ghosn. Merci d'être ici!
+
+2
+00:00:21,480 --> 00:00:23,076
+Merci de m'avoir invité!
+
+3
+00:00:23,100 --> 00:00:27,236
+Vous étiez en charge de développer le contenu de l'école d’apprentissage profond d'Ivado-Mila.
+
+4
+00:00:27,260 --> 00:00:31,316
+Dites-moi, quels sont certains des derniers développements dans le domaine de l'apprentissage profond?
+
+5
+00:00:31,340 --> 00:00:36,175
+Il y a eu de nombreux développements, j'en décrirai deux. Le premier est
+
+6
+00:00:36,199 --> 00:00:41,336
+le système AlphaStar, qui est un système qui peut jouer au jeu de Starcraft 2, un
+
+7
+00:00:41,360 --> 00:00:47,246
+jeu de stratégie en temps réel très difficile. Et ce système, qui est une combinaison
+
+8
+00:00:47,270 --> 00:00:51,625
+de réseaux de neurones profonds, d'apprentissage par renforcement et d'apprentissage par imitation peut désormais
+
+9
+00:00:51,649 --> 00:00:57,265
+jouer au niveau de « Grand Maître ». Le deuxième grand développement est le
+
+10
+00:00:57,289 --> 00:01:01,616
+modèle BERT: BERT est un acronyme pour les représentations d'encodeur bidirectionnelles
+
+11
+00:01:01,640 --> 00:01:07,286
+des transformateurs. Il s'agit d'un modèle qui apprend des représentations contextualisées en
+
+12
+00:01:07,310 --> 00:01:11,845
+faisant un entraînement bidirectionnel d’un modèle. Ça a conduit à des résultats de pointe
+
+13
+00:01:11,869 --> 00:01:15,955
+dans diverses tâches de traitement du langage naturel comme, par exemple, la réponse
+
+14
+00:01:15,979 --> 00:01:19,076
+aux questions ou l'inférence du langage naturel.
+
+15
+00:01:19,100 --> 00:01:24,976
+Dites-moi, quelles sont d'autres applications concrètes de l'apprentissage profond?
+
+16
+00:01:25,000 --> 00:01:27,805
+Nous avons des applications dans le domaine médical. Par
+
+17
+00:01:27,829 --> 00:01:32,926
+exemple, on dispose aujourd'hui de systèmes d'imagerie capables de détecter certains types de cancer.
+
+18
+00:01:32,950 --> 00:01:36,626
+Chaque fois que vous utilisez votre téléphone, par exemple, vous parlez à votre téléphone, vous avez un
+
+19
+00:01:36,650 --> 00:01:41,006
+assistant virtuel. Eh bien ici, vous avez un identificateur de parole qui comprend
+
+20
+00:01:41,030 --> 00:01:44,875
+le discours que vous dites, vous avez un
+
+21
+00:01:44,899 --> 00:01:49,046
+système de traitement du langage naturel qui comprend le texte qui sort de la
+
+22
+00:01:49,070 --> 00:01:54,476
+reconnaissance vocale. Il s'agit donc d'un système qui utilise une technologie d'apprentissage profond.
+
+23
+00:01:54,500 --> 00:02:00,556
+Les meilleurs modèles de traduction automatique d'aujourd'hui sont basés sur l'apprentissage profond.
+
+24
+00:02:00,580 --> 00:02:04,796
+Vous disposez de modèles de prédiction dans le domaine financier ou même dans le
+
+25
+00:02:04,820 --> 00:02:09,636
+domaine de la météo par exemple pour prévoir les précipitations. Dans le domaine de la fabrication, vous pouvez
+
+26
+00:02:09,660 --> 00:02:17,176
+également utiliser des modèles pour détecter une anomalie. Il y a donc beaucoup d'applications déjà déployées.
+
+27
+00:02:17,200 --> 00:02:20,976
+Pouvez-vous me dire un peu ce que nous verrons dans ce MOOC, quels sont les sujets?
+
+28
+00:02:21,000 --> 00:02:26,776
+Nous couvrons donc de nombreux sujets qui sont divisés en quelques domaines principaux.
+
+29
+00:02:26,800 --> 00:02:29,976
+Le premier est l'introduction des concepts de base:
+
+30
+00:02:30,000 --> 00:02:32,756
+quelle est la différence entre l’apprentissage automatique et
+
+31
+00:02:32,780 --> 00:02:38,246
+profond, quels sont les différents paradigmes d'apprentissage. Ensuite, nous commençons à parler de
+
+32
+00:02:38,270 --> 00:02:42,326
+modèles d’apprentissage profond, de comprendre ce qu'est une représentation distribuée, comment nous
+
+33
+00:02:42,350 --> 00:02:47,276
+entraînons ces modèles, comment nous les optimisons, comment nous sélectionnons le meilleur modèle.
+
+34
+00:02:47,300 --> 00:02:51,086
+Nous présentons également un peu les bibliothèques d'apprentissage automatique que les gens peuvent utiliser.
+
+35
+00:02:51,110 --> 00:02:56,516
+Dans le prochain module, nous nous concentrons sur les réseaux de neurones convolutifs. Nous présentons donc ici
+
+36
+00:02:56,540 --> 00:03:00,986
+les concepts de base comme la convolution, la foulée, le remplissage, la mise en commun. Ensuite,
+
+37
+00:03:01,010 --> 00:03:04,706
+nous commençons à décrire ce qu'est un réseau de neurones convolutifs et comment il
+
+38
+00:03:04,730 --> 00:03:09,896
+est entraîné. Nous donnons une description de certaines des principales architectures utilisées
+
+39
+00:03:09,920 --> 00:03:16,286
+dans de nombreuses applications concrètes qui existent dans l'industrie et nous expliquons également les
+
+40
+00:03:16,310 --> 00:03:20,336
+différentes tâches auxquelles les réseaux de neurones convolutifs peuvent être appliqués. Comme
+
+41
+00:03:20,360 --> 00:03:25,706
+la détection d'objets, la segmentation, la classification d'images. Le troisième domaine est le
+
+42
+00:03:25,730 --> 00:03:30,685
+traitement du langage naturel. Nous décrivons donc ici divers modèles qui existent pour faire de la
+
+43
+00:03:30,709 --> 00:03:35,756
+modélisation de séquence parce que le texte est un peu comme une séquence. Nous couvrons
+
+44
+00:03:35,780 --> 00:03:40,736
+les réseaux de neurones récurrents traditionnels, nous décrivons certains des problèmes dont ils souffrent et certaines
+
+45
+00:03:40,760 --> 00:03:44,185
+des variantes qui ont été développées pour faire face à ces problèmes comme les LMCT,
+
+46
+00:03:44,209 --> 00:03:49,406
+les modèles de longue mémoire à court terme ou les unités récurrentes à portes. Nous introduisons ensuite le
+
+47
+00:03:49,430 --> 00:03:56,056
+mécanisme d'attention qui a conduit à une grande percée dans le domaine du TLN (traitement du langage naturel).
+
+48
+00:03:56,080 --> 00:04:01,376
+Le mécanisme d'attention est ce qui a conduit à ce que nous appelons
+
+49
+00:04:01,400 --> 00:04:06,476
+aujourd'hui le modèle de transformateur qui est un modèle qui a eu beaucoup de
+
+50
+00:04:06,500 --> 00:04:09,596
+résultats de pointe dans ce domaine et en fait le modèle BERT que j'ai
+
+51
+00:04:09,620 --> 00:04:14,306
+mentionné plus tôt est basé sur le transformateur. Nous parlons également d’intégration,
+
+52
+00:04:14,330 --> 00:04:19,136
+il s'agit donc d'une représentation de mots, car des mots qui sont similaires
+
+53
+00:04:19,160 --> 00:04:23,036
+les uns aux autres, nous aimerions qu'ils aient des représentations similaires. Il
+
+54
+00:04:23,060 --> 00:04:26,395
+si vous avez les mêmes propriétés sémantiques ou syntaxiques, nous voulons
+
+55
+00:04:26,419 --> 00:04:32,786
+avoir la même représentation. Et nous parlons également de biais et de discrimination dans l'IA.
+
+56
+00:04:32,810 --> 00:04:37,576
+C'est un sujet très important auquel les gens ne sont pas toujours sensibles.
+
+57
+00:04:37,600 --> 00:04:43,406
+Si vous entraînez un modèle qui a un biais dans les données qu'il utilise, le modèle peut
+
+58
+00:04:43,430 --> 00:04:47,666
+apprendre ce biais. Par exemple, imaginez entraîner un système qui identifie bien les
+
+59
+00:04:47,690 --> 00:04:52,286
+candidats à sélectionner pour un entretien d'embauche.
+
+60
+00:04:52,310 --> 00:04:57,746
+Si la plupart des candidats sont des hommes, le système apprendra à ignorer les
+
+61
+00:04:57,770 --> 00:05:01,256
+candidatures féminines, mais ce n'est pas la bonne chose à faire.
+
+62
+00:05:01,280 --> 00:05:05,936
+Je pense que certains des conférenciers de l'école et que nous verrons dans le MOOC
+
+63
+00:05:05,960 --> 00:05:10,576
+faisaient également partie de votre équipe, n'est-ce pas? Pouvez-vous nous en dire un peu plus sur ces conférenciers?
+
+64
+00:05:10,600 --> 00:05:16,166
+Il y a Gaétan Marceau-Caron, qui a fait son doctorat à l'Université Paris XI, en
+
+65
+00:05:16,190 --> 00:05:19,256
+France, en se concentrant sur l'optimisation et la
+
+66
+00:05:19,280 --> 00:05:23,816
+gestion de l'incertitude dans la gestion du trafic aérien. Et il fait maintenant partie de
+
+67
+00:05:23,840 --> 00:05:28,256
+l’équipe de recherche en apprentissage automatique appliqué du Mila travaillant sur divers projets d’apprentissage
+
+68
+00:05:28,280 --> 00:05:33,926
+profond avec des partenaires industriels. Il y a Jeremy Pinto, qui a fait sa maîtrise à
+
+69
+00:05:33,950 --> 00:05:39,836
+l’Université de Waterloo au Imaging Lab. Il possède une expertise en imagerie particulièrement
+
+70
+00:05:39,860 --> 00:05:44,546
+appliquée au domaine médical et il fait désormais partie de l'équipe de Mila travaillant avec
+
+71
+00:05:44,570 --> 00:05:50,486
+des partenaires industriels. Nous avons Mirko Bronzy qui a fait son doctorat. à l'Université Roma Tre
+
+72
+00:05:50,510 --> 00:05:55,526
+en Italie, se concentrant sur l'extraction de données à grande échelle à partir de sites Web. Il
+
+73
+00:05:55,550 --> 00:05:58,856
+Plus tard, il a commencé à travailler sur le traitement du langage naturel appliqué aux assistants
+
+74
+00:05:58,880 --> 00:06:02,966
+virtuels et fait maintenant partie de l'équipe de Mila, travaillant encore avec des
+
+75
+00:06:02,990 --> 00:06:07,126
+partenaires industriels. Et puis il y avait une autre personne
+
+76
+00:06:07,150 --> 00:06:11,895
+à l'école qui a fait la présentation sur les préjugés et la discrimination en matière d'IA. Il
+
+77
+00:06:11,919 --> 00:06:16,486
+C'est Golnoosh Farnadi, elle est boursière postdoctorale Mila-Ivado.
+
+78
+00:06:16,510 --> 00:06:21,476
+Elle est spécialisée dans les préjugés et la discrimination en intelligence artificielle.
+
+79
+00:06:21,500 --> 00:06:28,376
+Donc, une fois que les participants ont fini avec ce MOOC, après le MOOC, que devraient-ils être capables de faire?
+
+80
+00:06:28,400 --> 00:06:34,636
+Ils devraient d'abord avoir une compréhension de base de ce qu'est l'apprentissage profond, ainsi qu'une
+
+81
+00:06:34,660 --> 00:06:40,306
+compréhension du vocabulaire. Cela leur permettra donc de continuer à apprendre, de
+
+82
+00:06:40,330 --> 00:06:44,026
+pouvoir lire des articles et au moins d'avoir le début d'une compréhension
+
+83
+00:06:44,050 --> 00:06:51,106
+et d'un ressenti. Ils pourront appliquer l'apprentissage profond à des problèmes simples, mais
+
+84
+00:06:51,130 --> 00:06:55,036
+ils devront continuer à apprendre: ceci est une introduction à
+
+85
+00:06:55,060 --> 00:06:59,236
+l’apprentissage profond et je les encourage fortement à continuer à apprendre en lisant des articles, en
+
+86
+00:06:59,260 --> 00:07:04,786
+essayant de reproduire les résultats des articles et en lisant des livres évidemment pour
+
+87
+00:07:04,810 --> 00:07:09,476
+continuer à apprendre. L'expertise en apprentissage profond demande beaucoup de pratique.
+
+88
+00:07:09,500 --> 00:07:13,976
+Avez-vous des suggestions pour les personnes qui s'inscriront à ce MOOC?
+
+89
+00:07:14,000 --> 00:07:18,765
+Soyez curieux, persévérez, écoutez les vidéos, répétez-les si vous en avez besoin,
+
+90
+00:07:18,789 --> 00:07:22,576
+faites les exercices et les quiz et amusez-vous.
+
+91
+00:07:22,600 --> 00:07:24,600
+Amusez-vous, j'aime beaucoup ça!
+

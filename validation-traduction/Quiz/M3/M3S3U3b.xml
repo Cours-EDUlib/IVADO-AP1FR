@@ -1,0 +1,16 @@
+<problem>
+<choiceresponse>
+  <label>Sélectionnez deux raisons pour lesquelles l&apos;utilisation de plusieurs convolutions 3x3 est plus efficace qu&apos;une seule convolution 7x7 ?</label>
+<checkboxgroup>
+    <choice correct="true">A. On peut ajouter des activations non linéaires entre les convolutions <choicehint selected="true">A. Correct</choicehint></choice>
+    <choice correct="false">B. Le champ réceptif est plus grand <choicehint selected="true">B. Incorrect, la taille du champ réceptif dépend du nombre de convolutions 3x3 que vous choisissez d&apos;empiler</choicehint>.<choicehint selected="true"> Si vous empilez deux convolutions 3x3, vous aurez le champ réceptif d&apos;une convolution 5x5. Si vous empilez trois convolutions 3x3, vous aurez le champ réceptif d&apos;une convolution 7x7. Si vous empilez quatre convolutions 3x3, vous aurez le champ réceptif d&apos;une convolution 9x9, et ainsi de suite.</choicehint></choice>
+    <choice correct="true">C. Il y a moins de paramètres pour le même champ réceptif <choicehint selected="true">C. Correct</choicehint></choice>
+    <choice correct="false">D.Il y aura moins d&apos;opérations à effectuer <choicehint selected="true">D. Incorrect, il y aura plus d&apos;opérations</choicehint></choice>
+    <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+    <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+  </checkboxgroup>
+</choiceresponse>
+</problem>

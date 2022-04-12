@@ -1,0 +1,13 @@
+<problem>
+<multiplechoiceresponse>
+  <label>1. Les vecteurs-mots de base comme Word2Vec traitent la polysémie.</label>
+<description>Sélectionnez vrai ou faux.</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Vrai <choicehint>Il n&apos;y a qu&apos;un seul plongement pour chaque mot. Nous ne pouvons pas distinguer deux mots qui ont la même graphie, mais des sens différents (par exemple, livre et livre)</choicehint></choice>
+    <choice correct="true">Faux</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+<demandhint>
+  <hint>La polysémie est une condition selon laquelle un seul mot, une seule phrase ou un seul concept a plus d&apos;un sens ou connotation.</hint>
+</demandhint>
+</problem>
