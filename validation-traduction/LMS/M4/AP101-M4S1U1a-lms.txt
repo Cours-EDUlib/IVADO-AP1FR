@@ -1,7 +1,0 @@
-<p>Mirko Bronzi, Ph. D. and MILA Applied Research Scientist introduces the lesson plan for the first section of the module.</p>
-<p>All reverence materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/695f1a4ca0ea464b9b898695473ab7c6/53c4602044ab421f8c804037b1d0c4b0/9?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%407d29e4f2e1f7465ab139727d3d86cec0" target="_blank">4.1 - References</a></p>
-<p></p>
-
-
-<!-- Next step -->
-<p>There is no quiz for this section. Please move on to the next video.</p>

@@ -1,3 +1,0 @@
-<p>Jeremy begins this section by overviewing the concept of a DL architecture, especially for CNNs. He starts by presenting a methodology for comparing model performance known as benchmarking, where various architectures are run on the same dataset for the same task. This allows various models to be compared in a fair manner.</p>
-<p>All reference materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/962e7495cf4c4614964f388750806f8f/058ea5a58d564791b4c6ce30cfb59ccc/12?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%4050fea86bea6d483ebe25f59777f96c68" target="_blank">3.3 - References</a></p>
-<p></p>

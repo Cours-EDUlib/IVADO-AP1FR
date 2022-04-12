@@ -1,4 +1,0 @@
-<ul>
-<li>IVADO-Mila Pr&eacute;sentation de l&apos;&eacute;cole d&apos;&eacute;t&eacute; (diapositives originales)<br /><a href="/static/1_introduction_deep_learning.pdf" target="_blank">Introduction to Deep Learning.pdf</a></li>
-<li><a href="http://openaccess.thecvf.com/content_cvpr_2018/CameraReady/1163.pdf" target="_blank">Bottom-Up and Top-Down Attention for Image Captioning and Visual Question Answering </a>(<a href="http://openaccess.thecvf.com/content_cvpr_2018/CameraReady/1163.pdf" target="_blank">http://openaccess.thecvf.com/content_cvpr_2018/CameraReady/1163.pdf</a>)</li>
-</ul>

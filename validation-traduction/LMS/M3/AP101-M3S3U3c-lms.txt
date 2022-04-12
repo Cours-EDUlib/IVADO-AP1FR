@@ -1,5 +1,0 @@
-<p>The same year as VGG, GoogLeNet was published. Jeremy presents the model’s architecture in an approachable, modular way. He overviews the inception module - their main contribution to CNN literature. He also explains how GoogLeNet managed to get more depth with fewer parameters, a substantial improvement over previous networks. </p>
-<p>Here is the link to the Going Deeper with Convolutions article on GoogLeNet paper: </p>
-<p><a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf" target="_blank">https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf</a></p>
-<p>All reference materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/962e7495cf4c4614964f388750806f8f/058ea5a58d564791b4c6ce30cfb59ccc/12?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%4050fea86bea6d483ebe25f59777f96c68" target="_blank">3.3 - References</a></p>
-<p></p>

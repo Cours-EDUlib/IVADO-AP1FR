@@ -1,3 +1,0 @@
-<p>Jeremy reviews how computers store and represent images internally. Both grayscale and RGB image representations are introduced. The convolution operation is broken down in detail for RGB images using animations and Jeremy demonstrates how convolutions can map an input volume of any depth to an output volume of any depth.</p>
-<p>All reference materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/962e7495cf4c4614964f388750806f8f/20ee81ebedbe4e68860b4a2c349cde87/7?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%406dcf5b10fde04bc48eb6fda18b94bf94" target="_blank" style="font-size: 14.6667px;">3.1 - References</a></p>
-<p></p>

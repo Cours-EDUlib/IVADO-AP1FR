@@ -1,9 +1,0 @@
-<p style="font-size: 16px; text-align: center;">Pr&eacute;sentez-vous aux autres participants du cours!<img src="/static/Self-ID.png" alt="" style="margin-top: -40px; position: relative; display: block;" width="70" height="70" /></p>
-<p style="font-size: 16px;">D&icirc;tes-nous&nbsp;:</p>
-<ul>
-<li>Qui &ecirc;tes-vous?</li>
-<li>D'o&ugrave; venez-vous?</li>
-<li>Quelles sont vos attentes pour ce cours?</li>
-</ul>
-<p style="font-size: 16px;">N'h&eacute;sitez pas &agrave; parcourir la discussion pour faire connaissance avec les autres participants.</p>
-<p style="font-size: 16px;">Pour plus d'informations sur les forums, consultez notre section FAQ &agrave; ce sujet.</p>

@@ -1,5 +1,0 @@
-<p></p>
-<p style="text-align: center;">Vous vous &ecirc;tes rendus &agrave; votre deuxi&egrave;me &eacute;valuation!<img src="/static/SommativeAssessment.png" alt="" style="margin-top: -40px; position: relative; display: block;" width="70" height="70" /></p>
-<p>Les dix (10) questions suivantes &eacute;valueront votre compr&eacute;hension des principaux concepts li&eacute;s &agrave; l&apos;approche modulaire, &agrave; l&apos;algorithme de r&eacute;tropropagation pour le graphe de calcul et &agrave; l&apos;optimisation. <br /><br />Vous aurez deux (2) tentatives pour r&eacute;pondre &agrave; chaque question et seulement 1 (une) tentative pour les questions de type vrai ou faux. N&apos;oubliez pas que les questions d&apos;&eacute;valuation repr&eacute;sentent 100 % de votre note finale. Un certificat vous sera accord&eacute; si vous obtenez une note suffisante (≥ 70) pour le cours. Vous pouvez utiliser les conseils si vous les trouvez.</p>
-<p>Bonne chance!</p>
-<p></p>

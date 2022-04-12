@@ -1,9 +1,0 @@
-<p>Mirko summarizes the NLP Section and emphasizes the key element which links almost all NLP tasks - the need to link words and semantics. He also explains the key element that is common to all state of the art NLP models: unsupervised pre-training allows models to train on large quantities of data, even if the labelled data for the task of interest is scarce.</p>
-<p>All reverence materials can be viewed here: <a href="https://courses.edx.org/courses/course-v1:UMontrealX+IVADO-DL-101+1T2020/courseware/695f1a4ca0ea464b9b898695473ab7c6/c11ca704a56c42a0a48e05a757d2a926/9?activate_block_id=block-v1%3AUMontrealX%2BIVADO-DL-101%2B1T2020%2Btype%40vertical%2Bblock%40aaf31cffb7804d3c96af09c31d29e81b" target="_blank">4.3 - References</a></p>
-<p></p>
-
-
-
-
-<!-- Second Block -->
-<p>There is no quiz for this unit. </p>
