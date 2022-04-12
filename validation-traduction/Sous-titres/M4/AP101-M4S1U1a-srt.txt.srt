@@ -1,0 +1,123 @@
+﻿1
+00:00:13,280 --> 00:00:17,220
+Je vais commencer par la première présentation qui va porter sur les
+
+2
+00:00:17,220 --> 00:00:25,020
+les réseaux de neurones récurrents ; à partir de maintenant, je les appellerai RNN. Voici le plan :
+
+3
+00:00:25,020 --> 00:00:28,289
+nous commençons par la motivation, donc nous commençons par examiner
+
+4
+00:00:28,289 --> 00:00:34,199
+le genre de problèmes nous essayons de résoudre et nous verrons aussi
+
+5
+00:00:34,199 --> 00:00:39,930
+quelques exemples de ces problèmes dans le monde réel. Ensuite, nous verrons ce qui se passe
+
+6
+00:00:39,930 --> 00:00:43,170
+si nous essayons d'utiliser l'architecture que vous avez vue au cours des derniers jours dans
+
+7
+00:00:43,170 --> 00:00:49,260
+notre école pour résoudre ces problèmes et nous mettrons en évidence certains inconvénients.
+
+8
+00:00:49,260 --> 00:00:52,979
+Cela mènera à l'introduction des RNN que nous verrons
+
+9
+00:00:52,979 --> 00:00:58,530
+au point numéro deux. Nous introduirons les RNN en examinant la
+
+10
+00:00:58,530 --> 00:01:01,830
+définition mais nous allons aussi passer tout de suite
+
+11
+00:01:01,830 --> 00:01:07,590
+à un exemple pas à pas afin de bien comprendre
+
+12
+00:01:07,590 --> 00:01:15,270
+les éléments clés qui composent les RNN. Ensuite, nous verrons les étapes qui mènent à la
+
+13
+00:01:15,270 --> 00:01:20,550
+la formalisation de cette architecture jusqu'à ce que nous puissions voir les équations
+
+14
+00:01:20,550 --> 00:01:24,660
+qui la régissent. À ce stade, nous aurons une idée du type de
+
+15
+00:01:24,660 --> 00:01:30,360
+problèmes que nous voulons résoudre et comment les RNN les résout, mais nous ne savons toujours pas comment
+
+16
+00:01:30,360 --> 00:01:34,230
+entraîner les RNN et nous verrons ce sujet au point trois. Donc au point trois,
+
+17
+00:01:34,230 --> 00:01:40,080
+nous verrons que les RNN suivent l’entraînement habituel
+
+18
+00:01:40,080 --> 00:01:46,320
+en apprentissage profond. Il faut donc calculer l'erreur et faire une rétropropagation, mais il y a deux
+
+19
+00:01:46,320 --> 00:01:51,390
+aspects clés qui découlent de la nature des RNN que nous devons prendre en compte si nous
+
+20
+00:01:51,390 --> 00:01:57,479
+voulons une rétropropagation correcte. Au point quatre, nous verrons que
+
+21
+00:01:57,479 --> 00:02:03,180
+l’entraînement des RNN peut devenir instable et nous verrons quel genre de problèmes que nous
+
+22
+00:02:03,180 --> 00:02:07,500
+pouvons rencontrer et nous verrons que malheureusement, il existe un problème en
+
+23
+00:02:07,500 --> 00:02:11,870
+particulier que nous ne parvenons pas à résoudre en utilisant cette architecture.
+
+24
+00:02:11,870 --> 00:02:17,819
+Afin de surmonter ce problème, nous introduirons des architectures de RNN plus complexes
+
+25
+00:02:17,819 --> 00:02:22,830
+au prochain point : les réseaux de neurones récurrent à longue mémoire à court terme, ou LMCT. Vous en avez peut-être déjà entendu parler.
+
+26
+00:02:22,830 --> 00:02:26,730
+Nous introduirons aussi les unités récurrentes à portes, ou 
+
+27
+00:02:26,730 --> 00:02:30,870
+les GRU, et nous verrons en quoi ces architectures sont plus complexes et plus
+
+28
+00:02:30,870 --> 00:02:35,970
+flexibles et comment elles sont en mesure de résoudre les problèmes du point précédent. Au dernier point,
+
+29
+00:02:35,970 --> 00:02:41,190
+nous verrons comment approfondir les RNN, c’est-à-dire les
+
+30
+00:02:41,190 --> 00:02:45,420
+techniques que nous pouvons utiliser pour rendre l’architecture capable d’approximer
+
+31
+00:02:45,420 --> 00:02:48,140
+des fonctions encore plus complexes.

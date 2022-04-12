@@ -1,0 +1,13 @@
+<problem display_name="Quiz" markdown="&gt;&gt; No matter what the initialization of the parameters is, the learning process can always find a good set of parameters or a minimum. || Select true or false. &lt;&lt;&#10;&#10;( ) True {{ Bad parameter initialization that may lead to a bad local minimum or bad global minimum (shown as overfitting) }}&#10;(x) False &#10;&#10;|| Check the video from 8:30 to 11:32. ||&#10;&#10;" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle que soit l&apos;initialisation des paramètres, le processus d&apos;apprentissage peut toujours trouver un bon ensemble de paramètres ou un minimum.</label>
+    <description>Choisissez vrai ou faux.</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>Une mauvaise initialisation de paramètres peut mener vers un mauvais minimum local ou un mauvais minimum global (qui correspond au surapprentissage)</choicehint></choice>
+      <choice correct="true">Faux</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Regardez la vidéo de 8:30 à 11:32.</hint>
+  </demandhint>
+</problem>

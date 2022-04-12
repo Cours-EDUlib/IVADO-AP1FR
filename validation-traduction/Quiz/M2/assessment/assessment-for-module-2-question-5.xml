@@ -1,0 +1,33 @@
+<problem display_name="Question 5" markdown="We are in 2006 and we are interested in testing a new activation function: the softplus function:&#10;&#10;\(\text{Softplus(x)}=\beta∗\ln(1+\exp(\beta∗x))\) where \(\beta\) is a hyperparameter.&#10;&#10;&lt;img src=&quot;/static/Module_3_Question_5_softplus_figure_1.png&quot; height=&quot;300&quot; alt=&quot;A graph of the softplus activation function. At x=0, the output is the natural logarithm of 2 (ln 2). Going to the left (x headed toward minus infinity, the output converges toward 0. Going to the right (x headed toward infinity), the output converges to a linear function with a slope equal to beta.&quot;/&gt;&#10;&#10;We need to implement the forward, backward and update methods of a new softplus module. To simplify, we are setting β=2. Provide your answer with 3 significant figures (e.g. 1.23e-1) or round to 0 if smaller than 1e-2.&#10;&#10;&gt;&gt; a) To test your forward implementation, determine the expected outputs of the forward pass associated with the following inputs with three significant digits: [-6, 0, 6]. &lt;&lt;&#10;&#10;( )  [0.00, 2.00, 4.00] {{Incorrect}}&#10;( )  [0.00, 1.00, 6.00] {{Incorrect}}&#10;(x)  [0.00, 1.39, 24.0] {{Correct}}&#10;( )  [-1.00, 1.00, 1.00] {{Incorrect}}&#10;&#10;&gt;&gt; b) To test your backward implementation, determine the expected outputs of the backward pass associated with the following inputs to the forward pass: [-6, 0, 6]. So, you must calculate the forward pass first (question a)), and then the backward pass.&lt;&lt;&#10;&#10;( )  [0.00, 1.39, 24.0] {{Incorrect}}&#10;(x)  [0.00, 2.00, 4.00] {{Correct}}&#10;( )  [0.00, 2.00, 3.00] {{Incorrect}}&#10;( )  [0.00, 1.00, 5.00] {{Incorrect}}&#10;&#10;&gt;&gt; c) Which activation function is similar to the softplus activation function? &lt;&lt;&#10;&#10;( ) Sigmoid {{Incorrect}}&#10;(x) ReLU {{Correct}}&#10;( ) Tanh {{Incorrect}}&#10;( ) Linear {{Incorrect}}&#10;" max_attempts="2">
+  <p>Nous sommes en 2006 et nous souhaitons tester une nouvelle fonction d&apos;activation:</p>
+  <p>\(\text{Softplus(x)}=\beta∗\ln(1+\exp(\beta∗x))\) où \(\beta\) est un hyperparamètre.</p>
+  <img src="/static/Module_3_Question_5_softplus_figure_1.png" height="300" alt="A graph of the softplus activation function. At x=0, the output is the natural logarithm of 2 (ln 2). Going to the left (x headed toward minus infinity, the output converges toward 0. Going to the right (x headed toward infinity), the output converges to a linear function with a slope equal to beta."/>
+  <p>Nous devons implémenter les méthodes de propagation avant, de propagation arrière et de mise à jour d&apos;un nouveau module softplus. Pour simplifier, on définit β=2. Donnez votre réponse avec 3 chiffres significatifs (p. ex. 1.23e-1) ou arrondir à 0 si inférieur à 1e-2.</p>
+  <label>a) Pour évaluer votre implémentation de la propagation avant, déterminez les sorties attendues de la propagation avant associées aux entrées suivantes avec trois chiffres significatifs : [-6, 0, 6].</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">[0.00, 2.00, 4.00] <choicehint>Incorrect</choicehint></choice>
+      <choice correct="false">[0.00, 1.00, 6.00] <choicehint>Incorrect</choicehint></choice>
+      <choice correct="true">[0.00, 1.39, 24.0] <choicehint>Correct</choicehint></choice>
+      <choice correct="false">[-1.00, 1.00, 1.00] <choicehint>Incorrect</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <label>b) Pour évaluer votre implémentation de la propagation arrière, déterminez les sorties attendues de la propagation arrière associées aux entrées suivantes de la propagation avant: [-6, 0, 6]. Ainsi, vous devez d&apos;abord calculer la propagation avant (question a)), puis la propagation arrière.</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">[0.00, 1.39, 24.0] <choicehint>Incorrect</choicehint></choice>
+      <choice correct="true">[0.00, 2.00, 4.00] <choicehint>Correct</choicehint></choice>
+      <choice correct="false">[0.00, 2.00, 3.00] <choicehint>Incorrect</choicehint></choice>
+      <choice correct="false">[0.00, 1.00, 5.00] <choicehint>Incorrect</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <label>c) Quelle fonction d&apos;activation est similaire à la fonction d&apos;activation Softplus ?</label>
+  <multiplechoiceresponse>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Sigmoïde <choicehint>incorrect</choicehint></choice>
+      <choice correct="true">ReLU <choicehint>correct</choicehint></choice>
+      <choice correct="false">Tanh <choicehint>incorrect</choicehint></choice>
+      <choice correct="false">Linéaire <choicehint>incorrect</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

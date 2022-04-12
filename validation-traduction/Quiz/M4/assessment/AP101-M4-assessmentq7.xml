@@ -1,0 +1,11 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Comment le mécanisme d’auto-attention remplace-t-elle les RNR?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">En permettant au décodeur d&apos;extraire plus facilement des informations de l’encodeur. <choicehint>L&apos;auto-attention utilise le mécanisme d&apos;attention sur la même séquence (comme son nom l&apos;indique). Il n&apos;y a donc pas de structure d’encodage/décodage.</choicehint></choice>
+    <choice correct="true">En utilisant le mécanisme d&apos;attention pour trouver quels éléments de la séquence sont importants pour le contexte de l&apos;élément en cours. <choicehint>Correct! L&apos;auto-attention est utilisée pour produire une représentation encodée contextualisée et actualisée de la séquence d&apos;entrée, qui indiquera quels éléments de la séquence sont importants pour le contexte de l&apos;élément en cours.</choicehint></choice>
+    <choice correct="false">En utilisant le mécanisme d&apos;attention pour décider du moment où il faut arrêter de produire la sortie <choicehint>L&apos;auto-attention est utilisée pour produire une représentation encodé contextualisée et actualisée de la séquence d&apos;entrée, et non pour produire une nouvelle séquence de manière autorégressive.</choicehint></choice>
+    <choice correct="false">En calculant les produits scalaires des éléments de la séquence pour savoir quels éléments sont similaires. <choicehint>L&apos;auto-attention est en effet basée sur des produits scalaires, mais le but est de produire une représentation codée contextualisée et actualisée de la séquence d&apos;entrée, et non de trouver des éléments similaires.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

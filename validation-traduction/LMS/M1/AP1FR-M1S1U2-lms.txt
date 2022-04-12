@@ -1,0 +1,1 @@
+<p>La vid&eacute;o de cette unit&eacute; vous aidera &agrave; comprendre la m&eacute;thodologie de l'apprentissage automatique (AA). Vous apprendrez quelles sortes de questions doivent &ecirc;tre pos&eacute;es au cours des trois premi&egrave;res phases de tout projet d'apprentissage automatique.</p>

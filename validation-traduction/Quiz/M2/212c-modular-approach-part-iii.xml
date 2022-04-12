@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt; When we are dealing with many modalities, it makes sense to use the __________  design pattern.&lt;&lt;&#10;&#10;[[&#10;Encoder-Decoder {{This design pattern makes sense for a single modality}}&#10;AutoEncoder  {{This design pattern is used to learn a latent representation}}&#10;Seq2Seq {{Sequence-to-sequence is an example of an Encoder-Decoder pattern}}&#10;(Multi-input Encoder-Decoder) &#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>Lorsque nous traitons de nombreuses modalités, il est logique d&apos;utiliser le schéma de conception ___________.</label>
+    <optioninput>
+      <option correct="False">Encodeur-décodeur <optionhint>ce schéma de conception est logique pour une seule modalité</optionhint></option>
+      <option correct="False">AutoEncodeur <optionhint>ce schéma de conception est utilisé pour apprendre une représentation latente</optionhint></option>
+      <option correct="False">Seq2Seq <optionhint>Le schéma Séquence à séquence est un exemple de schéma Encodeur-Décodeur</optionhint></option>
+      <option correct="True">Encodeur-décodeur multientrées</option>
+    </optioninput>
+  </optionresponse>
+</problem>

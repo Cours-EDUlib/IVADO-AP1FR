@@ -1,0 +1,371 @@
+1
+00:00:14,280 --> 00:00:19,030
+Nous savons donc que c'est une chaise et maintenant j'ai une nouvelle image et la question est: est-
+
+2
+00:00:19,030 --> 00:00:25,640
+ce une chaise? Je peux extraire un sous-bloc de cette image, celle-ci,
+
+3
+00:00:25,640 --> 00:00:33,090
+et je vais essayer de le trouver dans cette image-ci. Concrètement,
+
+4
+00:00:33,090 --> 00:00:38,550
+comment puis-je trouver un sous-bloc d'une image dans une autre image? On devrait regarder
+
+5
+00:00:38,550 --> 00:00:44,030
+comment les sous-blocs sont représentés sur un ordinateur: ce n'est qu'un tableau de nombres.
+
+6
+00:00:44,030 --> 00:00:49,749
+Ici nous pouvons voir que c'est un tableau d'intensités de pixels entre 0 et
+
+7
+00:00:49,749 --> 00:00:57,399
+255. Maintenant, j'ai ces deux tableaux de pixels: comment puis-je les comparer?
+
+8
+00:00:57,399 --> 00:01:02,870
+L'un des moyens les plus simples de comparer deux tableaux de valeurs est un
+
+9
+00:01:02,870 --> 00:01:09,030
+produit scalaire. Le produit scalaire ici prendra deux tableaux de valeurs, ici j'ai 1
+
+10
+00:01:09,030 --> 00:01:15,840
+2 3 et le deuxième tableau est 3 2 1, et je multiplie composante par composante.
+
+11
+00:01:15,840 --> 00:01:22,000
+J'obtiendrais 3 4 3 puis je somme ce tableau et j'obtiendrai un score de 10.
+
+12
+00:01:22,000 --> 00:01:28,200
+Le produit scalaire a une interprétation géométrique, donc ici j'ai mon produit
+
+13
+00:01:28,200 --> 00:01:38,000
+scalaire entre deux tableaux X et Y. J'ai besoin d'une norme de la longueur de mon vecteur.
+
+14
+00:01:38,000 --> 00:01:40,090
+Si je divise le produit scalaire par
+
+15
+00:01:40,090 --> 00:01:46,240
+le produit de la norme des deux vecteurs et je prends l'arc cosinus,
+
+16
+00:01:46,240 --> 00:01:54,409
+j'obtiens l'angle entre les deux vecteurs. Si l'angle est 0, cela signifie
+
+17
+00:01:54,409 --> 00:02:01,350
+que les deux images sont parfaitement alignées à l'exception d'un facteur de mise à l'échelle. Alors,
+
+18
+00:02:01,350 --> 00:02:06,170
+tous les pixels seront les mêmes, mais peut-être que je peux mettre à l'échelle l'intensité de
+
+19
+00:02:06,170 --> 00:02:10,610
+tous les pixels avec un seul scalaire: cela signifie que les deux images
+
+20
+00:02:10,610 --> 00:02:17,820
+sont très proches l’une de l’autre. Si l'angle est Pi / 2, cela signifie que le
+
+21
+00:02:17,820 --> 00:02:23,750
+produit scalaire est 0 et qu'il n'y a pas beaucoup de similitude entre les deux.
+
+22
+00:02:23,750 --> 00:02:27,290
+C’est aussi appelé la similitude cosinus, c'est seulement pour
+
+23
+00:02:27,290 --> 00:02:32,879
+l’intuition, nous n’utilisons pas l'interprétation géométrique complète du
+
+24
+00:02:32,879 --> 00:02:38,430
+produit scalaire dans l'apprentissage profond, nous utilisons simplement le produit scalaire comme une opération élémentaire.
+
+25
+00:02:38,430 --> 00:02:45,540
+Par contre, gardez à l'esprit que nous essayons de voir si deux images sont similaires ou non en
+
+26
+00:02:45,540 --> 00:02:54,420
+calculant leur produit scalaire, alors essayons: j'ai mon image complète et je veux
+
+27
+00:02:54,420 --> 00:03:00,709
+prédire si c'est une chaise ou non. J’ai mon sous-patch ici et je peux voir
+
+28
+00:03:00,709 --> 00:03:06,680
+que la valeur de la version normalisée du produit scalaire, si elle est de 0, cela signifie que
+
+29
+00:03:06,680 --> 00:03:10,990
+le patch n'est pas là. Si elle est de 1, il est parfaitement là et ici à cet
+
+30
+00:03:10,990 --> 00:03:17,000
+endroit, non la forme n'est pas là, le produit scalaire est 0,1.
+
+31
+00:03:17,000 --> 00:03:20,920
+Ici on peut dire qu’il y est peut être: il y a un certain alignement entre les
+
+32
+00:03:20,920 --> 00:03:28,060
+pixels en bas, mais parce que la jambe dans mon sous-bloc n'est
+
+33
+00:03:28,060 --> 00:03:37,810
+pas droite, je n'ai pas d'alignement complet, c'est seulement 0,5. Ici, l'alignement est
+
+34
+00:03:37,810 --> 00:03:44,319
+meilleur, donc le score est plus élevé et je dirai probablement que la forme est ici,
+
+35
+00:03:44,319 --> 00:03:50,959
+mais comme vous pouvez le voir, ce sous-bloc est une jambe d'une autre chaise. Ce n'est que par hasard que
+
+36
+00:03:50,959 --> 00:03:56,530
+j'ai trouvé cette forme sur le dossier de la deuxième chaise et vous direz que ce n'est pas
+
+37
+00:03:56,530 --> 00:04:00,769
+la même sémantique. Même si mon modèle de reconnaissance de formes dit que
+
+38
+00:04:00,769 --> 00:04:05,799
+la forme est là, c'est une jambe et elle a été trouvée au dossier de cette
+
+39
+00:04:05,799 --> 00:04:11,140
+chaise. Alors, la sémantique ne s'aligne pas, mais comme nous ne comparons que des
+
+40
+00:04:11,140 --> 00:04:17,630
+valeurs numériques, il n'y a pas de notion de sémantique, on compare uniquement les pixels ensemble.
+
+41
+00:04:17,630 --> 00:04:23,540
+Alors, si je veux le mettre à l'échelle, pour essayer de résoudre ce problème, je
+
+42
+00:04:23,540 --> 00:04:31,460
+devrais probablement utiliser beaucoup de formes pour voir si toutes les sous-parties d'une chaise sont
+
+43
+00:04:31,460 --> 00:04:33,940
+présentes dans cette image. J'utiliserai donc beaucoup de
+
+44
+00:04:33,940 --> 00:04:38,520
+formes que j'itérerai sur l'image, je récupérerai un certain score, j'aurai un
+
+45
+00:04:38,520 --> 00:04:45,400
+vecteur de scores et je peux le donner à un simple modèle d'apprentissage automatique. Aussi,
+
+46
+00:04:45,400 --> 00:04:51,530
+nous pouvons voir le score comme de nouvelles caractéristiques représentant les données, donc j'aurai
+
+47
+00:04:51,530 --> 00:04:56,300
+un nouveau vecteur avec le score associé à chaque forme pour savoir si elles ont
+
+48
+00:04:56,300 --> 00:05:01,870
+été trouvées dans l'image ou non. En fait, tous ces scores sont une nouvelle
+
+49
+00:05:01,870 --> 00:05:06,250
+représentation de mon image: ils décrivent l'image en termes de formes que
+
+50
+00:05:06,250 --> 00:05:14,030
+j'ai utilisées. Une bonne question est: pourquoi ai-je utilisé seulement un petit bloc comme celui-ci pour
+
+51
+00:05:14,030 --> 00:05:20,060
+comparer et essayer de retrouver cette forme dans mon image? Pourquoi était-il important d’utiliser
+
+52
+00:05:20,060 --> 00:05:27,020
+une petite forme ici? C’est parce que si j'utilise la chaise entière, la probabilité qu'on la
+
+53
+00:05:27,020 --> 00:05:33,300
+retrouvera parfaitement est très faible: les modèles de chaises sont uniques.
+
+54
+00:05:33,300 --> 00:05:40,400
+Si j'utilise toute la complexité de la forme et que j'essaye de la retrouver dans mon image,
+
+55
+00:05:40,400 --> 00:05:46,170
+je n'aurai pas un score élevé du tout parce que si je change l'orientation
+
+56
+00:05:46,170 --> 00:05:52,230
+de la chaise, la forme ne correspondra pas du tout. Donc, en utilisant des sous-parties qui sont
+
+57
+00:05:52,230 --> 00:05:57,690
+simples, qui sont de très petites formes, et en essayant de les retrouver dans mon image,
+
+58
+00:05:57,690 --> 00:06:03,600
+la probabilité de trouver les petites formes est plus élevée que si j’utilisais des formes très complexes
+
+59
+00:06:03,600 --> 00:06:08,000
+depuis le début, ça corrèle plus facilement.
+
+60
+00:06:08,000 --> 00:06:13,800
+C'est donc l'une des idées les plus importantes dans l'apprentissage profond:
+
+61
+00:06:13,800 --> 00:06:17,169
+le principe de compositionnalité.
+
+62
+00:06:17,169 --> 00:06:22,080
+Toute la complexité d'une chaise est constituée de ses parties,
+
+63
+00:06:22,080 --> 00:06:29,111
+de minuscules parties que nous combinons ensemble pour créer une complexité, un
+
+64
+00:06:29,111 --> 00:06:33,500
+objet qui est complexe. Nous pouvons également le comparer à des
+
+65
+00:06:33,500 --> 00:06:39,889
+blocs Lego: si je prends juste un bloc Lego et j'essaie de le trouver dans cette image,
+
+66
+00:06:39,889 --> 00:06:44,160
+je peux dire que ce bloc Lego est ici, ici, ici, ici et ici.
+
+67
+00:06:44,160 --> 00:06:49,410
+Si j'utilise un bloc plus complexe et que j'essaye de le trouver, alors ce sera plus difficile à
+
+68
+00:06:49,410 --> 00:06:56,389
+trouver. Si j'utilise toute la ville ici et que j'essaye de la retrouver ailleurs, la
+
+69
+00:06:56,389 --> 00:07:00,569
+probabilité que je trouverai une telle complexité ailleurs depuis le début
+
+70
+00:07:00,569 --> 00:07:07,080
+en utilisant toute la complexité comme une forme ne fonctionnera pas. Nous avons donc cette notion que,
+
+71
+00:07:07,080 --> 00:07:12,800
+lorsque nous sommes proche des données, nous voulons utiliser des modèles très simples et nous
+
+72
+00:07:12,800 --> 00:07:17,270
+aurons ensuite une nouvelle représentation. Nous essaierons d'extraire des formes un
+
+73
+00:07:17,270 --> 00:07:21,970
+peu plus abstraites de cette deuxième couche. Ensuite, nous obtenons une nouvelle
+
+74
+00:07:21,970 --> 00:07:27,729
+représentation, et encore une fois nous essayons d'extraire des formes de cette représentation et nous
+
+75
+00:07:27,729 --> 00:07:32,210
+continuons comme ça jusqu'à ce que nous soyons à la fin du modèle pour faire notre
+
+76
+00:07:32,210 --> 00:07:39,410
+prédiction. C'est l'idée de l’apprentissage profond ici: au lieu d'essayer de fabriquer
+
+77
+00:07:39,410 --> 00:07:44,970
+nos propres caractéristiques comme je l'ai fait avec cette chaise, nous laisserons le modèle
+
+78
+00:07:44,970 --> 00:07:50,680
+extraire les caractéristiques lui-même, mais nous donnerons la capacité au modèle
+
+79
+00:07:50,680 --> 00:07:58,169
+d’extraire une caractéristique simple au début puis de construire des caractéristiques de
+
+80
+00:07:58,169 --> 00:08:06,050
+plus en plus complexes jusqu'ici [la sortie] où nous prédirons
+
+81
+00:08:06,050 --> 00:08:11,840
+un objet complexe comme un chat, une chaise ou autre chose. Nous pouvons donc nous demander
+
+82
+00:08:11,840 --> 00:08:18,590
+ce que sont de bonnes représentations ici: si j'ai ce modèle d'apprentissage profond et que j'ai
+
+83
+00:08:18,590 --> 00:08:25,039
+mon extracteur de caractéristiques qui fonctionne à différents niveaux de complexité, ici j'ai
+
+84
+00:08:25,039 --> 00:08:31,360
+toutes les images avec beaucoup d'informations. Puis, je vais extraire
+
+85
+00:08:31,360 --> 00:08:35,409
+des caractéristiques qui deviennent de plus en plus abstraites et ici à la fin,
+
+86
+00:08:35,409 --> 00:08:42,560
+parce que j'utilise toujours un classificateur très simple comme la régression linéaire, je veux
+
+87
+00:08:42,560 --> 00:08:49,880
+toutes les images de chats de ce côté et toutes les images de chiens de ce côté.
+
+88
+00:08:49,880 --> 00:08:56,080
+Un classificateur linéaire simple pourra séparer les deux, c'est donc comme
+
+89
+00:08:56,080 --> 00:09:04,330
+ça qu’on utilise cette hiérarchie de caractéristiques: chaque couche de notre représentation aidera
+
+90
+00:09:04,330 --> 00:09:09,340
+la prochaine couche à produire des représentations qui sont de plus en plus simples pour la
+
+91
+00:09:09,340 --> 00:09:16,050
+tâche. À la fin, les représentations sont si abstraites et si bien organisées dans
+
+92
+00:09:16,050 --> 00:09:21,980
+l'espace qu'un classificateur linéaire sera capable de distinguer deux
+
+93
+00:09:21,980 --> 00:09:26,560
+classes différentes qui sont vraiment difficiles à décrire en termes de programmation.

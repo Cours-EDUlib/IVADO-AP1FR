@@ -1,0 +1,17 @@
+<problem>
+  <choiceresponse>
+    <p>Sélectionnez deux énoncés vrais sur l&apos;architecture de LMCT <clarification>LMCT: Réseau de neurones récurrent à longue mémoire à court terme</clarification>.</p>
+    <label></label>
+    <checkboxgroup>
+      <choice correct="true">A. Le LMCT possède une cellule de mémoire qui permet aux informations à long terme de circuler plus facilement <choicehint selected="true">A. Correct</choicehint></choice>
+      <choice correct="false">B. La porte d&apos;oubli dans l&apos;architecture de LMCT décide de la quantité d&apos;informations à ajouter à la nouvelle cellule de mémoire <choicehint selected="true">B. Incorrect, la porte d&apos;entrée prend une décision à ce sujet</choicehint></choice>
+      <choice correct="true">C. La porte d&apos;oubli dans l&apos;architecture de LMCT décide de la quantité d&apos;informations à supprimer de la cellule de mémoire précédente <choicehint selected="true">C. Correct</choicehint></choice>
+      <choice correct="false">D. La porte d&apos;entrée dans l&apos;architecture de LMCT décide de la quantité d&apos;informations à supprimer de la cellule de mémoire précédente <choicehint selected="true">D. Incorrect, la porte d&apos;entrée décide des nouvelles informations à ajouter à la nouvelle cellule</choicehint></choice>
+      <compoundhint value="A B C">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="B C D">Veuillez choisir 2 options.</compoundhint>
+      <compoundhint value="A B C D">Veuillez choisir 2 options.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

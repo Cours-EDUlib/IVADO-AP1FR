@@ -1,0 +1,14 @@
+<problem display_name="Quiz" markdown="null" max_attempts="2" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Quelle figure montre l&apos;optimisation sans momentum?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">
+        <img src="/static/333image.png" width="30%" alt="A graph showing the path of parameter values during optimization. There are two parameters, and the minimized loss value is at the center of the 2D graph, with each axis featuring how much the actual parameter value is different from the optimal parameter value. In this graph, the path initially takes a big step from left to right, but its second step from right to left is smaller, and the third step goes down vertically and horizontally. Few steps are required to reach the optimal parameter values.  " height="auto"/>
+        <choicehint>Cette figure correspond à l&apos;optimisation avec momentum</choicehint>
+      </choice>
+      <choice correct="true">
+        <img src="/static/333image-true.png" width="30%" alt="A graph showing the path of parameter values during optimization. There are two parameters, and the minimized loss value is at the center of the 2D graph, with each axis featuring how much the actual parameter value is different from the optimal parameter value. In this graph, the path goes back and forth across the horizontal axis, making very slow progress on the vertical axis. After many steps, the optimal parameters are eventually reached." height="auto"/>
+      </choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

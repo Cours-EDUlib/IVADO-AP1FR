@@ -1,0 +1,25 @@
+<problem>
+<multiplechoiceresponse>
+  <label>1. Un réseau plus profond d&apos;une architecture très similaire est toujours plus performant ou égal au réseau moins profond, puisqu&apos;il peut simplement faire passer les informations sous forme d’application identité.</label>
+<description>Sélectionnez Vrai ou Faux.</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Vrai <choicehint>Ce n&apos;est pas toujours le cas ; veuillez vérifier la vidéo à 1:44</choicehint></choice>
+    <choice correct="true">Faux</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>
+
+<problem>
+<optionresponse>
+  <label> 2. La connexion  _______ dans les composantes de base résiduelles permet à l'information de circuler dans le réseau et d'aller plus davantage en profondeur.</label>
+<optioninput>
+    <option correct="False">ResNet <optionhint>ResNet est le nom du réseau qui utilise les composantes de base résiduelles</optionhint>
+</option>
+    <option correct="False">ReLU <optionhint>ReLU est une fonction d'activation</optionhint>
+</option>
+    <option correct="True">saute-couche</option>
+    <option correct="False">de mise en commun <optionhint>Les couches de mise en commun prennent le maximum, le minimum ou la moyenne d'un certain nombre de valeurs</optionhint>
+</option>
+  </optioninput>
+</optionresponse>
+</problem>

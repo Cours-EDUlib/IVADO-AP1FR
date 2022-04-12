@@ -1,0 +1,11 @@
+<problem display_name="Quiz" markdown="&gt;&gt;_______ happens when true risk is higher than the empirical risk.&lt;&lt;&#10;[[ &#10;Underfitting {{Overfitting is the result of the big discrepancy between empirical risk and true risk}}&#10;(Overfitting) &#10;Risk minimization {{Irrelevant to the discrepancy between empirical risk and true risk}}&#10;Improvement {{If the true risk is higher than the empirical risk, the performance does not generalize. This does not constitute improvement.}}&#10;]]&#10;" max_attempts="3" weight="0.0">
+  <optionresponse>
+    <label>_______ se produit lorsque le risque réel est supérieur au risque empirique.</label>
+    <optioninput>
+      <option correct="False">Le sousapprentissage <optionhint>Le sousapprentissage est le résultat d&apos;un modèle qui n&apos;a pas assez de complexité pour capturer les tendances dans les données. Le risque empirique sera supérieur au risque réel.</optionhint></option>
+      <option correct="True">Le surapprentissage</option>
+      <option correct="False">La minimisation du risque <optionhint>sans rapport avec l&apos;écart entre le risque empirique et le risque réel</optionhint></option>
+      <option correct="False">L&apos;amélioration <optionhint>Si le vrai risque est supérieur au risque empirique, la performance ne se généralise pas. Cela ne constitue pas une amélioration.</optionhint></option>
+    </optioninput>
+  </optionresponse>
+</problem>

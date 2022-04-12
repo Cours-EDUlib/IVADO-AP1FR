@@ -1,0 +1,323 @@
+﻿1
+00:00:13,269 --> 00:00:17,360
+Je vais commencer par parler de motivation.
+
+2
+00:00:17,360 --> 00:00:22,820
+Au cours des jours précédents dans cette école, vous avez vu
+
+3
+00:00:22,820 --> 00:00:27,679
+plusieurs architectures intéressantes, en particulier dans cette diapositive que vous pouvez en voir deux.
+
+4
+00:00:27,679 --> 00:00:34,760
+À gauche, nous avons le perceptron multicouche, ou MLP et à droite
+
+5
+00:00:34,760 --> 00:00:41,420
+vous pouvez voir un réseau de neurones convolutif, ou CNN et vous avez vu maintenant que le MLP est
+
+6
+00:00:41,420 --> 00:00:46,910
+un moyen très efficace d'approximer des fonctions très complexes
+
+7
+00:00:46,910 --> 00:00:53,629
+et il donne d’excellents résultats. Vous avez également vu comment nous pouvons utiliser le CNN si nous avons des images pour obtenir
+
+8
+00:00:53,629 --> 00:00:58,070
+de très bons résultats, par exemple, pour la détection d'objets et, en nous basant sur l’idée que nous avons
+
+9
+00:00:58,070 --> 00:01:03,890
+un filtre qui peut être glissé sur l'image. Mais dans cette présentation et
+
+10
+00:01:03,890 --> 00:01:07,940
+dans les deux présentations suivants, nous nous concentrerons sur
+
+11
+00:01:07,940 --> 00:01:13,399
+une catégorie particulière de problèmes dans laquelle les données relatives à ce problème peuvent
+
+12
+00:01:13,399 --> 00:01:20,540
+être formées en une séquence et cela signifie que nous avons une séquence d'éléments.
+
+13
+00:01:20,540 --> 00:01:24,170
+L'ordre entre ces éléments est important et nous
+
+14
+00:01:24,170 --> 00:01:30,740
+devons le prendre en compte. Ces séquences peuvent aussi avoir une taille variable.
+
+15
+00:01:30,740 --> 00:01:34,400
+Je peux avoir un nombre différent d'éléments dans ces séquences. Pour illustrer ce problème,
+
+16
+00:01:34,400 --> 00:01:41,210
+prenons l’exemple d’un filtre anti-spam. Le problème
+
+17
+00:01:41,210 --> 00:01:44,960
+est un filtre anti-spam. Je veux classer mes courriels en tant que spam ou non et l'entrée est
+
+18
+00:01:44,960 --> 00:01:51,860
+sous forme de texte, donc c'est une séquence de mots et évidemment l'ordre entre ces mots
+
+19
+00:01:51,860 --> 00:01:56,180
+est important. Ça c'est le premier point. Le deuxième point est que si j'ai deux
+
+20
+00:01:56,180 --> 00:02:01,189
+courriels différents, il est fort probable qu'ils finissent par avoir un nombre différent de
+
+21
+00:02:01,189 --> 00:02:06,020
+de mots. Vous voyez que si nous voulons créer un système pour résoudre ce problème, celui-ci doit être
+
+22
+00:02:06,020 --> 00:02:13,910
+solide concernant cet aspect. Voyons ce qui se passe si nous essayons d'utiliser
+
+23
+00:02:13,910 --> 00:02:17,840
+l'architecture que j'ai mentionnée dans cette diapositive, c’est-à-dire le MLP et le CNN, pour résoudre ce
+
+24
+00:02:17,840 --> 00:02:25,129
+problème. Donc le problème avec le MLP est qu'il a une
+
+25
+00:02:25,129 --> 00:02:32,420
+taille fixe forte. Prenons l'exemple à gauche. Ici, vous voyez
+
+26
+00:02:32,420 --> 00:02:35,930
+que j'essaie de créer un classificateur ; c'est peut-être un classificateur de spam
+
+27
+00:02:35,930 --> 00:02:41,480
+que j'ai mentionné avant. Vous voyez que l'entrée est la phrase suivante : « how are you today ».
+
+28
+00:02:41,480 --> 00:02:47,540
+Il y a quatre mots et le classificateur peut fonctionner pour cet exemple.
+
+29
+00:02:47,540 --> 00:02:52,129
+Le MLP peut l'apprendre, mais vous voyez que dans l'exemple à droite,
+
+30
+00:02:52,129 --> 00:02:58,010
+j'ai le même MLP mais le nombre de mots est différent.
+
+31
+00:02:58,010 --> 00:03:02,150
+Comme nous avons dit que nous ne savons pas combien de mots nous aurons dans l’entrée et
+
+32
+00:03:02,150 --> 00:03:07,310
+dans ce cas-ci, le MLP ne peut pas fonctionner simplement parce que le nombre d'entrées
+
+33
+00:03:07,310 --> 00:03:11,540
+dans cette architecture est fixe. Je n'en ai que quatre dans ce cas particulier
+
+34
+00:03:11,540 --> 00:03:15,470
+et je ne peux évidemment pas changer cela de façon dynamique. L'intuition pour ce cas
+
+35
+00:03:15,470 --> 00:03:19,579
+a été abordée dans le contenu du deuxième jour, où vous avez vu cette architecture et vous
+
+36
+00:03:19,579 --> 00:03:23,629
+avez vu que chaque couche est essentiellement représentée par une matrice qui sont les
+
+37
+00:03:23,629 --> 00:03:28,760
+paramètres. Cette matrice m’indiquera le nombre d'entrées et le nombre de sorties
+
+38
+00:03:28,760 --> 00:03:32,329
+et évidemment la dimension de cette matrice est fixe, donc je ne peux pas la changer
+
+39
+00:03:32,329 --> 00:03:36,590
+à la volée. C’est pourquoi un MLP ne peut pas fonctionner de
+
+40
+00:03:36,590 --> 00:03:41,959
+cette manière particulière mais il existe en fait certaines techniques pour le faire fonctionner ici.
+
+41
+00:03:41,959 --> 00:03:46,340
+Je vais en mentionner un, qui s'appelle le sac de mots et nous le verrons plus en détail
+
+42
+00:03:46,340 --> 00:03:49,459
+dans la troisième présentation, celle sur le traitement du langage naturel.
+
+43
+00:03:49,459 --> 00:03:57,799
+Cette technique permettra à une séquence de taille variable
+
+44
+00:03:57,799 --> 00:04:03,799
+d’être représentée comme une entrée de taille fixe afin qu'elle fonctionne dans le MLP.
+
+45
+00:04:03,799 --> 00:04:08,180
+Mais toutes ces techniques comportent des désavantages, notamment
+
+46
+00:04:08,180 --> 00:04:14,169
+le modèle de sac de mots qui ne tient pas compte de l’ordre des éléments,
+
+47
+00:04:14,169 --> 00:04:18,680
+ce qui est une information très importante lorsqu'il s'agit d'un texte.
+
+48
+00:04:18,680 --> 00:04:23,270
+Idéalement, nous aimerions conserver cette information, donc nous voulons éviter
+
+49
+00:04:23,270 --> 00:04:26,830
+d’utiliser le MLP avec des séquences. Voyons ce qui se passe si nous essayons d'utiliser
+
+50
+00:04:26,830 --> 00:04:30,530
+le CNN. Je pense que le CNN est plus intéressant
+
+51
+00:04:30,530 --> 00:04:37,669
+car, comme vous avez vu hier, le CNN peut travailler sur des données unidimensionnelles, donc
+
+52
+00:04:37,669 --> 00:04:41,090
+idéalement, ils pourraient travailler sur une séquence. Dans le cours d’hier,
+
+53
+00:04:41,090 --> 00:04:44,360
+vous avez vu que dans la grande partie de l'exemple était une image, donc en deux dimensions, et vous avez vu que le filtre
+
+54
+00:04:44,360 --> 00:04:49,820
+était aussi une matrice à deux dimensions. Mais vous pouvez le faire fonctionner dans une dimension
+
+55
+00:04:49,820 --> 00:04:55,490
+et le filtre sera aussi unidimensionnelle. Si nous essayons de faire cela,
+
+56
+00:04:55,490 --> 00:05:02,660
+le problème c’est que, dans ce genre de tâche que nous voulons résoudre,
+
+57
+00:05:02,660 --> 00:05:07,520
+nous voulons capturer des informations à partir de tous les éléments de la séquence, comme vous pouvez
+
+58
+00:05:07,520 --> 00:05:12,050
+voir dans l'exemple affichée dans la diapositive du bas. Ici nous avons la phrase « hello how
+
+59
+00:05:12,050 --> 00:05:18,020
+are you today » Voyons comment nous essayons d'exécuter un RNN sur cette séquence. Dans cet exemple,
+
+60
+00:05:18,020 --> 00:05:22,820
+j'ai choisi un filtre de taille trois. Comme vous pouvez voir, je peux faire glisser mon filtre et j'obtiens cette sortie,
+
+61
+00:05:22,820 --> 00:05:28,640
+mais le problème c’est qu’il y a certains mots ne se trouvent jamais
+
+62
+00:05:28,640 --> 00:05:33,170
+dans le même filtre, donc je ne saisirai jamais la relation entre ces mots.
+
+63
+00:05:33,170 --> 00:05:38,630
+Par exemple, le premier mot, « hello » et le mot « today », qui se trouve à la fin. Vous voyez que ces deux mots
+
+64
+00:05:38,630 --> 00:05:45,190
+ne sont jamais dans le même filtre. Il existe en fait une solution facile qui consiste à ajouter
+
+65
+00:05:45,190 --> 00:05:51,650
+plus de couches à cette architecture. Si vous vous souvenez du cours d’hier, nous pouvons
+
+66
+00:05:51,650 --> 00:05:55,970
+augmenter le champ de réception du CNN en augmentant simplement le nombre de couches.
+
+67
+00:05:55,970 --> 00:05:59,960
+Donc, à ce stade, le problème sera résolu car vous voyez que la sortie A,
+
+68
+00:05:59,960 --> 00:06:07,250
+celle du dessus, a un champ récepteur qui comprend tous les
+
+69
+00:06:07,250 --> 00:06:12,170
+mots des éléments de la séquence pour qu'elle puisse fonctionner de cette façon, mais le problème
+
+70
+00:06:12,170 --> 00:06:16,910
+encore une fois, c'est que nous ne savons pas quelle sera la taille de la séquence. Je peux avoir
+
+71
+00:06:16,910 --> 00:06:22,100
+un exemple comme celui-ci, donc même si j'ai deux couches, vous voyez qu'en
+
+72
+00:06:22,100 --> 00:06:28,580
+ajoutant un autre élément à ma séquence, je dois glisser le filtre pour un autre étape.
+
+73
+00:06:28,580 --> 00:06:34,310
+Vous voyez que maintenant je me retrouve au niveau supérieur avec deux éléments et encore une fois,
+
+74
+00:06:34,310 --> 00:06:40,130
+j'ai le problème qu'il n'y a pas un seul élément qui capte toutes les relations
+
+75
+00:06:40,130 --> 00:06:45,500
+entre les éléments, simplement parce que le champ récepteur est trop
+
+76
+00:06:45,500 --> 00:06:50,480
+limité pour cette séquence. Évidemment, une fois que vous avez déterminé la taille de votre filtre
+
+77
+00:06:50,480 --> 00:06:54,169
+et le nombre de couches que vous avez, vous pouvez définir votre champ récepteur
+
+78
+00:06:54,169 --> 00:06:58,639
+et cela signifie que vous pouvez toujours trouver un segment plus grand que celui-là.
+
+79
+00:06:58,639 --> 00:07:03,080
+C'est pourquoi nous pouvons utiliser les CNN, mais ils viennent avec des désavantages
+
+80
+00:07:03,080 --> 00:07:08,900
+Idéalement nous aimerons trouver un système qui est plus solide et
+
+81
+00:07:08,900 --> 00:07:15,820
+qui est capable d'extraire toutes les informations de toutes les séquences.

@@ -1,0 +1,13 @@
+<problem display_name="Quiz" markdown="&gt;&gt; What are three reasons to split a dataset into training, validation and test datasets? || Please choose 3 options. ||&lt;&lt;&#10;[ ] A. To choose the best model parameters {{ selected: Incorrect, training, validation and test sets are used to choose the best hyperparameters, not parameters.}}&#10;[x] B. To tune the hyperparameters {{selected: B. Correct}}&#10;[x] C. To evaluate the model {{selected: C. Correct}}&#10;[x] D. To detect if the model is cheating by memorizing the training set {{selected: D. Correct}}&#10;&#10;{{ ((A B C D)) Please choose 3 options. }}" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Quelles sont les trois raisons de diviser un ensemble de données en ensembles d&apos;entraînement, de validation et d&apos;évaluation?</label>
+    <description>C&apos;est en effet vrai.</description>
+    <checkboxgroup>
+      <choice correct="false">A. Pour choisir les meilleurs paramètres du modèle <choicehint selected="true">Incorrect, la division en ensembles d&apos;entraînement, de validation et d&apos;évaluation est nécessaire pour choisir les meilleurs hyperparamètres, pas les paramètres.</choicehint></choice>
+      <choice correct="true">B. Pour régler les hyperparamètres <choicehint selected="true">B. Correct</choicehint></choice>
+      <choice correct="true">C. Pour évaluer le modèle <choicehint selected="true">C. Correct</choicehint></choice>
+      <choice correct="true">D. Pour détecter si le modèle triche en mémorisant l&apos;ensemble d&apos;entraînement <choicehint selected="true">D. Correct</choicehint></choice>
+      <compoundhint value="A B C D">C&apos;est en effet vrai.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

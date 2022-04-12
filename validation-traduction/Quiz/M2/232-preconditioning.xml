@@ -1,0 +1,10 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Which of the following correctly represents the preconditioning term in RMSProp? &lt;&lt;&#10;&#10;( ) [mathjaxinline] v_t = \beta v_{t+1} + (1-\beta) f' (x_t)^2 [/mathjaxinline] {{ The preconditioning term uses [mathjaxinline] v_{t-1} [/mathjaxinline] }}&#10;( ) [mathjaxinline] v_t = \beta v_{t-1} + (1+\beta) f' (x_t)^2 [/mathjaxinline] {{ The preconditioning term uses [mathjaxinline] (1-\beta)[/mathjaxinline]}}&#10;(x) [mathjaxinline] v_t = \beta v_{t-1} + (1-\beta) f' (x_t)^2 [/mathjaxinline]&#10;&#10;&#10;&#10;" max_attempts="3" weight="0.0">
+  <multiplechoiceresponse>
+    <label>Parmi les propositions suivantes, laquelle représente correctement le terme de préconditionnement dans RMSProp ?</label>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">[mathjaxinline] v_t = \beta v_{t+1} + (1-\beta) f&apos; (x_t)^2 [/mathjaxinline] <choicehint>le terme de préconditionnement utilise [mathjaxinline] v_{t-1} [/mathjaxinline]</choicehint></choice>
+      <choice correct="false">[mathjaxinline] v_t = \beta v_{t-1} + (1+\beta) f&apos; (x_t)^2 [/mathjaxinline] <choicehint>le terme de préconditionnement utilise [mathjaxinline] (1-\beta)[/mathjaxinline]</choicehint></choice>
+      <choice correct="true">[mathjaxinline] v_t = \beta v_{t-1} + (1-\beta) f&apos; (x_t)^2 [/mathjaxinline]</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

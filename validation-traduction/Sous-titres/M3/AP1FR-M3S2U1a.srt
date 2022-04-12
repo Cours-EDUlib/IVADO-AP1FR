@@ -1,0 +1,375 @@
+﻿1
+00:00:13,160 --> 00:00:19,650
+Alors commençons par la descente de gradient et les réseaux neuronaux convolutifs.
+
+2
+00:00:19,650 --> 00:00:24,090
+Je veux commencer par un petit avertissement parce qu’il y aura beaucoup de concepts mathématiques,
+
+3
+00:00:24,090 --> 00:00:29,400
+mais n'ayez pas peur, les diapositives ont été conçues de telle sorte qu'elles sont indépendantes.
+
+4
+00:00:29,400 --> 00:00:35,220
+Donc je vous encourage vraiment après aujourd'hui de rentrer chez vous, vous détendre
+
+5
+00:00:35,220 --> 00:00:38,340
+et de parcourir ces diapositives une par une. S'il y a des détails que vous ne comprenez pas,
+
+6
+00:00:38,340 --> 00:00:42,269
+c'est normal, surtout si c'est nouveau pour vous,
+
+7
+00:00:42,269 --> 00:00:46,949
+et si vous n'avez pas fait de maths depuis un certain temps. Le but est que vous sachiez que vous êtes ici pour apprendre,
+
+8
+00:00:46,949 --> 00:00:51,180
+que vous êtes ici pour voir ces dérivations. Il est important de les comprendre au moins une fois dans votre vie,
+
+9
+00:00:51,180 --> 00:00:54,479
+alors si vous utilisez des réseaux neuronaux convolutifs,
+
+10
+00:00:54,479 --> 00:00:58,140
+il est beaucoup plus facile d'avoir une intuition de ce qui ne va pas
+
+11
+00:00:58,140 --> 00:01:03,869
+lorsque les choses ne fonctionnent pas comme prévu. Encore une fois,
+
+12
+00:01:03,869 --> 00:01:09,630
+je vous encourage fortement à essayer de suivre ce qui se passe,
+
+13
+00:01:09,630 --> 00:01:16,020
+mais une fois chez vous, passez en revue ces diapositives en profondeur dans votre temps libre.
+
+14
+00:01:16,020 --> 00:01:22,880
+Alors commençons avec un petit rappel de ce qu'est la descente de gradient.
+
+15
+00:01:22,880 --> 00:01:28,350
+Hier, Gaétan a présenté l'algorithme de descente de gradient et de rétropropagation.
+
+16
+00:01:28,350 --> 00:01:32,610
+L'algorithme de la descente de gradient ou de gradient stohastique comprend plusieurs étapes.
+
+17
+00:01:32,610 --> 00:01:37,860
+La première étape consiste donc à calculer la propagation avant.
+
+18
+00:01:37,860 --> 00:01:42,210
+Nous avons une entrée, nous avons notre réseau de neurones et nous calculons la sortie de notre réseau,
+
+19
+00:01:42,210 --> 00:01:46,230
+qui est appelé « propagation avant ». Nous voulons ensuite calculer le dérivé de la perte
+
+20
+00:01:46,230 --> 00:01:50,490
+par une propagation arrière. Enfin, nous voulons mettre à jour
+
+21
+00:01:50,490 --> 00:01:55,140
+tous les paramètres réglables du réseau. Donc ce sont en quelque sorte les trois points principaux de la formule de la descente du gradient.
+
+22
+00:01:55,140 --> 00:02:01,860
+Commençons donc par mettre en place notre problème.
+
+23
+00:02:01,860 --> 00:02:07,140
+Nous allons donc examiner un cas très simple : nous avons donc un RNC, notre entrée x est une matrice trois par trois que nous avons ici
+
+24
+00:02:07,140 --> 00:02:12,090
+et les indices dénotent les différents éléments dans la matrice.
+
+25
+00:02:12,090 --> 00:02:16,970
+Donc x11 est un nombre à virgule flottante
+
+26
+00:02:16,970 --> 00:02:22,650
+et notre noyau w est un matrice deux par deux. Encore une fois, nous avons les différents
+
+27
+00:02:22,650 --> 00:02:26,970
+indices qui représentent notre noyau. Nous n’utilisons pas de remplissage
+
+28
+00:02:26,970 --> 00:02:30,960
+et nous utilisons une foulée  de 1 et je tiens à vous rappeler que
+
+29
+00:02:30,960 --> 00:02:39,090
+c'est l’opération de convolution. Commençons par construire notre
+
+30
+00:02:39,090 --> 00:02:43,950
+graphe de calcul. Voici comment nous pouvons représenter ceci sous forme de graphe.
+
+31
+00:02:43,950 --> 00:02:49,050
+Nous avons nos entrées x, nous avons notre noyau w,
+
+32
+00:02:49,050 --> 00:02:54,630
+nous effectuons une sorte de convolution et nous allons obtenir un résultat ici.
+
+33
+00:02:54,630 --> 00:02:59,310
+Alors commençons par calculer la propagation avant. Vous avez donc déjà vu comment calculer les convolutions dans le réseau de neurones,
+
+34
+00:02:59,310 --> 00:03:05,550
+alors voyons cela de manière un peu plus explicite. Nous prenons le noyau,
+
+35
+00:03:05,550 --> 00:03:12,120
+et nous le plaçons au-dessus notre entrée de manière de manière qu’il soit dans une position valide,
+
+36
+00:03:12,120 --> 00:03:15,840
+donc une convolution valide. Maintenant, nous faisons la multiplication des éléments.
+
+37
+00:03:15,840 --> 00:03:21,180
+Donc nous avons x11 et quand vous le multipliez par w11, cela nous donne le terme ici,
+
+38
+00:03:21,180 --> 00:03:28,950
+nous effectuons la même opération pour x12 et w12, x21 et w21, x22 et w22.
+
+39
+00:03:28,950 --> 00:03:35,370
+Nous les additionnons tous ensemble et cela nous donne notre première sortie dans notre matrice.
+
+40
+00:03:35,370 --> 00:03:40,860
+Nous continuons à le faire, donc nous glissons notre noyau à nouveau,
+
+41
+00:03:40,860 --> 00:03:46,200
+encore, et encore, et encore. Voici la représentation, et si vous deviez faire des calculs,
+
+42
+00:03:46,200 --> 00:03:49,380
+vous obtiendriez des nombres, mais pour le moment nous faisons une généralisation
+
+43
+00:03:49,380 --> 00:03:54,510
+pour tout type de nombre que nous pouvons obtenir.
+
+44
+00:03:54,510 --> 00:03:58,560
+À des fins de notations, comme ça devient un peu lourd, nous allons noter ceci
+
+45
+00:03:58,560 --> 00:04:05,790
+comme y11 y12 y21 y22, qui est la sortie de notre réseau. Nous pouvons donc maintenant remplir notre graphe
+
+46
+00:04:05,790 --> 00:04:10,800
+de manière que nous avons la sortie de notre réseau ici.
+
+47
+00:04:10,800 --> 00:04:15,120
+Jusqu’à présent, cela aurait dû être juste une petite mise à jour basée sur ce que nous avons vu dans la première présentation.
+
+48
+00:04:15,120 --> 00:04:22,560
+Une chose que je veux que vous remarquiez, c'est que cela revient à
+
+49
+00:04:22,560 --> 00:04:28,440
+effectuer la multiplication matricielle suivante. Alors nous prenons notre entrée x
+
+50
+00:04:28,440 --> 00:04:33,510
+et nous la déroulons de gauche à droite, de haut en bas. Donc nous prenons ici notre entrée x
+
+51
+00:04:33,510 --> 00:04:37,500
+et au lieu d’une matrice, nous la représentons maintenant comme un vecteur
+
+52
+00:04:37,500 --> 00:04:46,290
+en utilisant cette technique de déroulement. Nous construisons ensuite notre matrice w ici pour nos poids basés
+
+53
+00:04:46,290 --> 00:04:51,810
+sur la foulée, le remplissage tous les différents paramètres que nous avons définis.
+
+54
+00:04:51,810 --> 00:04:57,120
+Il s'avère que si nous effectuons la multiplication matricielle x fois w,
+
+55
+00:04:57,120 --> 00:05:00,690
+nous obtenons exactement les mêmes données que celles que nous avons calculées plus tôt.
+
+56
+00:05:00,690 --> 00:05:05,250
+C'est très utile car nous sommes maintenant en mesure de définir notre convolution comme une opération matricielle
+
+57
+00:05:05,250 --> 00:05:09,900
+au lieu de recourir à ce genre de technique procédurale où l'on procède un par un avec ces carrés.
+
+58
+00:05:09,900 --> 00:05:18,720
+Nous devons maintenant définir notre fonction de perte.
+
+59
+00:05:18,720 --> 00:05:22,890
+Alors quelle est la fonction de perte? Nous l’avons vue hier, c'est la façon dont nous évaluons l'erreur entre la sortie nous attendons de notre réseau ici,
+
+60
+00:05:22,890 --> 00:05:27,210
+que je représente par y circonflexe et la sortie que nous avons calculé, y.
+
+61
+00:05:27,210 --> 00:05:31,950
+Donc notre réseau nous donne une prédiction y et nous voulons la comparer
+
+62
+00:05:31,950 --> 00:05:36,300
+avec une sorte de vérité fondamentale qui représente ce que les valeurs devraient être en réalité.
+
+63
+00:05:36,300 --> 00:05:40,410
+Et nous savons que ces valeurs sont vraies et
+
+64
+00:05:40,410 --> 00:05:44,010
+nous les fournissons au réseau, Donc dans cet exemple,
+
+65
+00:05:44,010 --> 00:05:48,000
+nous allons examiner un cas en détail d'une fonction de perte appelée la norme L2.
+
+66
+00:05:48,000 --> 00:05:53,580
+La norme L2 calcule donc la distance euclidienne entre deux points et
+
+67
+00:05:53,580 --> 00:05:59,790
+ajoute également un facteur de 1/2 devant elle. Alors pourquoi avons-nous ce facteur de 1/2?
+
+68
+00:05:59,790 --> 00:06:03,419
+C'est parce qu'il s'avère que lorsque nous calculons la dérivée,
+
+69
+00:06:03,419 --> 00:06:09,180
+pour revenir aux cours de calcul, si l'on prend la dérivée, la factorisation de ces deux ici donne 1/2
+
+70
+00:06:09,180 --> 00:06:13,350
+et notre dérivée de l'erreur par rapport à nos sorties
+
+71
+00:06:13,350 --> 00:06:17,490
+s'avère aussi simple que de calculer la différence entre la sortie que nous avons prédite
+
+72
+00:06:17,490 --> 00:06:21,840
+et la sortie à laquelle nous nous attendons. Donc c'est une opération très simple.
+
+73
+00:06:21,840 --> 00:06:26,880
+Nous devons faire une soustraction, et c'est pourquoi il est vraiment utile d'utiliser cette fonction de perte.
+
+74
+00:06:26,880 --> 00:06:31,290
+Nous aurions pu utiliser d'autres pertes, mais pour cet exemple précis, nous utilisons la norme L2.
+
+75
+00:06:31,290 --> 00:06:39,660
+Alors continuons notre graphe. Nous avons pris nos entrées,
+
+76
+00:06:39,660 --> 00:06:44,880
+nous avons effectué une convolution avec le noyau, nous avons maintenant nos sorties et nous ajoutons la perte.
+
+77
+00:06:44,880 --> 00:06:49,740
+Nous avons un terme de perte et pour calculer la perte, nous utilisons notre vérité fondamentale et ensuite
+
+78
+00:06:49,740 --> 00:06:53,039
+nous pouvons calculer notre erreur. Donc voici maintenant à quoi notre graphe d’opération ressemble.
+
+79
+00:06:53,039 --> 00:06:56,580
+Nous avons décomposé notre réseau entier,
+
+80
+00:06:56,580 --> 00:07:02,459
+et encore une fois, nous avons nos entrées, nous avons les noyaux, nous effectuons la convolution et
+
+81
+00:07:02,459 --> 00:07:10,589
+nous calculons la perte pour obtenir notre erreur. Alors n'oubliez pas que ce que nous essayons de faire est la descente du gradient,
+
+82
+00:07:10,589 --> 00:07:14,459
+donc ce que nous voulons faire,
+
+83
+00:07:14,459 --> 00:07:18,899
+c'est calculer la règle de mise à jour pour tous les paramètres réglables dans notre réseau.
+
+84
+00:07:18,899 --> 00:07:23,039
+Souvenez-vous que dans le cas de la convolution, nous voulons que le réseau apprenne les paramètres de nos noyaux.
+
+85
+00:07:23,039 --> 00:07:28,619
+Alors nous les initialisons d'abord au hasard et nous voulons que notre réseau apprenne
+
+86
+00:07:28,619 --> 00:07:32,669
+quels sont les meilleurs noyaux pour résoudre nos tâches. C'est pourquoi nous voulons d'abord savoir ces paramètres ici.
+
+87
+00:07:32,669 --> 00:07:37,889
+Nous pouvons alors calculer la règle de mise à jour que vous avez vu hier
+
+88
+00:07:37,889 --> 00:07:45,300
+en se basant sur la descente du gradient,
+
+89
+00:07:45,300 --> 00:07:49,889
+donc le w_ij sera w_ij moins le taux d'apprentissage multiplié par la dérivée de l'erreur par rapport au paramètre ij.
+
+90
+00:07:49,889 --> 00:07:54,599
+Donc, dans ce cas, les paramètres réglables qui nous importent en ce moment sont en jaune.
+
+91
+00:07:54,599 --> 00:07:59,309
+Nous voulons donc savoir dans quelle direction nous devons faire des pas
+
+92
+00:07:59,309 --> 00:08:05,939
+pour mettre à jour ces paramètres afin d'optimiser notre fonction.
+
+93
+00:08:05,939 --> 00:08:12,029
+Nous avons besoin de calculer la dérivée de l'erreur par rapport à tous les w_ij,
+
+94
+00:08:12,029 --> 00:08:14,749
+qui est ce terme ici.

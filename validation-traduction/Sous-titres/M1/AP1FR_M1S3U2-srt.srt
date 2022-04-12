@@ -1,0 +1,707 @@
+0
+00:00:13,179 --> 00:00:17,500
+Alors maintenant que nous avons vu Google Colab, je veux parler un peu plus des outils
+
+1
+00:00:17,570 --> 00:00:21,439
+d'apprentissage automatique, mais je pensais qu'il serait intéressant de ne pas seulement passer en
+
+2
+00:00:21,439 --> 00:00:24,860
+revue toutes les différentes bibliothèques et leurs fonctionnalités, mais vraiment de vous donner un
+
+3
+00:00:24,860 --> 00:00:29,960
+exemple de cas d'utilisation. Nous allons donc parcourir une tâche d'apprentissage automatique
+
+4
+00:00:29,960 --> 00:00:33,170
+typique et nous allons regarder en détail tous les outils
+
+5
+00:00:33,170 --> 00:00:36,890
+que nous utiliserions dans l'ensemble du pipeline pour passer des données brutes jusqu'à la
+
+6
+00:00:36,890 --> 00:00:43,399
+classification. Pour commencer, nous allons utiliser l'ensemble de données sur le cancer du sein du Wisconsin.
+
+7
+00:00:43,399 --> 00:00:48,890
+C'est un ensemble de données accessible au public, il est disponible sur Kaggle. Pour ceux
+
+8
+00:00:48,890 --> 00:00:52,280
+d'entre vous qui ne connaissent pas Kaggle, c'est un site Web qui organise différents ensembles
+
+9
+00:00:52,280 --> 00:00:57,289
+de données et des compétitions portant sur les données. Les utilisateurs peuvent donc évaluer leurs
+
+10
+00:00:57,289 --> 00:01:01,640
+performances par rapport aux autres utilisateurs en ligne. Alors, vous pouvez aller sur ce site Web, vous pouvez
+
+11
+00:01:01,640 --> 00:01:06,440
+télécharger les données, mais elles sont également disponibles à plusieurs endroits. Ces
+
+12
+00:01:06,440 --> 00:01:10,340
+données forment un ensemble de données portant sur les tumeurs du cancer du sein
+
+13
+00:01:10,340 --> 00:01:14,539
+et en particulier les différentes mesures prises. Alors, je ne suis pas un biologiste
+
+14
+00:01:14,539 --> 00:01:18,439
+ni un pathologiste, donc je ne suis pas nécessairement un expert dans ce genre de
+
+15
+00:01:18,439 --> 00:01:21,470
+mesures. Par contre, ce que nous allons faire, c'est voir comment nous pouvons
+
+16
+00:01:21,470 --> 00:01:23,960
+utiliser l'apprentissage automatique pour prendre ces mesures soigneusement recueillies
+
+17
+00:01:23,960 --> 00:01:27,409
+en laboratoire et utiliser des outils d'apprentissage automatique pour les analyser.
+
+18
+00:01:27,409 --> 00:01:31,520
+Si vous lisez la description de l'ensemble de données, il est clair que les caractéristiques sont
+
+19
+00:01:31,520 --> 00:01:35,240
+calculées à partir d'une image numérisée d'une aspiration à l'aiguille fine d'une masse mammaire.
+
+20
+00:01:35,240 --> 00:01:39,290
+Elles décrivent les caractéristiques des noyaux cellulaires présents dans l'image.
+
+21
+00:01:39,290 --> 00:01:45,409
+L'objectif de cet ensemble de données est de donner un diagnostic: étant donné les mesures, une
+
+22
+00:01:45,409 --> 00:01:50,270
+tumeur est-elle maligne ou est-elle bénigne? C'est donc un problème de classification binaire: on veut
+
+23
+00:01:50,270 --> 00:01:54,700
+savoir si on a une tumeur maligne ou une tumeur bénigne. Nous avons différentes caractéristiques
+
+24
+00:01:54,700 --> 00:01:59,689
+de disponible, comme la moyenne du rayon, la moyenne de la texture, la moyenne du périmètre.
+
+25
+00:01:59,689 --> 00:02:05,479
+Ils ont été soigneusement évaluées en laboratoire. Alors voici à quoi ressemblera un pipeline typique.
+
+26
+00:02:05,479 --> 00:02:09,649
+La première étape que nous avons déjà faite est de télécharger l'ensemble de données.
+
+27
+00:02:09,649 --> 00:02:12,560
+Ce qu'il faut faire maintenant, puisque nous ne savons même pas à quoi
+
+28
+00:02:12,560 --> 00:02:17,329
+ressemblent les données , c'est explorer les données brutes. Heureusement, cela vient en format CSV:
+
+29
+00:02:17,329 --> 00:02:21,470
+vous pouvez l'ouvrir avec n'importe quel logiciel de tableur que vous aimez.
+
+30
+00:02:21,470 --> 00:02:27,620
+Tout d' abord, nous commençons par regarder les données avec Excel ou Google Sheets
+
+31
+00:02:27,620 --> 00:02:30,680
+ou LibreOffice, n'importe quel outil que vous utilisez
+
+32
+00:02:30,680 --> 00:02:35,900
+pour ouvrir votre feuille de calcul. Elle se nomme "data.CSV" et vous voyez ici que nous
+
+33
+00:02:35,900 --> 00:02:39,159
+avons différentes colonnes, nous avons donc le numéro "ID" qui est un
+
+34
+00:02:39,159 --> 00:02:43,760
+numéro d'identification unique pour un patient, puis nous avons la colonne de diagnostic et
+
+35
+00:02:43,760 --> 00:02:47,510
+il y a environ 30 colonnes avec des caractéristiques différentes qui ont été
+
+36
+00:02:47,510 --> 00:02:51,620
+calculées. Pour chaque colonne, il y a une description, comme "moyenne
+
+37
+00:02:51,620 --> 00:02:56,269
+des distances du centre aux points sur le périmètre", etc. À ce stade, vous pourriez
+
+38
+00:02:56,269 --> 00:02:59,420
+déjà commencer à penser à vos propres hypothèses. Si nous mesurons, par
+
+39
+00:02:59,420 --> 00:03:04,040
+exemple, le rayon d'une tumeur, vous pourriez peut-être penser qu'une tumeur maligne pourrait
+
+40
+00:03:04,040 --> 00:03:07,310
+être plus large qu'une tumeur bénigne. Vous pouvez donc déjà commencer à
+
+41
+00:03:07,310 --> 00:03:12,920
+utiliser votre intuition. Nous voulons donc importer ces données dans Python: c'est
+
+42
+00:03:12,920 --> 00:03:16,970
+un fichier CSV. Comme je l'ai mentionné tantôt, une bibliothèque comme Pandas fonctionne très bien
+
+43
+00:03:16,970 --> 00:03:22,489
+pour importer des données dans Python. Nous écrivons donc quelques lignes de code: nous commençons par
+
+44
+00:03:22,489 --> 00:03:27,590
+importer notre bibliothèque Pandas, puis en quelques lignes de code,
+
+45
+00:03:27,590 --> 00:03:32,480
+nous pouvons déjà lire notre ensemble de données. En passant, tout ce code est disponible en ligne.
+
+46
+00:03:32,480 --> 00:03:36,859
+Pour ceux d'entre vous qui regardent ceci en PDF, il y a un lien vers l'exemple ici.
+
+47
+00:03:36,859 --> 00:03:41,389
+Il est également dans un Colab, donc après cette conférence, n'hésitez pas à y aller.
+
+48
+00:03:41,389 --> 00:03:44,329
+Vous pouvez y générer toutes ces figures que je vous montre en ce moment.
+
+49
+00:03:44,329 --> 00:03:49,430
+Alors, nous commençons par explorer notre ensemble de données: la première chose qui nous
+
+50
+00:03:49,430 --> 00:03:53,870
+intéresse est le nombre d'exemples que nous avons. Nous pouvons imprimer le nombre total
+
+51
+00:03:53,870 --> 00:03:58,730
+d'exemples que nous avons: ici, nous avons 569 exemples. Ensuite, la première chose
+
+52
+00:03:58,730 --> 00:04:02,840
+qu'on pourrait vouloir dire est: "est-ce que notre ensemble de données est équilibré? Avons-nous autant
+
+53
+00:04:02,840 --> 00:04:07,579
+d'exemples de tumeurs malignes que bénignes?" En utilisant Pandas et certaines
+
+54
+00:04:07,579 --> 00:04:12,199
+fonctions d'assistance, nous pouvons rapidement obtenir ce type d'informations et les imprimer. Nous voyons
+
+55
+00:04:12,199 --> 00:04:18,829
+que nous avons plus d'exemples de tumeurs bénignes que malignes.
+
+56
+00:04:18,829 --> 00:04:23,360
+Commençons maintenant à visualiser nos données: peut-être que ça nous donnera un peu plus d'informations.
+
+57
+00:04:23,360 --> 00:04:26,630
+Premièrement, ces chiffres n'étaient pas nécessairement relatifs
+
+58
+00:04:26,630 --> 00:04:29,570
+entre eux. On peut donc faire un graphique à secteurs: c'est là que nous
+
+59
+00:04:29,570 --> 00:04:33,620
+pouvons utiliser un outil comme matplotlib. Matplotlib est un outil très puissant pour
+
+60
+00:04:33,620 --> 00:04:37,729
+faire toutes sortes de visualisations de données. Ici, vous voyez le code qu'il
+
+61
+00:04:37,729 --> 00:04:41,210
+faut pour générer ce graphique à secteurs. Maintenant, vous pourriez regarder
+
+62
+00:04:41,210 --> 00:04:44,389
+ça et dire: "je pourrais faire un graphique à secteurs dans Excel, ça ressemble
+
+63
+00:04:44,389 --> 00:04:47,629
+à beaucoup de lignes de code" Certaines d'entre elles pourraient paraître un peu
+
+64
+00:04:47,629 --> 00:04:51,680
+mystérieuses si vous n'êtes pas habitué à matplotlib. Pourquoi voudriez-vous utiliser matplotlib
+
+65
+00:04:51,680 --> 00:04:55,490
+au lieu d'Excel à ce point-ci? J'ai une réponse pour vous: la raison est que Matplotlib
+
+66
+00:04:55,490 --> 00:04:59,870
+est utilisé sous le capot par d'autres bibliothèques de visualisation.
+
+67
+00:04:59,870 --> 00:05:03,979
+Par exemple, Seaborn utilise matplotlib sous le capot et vous permet de coder des
+
+68
+00:05:03,979 --> 00:05:09,319
+graphiques très riches qui autrement prendraient probablement très long à produire.
+
+69
+00:05:09,319 --> 00:05:13,879
+Regardons cet exemple ici: j'ai pris un tas de caractéristiques différentes.
+
+70
+00:05:13,879 --> 00:05:18,379
+Sur l'axe des x ici nous avons pris la moyenne de la texture et sur l'axe des y,
+
+71
+00:05:18,379 --> 00:05:22,430
+nous avons pris la moyenne de la douceur. On peut tracer la moyenne de la texture
+
+72
+00:05:22,430 --> 00:05:25,879
+en fonction de la moyenne de la douceur, mais aussi superposer la couleur
+
+73
+00:05:25,879 --> 00:05:31,370
+du résultat de classification. Nous pouvons également le programmer pour que
+
+74
+00:05:31,370 --> 00:05:35,870
+la taille de chaque cercle corresponde à une autre caractéristique. Nous pouvons donc vraiment commencer
+
+75
+00:05:35,870 --> 00:05:39,800
+à faire parler ces données pour qu'elles nous fournissent des informations riches. On peut donc
+
+76
+00:05:39,800 --> 00:05:43,939
+voir qu'il existe déjà probablement un moyen de commencer à adapter une ligne ici. C'est un
+
+77
+00:05:43,939 --> 00:05:47,029
+bon signe qu'un modèle linéaire pourrait bien fonctionner sur ce type de
+
+78
+00:05:47,029 --> 00:05:50,930
+données, mais nous voulons peut-être regarder cela encore plus. On pourrait visualiser
+
+79
+00:05:50,930 --> 00:05:56,419
+plusieurs points de données: cela utilise probablement
+
+80
+00:05:56,419 --> 00:06:01,639
+environ trois lignes de code, nous avons maintenant ce diagramme très riche où non
+
+81
+00:06:01,639 --> 00:06:05,509
+seulement on trace une caractéristique contre une autre, mais on trace plusieurs caractéristiques les
+
+82
+00:06:05,509 --> 00:06:08,810
+unes contre les autres. Vous voyez le long de cette ligne diagonale que lorsque
+
+83
+00:06:08,810 --> 00:06:12,499
+ c'est une caractéristique tracée contre elle-même, évidemment ce ne serait pas très utile. Alors,
+
+84
+00:06:12,499 --> 00:06:16,849
+ça trace un histogramme et nous pouvons en quelque sorte voir notre hypothèse avant de dire que les
+
+85
+00:06:16,849 --> 00:06:21,919
+tumeurs malignes sont généralement plus grandes en termes de moyenne de périmètre et de texture
+
+86
+00:06:21,919 --> 00:06:25,909
+moyenne. Nous voyons comment la moyenne de la distribution gaussienne est légèrement
+
+87
+00:06:25,909 --> 00:06:30,080
+décalée vers la droite. Maintenant que nous voyons beaucoup de ces différentes caractéristiques,
+
+88
+00:06:30,080 --> 00:06:33,469
+nous voyons que dans plusieurs de ces graphiques, il semble qu'une simple ligne
+
+89
+00:06:33,469 --> 00:06:40,669
+pourrait suffire pour couper ces données en deux. Poursuivons avec la pipeline:
+
+90
+00:06:40,669 --> 00:06:44,569
+nous avons exploré nos données brutes avec Pandas, nous les avons regardées, nous avons
+
+91
+00:06:44,569 --> 00:06:48,979
+visualisé nos données. Nous voulons maintenant commencer à faire un travail d'apprentissage automatique.
+
+92
+00:06:48,979 --> 00:06:51,920
+La première chose que nous devons faire est de traiter nos données.
+
+93
+00:06:51,920 --> 00:06:55,460
+Pour ce faire, nous utiliserons NumPy. La plupart d'entre vous connaissent probablement
+
+94
+00:06:55,460 --> 00:06:59,390
+NumPy si vous avez déjà utilisé Python. C'est l'une des premières lignes de
+
+95
+00:06:59,390 --> 00:07:05,840
+code que vous écrivez d'habitude: «import numpy as np». Alors que fait NumPy? NumPy
+
+96
+00:07:05,840 --> 00:07:09,710
+est une bibliothèque qui nous permet de manipuler des tableaux de n dimensions.
+
+97
+00:07:09,710 --> 00:07:13,700
+Vous pouvez penser à des vecteurs, à des tenseurs et à des matrices. C'est une structure de données
+
+98
+00:07:13,700 --> 00:07:17,870
+vraiment omniprésente: presque tous les projets qui contiennent de la computation auront probablement
+
+99
+00:07:17,870 --> 00:07:21,800
+du NumPy sous le capot. Nous allons convertir nos données en NumPy parce que
+
+100
+00:07:21,800 --> 00:07:25,400
+la bibliothèque que nous allons utiliser pour faire de l'apprentissage automatique,
+
+101
+00:07:25,400 --> 00:07:30,110
+scikit-learn, reçoit un tableau NumPy en entrée. Ce que nous allons faire
+
+102
+00:07:30,110 --> 00:07:33,800
+ici, c'est prendre nos données et les convertir de la
+
+103
+00:07:33,800 --> 00:07:38,630
+trame de données Pandas à un tableau NumPy contenant nos données d'entraînement.
+
+104
+00:07:38,630 --> 00:07:42,290
+C'est ici qu'il faut faire attention parce que nous allons séparer
+
+105
+00:07:42,290 --> 00:07:46,910
+les données des étiquettes.
+
+106
+00:07:46,910 --> 00:07:50,780
+Nous allons nommer nos données X. X va contenir toutes les caractéristiques
+
+107
+00:07:50,780 --> 00:07:54,410
+que nous avons. Nous allons prendre nos vraies étiquettes Y
+
+108
+00:07:54,410 --> 00:07:59,450
+et nous allons les convertir en binaire 0 ou 1. La manière que
+
+109
+00:07:59,450 --> 00:08:04,280
+c'est codé est juste un petit détail. Vous pouvez regarder l'exemple plus tard et
+
+110
+00:08:04,280 --> 00:08:08,210
+prendre votre temps pour comprendre plus en détail comment cela fonctionne, mais l'idée ici est
+
+111
+00:08:08,210 --> 00:08:11,420
+que si on regarde les données, on voit que chaque échantillon correspond
+
+112
+00:08:11,420 --> 00:08:15,800
+maintenant à un vecteur. Ce vecteur contient toutes les entrées de chaque colonne pour une
+
+113
+00:08:15,800 --> 00:08:20,650
+seule personne et c'est ça qui va être donné en entrée à notre classificateur.
+
+114
+00:08:20,650 --> 00:08:24,800
+Maintenant que nos données sont en NumPy, nous sommes prêts à commencer à faire des prédictions en
+
+115
+00:08:24,800 --> 00:08:30,560
+utilisant l'apprentissage automatique, en particulier scikit-learn. Scikit-learn est une
+
+116
+00:08:30,560 --> 00:08:35,840
+bibliothèque d'apprentissage automatique faite pour Python. Elle contient une implémentation de
+
+117
+00:08:35,840 --> 00:08:39,590
+presque tous les algorithmes d'apprentissage automatique auxquels vous pouvez penser.
+
+118
+00:08:39,590 --> 00:08:43,100
+Elle ne contient pas vraiment de réseaux neuronaux profonds et nous y reviendrons
+
+119
+00:08:43,100 --> 00:08:47,630
+plus tard, mais presque tous les autres algorithmes d'apprentissage automatique sont implémentés
+
+120
+00:08:47,630 --> 00:08:50,900
+et il ont déjà été optimisés. Il y a tous les différents paramètres et voici à
+
+121
+00:08:50,900 --> 00:08:55,160
+quoi ressemble l'API en général. Si vous êtes intéressé par
+
+122
+00:08:55,160 --> 00:08:58,760
+une sorte de modèle et comment il fonctionnera sur vos données, vous tapez simplement
+
+123
+00:08:58,760 --> 00:09:03,200
+"from scikit-learn import SomeModel". Ensuite, vous adaptez votre modèle à vos
+
+124
+00:09:03,200 --> 00:09:05,870
+données d'entraînement et vous prédisez sur vos
+
+125
+00:09:05,870 --> 00:09:09,740
+données d'évaluation. C'est l'une des plus grandes forces à mon avis de
+
+126
+00:09:09,740 --> 00:09:13,070
+scikit-learn, c'est qu'elle a vraiment pris chaque
+
+127
+00:09:13,070 --> 00:09:17,360
+algorithme d' apprentissage automatique et l'a réduit à une API très simple. Il est donc très facile de
+
+128
+00:09:17,360 --> 00:09:23,270
+substituer les algorithmes que vous utilisez une fois que vous avez configuré votre code. Regardons un
+
+129
+00:09:23,270 --> 00:09:28,310
+exemple de régression logistique, nous avons donc vu qu'il sera probablement facile de
+
+130
+00:09:28,310 --> 00:09:31,640
+séparer nos données linéairement. Alors, le premier type d'algorithme que vous
+
+131
+00:09:31,640 --> 00:09:35,120
+voudriez utiliser est la régression logistique. Certains d'entre vous connaissent probablement la
+
+132
+00:09:35,120 --> 00:09:39,110
+régression logistique. Pour ce cas-ci, si vous consultez la documentation sur
+
+133
+00:09:39,110 --> 00:09:42,200
+scikit-learn, voici l'équation de l'objectif qu'ils
+
+134
+00:09:42,200 --> 00:09:47,750
+essaient de minimiser pour la régression logistique. Encore une fois, avec quelques lignes de code,
+
+135
+00:09:47,750 --> 00:09:53,089
+nous sommes en mesure de prédire sur notre ensemble d'entraînement. Nous importons donc
+
+136
+00:09:53,089 --> 00:09:57,260
+notre module de régression logistique et nous lui donnons quelques paramètres. Dans ce cas-ci, nous
+
+137
+00:09:57,260 --> 00:10:01,339
+spécifions simplement le type de solveur. C'est aussi bien documenté dans la
+
+138
+00:10:01,339 --> 00:10:06,320
+bibliothèque scikit-learn. Ensuite, nous appelons "fit model" sur nos données (X, y).
+
+139
+00:10:06,320 --> 00:10:10,880
+Nous pouvons alors prédire la précision en demandant le score de précision.
+
+140
+00:10:10,880 --> 00:10:14,620
+Scikit-learn fournit une fonction d'aide qui calcule la précision et nous obtenons
+
+141
+00:10:14,620 --> 00:10:20,390
+96%. Nous avons terminé, nous avons résolu ce problème. D'accord, nous n'avons pas vraiment résolu ce
+
+142
+00:10:20,390 --> 00:10:23,900
+problème: pour certains d'entre vous qui écoutiez tantôt, Gaétan a
+
+143
+00:10:23,900 --> 00:10:28,279
+mentionné l'idée des ensembles de validation, d'entraînement et d'évaluation.
+
+144
+00:10:28,279 --> 00:10:32,450
+Ici, nous avons en quelque sorte naïvement entraîner sur toutes nos données et évalué sur toutes
+
+145
+00:10:32,450 --> 00:10:37,220
+nos données. Il est donc possible que nous nous surapprenions. À nouveau,
+
+146
+00:10:37,220 --> 00:10:40,670
+scikit-learn fournit toutes sortes d'outils pour nous aider à faire quelques
+
+147
+00:10:40,670 --> 00:10:45,230
+techniques de validation croisée. Dans ce cas, cet ensemble de données nous est venu en un seul bloc. Il n'est
+
+148
+00:10:45,230 --> 00:10:50,870
+donc pas déjà séparé en ensembles d'entraînement et d’évaluation, mais nous pouvons utiliser différents
+
+149
+00:10:50,870 --> 00:10:56,180
+modules dans scikit-learn pour faire de la validation croisée. Dans ce cas-ci,
+
+150
+00:10:56,180 --> 00:11:00,589
+nous allons utiliser un exemple spécifique appelé "stratified shuffle split". Si
+
+151
+00:11:00,589 --> 00:11:04,910
+vous vous en souvenez correctement, l'ensemble de données n'était pas parfaitement équilibré. Si nous
+
+152
+00:11:04,910 --> 00:11:08,360
+prenons des exemples au hasard, il y a une chance que la
+
+153
+00:11:08,360 --> 00:11:12,680
+distribution de notre ensemble d'évaluation ne soit pas préservée: nous pourrions avoir plus d'exemples
+
+154
+00:11:12,680 --> 00:11:17,600
+d'une tumeur spécifique par rapport à l'autre. Nous pourrions être en train d'évaluer d'une
+
+155
+00:11:17,600 --> 00:11:20,870
+manière inéquitable. Peut-être sait-on qu'on veut garder cette même distribution
+
+156
+00:11:20,870 --> 00:11:24,680
+parce qu'en vraie vie, nous observons cette distribution.
+
+157
+00:11:24,680 --> 00:11:28,550
+Avec "stratified shuffle split", scikit-learn s'occupe de ça pour nous. Nous spécifions
+
+158
+00:11:28,550 --> 00:11:32,570
+quelques paramètres, tels que la taille de l'ensemble d'évaluation soit de 30% de nos données.
+
+159
+00:11:32,570 --> 00:11:35,810
+C'est une mesure un peu arbitraire et vous, en tant que scientifique des données,
+
+160
+00:11:35,810 --> 00:11:39,920
+prendrez cette décision. Nous initialisons l'état (ou la graine) aléatoire afin de rendre
+
+161
+00:11:39,920 --> 00:11:43,730
+notre expérience reproductible. Dans ce cas ici, nous allons l'appeler
+
+162
+00:11:43,730 --> 00:11:48,980
+trois fois. Ici, vous voyez ce graphique: il représente comment les données ont été
+
+163
+00:11:48,980 --> 00:11:53,630
+distribuées pour chaque partition. Il est très important de mentionner que les
+
+164
+00:11:53,630 --> 00:11:57,829
+distributions sont préservées. Vous pouvez voir ici que nous avons les classes: nous ayons
+
+165
+00:11:57,829 --> 00:12:03,260
+"maligne" et "bénigne" en bas et ici pour chacune de ces lignes, nous
+
+166
+00:12:03,260 --> 00:12:07,670
+avons la distribution des données d'où les données ont été échantillonnées. Ça peut être un
+
+167
+00:12:07,670 --> 00:12:11,000
+peu difficile à visualiser, mais c'est pour dire qu'il l'a en quelque sorte choisi
+
+168
+00:12:11,000 --> 00:12:14,750
+au hasard et qu'il est différent sur chaque partition.Ensuite, vous pouvez exécuter ce code
+
+169
+00:12:14,750 --> 00:12:18,320
+plusieurs fois: c'est ce que nous faisons dans cette boucle, nous l'exécutons autant de
+
+170
+00:12:18,320 --> 00:12:22,519
+fois que j'ai spécifié et nous calculons la précision moyenne. Cela pourrait alors être
+
+171
+00:12:22,519 --> 00:12:28,010
+un moyen de mesurer la validité de notre classificateur. Dans ce cas, si vous
+
+172
+00:12:28,010 --> 00:12:31,220
+faites cela, la précision moyenne que vous obtenez diminue un peu, ce qui est ce
+
+173
+00:12:31,220 --> 00:12:35,569
+à quoi nous nous attendions et nous obtenons environ 95%. Cela indique que
+
+174
+00:12:35,569 --> 00:12:40,069
+ces données sont très linéairement séparables: il s'agissait peut-être de données très propres et dans
+
+175
+00:12:40,069 --> 00:12:43,819
+ce cas, l'apprentissage automatique peut être très utile pour identifier
+
+176
+00:12:43,819 --> 00:12:56,460
+différentes masses tumorales.

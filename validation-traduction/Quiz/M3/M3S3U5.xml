@@ -1,0 +1,10 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Vous pouvez augmenter votre ensemble de données autant que vous le souhaitez sans risque de surcharge.</label>
+<description>Cette déclaration est-elle vraie ou fausse ?</description>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">Vrai</choice>
+    <choice correct="true">Faux <choicehint>Il y a une limite la généralisation du modèele lors d&apos;un entraînement sur la même distribution de données, même en utilisant l&apos;augmentation des données. Il peut toujours surapprendre vos données augmentées, mais ça aide à régulariser votre réseau</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>

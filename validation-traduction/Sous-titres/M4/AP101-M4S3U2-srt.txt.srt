@@ -1,0 +1,287 @@
+﻿1
+00:00:13,299 --> 00:00:20,779
+Donc maintenant nous en savons un peu plus sur le TLN. En particulier, nous avons vu des exemples.
+
+2
+00:00:20,779 --> 00:00:28,519
+Une chose intéressante dans le TLN est que lorsque nous résolvons ces problèmes, ce que nous intéresse vraiment
+
+3
+00:00:28,519 --> 00:00:36,350
+est la sémantique du texte.
+
+4
+00:00:36,350 --> 00:00:45,200
+Malheureusement, nous n'avons que le texte, et nous devons donc trouver
+
+5
+00:00:45,200 --> 00:00:51,199
+un moyen de lier les mots à la sémantique.
+
+6
+00:00:51,199 --> 00:00:55,879
+Ce n'est pas une tâche facile et nous devons donc trouver un moyen efficace de faire cela.
+
+7
+00:00:55,879 --> 00:01:05,390
+Pour vous donner une intuition, disons que nous avons une tâche qui s'appelle
+
+8
+00:01:05,390 --> 00:01:11,390
+« réponse aux questions ». Il s'agit essentiellement de répondre à des questions.
+
+9
+00:01:11,390 --> 00:01:19,790
+Vous voyez ici que j'ai ce texte : « quel temps fait-il maintenant? »
+
+10
+00:01:19,790 --> 00:01:24,619
+et le résultat devrait être « it's raining cats and dogs ». Ici, j'essaie de montrer la sémantique du texte
+
+11
+00:01:24,619 --> 00:01:31,310
+à l'aide de l’image. À gauche, nous avons le temps
+
+12
+00:01:31,310 --> 00:01:36,680
+avec un point d'interrogation et à droite
+
+13
+00:01:36,680 --> 00:01:45,320
+l'image montre qu'il pleut beaucoup. Donc l'intuition ici est que
+
+14
+00:01:45,320 --> 00:01:53,030
+quand nous avons une tâche de TANL. Nous nous intéressons à la sémantique, donc cette partie qui est montrée sur l’image,
+
+15
+00:01:53,030 --> 00:01:58,159
+mais malheureusement nous n'avons accès qu'au texte.
+
+16
+00:01:58,159 --> 00:02:03,049
+Et parfois il n'est pas facile de lier les deux ensemble, comme dans ce cas-ci,
+
+17
+00:02:03,049 --> 00:02:09,440
+si vous regardez la phrase « it's raining cats and dogs » et vous faites une analyse mot par mot,
+
+18
+00:02:09,440 --> 00:02:13,730
+vous pensez peut-être qu'il s'agit de chats et de chiens mais
+
+19
+00:02:13,730 --> 00:02:18,829
+en réalité, la sémantique est complètement différente et l'extraction de la sémantique
+
+20
+00:02:18,829 --> 00:02:25,090
+n'est pas être une tâche facile. Nous aimerions avoir des systèmes
+
+21
+00:02:25,090 --> 00:02:30,590
+pour nous aider à faire ce lien entre ces textes et la réalité sémantique.
+
+22
+00:02:30,590 --> 00:02:39,530
+En fait, nous avons des outils pour nous aider : nous pouvons utiliser ces deux idées intéressantes
+
+23
+00:02:39,530 --> 00:02:44,120
+qui ont déjà été mentionnées dans le cours du jour un ou deux.
+
+24
+00:02:44,120 --> 00:02:48,470
+Donc la première est l'hypothèse distributionnaliste et
+
+25
+00:02:48,470 --> 00:02:53,810
+la deuxième est le principe de compositionnalité. Je vais maintenant les montrer
+
+26
+00:02:53,810 --> 00:02:58,790
+plus en détail : je commencerai par l'hypothèse distributionnaliste.
+
+27
+00:02:58,790 --> 00:03:07,820
+C'est une idée qui vient de 1954. Selon Harris,les mots qui se produisent dans le même contexte
+
+28
+00:03:07,820 --> 00:03:14,840
+ont tendance à avoir une signification similaire ou comme Firth a dit,
+
+29
+00:03:14,840 --> 00:03:23,240
+on peut connaître un mot par ceux qui l'accompagnent. Donc l'intuition ici est que
+
+30
+00:03:23,240 --> 00:03:29,269
+les mots dont la sémantique est similaire auront probablement
+
+31
+00:03:29,269 --> 00:03:34,790
+une distribution similaire dans le texte et c'est très intéressant parce que
+
+32
+00:03:34,790 --> 00:03:39,860
+cela nous donne l'intuition que nous pouvons créer un lien entre un mot, le contexte
+
+33
+00:03:39,860 --> 00:03:48,260
+et la sémantique. Ça nous aidera beaucoup car d’une façon indirecte,
+
+34
+00:03:48,260 --> 00:03:53,750
+l’hypothèse relie les mots à la sémantique et nous verrons comment nous nous basons sur cette idée
+
+35
+00:03:53,750 --> 00:03:59,590
+lorsque nous parlerons des vecteurs-mots.
+
+36
+00:03:59,590 --> 00:04:05,380
+Ici il y a juste un exemple, donc vous voyez un texte et vous voyez le mot
+
+37
+00:04:05,380 --> 00:04:11,330
+« intelligence » et vous voyez que ce mot a tendance à apparaître dans un contexte où l'on voit aussi
+
+38
+00:04:11,330 --> 00:04:15,800
+le mot « humains ». Dans les trois exemples, il y a le mot « humains », donc
+
+39
+00:04:15,800 --> 00:04:23,800
+d'une certaine manière, le contexte nous donne une intuition sur la sémantique de ce mot.
+
+40
+00:04:23,800 --> 00:04:29,360
+L'autre idée que nous avons mentionnée est le principe de la compositionnalité.
+
+41
+00:04:29,360 --> 00:04:36,320
+C'est une idée très générale qui peut s'appliquer à de nombreux domaines,
+
+42
+00:04:36,320 --> 00:04:42,440
+par exemple, en sémantique, en mathématiques et autres. En gros, ça veut dire que
+
+43
+00:04:42,440 --> 00:04:46,849
+la signification d'une expression complexe peut être déterminée par la signification
+
+44
+00:04:46,849 --> 00:04:52,550
+de ses constituants qui ont été combinés ensemble selon certaines règles.
+
+45
+00:04:52,550 --> 00:04:58,340
+En fait, nous utilisons ce principe depuis le début de cette présentation,
+
+46
+00:04:58,340 --> 00:05:04,460
+et depuis la première présentation même. Comme dans le tout premier exemple,
+
+47
+00:05:04,460 --> 00:05:09,080
+avec le RNR qui tenait de résoudre le cas « Alan Turing vivait en Angleterre » ; nous appliquions déjà cette principe
+
+48
+00:05:09,080 --> 00:05:14,180
+parce que nous essayions de assembler les différents mots,
+
+49
+00:05:14,180 --> 00:05:19,550
+« Alan Turing », « a vécu », et ainsi de suite, pour former une signification à un niveau supérieur qui était
+
+50
+00:05:19,550 --> 00:05:26,560
+l'état interne du RNR, pour permettre à ce dernier de faire la prédiction correcte pour la sortie.
+
+51
+00:05:26,560 --> 00:05:34,729
+Nous avons ici un exemple du principe de compositionnalité et
+
+52
+00:05:34,729 --> 00:05:40,250
+encore une fois, c’est pour rappeler qu'il n'est pas toujours facile de
+
+53
+00:05:40,250 --> 00:05:45,800
+mettre en corrélation les significations des mots. Si nous prenons à nouveau cette phrase :
+
+54
+00:05:45,800 --> 00:05:52,280
+il peut des chats et des chiens et, là encore, les images montrent le concept, qui sont la signification et la sémantique dans ce cas-ci.
+
+55
+00:05:52,280 --> 00:05:57,199
+Cette partie-ci montre qu'il pleut et
+
+56
+00:05:57,199 --> 00:06:02,380
+ici nous avons un chat et un chien. Mais si nous mettons tout ensemble,
+
+57
+00:06:02,380 --> 00:06:07,909
+la vraie signification est qu'il pleut beaucoup, donc vous pouvez voir comment
+
+58
+00:06:07,909 --> 00:06:11,990
+nous appliquons essentiellement le principe de compositionnalité
+
+59
+00:06:11,990 --> 00:06:17,509
+pour créer une signification à un niveau supérieur mais en même temps il y a certainement des cas
+
+60
+00:06:17,509 --> 00:06:27,530
+qui ne sont pas faciles à analyser. Ces deux idées, l’hypothèse distributionnaliste et
+
+61
+00:06:27,530 --> 00:06:33,500
+le principe de compositionnalité, elles peuvent nous aider à
+
+62
+00:06:33,500 --> 00:06:41,419
+résoudre des tâches de TLN et notamment essayer de relier les mots à la sémantique.
+
+63
+00:06:41,419 --> 00:06:46,190
+Ici, l'hypothèse distributionnaliste est utile car elle crée
+
+64
+00:06:46,190 --> 00:06:51,870
+ce lien entre le contexte des mots et la sémantique.
+
+65
+00:06:51,870 --> 00:06:58,590
+Le principe de compositionnalité nous permet de d'aborder des tâches de TLN
+
+66
+00:06:58,590 --> 00:07:02,430
+de manière hiérarchique où nous essayons de créer une signification à un niveau élevé
+
+67
+00:07:02,430 --> 00:07:10,260
+à partir du texte. Ce sont deux idées importantes qui sont à la base
+
+68
+00:07:10,260 --> 00:07:15,300
+des vecteurs-mots, par exemple, mais avant d’aborder ce sujet,
+
+69
+00:07:15,300 --> 00:07:20,520
+nous commencerons par examiner des approches classiques et plus anciennes, c’est-a-dire la façon dont nous représentions
+
+70
+00:07:20,520 --> 00:07:25,979
+les mots dans le passé en TLN et nous verrons qu'il y a quelques inconvénients et
+
+71
+00:07:25,979 --> 00:07:32,340
+nous verrons comment apporter des améliorations avec l’idée des vecteurs-mots
+
+72
+00:07:32,340 --> 00:07:35,630
+au prochain point.

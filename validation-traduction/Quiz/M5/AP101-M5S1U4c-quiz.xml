@@ -1,0 +1,10 @@
+<problem>
+<optionresponse>
+  <label>_______ dans les réseaux de vérification profonds se produit lorsque les candidats ne diffèrent que par leurs caractéristiques non sensibles, mais sont traités différemment.</label>
+<optioninput>
+    <option correct="False">L’équité individuelle <optionhint>Il s&apos; agit d&apos;une exigence selon laquelle les individus doivent être traités de manière cohérente</optionhint></option>
+    <option correct="True">La discrimination</option>
+    <option correct="False">La vérification formelle <optionhint>La vérification est une technique automatisée qui permet de prouver certaines propriétés d&apos;un programme</optionhint></option>
+  </optioninput>
+</optionresponse>
+</problem>

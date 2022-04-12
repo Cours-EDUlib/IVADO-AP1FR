@@ -1,0 +1,63 @@
+﻿1
+00:00:13,370 --> 00:00:16,820
+À ce stade, je vais rapidement résumer ce que nous avons déjà vu.
+
+2
+00:00:16,820 --> 00:00:20,860
+Donc nous avons introduit les tâches de TLN
+
+3
+00:00:20,860 --> 00:00:23,180
+et nous avons vu qu'il y a beaucoup de tâches de TLN.
+
+4
+00:00:23,180 --> 00:00:26,850
+En fait, nous avons parcouru très peu d’exemples.
+
+5
+00:00:26,850 --> 00:00:30,619
+Un point intéressant est que toutes ces tâches ont un problème commun,
+
+6
+00:00:30,619 --> 00:00:37,440
+qui est de relier les mots à la sémantique. Pour ce faire, nous avons introduit quelques algorithmes
+
+7
+00:00:37,440 --> 00:00:42,920
+Nous avons commencé par Word2Vec et FastText, puis le modèle ELMo et enfin le modèle BERT.
+
+8
+00:00:42,920 --> 00:00:45,800
+La différence avec les modèles ELMo et BERT est que ceux-ci nous donneront
+
+9
+00:00:45,800 --> 00:00:53,059
+des vecteurs-mots contextualisés. En particulier, BERT est très pratique
+
+10
+00:00:53,059 --> 00:00:57,079
+parce que vous n'avez pas besoin d'un autre modèle pour résoudre votre tâche.
+
+11
+00:00:57,079 --> 00:01:03,140
+Vous pouvez le perfectionner et continuer à entraîner BERT directement avec vos données.
+
+12
+00:01:03,140 --> 00:01:08,000
+Vous pouvez alors l'utiliser pour obtenir de très bons résultats de base que vous pourrez ensuite améliorer.
+
+13
+00:01:08,000 --> 00:01:15,580
+Une autre chose à considérer est qu'il existe de nombreux algorithmes qui sont créés dans la littérature
+
+14
+00:01:15,580 --> 00:01:20,000
+et ici vous voyez trois algorithmes,
+
+15
+00:01:20,000 --> 00:01:22,770
+mais c'est une bonne idée de vous tenir à jour
+
+16
+00:01:22,770 --> 00:01:48,140
+parce qu'on peut obtenir des résultats encore meilleurs avec les nouveaux algorithmes.

@@ -1,0 +1,367 @@
+1
+00:00:14,420 --> 00:00:21,350
+Alors, comment puis-je le représenter pour calculer ce terme? En fait, ce terme
+
+2
+00:00:21,350 --> 00:00:28,590
+peut être représenté comme 1 sur 2, donc h est un vecteur qui représente le déplacement dans
+
+3
+00:00:28,590 --> 00:00:37,110
+l’espace des paramètres: nous prendrons la transposée de ce vecteur fois la hessienne fois h et
+
+4
+00:00:37,110 --> 00:00:43,640
+en deux dimensions j’aurai h1 h2, la modification des paramètres 1 et 2.
+
+5
+00:00:43,640 --> 00:00:49,920
+Ici j'ai ma dérivée seconde, donc la dérivée seconde est la dérivée
+
+6
+00:00:49,920 --> 00:00:53,870
+de la dérivée: c'est une accélération. Je regarde le
+
+7
+00:00:53,870 --> 00:01:03,210
+taux de variation de la dérivée quand je me déplace dans l'espace des paramètres.
+
+8
+00:01:03,210 --> 00:01:08,030
+Une propriété est que cette matrice est symétrique et je vais la
+
+9
+00:01:08,030 --> 00:01:16,640
+multiplier par h1 h2. Alors, le gradient de cette matrice est la hessienne fois h et
+
+10
+00:01:16,640 --> 00:01:24,119
+la hessienne de cette fonction est la hessienne de f: c'est pourquoi je peux utiliser
+
+11
+00:01:24,119 --> 00:01:30,430
+cette approximation quadratique pour étudier le comportement d'un optimiseur dans cette
+
+12
+00:01:30,430 --> 00:01:36,590
+région, car une courbure représentée par la hessienne est la même que ma
+
+13
+00:01:36,590 --> 00:01:43,210
+fonction d'origine ici. Pour l'instant, nous allons simplement optimiser la
+
+14
+00:01:43,210 --> 00:01:50,340
+fonction quadratique pour étudier quel genre de problèmes nous pouvons avoir quand on n'est pas
+
+15
+00:01:50,340 --> 00:01:57,109
+très loin d'un optimum local, mais qu’on peut tout de même avoir
+
+16
+00:01:57,109 --> 00:02:05,880
+durant l’entraînement en apprentissage profond dans cette région.  Je peux définir différentes
+
+17
+00:02:05,880 --> 00:02:10,600
+fonctions quadratiques en définissant h. Ici je prends l'identité et vous pouvez voir que
+
+18
+00:02:10,600 --> 00:02:17,069
+c'est une balle parfaite: si je me déplace de un dans un
+
+19
+00:02:17,069 --> 00:02:20,910
+sens, la perte augmentera de un et si je me déplace de un dans l'autre
+
+20
+00:02:20,910 --> 00:02:25,349
+sens, la perte augmentera de un. C'est isotrope,
+
+21
+00:02:25,349 --> 00:02:32,720
+tous les paramètres ont le même impact sur la sortie. Maintenant, si j'utilise quatre pour ce
+
+22
+00:02:32,720 --> 00:02:38,650
+composant et un pour ce composant et que je me déplace pour le paramètre sur
+
+23
+00:02:38,650 --> 00:02:45,430
+l'axe des x, la perte se déplace beaucoup plus rapidement. Si je me déplace sur l'axe des y, la
+
+24
+00:02:45,430 --> 00:02:50,700
+perte se déplace plus lentement, donc le paramètre 1 a un effet plus fort sur la sortie
+
+25
+00:02:50,700 --> 00:02:58,069
+que le paramètre 2 et avec H I, je peux également faire une rotation. Alors maintenant,
+
+26
+00:02:58,069 --> 00:03:05,549
+l’axe de ma fonction de perte n'est pas parfaitement aligné
+
+27
+00:03:05,549 --> 00:03:11,760
+avec l'axe de l'espace des paramètres, ça peut également être difficile
+
+28
+00:03:11,760 --> 00:03:16,070
+à optimiser. Je peux donc générer différents types de fonctions quadratiques en
+
+29
+00:03:16,070 --> 00:03:23,239
+spécifiant simplement cette matrice H et elle représente différents hessiennes que je peux
+
+30
+00:03:23,239 --> 00:03:29,010
+obtenir ici: je fixe H qui représente cette quantité et c'est comme si
+
+31
+00:03:29,010 --> 00:03:39,280
+je créais de nouvelles fonctions que je voudrais étudier. Je peux également créer d'autres
+
+32
+00:03:39,280 --> 00:03:45,319
+fonctions plus difficiles, il y a des fonctions de point-selle. Donc ici,
+
+33
+00:03:45,319 --> 00:03:49,550
+je ferai en sorte que, pour une direction, si j'augmente le paramètre, la perte
+
+34
+00:03:49,550 --> 00:03:54,610
+augmentera et si j'augmente le deuxième paramètre, la perte diminuera.
+
+35
+00:03:54,610 --> 00:04:01,620
+Ils ont donc des effets différents sur la perte et vous pouvez voir pourquoi nous
+
+36
+00:04:01,620 --> 00:04:06,859
+appelons un point-selle, « point-selle »: le point de selle est au milieu ici, ce
+
+37
+00:04:06,859 --> 00:04:17,060
+qui est représenté ici. Si je vais sur cet axe, la perte augmentera. Si je vais
+
+38
+00:04:17,060 --> 00:04:23,380
+sur cet axe, la perte diminuera et je peux générer la perte pour n'importe quel point de
+
+39
+00:04:23,380 --> 00:04:31,100
+cet espace et je crée une forme de selle: c'est pourquoi nous l'appelons point-selle.
+
+40
+00:04:31,100 --> 00:04:34,560
+Je peux en créer une autre que je peux même redimensionner et avoir une
+
+41
+00:04:34,560 --> 00:04:41,530
+forme différente de selle. Alors avant de créer notre premier optimiseur, nous allons
+
+42
+00:04:41,530 --> 00:04:47,950
+juste revoir ce qu’est un algorithme d'optimisation en apprentissage profond.
+
+43
+00:04:47,950 --> 00:04:52,880
+Alors d'abord, j'aurai cet algorithme ici, l'optimiseur
+
+44
+00:04:52,880 --> 00:04:59,100
+proposera quelques paramètres ajustés aux valeurs du graphe de calcul, le
+
+45
+00:04:59,100 --> 00:05:03,880
+modèle recevra les paramètres, propagation avant, évaluera la fonction de perte sur
+
+46
+00:05:03,880 --> 00:05:09,420
+tous les exemples, prendra la moyenne et ensuite fera une rétropropagation à travers le
+
+47
+00:05:09,420 --> 00:05:15,420
+modèle et je récupérerai tous les gradients pour tous les paramètres en forme de
+
+48
+00:05:15,420 --> 00:05:20,970
+vecteur. Je donnerai ce vecteur de gradients et la perte à mon optimiseur.
+
+49
+00:05:20,970 --> 00:05:28,760
+D'abord, pourquoi le gradient est-il si important dans l'optimisation? Souvenez-vous que nous
+
+50
+00:05:28,760 --> 00:05:35,930
+avons cette approximation linéaire. Maintenant, je déplace le terme f(a) à gauche de
+
+51
+00:05:35,930 --> 00:05:42,850
+l’égal de l’approximation et donc la différence ici est entre la perte
+
+52
+00:05:42,850 --> 00:05:47,600
+évaluée au paramètre a. Je fais un petit pas et je passe au paramètre
+
+53
+00:05:47,600 --> 00:05:54,310
+a + h: si je prends la différence avec la perte au paramètre initial, cette
+
+54
+00:05:54,310 --> 00:05:59,880
+différence sera approximativement donnée par le produit scalaire entre le
+
+55
+00:05:59,880 --> 00:06:07,870
+gradient et h. Nous pouvons nous demander quel est le meilleur h qui minimisera
+
+56
+00:06:07,870 --> 00:06:14,830
+cette quantité. Je veux me diriger vers une perte égale à zéro aussi vite que possible, donc je veux
+
+57
+00:06:14,830 --> 00:06:20,440
+minimiser cette quantité. Ce terme sera plus petit que
+
+58
+00:06:20,440 --> 00:06:25,620
+ce terme, car chaque fois que je fais une étape, je veux que la perte diminue et je veux la
+
+59
+00:06:25,620 --> 00:06:30,870
+minimiser. Alors, quelle est le h, quelle est la direction qui minimisera cette
+
+60
+00:06:30,870 --> 00:06:37,090
+quantité où j'aurai la plus grande amélioration sur mon modèle?
+
+61
+00:06:37,090 --> 00:06:41,610
+C'est donc un autre problème d'optimisation, mais c'est très simple. Ici, je minimise
+
+62
+00:06:41,610 --> 00:06:45,190
+dans toutes les directions possibles: je suis à un
+
+63
+00:06:45,190 --> 00:06:50,810
+point, j'adapte mes paramètres, je regarde toutes les directions possibles autour de moi.
+
+64
+00:06:50,810 --> 00:06:56,720
+J’adapterai leur longueur pour être égal à 1, car je veux juste trouver
+
+65
+00:06:56,720 --> 00:07:00,690
+la direction: je ne me soucie pas de la taille du
+
+66
+00:07:00,690 --> 00:07:05,530
+déplacement. Je veux donc trouver le déplacement minimum qui minimisera
+
+67
+00:07:05,530 --> 00:07:13,550
+cette quantité, qui approxime l'amélioration de mon modèle et la définition
+
+68
+00:07:13,550 --> 00:07:17,900
+du produit scalaire est la norme du gradient évalué à a fois la norme
+
+69
+00:07:17,900 --> 00:07:24,460
+de h fois le cosinus de l'angle entre les deux vecteurs. Alors, le vecteur
+
+70
+00:07:24,460 --> 00:07:27,970
+associé au gradient et le vecteur associé à travers
+
+71
+00:07:27,970 --> 00:07:34,810
+le déplacement est égal à un parce que je le fixe ici: la norme de
+
+72
+00:07:34,810 --> 00:07:40,470
+mon déplacement est égale à un, cela ne dépend pas du tout de h,
+
+73
+00:07:40,470 --> 00:07:46,440
+ce n'est que le gradient de f évalué à a. Je peux donc le remplacer par C et maintenant, je
+
+74
+00:07:46,440 --> 00:07:56,180
+dois trouver le h qui minimisera la valeur du cosinus de l'angle, et
+
+75
+00:07:56,180 --> 00:08:00,130
+le cosinus sera minimisé si je vais dans la
+
+76
+00:08:00,130 --> 00:08:06,660
+direction opposée du premier vecteur. Le premier vecteur est le gradient.,
+
+77
+00:08:06,660 --> 00:08:12,520
+ici j'ai un cosinus de zéro, ce qui est égal à un. Si je vais dans la
+
+78
+00:08:12,520 --> 00:08:20,120
+direction opposée, j'ai la valeur minimale, donc le gradient me dit la direction où
+
+79
+00:08:20,120 --> 00:08:27,870
+j'aurai la plus grande amélioration pour minimiser mon erreur. C'est pourquoi
+
+80
+00:08:27,870 --> 00:08:36,000
+c'est une quantité très intéressante: ça me donnerait donc la pente la plus raide
+
+81
+00:08:36,000 --> 00:08:43,990
+où je devrais me déplacer pour minimiser la perte le plus rapidement. Par contre, le gradient
+
+82
+00:08:43,990 --> 00:08:49,139
+est une information locale: il n'a été défini qu'à un moment donné et
+
+83
+00:08:49,139 --> 00:08:53,750
+comme c'est une approximation linéaire, nous ne savons pas comment l'erreur
+
+84
+00:08:53,750 --> 00:09:01,500
+s'accumulera si h est trop grand: au moins, nous avons la pente la plus raide et
+
+85
+00:09:01,500 --> 00:09:06,470
+c'est un peu impressionnant parce que si vous y réfléchissez, si je suis dans
+
+86
+00:09:06,470 --> 00:09:11,379
+un espace à deux dimensions, pour trouver la pente la plus raide, je dois essayer vraiment
+
+87
+00:09:11,379 --> 00:09:16,730
+partout autour de moi. Je dois vérifier beaucoup de
+
+88
+00:09:16,730 --> 00:09:22,329
+directions différentes pour trouver le pente la plus raide, mais avec le gradient, j'ai juste besoin de faire deux
+
+89
+00:09:22,329 --> 00:09:28,060
+tests: un dans un axe et un dans l'autre axe, et c'est tout. Avec cette
+
+90
+00:09:28,060 --> 00:09:32,779
+information que je viens de récupérer, je peux utiliser le gradient comme direction de descente
+
+91
+00:09:32,779 --> 00:09:38,879
+la plus raide. Donc, pour trouver la direction la plus raide, j'ai seulement besoin d'informations qui
+
+92
+00:09:38,879 --> 00:09:45,680
+sont similaires au nombre de paramètres: je n'ai pas besoin de faire plus de tests que cela.

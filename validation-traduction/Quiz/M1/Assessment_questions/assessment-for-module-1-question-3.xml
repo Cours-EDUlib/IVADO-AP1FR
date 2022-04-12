@@ -1,0 +1,13 @@
+<problem display_name="Question 3" markdown="&gt;&gt;Permuting the examples of a dataset has an impact on the probability of the dataset \( P_D(S) \). Is this statement true or false? ||You only have one attempt for this question.||&lt;&lt;&#10;&#10;&#10;( )True {{Because of the independent and identically distributed assumption, we have that \(P_D(S) = \prod_{i=1}^m P_D(x_i, y_i) \) which is invariant to any change of ordering. You should always shuffle a dataset in the iid framework.}}&#10;(x) False {{Because of the independent and identically distributed assumption, we have that \(P_D(S) = \prod_{i=1}^m P_D(x_i, y_i) \) which is invariant to any change of ordering. You should always shuffle a dataset in the iid framework.}}&#10;&#10;||Refer to the probability formula of a dataset in 1.2.2a Supervised Learning - Part I.||" max_attempts="1">
+  <multiplechoiceresponse>
+    <label>La permutation des exemples d&apos;un ensemble de données a un impact sur la probabilité de l&apos;ensemble de données \( P_D(S) \). Cette déclaration est-elle vraie ou fausse ?</label>
+    <description>Vous avez droit à une seule tentative pour cette question.</description>
+    <choicegroup type="MultipleChoice">
+      <choice correct="false">Vrai <choicehint>en raison de l&apos;hypothèse d’indépendance et de distribution identique (iid), nous avons que \(P_D(S) = \prod_{i=1}^m P_D(x_i, y_i) \) qui est invariant à tout changement d’ordre. Vous devez toujours mélanger un ensemble de données dans le cadre iid.</choicehint></choice>
+      <choice correct="true">Faux <choicehint>en raison de l&apos;hypothèse d’indépendance et de distribution identique (iid), nous avons que \(P_D(S) = \prod_{i=1}^m P_D(x_i, y_i) \) qui est invariant à tout changement d’ordre. Vous devez toujours mélanger un ensemble de données dans le cadre iid.</choicehint></choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+  <demandhint>
+    <hint>Référez-vous à la formule de probabilité d&apos;un ensemble de données dans la section 1.2.2a apprentissage supervisé - partie I.</hint>
+  </demandhint>
+</problem>

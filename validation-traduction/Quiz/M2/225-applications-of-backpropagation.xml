@@ -1,0 +1,12 @@
+<problem display_name="Quiz" markdown="&gt;&gt; Select three applications of backpropagation. &lt;&lt;&#10;&#10;[x] A. DeepDream {{ selected: A. True}}&#10;[x] B. Adversarial examples {{ selected: B. True}}&#10;[ ] C. Forward pass {{ selected: C. Incorrect choice: Forward pass is a part of backpropagation algorithm}}&#10;[x] D. Saliency Maps {{ selected: D. True}}&#10;&#10;{{ ((A B C D)) Please choose 3 options. }}" max_attempts="3" weight="0.0">
+  <choiceresponse>
+    <label>Sélectionnez trois applications de la rétropropagation.</label>
+    <checkboxgroup>
+      <choice correct="true">A. DeepDream <choicehint selected="true">A. vrai</choicehint></choice>
+      <choice correct="true">B. Les exemples antagonistes<choicehint selected="true">B. vrai</choicehint></choice>
+      <choice correct="false">C. La propagation avant <choicehint selected="true">C. choix incorrect : La propagation avant fait partie de l&apos;algorithme de rétropropagation</choicehint></choice>
+      <choice correct="true">D. La carte de saillance <choicehint selected="true">D. vrai</choicehint></choice>
+      <compoundhint value="A B C D">C&apos;est en effet vrai.</compoundhint>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

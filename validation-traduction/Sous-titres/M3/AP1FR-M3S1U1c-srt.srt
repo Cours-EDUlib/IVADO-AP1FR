@@ -1,0 +1,820 @@
+﻿1
+00:00:13,480 --> 00:00:17,029
+Alors maintenant, regardons les différents paramètres avec lesquels nous pouvons jouer lorsque
+
+2
+00:00:17,029 --> 00:00:21,619
+nous construisons nos réseaux de neurones convolutifs. L'un des plus importants
+
+3
+00:00:21,619 --> 00:00:25,880
+est la taille du noyau. Nous disons « noyau », mais nous pouvons également dire « filtre ».
+
+4
+00:00:25,880 --> 00:00:29,029
+Généralement nous dénotons cela comme F et
+
+5
+00:00:29,029 --> 00:00:34,790
+c'est généralement un carré. Alors, quand nous disons F = 3, nous voulons généralement dire un noyau
+
+6
+00:00:34,790 --> 00:00:40,040
+3 par 3. Si nous disons F = 5 nous voulons généralement dire un noyau 5 par 5.
+
+7
+00:00:40,040 --> 00:00:43,640
+En fonction de la taille du noyau que vous allez utiliser, cela pourrait signifier
+
+8
+00:00:43,640 --> 00:00:47,030
+plus de paramètres pour votre réseau, mais cela pourrait également signifier que le noyau peut regarder
+
+9
+00:00:47,030 --> 00:00:51,620
+plus de voisins lors des calculs. C'est donc une
+
+10
+00:00:51,620 --> 00:00:54,500
+décision architecturale que vous devrez prendre et plus tard aujourd'hui, nous
+
+11
+00:00:54,500 --> 00:00:57,920
+regarderons les différentes architectures et pourquoi ils choisissent d'utiliser les paramètres
+
+12
+00:00:57,920 --> 00:01:04,789
+qu'ils utilisent. Un autre paramètre important que nous pouvons modifier est la foulée.
+
+13
+00:01:04,789 --> 00:01:10,100
+La foulée, nous la désignons comme S, qui représente généralement le nombre de pixels de déplacement
+
+14
+00:01:10,100 --> 00:01:15,560
+en x et en y lorsque nous déplaçons notre noyau durant les opérations dans notre convolution.
+
+15
+00:01:15,560 --> 00:01:20,720
+Généralement nous voyons des valeurs de foulée de 1 ou 2.
+
+16
+00:01:20,720 --> 00:01:24,710
+Une foulée de 1, c'est ce que nous avons vu jusqu'à présent: nous prenons notre noyau et nous le
+
+17
+00:01:24,710 --> 00:01:29,000
+déplaçons par un pixel en x, puis une fois que nous avons terminé tout au long des x, nous le déplaçons
+
+18
+00:01:29,000 --> 00:01:33,350
+d'un pixel en y. Nous nous déplaçons le long des y jusqu'à ce que nous ayons
+
+19
+00:01:33,350 --> 00:01:37,460
+parcouru toute notre image. Lorsque nous avons une foulée de 2, nous prenons un pas de
+
+20
+00:01:37,460 --> 00:01:42,860
+2 dans chaque direction. Alors ici, j'ai quelques animations pour la foulée de 1 et la
+
+21
+00:01:42,860 --> 00:01:48,320
+foulée de 2. Vous pouvez voir que la foulée de 2 se déplace plus rapidement, mais une
+
+22
+00:01:48,320 --> 00:01:53,360
+foulée de 2 aura une sortie plus petite: c'est une décision de conception
+
+23
+00:01:53,360 --> 00:01:56,360
+que vous devez faire lorsque vous construisez vos différentes architectures.
+
+24
+00:01:56,360 --> 00:01:59,659
+Nous allons examiner différents exemples où les deux sont utilisés plus tard dans la journée.
+
+25
+00:01:59,659 --> 00:02:07,850
+Ici, je vais vous montrer l'exemple spécifique de foulée égal à 2:
+
+26
+00:02:07,850 --> 00:02:11,780
+vous pouvez voir ici avec la foulée de 2 que la carte topologique est beaucoup plus petite que l’entrée.
+
+27
+00:02:11,780 --> 00:02:16,519
+Évidemment, c’est un facteur de décision: voulez-vous réduire votre
+
+28
+00:02:16,519 --> 00:02:21,370
+carte topologique lorsque vous définissez votre foulée?
+
+29
+00:02:22,319 --> 00:02:27,180
+Maintenant, regardons un peu l'arithmétique de convolutions 2D.
+
+30
+00:02:27,180 --> 00:02:30,840
+Comment pouvons-nous déterminer les dimensions de notre sortie par rapport à notre entrée
+
+31
+00:02:30,840 --> 00:02:37,069
+en fonction des paramètres que nous venons de voir? Il y a des équations qui sont
+
+32
+00:02:37,069 --> 00:02:42,989
+relativement simples qui relieront la largeur
+
+33
+00:02:42,989 --> 00:02:48,870
+et la hauteur d'une sortie à son entrée: en général, si nous avons W_entrée par
+
+34
+00:02:48,870 --> 00:02:53,549
+H_entrée, donc la largeur et la hauteur de notre entrée, nous pouvons calculer la largeur et la hauteur de
+
+35
+00:02:53,549 --> 00:02:58,500
+notre sortie en insérant tous ces nombres.
+
+36
+00:02:58,500 --> 00:03:05,800
+Alors dans cet exemple, nous avons notre noyau 3 par 3, nous utilisons un foulée de 1, nous avons notre
+
+37
+00:03:05,879 --> 00:03:10,079
+largeur et notre hauteur qui sont égales à 6, donc c'est le nombre de pixels de chaque dimension.
+
+38
+00:03:10,079 --> 00:03:14,760
+Si nous insérons les chiffres, nous voyons que notre W_sortie et H_sortie dans ce cas,
+
+39
+00:03:14,760 --> 00:03:18,329
+en raison de la symétrie du problème, sont égaux à 4, ce qui est exactement ce à quoi nous nous
+
+40
+00:03:18,329 --> 00:03:26,040
+attendions. Vous avez peut-être remarqué jusqu'à présent que la sortie devient
+
+41
+00:03:26,040 --> 00:03:31,530
+plus petite que l'entrée, ce qui n'est pas toujours pratique. Il y a donc une astuce que nous pouvons
+
+42
+00:03:31,530 --> 00:03:36,000
+utiliser et c'est souvent utilisé dans la littérature. C’est appelée « remplissage » (padding) et ça utilise
+
+43
+00:03:36,000 --> 00:03:40,889
+une sorte de stratégie pour garnir les bordures de telle sorte que votre entrée est maintenant
+
+44
+00:03:40,889 --> 00:03:45,150
+artificiellement plus grande. Alors, même si votre sortie est plus petite que votre entrée
+
+45
+00:03:45,150 --> 00:03:50,639
+par rapport à votre entrée d'origine, elle peut être de taille différente.
+
+46
+00:03:50,639 --> 00:03:54,690
+Le nombre de pixels que nous utilisons pour remplir est noté P et nous allons examiner
+
+47
+00:03:54,690 --> 00:03:58,650
+différentes stratégies de remplissage, mais examinons d'abord une animation de ce que cela signifie.
+
+48
+00:03:58,650 --> 00:04:04,019
+Supposons que j'ai une bordure grise: maintenant je peux faire ma convolution comme
+
+49
+00:04:04,019 --> 00:04:08,370
+auparavant, mais maintenant ma carte topologique ou ma sortie est exactement de la même taille
+
+50
+00:04:08,370 --> 00:04:12,030
+que mon entrée. Vous pouvez donc imaginer à nouveau si vous construisez un très profond
+
+51
+00:04:12,030 --> 00:04:16,260
+réseau de neurones convolutif, il peut être utile de préserver l'étendue spatiale de
+
+52
+00:04:16,260 --> 00:04:20,310
+vos caractéristiques: si vous allez plus en profondeur, vos sorties deviennent de plus en
+
+53
+00:04:20,310 --> 00:04:27,990
+plus petites, il y aura intrinsèquement une limite à la profondeur à laquelle vous pouvez aller.
+
+54
+00:04:27,990 --> 00:04:32,310
+Si nous notons P comme le nombre de pixels avec lesquels nous remplissons nos frontières, nous pouvons faire
+
+55
+00:04:32,310 --> 00:04:35,969
+le même type d'arithmétique. Nous ajoutons simplement
+
+56
+00:04:35,969 --> 00:04:39,779
+ici un terme qui représente le remplissage et en insérant à nouveau les chiffres pour
+
+57
+00:04:39,779 --> 00:04:45,659
+notre même exemple, W_entrée et H_entrée sont égaux à 6. Nous avons encore notre foulée de 1, notre
+
+58
+00:04:45,659 --> 00:04:51,059
+remplissage de 1 et notre taille de noyau de 3. Nous obtenons que notre W_sortie est égal à H_sortie
+
+59
+00:04:51,059 --> 00:04:56,009
+qui est égal à 6. Je vous laisserai rentrer à la maison et faire le calcul et regarder
+
+60
+00:04:56,009 --> 00:05:03,360
+cela, mais ces équations devraient commencer à avoir un sens une fois que vous le faites.
+
+61
+00:05:03,360 --> 00:05:07,379
+Il y a trois façons que nous pouvons faire notre remplissage et généralement quand vous
+
+62
+00:05:07,379 --> 00:05:10,769
+regardez Pytorch ou TensorFlow, il y a vraiment trois façons que vous pouvez
+
+63
+00:05:10,769 --> 00:05:16,469
+spécifier comment faire ce remplissage. Il y a les valeurs par défaut donc nous allons regarder
+
+64
+00:05:16,469 --> 00:05:20,309
+les trois principaux moyens qui sont généralement implémentés. Le premier est ce qu'on
+
+65
+00:05:20,309 --> 00:05:24,689
+appelle une convolution valide: vous rajoutez suffisamment de remplissage pour vous assurer que votre
+
+66
+00:05:24,689 --> 00:05:28,439
+convolution est valide. Dans ce cas, cela signifie que le noyau est autorisé à
+
+67
+00:05:28,439 --> 00:05:32,699
+visitez uniquement les positions où le noyau est entièrement contenu dans l'image, donc
+
+68
+00:05:32,699 --> 00:05:35,939
+nous pouvons vraiment comprendre cela comme aucun remplissage. Lorsque vous
+
+69
+00:05:35,939 --> 00:05:39,479
+implémentez votre convolution, vous avez un paramètre de remplissage et vous pouvez le définir comme
+
+70
+00:05:39,479 --> 00:05:44,279
+« valid » et généralement cela signifiera qu'il n'y aura pas de remplissage.
+
+71
+00:05:44,279 --> 00:05:50,009
+Le prochain type de remplissage que nous pouvons avoir est ce qu'on appelle la convolution identique.
+
+72
+00:05:50,009 --> 00:05:53,969
+C'est ce que nous avons vu plus tôt, nous ajoutons juste assez de remplissage pour nous assurer que la
+
+73
+00:05:53,969 --> 00:05:58,319
+taille de sortie de notre carte topologique est exactement la même que notre taille d'entrée.
+
+74
+00:05:58,319 --> 00:06:02,519
+Cela est très utile dans le contexte de la construction de réseaux profonds et nous allons
+
+75
+00:06:02,519 --> 00:06:08,249
+examiner certains réseaux qui exploitent cela plus tard dans la journée.
+
+76
+00:06:08,249 --> 00:06:13,769
+Ce dernier est un peu plus délicat en termes de libellé, donc c'est la convolution complète. Dans le
+
+77
+00:06:13,769 --> 00:06:16,769
+cas de la convolution complète, ce que vous voulez faire, c'est que vous voulez juste vous assurer
+
+78
+00:06:16,769 --> 00:06:21,779
+que chaque pixel est visité un même nombre de fois, donc vous ne voulez qu’un pixel en bordure
+
+79
+00:06:21,779 --> 00:06:26,009
+soit visité moins de fois par votre noyau simplement parce qu'il est à la frontière.
+
+80
+00:06:26,009 --> 00:06:29,699
+Vous ajoutez donc un peu plus de remplissage et ici, vous remarquerez dans cet exemple spécifique que
+
+81
+00:06:29,699 --> 00:06:33,959
+chaque pixel est visité trois fois, ce qui correspond à la taille de notre noyau.
+
+82
+00:06:33,959 --> 00:06:37,409
+La formulation est un peu plus délicate, mais en fin de compte, nous voulons juste nous
+
+83
+00:06:37,409 --> 00:06:41,069
+assurer que chaque pixel contribue également au signal de sortie, cela implique
+
+84
+00:06:41,069 --> 00:06:45,979
+un certain compromis, car nous devons ajouter plus de remplissage pour cela.
+
+85
+00:06:45,979 --> 00:06:49,169
+Parlons maintenant des stratégies de remplissage, alors
+
+86
+00:06:49,169 --> 00:06:54,090
+que faisons-nous pour garnir réellement ces frontières? La stratégie la plus courante qui est
+
+87
+00:06:54,090 --> 00:06:58,919
+utilisée, je dirais presque partout est ce qu'on appelle le remplissage zéro. Lorsque nous
+
+88
+00:06:58,919 --> 00:07:03,150
+avons un remplissage zéro, nous prenons notre entrée, qui pourrait être une sorte de matrice et
+
+89
+00:07:03,150 --> 00:07:08,639
+nous ajoutons simplement des zéros autour de celle-ci, alors voici un exemple de déclaration de remplissage zéro dans
+
+90
+00:07:08,639 --> 00:07:13,860
+TensorFlow. Vous ajoutez simplement des zéros partout autour de votre entrée,
+
+91
+00:07:13,860 --> 00:07:19,349
+c'est généralement ce qui est utilisé avec le remplissage. Vous pouvez définir la constante pour être
+
+92
+00:07:19,349 --> 00:07:24,949
+ce que vous voulez, ça n'a pas à être zéro, mais en général zéro est ce qui est utilisé.
+
+93
+00:07:24,949 --> 00:07:30,300
+Maintenant, nous avons d'autres stratégies pour le remplissage et cela peut dépendre
+
+94
+00:07:30,300 --> 00:07:33,419
+du type d'images que vous avez ou du type d'entrées que vous utilisées.
+
+95
+00:07:33,419 --> 00:07:37,830
+Dans ce cas, il pourrait être plus judicieux d'utiliser
+
+96
+00:07:37,830 --> 00:07:42,180
+un autre type de remplissage. Nous avons donc ici un remplissage par réflexion qui est un peu
+
+97
+00:07:42,180 --> 00:07:47,789
+plus subtil: ce que nous faisons, c'est prendre un pixel et refléter ce qu'il voit
+
+98
+00:07:47,789 --> 00:07:51,629
+sur sa diagonale. Alors ici, par exemple, nous en avons un trois, un cinq et un
+
+99
+00:07:51,629 --> 00:07:57,719
+sept et nous les reflétons sur ces cinq et sept. Je vous encourage à
+
+100
+00:07:57,719 --> 00:08:00,599
+jouer avec ces différents rembourrages et à voir par vous-même
+
+101
+00:08:00,599 --> 00:08:05,849
+ce que différentes tailles pourraient faire et comment ceux-ci ont été implémentés. Un autre type
+
+102
+00:08:05,849 --> 00:08:09,509
+est par symétrie, donc très similaire au remplissage par réflexion, sauf qu'il est
+
+103
+00:08:09,509 --> 00:08:14,039
+symétrique par rapport à un point d'articulation sur ces bordures. Alors ici vous voyez que nous avons
+
+104
+00:08:14,039 --> 00:08:17,610
+notre 3/5 et maintenant nous sommes symétriques par rapport à ce point, nous avons notre 3/5 de
+
+105
+00:08:17,610 --> 00:08:23,009
+même ici, nous avons 3/6 et 3/6, etc.
+
+106
+00:08:23,009 --> 00:08:26,879
+Alors prenez à nouveau votre temps pour rentrer à la maison et lire la documentation lorsque vous utilisez
+
+107
+00:08:26,879 --> 00:08:31,560
+ces différents remplissage, mais généralement le zéro est
+
+108
+00:08:31,560 --> 00:08:37,529
+le remplissage de choix pour la plupart des architectures. Alors maintenant parlons de la
+
+109
+00:08:37,529 --> 00:08:42,750
+profondeur: jusqu'à présent, nous avons vu qu'en utilisant un noyau dans une carte topologique, nous
+
+110
+00:08:42,750 --> 00:08:48,990
+obtenons une sortie. Par contre, nous pourrions souhaiter avoir plus de sorties: comment obtenir plus de
+
+111
+00:08:48,990 --> 00:08:53,070
+sorties, comment obtenir un volume de notre convolution? Nous utilisons simplement plus de
+
+112
+00:08:53,070 --> 00:08:56,430
+noyaux et c'est l'idée derrière les réseaux de neurones convolutifs: nous utilisons
+
+113
+00:08:56,430 --> 00:09:00,510
+beaucoup de noyaux sur les mêmes entrées pour pouvoir apprendre beaucoup de différents traits
+
+114
+00:09:00,510 --> 00:09:05,260
+de la même entrée. La profondeur est généralement notée d
+
+115
+00:09:05,260 --> 00:09:11,440
+et cela représentera le volume de votre sortie.
+
+116
+00:09:11,440 --> 00:09:15,339
+Nous parlons également de cela comme étant le nombre de canaux, ces termes sont utilisés de
+
+117
+00:09:15,339 --> 00:09:19,360
+manière interchangeable, la profondeur ou le nombre de canaux. En fait, dans PyTorch
+
+118
+00:09:19,360 --> 00:09:22,839
+et TensorFlow, c’est généralement appelé le nombre de canaux pour la profondeur
+
+119
+00:09:22,839 --> 00:09:28,000
+de votre tenseur et les cartes topologiques résultantes sont empilées pour produire un volume.
+
+120
+00:09:28,000 --> 00:09:32,560
+Regardons une animation de ce que cela signifie: donc ici, nous utilisons une
+
+121
+00:09:32,560 --> 00:09:36,910
+foulée de 1, similaire à ce que nous avons vu auparavant. Nous faisons notre première convolution.
+
+122
+00:09:36,910 --> 00:09:41,019
+Maintenant, nous utilisons un autre noyau, nous avons une deuxième convolution qui se produit sur
+
+123
+00:09:41,019 --> 00:09:45,220
+un autre noyau. Nous continuons d'empiler et d'empiler et d'empiler et nous pouvons
+
+124
+00:09:45,220 --> 00:09:49,420
+définir, en tant qu'utilisateur, la profondeur de notre réseau: combien de noyaux voulons-nous
+
+125
+00:09:49,420 --> 00:09:54,040
+faire agir sur cette seule entrée et obtenir un volume résultant en sortie?
+
+126
+00:09:54,040 --> 00:09:58,329
+Ce sera une décision architecturale et bien sûr, plus de noyaux vous utilisez,
+
+127
+00:09:58,329 --> 00:10:04,810
+plus de paramètres que votre réseau aura, plus il aura à apprendre.
+
+128
+00:10:04,810 --> 00:10:09,730
+Un autre terme qui a été un peu négligé en termes d'animation est le biais.
+
+129
+00:10:09,730 --> 00:10:15,970
+Tout comme dans les perceptrons multicouches, nous devons ajouter un biais constant b à
+
+130
+00:10:15,970 --> 00:10:20,350
+chaque profondeur de la couche dans notre réseau: nous faisons ces convolutions et ceci est
+
+131
+00:10:20,350 --> 00:10:24,370
+un autre paramètre apprenable que le réseau trouvera: quel biais
+
+132
+00:10:24,370 --> 00:10:28,930
+ajouter pour décaler en quelque sorte les cartes topologiques de sortie en fonction de ce que le réseau décide
+
+133
+00:10:28,930 --> 00:10:33,370
+est le mieux pour la tâche spécifique à accomplir. Si vous regardez la
+
+134
+00:10:33,370 --> 00:10:39,660
+multiplication matricielle dans le cas des MLP, elle est très analogue à la
+
+135
+00:10:39,660 --> 00:10:47,260
+convolution des RNC, la seule différence est vraiment l'opération que nous utilisons.
+
+136
+00:10:47,260 --> 00:10:52,390
+Regardons la mise en commun donc la mise en commun est une technique très populaire utilisée pour sous-
+
+137
+00:10:52,390 --> 00:10:56,709
+échantillonner. La mise en commun des images est l'une de ces choses qui était intrinsèquement empirique, mais qui
+
+138
+00:10:56,709 --> 00:11:00,880
+s'est avérée très bien fonctionner, de sorte que la mise en commun à nouveau sera vraiment utile
+
+139
+00:11:00,880 --> 00:11:05,680
+dans le contexte de la prise d'une entrée et de la réduction de sa taille de
+
+140
+00:11:05,680 --> 00:11:11,560
+manière significative et peu couteuse. Un type très populaire de mise en commun est ce qu'on appelle la
+
+141
+00:11:11,560 --> 00:11:15,610
+mise en commun par maximum. Dans le cas de la mise en commun par maximum, ce que nous faisons est que
+
+142
+00:11:15,610 --> 00:11:21,459
+nous avons notre entrée, par exemple une image et nous prenons l'équivalent
+
+143
+00:11:21,459 --> 00:11:27,610
+d’un noyau. Disons que nous prenons un noyau 2 par 2 et ce que nous allons
+
+144
+00:11:27,610 --> 00:11:30,579
+faire est que nous allons prendre ce noyau 2 par 2, nous allons le placer
+
+145
+00:11:30,579 --> 00:11:35,470
+sur 4 pixels de notre image et nous allons sélectionner la
+
+146
+00:11:35,470 --> 00:11:39,880
+valeur maximale. Alors ici, si nous plaçons notre noyau 2 par 2 ici et nous sélectionnons la
+
+147
+00:11:39,880 --> 00:11:44,290
+valeur maximale, nous voyons que cette valeur maximale est 6. Alors nous prenons ce 6 et nous le
+
+148
+00:11:44,290 --> 00:11:48,940
+plaçons ici. Nous nous déplaçons ensuite avec foulée 2, une
+
+149
+00:11:48,940 --> 00:11:53,950
+chose très typique à trouver lorsque nous utilisons la mise en commun par maximum est un filtre 2 par 2 et la
+
+150
+00:11:53,950 --> 00:11:58,570
+foulée de 2é Donc, nous nous déplaçons de 2 pixels, nous plaçons notre noyau 2 par 2 ici
+
+151
+00:11:58,570 --> 00:12:03,220
+et nous sélectionnons la valeur maximale. Ici notre valeur maximale est de 8 et nous
+
+152
+00:12:03,220 --> 00:12:08,050
+continuons à le faire pour l'image entière. Ce que cela fait, cela nous donne une
+
+153
+00:12:08,050 --> 00:12:13,660
+sortie ou une carte topologique qui est exactement la moitié de la taille de l'entrée, donc encore une fois,
+
+154
+00:12:13,660 --> 00:12:18,310
+cela est très utile dans le contexte, par exemple, de la classification de chiens. Si nous faisons
+
+155
+00:12:18,310 --> 00:12:22,779
+ce regroupement maximal, c'est une opération très peu couteuse et ensuite nous pouvons obtenir une représentation 128 par
+
+156
+00:12:22,779 --> 00:12:27,430
+128, donc nous n'avons pas nécessairement à utiliser plus de noyaux. Cela peut
+
+157
+00:12:27,430 --> 00:12:30,880
+être très utile dans le contexte où si nous savons que la réduction de notre image ne
+
+158
+00:12:30,880 --> 00:12:35,019
+changera pas trop, nous réduisons notre image et ensuite, nous
+
+159
+00:12:35,019 --> 00:12:42,399
+aurons beaucoup moins de paramètres à apprendre.
+Regardons une animation:
+
+160
+00:12:42,399 --> 00:12:46,870
+nous avons notre noyau et nous sélectionnons la valeur maximale à chaque point.
+
+161
+00:12:46,870 --> 00:12:51,010
+Cette valeur maximale pourrait être n'importe où, c'est vraiment juste une
+
+162
+00:12:51,010 --> 00:12:56,620
+opération qui dit de choisir la valeur maximale. Vous pouvez aussi avoir la mise en commun
+
+163
+00:12:56,620 --> 00:13:00,430
+par minimum, vous pouvez avoir une mise en commun par moyenne, il existe différents types de
+
+164
+00:13:00,430 --> 00:13:05,560
+mises en commun. Généralement dans la littérature et la plupart des architectures, la mise en commun par maximum est
+
+165
+00:13:05,560 --> 00:13:08,800
+celle qui est utilisée et le type de justification sous-jacente est que cela va
+
+166
+00:13:08,800 --> 00:13:14,500
+éviter le cas où le réseau se concentre sur des détails très fins.
+
+167
+00:13:14,500 --> 00:13:18,699
+Si nous utilisons la mise en commun par maximum, si nous réduisons notre image d'une taille de 2, nous voulons toujours
+
+168
+00:13:18,699 --> 00:13:22,600
+que le réseau de neurones convolutif se concentre plus ou moins sur les
+
+169
+00:13:22,600 --> 00:13:28,540
+mêmes détails spécifiquement dans des tâches comme la classification.
+
+170
+00:13:28,540 --> 00:13:31,150
+Ça réduit d'un facteur de deux dans chaque dimension et vous pouvez
+
+171
+00:13:31,150 --> 00:13:35,410
+imaginer que vous pourriez jouer avec la taille du noyau et vous pouvez jouer avec
+
+172
+00:13:35,410 --> 00:13:39,460
+la foulée pour obtenir différentes dimensions, mais encore une fois dans la littérature, nous voyons généralement
+
+173
+00:13:39,460 --> 00:13:43,650
+la mise en commun par maximum de deux par deux avec la foulée de deux.
+
+174
+00:13:44,280 --> 00:13:49,660
+Une autre façon de sous-échantillonner notre entrée est d'utiliser quelque chose appelée
+
+175
+00:13:49,660 --> 00:13:55,390
+« convolutions dilatées » et elles sont également appelées convolutions « à trous » et la raison pour laquelle
+
+176
+00:13:55,390 --> 00:13:57,940
+elles sont appelées convolutions à trous est assez drôle.
+
+177
+00:13:57,940 --> 00:14:03,160
+Elles ont d'abord été proposés par des auteurs français et ils les ont donc appelés
+
+178
+00:14:03,160 --> 00:14:09,610
+«  convolutions à trous » trous droits et cela a été traduit par « atrous  convolutions » en anglais.
+
+179
+00:14:09,610 --> 00:14:13,270
+Je crois qu’en Keras, si vous regardez la documentation, ils les appellent « atrous
+
+180
+00:14:13,270 --> 00:14:17,710
+convolutions », c'est la même chose que la convolution dilatée. Dans le cas d'une
+
+181
+00:14:17,710 --> 00:14:22,630
+convolution dilatée, c'est le même genre d'opération dans notre convolution, mais ici
+
+182
+00:14:22,630 --> 00:14:28,030
+nous avons un facteur D qui détermine l'espacement des pixels entre nos noyaux.
+
+183
+00:14:28,030 --> 00:14:31,330
+Nous avons notre noyau jaune ici, mais maintenant nous avons un espacement de un entre les
+
+184
+00:14:31,330 --> 00:14:35,590
+Noyaux. Cela nous permet d'avoir notre noyau trois par trois, mais
+
+185
+00:14:35,590 --> 00:14:39,970
+au lieu de visiter uniquement des zones locales, nous pouvons visiter des zones plus
+
+186
+00:14:39,970 --> 00:14:44,560
+Éloignées, cela dépend encore une fois du cas d'utilisation de ce que vous faites. Si vous pensez
+
+187
+00:14:44,560 --> 00:14:47,890
+qu'il est plus important pour vos noyaux de se concentrer à la fois sur
+
+188
+00:14:47,890 --> 00:14:52,330
+les caractéristiques locales et un peu plus éloignées, les convolutions dilatées
+
+189
+00:14:52,330 --> 00:14:56,830
+peuvent être très utiles dans votre cas d'utilisation. Cependant, les convolutions dilatées sous-
+
+190
+00:14:56,830 --> 00:15:04,990
+échantillonneront votre sortie. Enfin, nous avons les convolutions transposées:
+
+191
+00:15:04,990 --> 00:15:08,500
+la convolution transposée est un peu plus délicate, c'est un peu différent de la
+
+192
+00:15:08,500 --> 00:15:13,390
+définition de convolution d'origine. Nous n'allons pas trop entrer dans les détails en ce moment quant
+
+193
+00:15:13,390 --> 00:15:17,440
+à la convolution transposée, mais ce que vous devez retenir, c'est
+
+194
+00:15:17,440 --> 00:15:22,240
+qu'elles sont utilisées pour augmenter la résolution d'une carte topologique. 
+
+195
+00:15:22,240 --> 00:15:25,660
+Nous verrons ceci plus tard, mais généralement, si vous faites une tâche de classification, vous prenez votre
+
+196
+00:15:25,660 --> 00:15:29,470
+image et vous voulez la réduire à quelques chiffres, mais nous verrons plus tard
+
+197
+00:15:29,470 --> 00:15:32,440
+durant ce cours qu'il pourrait y avoir d'autres tâches que vous voudrez que votre
+
+198
+00:15:32,440 --> 00:15:36,010
+réseau effectue, d' autres tâches qui restaureront votre image d'origine. Vous aurez donc besoin d'une sorte
+
+199
+00:15:36,010 --> 00:15:40,210
+d'opération pour augmenter la résolution et les convolutions transposées peuvent être
+
+200
+00:15:40,210 --> 00:15:43,270
+utilisées pour cela. Les mathématiques sont légèrement différentes
+
+201
+00:15:43,270 --> 00:15:46,959
+des convolutions typiques que nous avons vues et nous allons voir ce que cela signifie plus tard dans le
+
+202
+00:15:46,959 --> 00:15:50,980
+cours, comment les mathématiques sont différentes, mais j'ai mis un lien ici qui est vraiment bon pour
+
+203
+00:15:50,980 --> 00:15:55,270
+expliquer cela. Si vous êtes curieux, vous pouvez aller le lire, mais encore une fois, nous allons
+
+204
+00:15:55,270 --> 00:15:57,760
+examiner cette définition un peu plus formellement plus tard dans le 
+
+205
+00:15:57,760 --> 00:16:00,240
+cours.

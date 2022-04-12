@@ -1,0 +1,14 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Quel est le principal problème de l&apos;équité par ignorance?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">L&apos;injustice découle du modèle. <choicehint>L&apos;injustice découle des données injustes, et non du modèle lui-même.</choicehint></choice>
+    <choice correct="false">Il s&apos;agit d&apos;une forme de discrimination directe. <choicehint>Il s&apos;agit d&apos;une forme de discrimination indirecte.</choicehint></choice>
+    <choice correct="true">Les attributs protégés pourraient être encodés dans des caractéristiques non sensibles. <choicehint>Dans l&apos;équité par ignorance, on ignore les attributs protégés (par exemple, la race), et on fait une prédiction basée sur des caractéristiques non sensibles (par exemple, l&apos;indicatif régional). Le principal problème est que les attributs protégés pourraient être encodés dans les caractéristiques non sensibles, ce qui ne garantirait pas une classification équitable.</choicehint></choice>
+    <choice correct="false">Nous devons définir deux mesures de similarité : une pour les individus, et une pour les résultats. <choicehint>C&apos;est un problème d&apos;équité par sensibilisation, et non par ignorance.</choicehint></choice>
+  </choicegroup>
+</multiplechoiceresponse>
+<demandhint>
+  <hint>Veuillez revoir la vidéo de 4:28 à 5:41</hint>
+</demandhint>
+</problem>

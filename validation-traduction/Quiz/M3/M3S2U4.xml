@@ -1,0 +1,10 @@
+<problem>
+<multiplechoiceresponse>
+  <label>Quel ensemble de données est un bon choix pour entraîner un modèle de détection d&apos;objets ?</label>
+<choicegroup type="MultipleChoice">
+    <choice correct="false">MNIST <choicehint>MNIST et CIFAR sont des ensembles de données catégorielles et ne contiennent pas de boîtes englobantes</choicehint></choice>
+    <choice correct="false">CIFAR-100 <choicehint>Il s&apos; agit d&apos;un bon ensemble de données pour la classification d’images</choicehint></choice>
+    <choice correct="true">MS COCO</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+</problem>
