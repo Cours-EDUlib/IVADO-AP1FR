@@ -1,0 +1,3 @@
+<pre><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;"></span></pre>
+<p class="p1">Yoshua Bengio, directeur scientifique du Mila, directeur scientifique de l'IVADO et titulaire de la Chaire de recherche du Canada sur les algorithmes d'apprentissage statistique, est un chercheur se sp&eacute;cialisant en IA, et un pionnier de l'apprentissage profond. Dans un entretien avec Nathalie Sanon, responsable du programme de formation d'IVADO, Yoshua donne un aper&ccedil;u du pr&eacute;sent et du futur de l'apprentissage profond et parle de la valeur de ce MOOC.</p>
+<pre><span style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;"><span style="color: #767676; font-size: 14px;"></span></span></pre>

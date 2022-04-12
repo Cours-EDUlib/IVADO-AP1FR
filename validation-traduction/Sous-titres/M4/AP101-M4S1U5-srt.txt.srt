@@ -1,0 +1,387 @@
+﻿1
+00:00:13,299 --> 00:00:19,310
+Avant d’introduire de nouvelles architectures, laissez-moi vous montrer une autre intuition du problème ici.
+
+2
+00:00:19,310 --> 00:00:25,700
+Ici, vous voyez la représentation du RNN mais au lieu des couleur habituelles,
+
+3
+00:00:25,700 --> 00:00:31,279
+vert, violet et bleu, je l'ai illustrée en noir et blanc. Il y a une raison pour cela.
+
+4
+00:00:31,279 --> 00:00:35,300
+Vous pouvez voir qu'il y a l'entrée, l'état interne, aussi appelé couche cachée,
+
+5
+00:00:35,300 --> 00:00:43,460
+et la sortie. Donc c'est un RNN habituel, mais ici vous voyez que j'essaie de montrer
+
+6
+00:00:43,460 --> 00:00:49,699
+à l’aide des nuances de couleur à quelle mesure les informations s'estompent. Disons que j'ai
+
+7
+00:00:49,699 --> 00:00:55,550
+une information au pas de temps 0 ici. Cette information est présente
+
+8
+00:00:55,550 --> 00:00:59,449
+au pas de temps 0, mais vous voyez qu'elle commence à s'estomper plus on s'en éloigne
+
+9
+00:00:59,449 --> 00:01:04,369
+de ce moment-là et c'est essentiellement ce que nous avons vu auparavant dans l’exemple de dépendance à long terme.
+
+10
+00:01:04,369 --> 00:01:08,570
+Vous voyez donc que le problème est que le RNN ne semble pas efficace
+
+11
+00:01:08,570 --> 00:01:11,810
+pour conserver l’information et, évidemment, si j’en ai besoin
+
+12
+00:01:11,810 --> 00:01:18,049
+longtemps après le pas de temps 0, cette information ne sera plus là.
+
+13
+00:01:18,049 --> 00:01:23,299
+Donc une intuition pour résoudre ce problème est d'essayer de mieux contrôler
+
+14
+00:01:23,299 --> 00:01:28,610
+le flux d'informations. A lieu d'avoir des informations qui circulent partout dans
+
+15
+00:01:28,610 --> 00:01:34,670
+le RNN, je peux essayer d'utiliser cette idée de « portes » qui consiste à réguler le flux d’information.
+
+16
+00:01:34,670 --> 00:01:41,390
+Une porte est essentiellement une opération et elle peut être ouverte
+
+17
+00:01:41,390 --> 00:01:45,500
+ou fermée. Lorsqu'elle est fermée, cela signifie que l'information ne passe pas et lorsqu'elle est ouverte,
+
+18
+00:01:45,500 --> 00:01:49,070
+cela signifie que toute l'information passe totalement. En fait, je peux avoir
+
+19
+00:01:49,070 --> 00:01:54,229
+n’importe quelle valeur comprise entre 0 et 1 pour réguler la quantité d'informations
+
+20
+00:01:54,229 --> 00:01:58,270
+qui passe. Vous voyez dans cet exemple avec le portail que je contrôle
+
+21
+00:01:58,270 --> 00:02:04,310
+l'information et maintenant elle peut rester en vie
+
+22
+00:02:04,310 --> 00:02:10,039
+plus longtemps. Lorsque nous avons un cercle, cela signifie que la porte
+
+23
+00:02:10,039 --> 00:02:14,870
+est ouverte, donc l'information circule et lorsque nous avons un « - », cela signifie que
+
+24
+00:02:14,870 --> 00:02:20,720
+l'information ne peut pas circuler, donc elle ne peut pas aller jusqu’à là.
+
+25
+00:02:20,720 --> 00:02:25,599
+Ici, il est intéressant de voir que nous avons une porte entre l'entrée et
+
+26
+00:02:25,599 --> 00:02:30,290
+l’état interne que nous appellerons la porte d'entrée, car elle contrôle la quantité
+
+27
+00:02:30,290 --> 00:02:36,019
+d'information que je laisse passer de l'entrée. Ici, nous avons une porte entre
+
+28
+00:02:36,019 --> 00:02:39,709
+un état interne et le suivant que nous appellerons la « porte d’oubli » parce qu'elle
+
+29
+00:02:39,709 --> 00:02:46,790
+nous indique la quantité d'informations à transmettre à l’état interne suivant.
+
+30
+00:02:46,790 --> 00:02:50,180
+Nous avons aussi une porte à la sortie qui est appelée porte de sortie parce qu'elle
+
+31
+00:02:50,180 --> 00:02:55,099
+contrôle la quantité d'informations à transmettre à la sortie, et cela a été
+
+32
+00:02:55,099 --> 00:03:00,819
+mis en application dans cette architecture appelée réseau de neurones récurrent à longue mémoire à court terme ou LSTM.
+
+33
+00:03:00,819 --> 00:03:07,519
+Pour l'instant, ignorons l'équation et examinons les deux points clés de cette
+
+34
+00:03:07,519 --> 00:03:13,459
+architecture. D'abord, il y a la cellule de mémoire. Dans le RNN précédent que vous
+
+35
+00:03:13,459 --> 00:03:18,049
+avez vu, si vous vous souvenez bien, tanh_1 était l'état interne que nous avons
+
+36
+00:03:18,049 --> 00:03:22,280
+appelé h. Il est encore ici, et vous voyez que l'état interne permet à
+
+37
+00:03:22,280 --> 00:03:30,129
+l'information de circuler. Mais maintenant nous avons aussi cette cellule de mémoire que j'ai appelée C et
+
+38
+00:03:30,129 --> 00:03:37,730
+l'intuition est que la cellule de mémoire apprend, idéalement, à permettre
+
+39
+00:03:37,730 --> 00:03:43,250
+à l'information de circuler sur de nombreux pas de temps afin qu'elle puisse être disponible à un autre moment
+
+40
+00:03:43,250 --> 00:03:48,530
+quand j'en aurai besoin et nous verrons comment cela va se dérouler. L'autre intuition est
+
+41
+00:03:48,530 --> 00:03:51,560
+le mécanisme de la porte, qui est l'intuition que j’ai mentionnée précédemment.
+
+42
+00:03:51,560 --> 00:03:54,949
+Dans ce mécanisme, j'ai trois portes : la porte d'entrée,
+
+43
+00:03:54,949 --> 00:03:59,239
+la porte d’oubli et la porte de sortie et celles-ci contrôleront le flux d'information,
+
+44
+00:03:59,239 --> 00:04:05,120
+ce que nous verrons dans la prochaine diapositive. Alors examinons ceci en détail.
+
+45
+00:04:05,120 --> 00:04:09,669
+D’abord, nous avons mentionnés la cellule de mémoire, donc la cellule de mémoire est cette partie-ci et
+
+46
+00:04:09,669 --> 00:04:14,659
+pour avoir une intuition, vous pouvez voir que dans la cellule mémoire, il y a peu
+
+47
+00:04:14,659 --> 00:04:19,310
+les opérations qui s’y déroulent, comparé à l'état interne.
+
+48
+00:04:19,310 --> 00:04:26,659
+Et c'est une intuition de la raison pour laquelle l'information peut circuler plus facilement sur cette
+
+49
+00:04:26,659 --> 00:04:34,490
+voie particulière qu’à l'état interne que nous avions avant. Afin de
+
+50
+00:04:34,490 --> 00:04:39,140
+décider quelles informations doivent être transmises à la cellule de mémoire et quelles
+
+51
+00:04:39,140 --> 00:04:46,970
+informations sont utilisées pour la sortie, nous utilisons les portes, notamment
+
+52
+00:04:46,970 --> 00:04:53,780
+la porte d’oubli, qui consiste essentiellement à indiquer à la cellule de mémoire
+
+53
+00:04:53,780 --> 00:04:57,350
+quelles informations doivent être supprimées et l’idée est que
+
+54
+00:04:57,350 --> 00:05:00,830
+les informations qui ne sont plus intéressantes pour nous, nous les supprimerons afin de
+
+55
+00:05:00,830 --> 00:05:06,620
+libérer de l'espace pour les nouvelles informations. La porte d’oubli est régie par cette équation ici
+
+56
+00:05:06,620 --> 00:05:11,660
+et vous voyez que c'est en quelque sorte similaire à la question que nous avons vu auparavant pour le RNN.
+
+57
+00:05:11,660 --> 00:05:16,850
+Il s'agit donc de la combinaison habituelle de l'entrée et de l'état interne précédent avec
+
+58
+00:05:16,850 --> 00:05:22,610
+certains paramètres. La différence est la non-linéarité : nous n'utilisons donc plus
+
+59
+00:05:22,610 --> 00:05:28,520
+la tanh,mais plutôt ce sigmoïde et c’est parce que le sigmoïde est très
+
+60
+00:05:28,520 --> 00:05:33,950
+pratique dans ce cas-ci. La fonction sigmoïde est ce que vous voyez dans l'image ici.
+
+61
+00:05:33,950 --> 00:05:41,300
+La sortie de la fonction sigmoïde est de 0 à 1, il s’avère donc très pratique pour représenter une porte
+
+62
+00:05:41,300 --> 00:05:45,380
+puisque nous avons dit que la porte peut être complètement
+
+63
+00:05:45,380 --> 00:05:49,460
+ouverte et avoir une valeur de un, ou bien être complètement fermée et avoir une valeur de zéro, ou n'importe quelle valeur entre les deux, qui permet de
+
+64
+00:05:49,460 --> 00:05:53,750
+décider de la quantité d'informations à transmettre. Nous utilisons donc toujours la fonction sigmoïde pour
+
+65
+00:05:53,750 --> 00:05:58,100
+les portes. Alors la porte d'oubli indique aux cellules de mémoire quelles informations sont à supprimer
+
+66
+00:05:58,100 --> 00:06:01,910
+et l'étape suivante consiste à indiquer à la cellule de mémoire quelles
+
+67
+00:06:01,910 --> 00:06:06,920
+informations sont à ajouter. Cela se fait avec la porte d'entrée, dont
+
+68
+00:06:06,920 --> 00:06:12,530
+l’équation est la même. Ce qui change, ce sont les paramètres qui ont un indice
+
+69
+00:06:12,530 --> 00:06:16,820
+différent, afin de montrer clairement que nous utilisons un ensemble différent de
+
+70
+00:06:16,820 --> 00:06:23,120
+paramètres pour chaque porte afin d'assurer la flexibilité totale. Alors la porte d'entrée
+
+71
+00:06:23,120 --> 00:06:27,410
+nous indiquera la quantité d'information à ajouter et cette autre équation,
+
+72
+00:06:27,410 --> 00:06:31,850
+la valeur candidate, nous dira quelles informations sont à ajouter.
+
+73
+00:06:31,850 --> 00:06:35,510
+En combinant les deux, je sais quelles informations je veux mettre dans la cellule de mémoire,
+
+74
+00:06:35,510 --> 00:06:41,620
+qui est en fait cette équation ici. Dans la cellule de mémoire,
+
+75
+00:06:41,620 --> 00:06:46,100
+vous voyez qu’il y a certaines informations qui proviennent du passé,
+
+76
+00:06:46,100 --> 00:06:50,420
+qui sont multipliées par la porte d’oubli afin que je puisse décider de la quantité
+
+77
+00:06:50,420 --> 00:06:53,550
+d’information que je veux garder. Il y a cette nouvelle
+
+78
+00:06:53,550 --> 00:06:57,990
+information, g_t, qui est multipliée par la porte d'entrée. Alors je peux
+
+79
+00:06:57,990 --> 00:07:01,860
+décider de la quantité de nouvelles informations que je veux ajouter.
+
+80
+00:07:01,860 --> 00:07:09,540
+Donc le LSTM a la flexibilité totale de décider ce qu'il faut faire. La dernière porte est la porte de sortie,
+
+81
+00:07:09,540 --> 00:07:15,600
+car à ce stade-ci, nous avons mis à jour la cellule de mémoire mais nous devons encore produire une sortie.
+
+82
+00:07:15,600 --> 00:07:19,590
+Nous devons donc encore mettre à jour l'état interne, ce qui peut être fait avec
+
+83
+00:07:19,590 --> 00:07:26,310
+la porte de sortie. L’état interne est calculé selon l’équation de porte habituelle ici,
+
+84
+00:07:26,310 --> 00:07:30,120
+donc l'état interne est une fonction de la porte de sortie qui multiplie tanh
+
+85
+00:07:30,120 --> 00:07:35,490
+et elle s'applique à la cellule de mémoire C_t. À ce stade,
+
+86
+00:07:35,490 --> 00:07:40,290
+nous avons examiné cette architecture, elle est peut-être complexe et
+
+87
+00:07:40,290 --> 00:07:44,430
+le LSTM comporte de nombreux éléments mais les deux intuitions sont des points
+
+88
+00:07:44,430 --> 00:07:48,390
+importants. Donc l'introduction du mécanisme de portes pour contrôler
+
+89
+00:07:48,390 --> 00:07:54,330
+le flux d'information et la cellule de mémoire qui, idéalement, est une voie
+
+90
+00:07:54,330 --> 00:08:02,340
+permettant à l'information de circuler plus facilement. Il y a aussi le réseau de neurones récurrent à portes (GRU) mais je vais
+
+91
+00:08:02,340 --> 00:08:06,510
+vous donner l'intuition que le GRU fonctionne de manière très similaire au LSTM
+
+92
+00:08:06,510 --> 00:08:10,230
+en pratique. C'est une idée similaire, mais la différence est que nous n'avons plus la cellule de mémoire
+
+93
+00:08:10,230 --> 00:08:14,510
+et nous avons seulement le mécanisme de portes. Je n'entrerai pas dans les détails
+
+94
+00:08:14,510 --> 00:08:21,120
+mais étant donné que vous avez moins d'équations dans le GRU, il y a moins de calculs
+
+95
+00:08:21,120 --> 00:08:25,980
+à faire. Vous pouvez envisager d'utiliser une GRU
+
+96
+00:08:25,980 --> 00:08:29,940
+si vous avez un problème de latence
+
+97
+00:08:29,940 --> 00:08:32,930
+dans votre tâche.

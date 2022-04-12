@@ -1,0 +1,307 @@
+﻿1
+00:00:13,190 --> 00:00:21,060
+Examinons maintenant les sorties structurées. Jusqu'à présent, nous avons vu que
+
+2
+00:00:21,060 --> 00:00:26,490
+la sortie de notre réseau est une distribution de probabilité qui peut être, entre guillemets, ennuyeuse.
+
+3
+00:00:26,490 --> 00:00:30,390
+Nous voulons peut-être faire quelque chose de plus riche avec notre réseau.
+
+4
+00:00:30,390 --> 00:00:35,340
+Alors les sorties structurées sont un moyen de faire des prédictions plus intéressantes
+
+5
+00:00:35,340 --> 00:00:39,360
+avec nos réseaux de neurones. En bref, les sorties structurées nous permettent de faire
+
+6
+00:00:39,360 --> 00:00:44,760
+de multiples prédictions mais qui se rapportent d’une certaine façon au reste des prédictions.
+
+7
+00:00:44,760 --> 00:00:49,050
+Par exemple, dans le cas de la classification, elles ne sont pas nécessairement
+
+8
+00:00:49,050 --> 00:00:53,610
+liées entre elles, mais si nous avons une sortie qui est
+
+9
+00:00:53,610 --> 00:00:57,329
+une boîte englobante de détection d'objets, ces quatre coordonnées que nous voulons prédire
+
+10
+00:00:57,329 --> 00:01:01,890
+sont liées entre elles dans le sens qu'elles se rapportent exactement à la même boîte.
+
+11
+00:01:01,890 --> 00:01:06,450
+Il existe donc différents types de sorties structurées que l'on trouve habituellement.
+
+12
+00:01:06,450 --> 00:01:11,430
+Donc ici, nous avons de nouveau la tâche classique de la classification.
+
+13
+00:01:11,430 --> 00:01:15,420
+Alors nous fournissons notre entrée à notre réseau, qui est une image d'une bicyclette,
+
+14
+00:01:15,420 --> 00:01:20,970
+et la sortie est seulement la catégorie vélo, mais si nous avons un pipeline de détection d'objets,
+
+15
+00:01:20,970 --> 00:01:25,799
+notre entrée est la bicyclette et notre réseau de neurones va maintenant prédire la boîte englobante
+
+16
+00:01:25,799 --> 00:01:29,729
+de cet objet ainsi que ce qu'il contient. Ici notre réseau
+
+17
+00:01:29,729 --> 00:01:32,939
+nous donnera les coordonnées de cette boîte englobante et
+
+18
+00:01:32,939 --> 00:01:37,049
+la catégorie qui y est associée. Enfin, si l'on veut aller dans les détails fins,
+
+19
+00:01:37,049 --> 00:01:41,070
+nos réseaux peuvent aussi nous donner des masques de segmentation.
+
+20
+00:01:41,070 --> 00:01:46,790
+Donc ici, si nous donnons l'entrée à notre réseau de neurones,
+
+21
+00:01:46,790 --> 00:01:51,509
+il nous donnera une masque de segmentation par pixel. Il sera indiqué que ce pixel appartient à la catégorie vélo,
+
+22
+00:01:51,509 --> 00:01:57,659
+ce pixel appartient à la catégorie arrière-plan, etc.
+
+23
+00:01:57,659 --> 00:02:01,439
+Examinons comment nous faisons cela en pratique. Dans le cas des boîtes englobantes
+
+24
+00:02:01,439 --> 00:02:05,520
+de détection d'objets, une boîte englobante se compose généralement de quatre
+
+25
+00:02:05,520 --> 00:02:08,789
+coordonnées (x,y). Donc si vous voulez définir cette case, vous avez un point ici,
+
+26
+00:02:08,789 --> 00:02:12,330
+un point ici, un point ici, et un point ici qui vous donnerait un total de huit coordonnées de pixels.
+
+27
+00:02:12,330 --> 00:02:17,760
+Nous examinons l'exemple de la boîte,
+
+28
+00:02:17,760 --> 00:02:22,049
+alors utilisons la représentation d'une boîte.
+
+29
+00:02:22,049 --> 00:02:27,269
+Il s'avère que vous pouvez représenter n'importe quelle boîte rectangulaire avec quatre coordonnées.
+
+30
+00:02:27,269 --> 00:02:31,709
+Dans le cas de l'ensemble des données SVHN, les données relatives aux numéro de maison en Google Street View
+
+31
+00:02:31,709 --> 00:02:35,670
+que nous avons examiné plus tôt, si vous regardez comment les données sont construites,
+
+32
+00:02:35,670 --> 00:02:40,889
+vous disposez des coordonnées x et y, qui sont celles en haut à gauche de l'image,
+
+33
+00:02:40,889 --> 00:02:44,459
+ensuite la hauteur et la largeur de la boîte, ce qui fait que vous avez maintenant un total de quatre coordonnées au lieu de huit.
+
+34
+00:02:44,459 --> 00:02:48,359
+Cela suffit à représenter une boîte, donc vous pouvez entraîner votre réseau
+
+35
+00:02:48,359 --> 00:02:51,900
+pour produire en sortie les coordonnées de la boîte au lieu de produire
+
+36
+00:02:51,900 --> 00:02:59,250
+une distribution de probabilité. Donc comment évaluer si notre boîte est correcte ou non?
+
+37
+00:02:59,250 --> 00:03:03,569
+Vous pouvez penser qu'il peut y avoir de nombreuses boîtes différentes et si nous imposons
+
+38
+00:03:03,569 --> 00:03:07,469
+au réseau qu'il doit produire la boîte exacte, ça pourrait être problématique.
+
+39
+00:03:07,469 --> 00:03:11,700
+Nous avons besoin d'un moyen de déterminer si une boîte est meilleure qu'une autre basée sur une certaine mesure,
+
+40
+00:03:11,700 --> 00:03:16,290
+donc une mesure largement utilisée est la mesure l’intersection sur union.
+
+41
+00:03:16,290 --> 00:03:21,449
+La façon dont nous calculons ceci est que nous prenons notre boîte d'origine,
+
+42
+00:03:21,449 --> 00:03:25,769
+nous prenons notre boîte prédite et nous calculons la zone de chevauchement entre les deux.
+
+43
+00:03:25,769 --> 00:03:29,699
+Nous divisons ensuite par la zone d'union entre les deux et donc la valeur est comprise entre 0 et 1.
+
+44
+00:03:29,699 --> 00:03:33,659
+1 est un accord complet entre les boîtes et
+
+45
+00:03:33,659 --> 00:03:39,269
+0 est le désaccord complet entre les boîtes. Voici un exemple : notre boîte verte ici est notre vérité de base.
+
+46
+00:03:39,269 --> 00:03:45,629
+Supposons que notre prédiction est la boîte rouge.
+
+47
+00:03:45,629 --> 00:03:50,310
+Vous voyez que la boîte rouge est très proche de la boîte verte, donc maintenant nous pouvons
+
+48
+00:03:50,310 --> 00:03:55,290
+mesurer l’IoU et nous pouvons dire qu’il est d’environ 0,9,
+
+49
+00:03:55,290 --> 00:04:00,689
+donc c'est une très bonne boîte qui correspond à nos attentes.
+
+50
+00:04:00,689 --> 00:04:04,109
+Si nous prenions une autre boîte qui peut contenir une partie de la bicyclette, mais pas une grande partie,
+
+51
+00:04:04,109 --> 00:04:09,930
+ce sera un chevauchement, entre guillemets, de mauvaise qualité,
+
+52
+00:04:09,930 --> 00:04:14,579
+nous aurions une intersection sur union de 0,4, par exemple. Nous avons une partie de la boîte mais pas toute la boîte,
+
+53
+00:04:14,579 --> 00:04:21,389
+donc c'est une façon d'évaluer les performances de nos boîtes englobantes.
+
+54
+00:04:21,389 --> 00:04:25,260
+Une raison pour laquelle c'est important est que, supposons que quelqu'un annote ces boîtes.
+
+55
+00:04:25,260 --> 00:04:27,330
+Cette personne ne fera pas un travail parfait non plus pour annoter des boîtes.
+
+56
+00:04:27,330 --> 00:04:30,539
+Il y avait une question plus tôt sur la façon de traiter le bruit.
+
+57
+00:04:30,539 --> 00:04:34,050
+Alors c’est un moyen de traiter le bruit. Au lieu de dire que la boîte
+
+58
+00:04:34,050 --> 00:04:37,770
+doit être exactement comme ce qui a été annoté, il suffit de dire qu'il doit être aussi proche que possible
+
+59
+00:04:37,770 --> 00:04:44,580
+de ce qui a été annoté. Alors examinons maintenant le masque de segmentation.
+
+60
+00:04:44,580 --> 00:04:49,169
+Le masque de segmentation classe les pixels dans l'image comme appartenant à une certaine classe.
+
+61
+00:04:49,169 --> 00:04:55,770
+Dans le cas de cette bicyclette, nous avons un masque ici et
+
+62
+00:04:55,770 --> 00:05:01,409
+il s'agit en fait d'une sorte de masque binaire. Donc pour chaque catégorie, vous pourriez avoir
+
+63
+00:05:01,409 --> 00:05:05,430
+un masque binaire qui indique les pixels qui correspondent à l'arrière-plan et
+
+64
+00:05:05,430 --> 00:05:09,719
+les pixels qui correspondent aux catégories spécifiques.
+
+65
+00:05:09,719 --> 00:05:13,110
+Bien entendu, les cartes de segmentation peuvent être superposées à l'image originale lorsque vous faites vos prédictions
+
+66
+00:05:13,110 --> 00:05:17,280
+pour voir ensuite ce que votre réseau a prévu comme faisant partie
+
+67
+00:05:17,280 --> 00:05:24,539
+de votre image ou non. Il y a donc différents types de segmentation :
+
+68
+00:05:24,539 --> 00:05:28,830
+il y a ce que l’on appelle la segmentation sémantique et la segmentation d'instances.
+
+69
+00:05:28,830 --> 00:05:33,240
+Dans le cas de la segmentation sémantique, nous ne distinguons pas
+
+70
+00:05:33,240 --> 00:05:37,889
+les objets de la même classe. Voici donc un petit exemple : si nous essayons de
+
+71
+00:05:37,889 --> 00:05:42,270
+distinguer le cube, la bouteille et la tasse, vous voyez que nous sommes capables de
+
+72
+00:05:42,270 --> 00:05:46,589
+distinguer les différentes classes correctement mais ici nous n'avons pas de distinction
+
+73
+00:05:46,589 --> 00:05:49,860
+entre ces deux cubes, alors que nous savons que lorsque nous regardons l'image originale,
+
+74
+00:05:49,860 --> 00:05:56,069
+il y a une distinction. Dans le cas de la segmentation d’instances,
+
+75
+00:05:56,069 --> 00:05:59,069
+nous avons réellement cette distinction et vous pouvez imaginer comment cela pourrait être utile
+
+76
+00:05:59,069 --> 00:06:03,180
+si nous essayons d'identifier plusieurs objets de la même catégorie
+
+77
+00:06:03,180 --> 00:06:06,020
+dans une image.
