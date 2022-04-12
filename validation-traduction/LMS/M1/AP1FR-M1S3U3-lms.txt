@@ -1,1 +1,0 @@
-<p>Jeremy donne son interpr&eacute;tation de ce qui fait un bon framework d'apprentissage profond et passe en revue l'histoire de ces frameworks, notamment Theano, Pytorch et Tensorflow. Il compare les deux derniers frameworks et introduit l'id&eacute;e d'API wrapper.</p>

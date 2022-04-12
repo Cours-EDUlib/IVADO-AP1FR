@@ -1,4 +1,0 @@
-<p>Cher apprenant,&nbsp;</p>
-<p>Nous vous remercions de votre participation au cours sur les essentiels de l'apprentissage profond (MOOC). Nous appr&eacute;cions le temps que vous avez pass&eacute; avec nous et les efforts que vous avez consacr&eacute;s &agrave; la r&eacute;alisation du cours.</p>
-<p>&Agrave; l'avenir, nous esp&eacute;rons que vous pourrez utiliser les aspects du programme qui vous ont particuli&egrave;rement int&eacute;ress&eacute;s. Si vous connaissez quelqu'un qui pourrait b&eacute;n&eacute;ficier de ce MOOC, veuillez partager le lien edX avec lui.&nbsp;</p>
-<p>Nous serions ravis de recevoir vos commentaires. Si vous pouviez r&eacute;pondre &agrave; ce rapide sondage de cinq minutes, cela nous aiderait &agrave; am&eacute;liorer ce cours et les prochaines &eacute;ditions.&nbsp;</p>
